@@ -151,15 +151,15 @@ class OtoritasController extends Controller
 
     public function getMenu($role_id, $parent_id = null)
     {
-        $menus = Menu::select(DB::raw('id, parent_id, name'))
+        $menus = Menu::select('id', 'parent_id', 'name')
             ->where('parent_id', $parent_id)
             ->with(['permissions' => function ($query) use ($role_id) {
-                $query->select(DB::raw('menu_id, role_id, GROUP_CONCAT(action_id) as action'));
+                $query->select('menu_id', 'role_id', DB::raw('GROUP_CONCAT(action_id) as action'));
                 $query->where('role_id', $role_id);
                 $query->where('is_active', 1);
                 $query->groupBy('menu_id');
                 $query->groupBy('role_id');
-                $query->orderBy('action_id');
+                $query->orderByRaw('action'); // Order by the concatenated action_id values
             }])
             ->get();
 
