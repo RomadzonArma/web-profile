@@ -13,9 +13,9 @@
                         <div class="row mb-2">
                             <div class="col-sm-12">
                                 <div class="text-sm-right">
-                                    <button type="button"
-                                        class="btn btn-success btn-rounded waves-effect waves-light btn-tambah"><i
-                                            class="bx bx-plus-circle mr-1"></i> Tambah</button>
+                                    <a type="button"
+                                        class="btn btn-success btn-rounded waves-effect waves-light btn-tambah" href="{{ route('informasi-publik.store') }}"><i
+                                            class="bx bx-plus-circle mr-1"></i> Tambah</a>
                                 </div>
                             </div>
                         </div>
@@ -27,7 +27,6 @@
                                     <th style="width: 5%;">#</th>
                                     <th>Judul</th>
                                     <th>Kategori</th>
-                                    <th>Konten</th>
                                     <th>Aksi</th>
                                     <th></th>
                                 </tr>
@@ -42,5 +41,5 @@
 @endsection
 
 @push('scripts')
-    {{-- <script src="{{ asset('js/page/pengguna/list.js?q=' . Str::random(5)) }}"></script> --}}
+    <script src="{{ asset('js/page/pengguna/list.js?q=' . Str::random(5)) }}"></script>
 @endpush
