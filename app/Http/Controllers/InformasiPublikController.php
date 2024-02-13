@@ -82,24 +82,28 @@ class InformasiPublikController extends Controller
             if ($imageFile) {
                 foreach ($imageFile as $item => $image) {
                     $data = $image->getAttribute('src');
-                    list($type, $data) = explode(';', $data);
-                    list(, $data)      = explode(',', $data);
-                    $imgeData = base64_decode($data);
-                    $fileName = time() . $item . '.png';
-                    $directory = "uploads/informasi_publik/{$fileUpload->id}";
+                    $explodedData = explode(';', $data);
+                    // list($type, $data) = explode(';', $data);
+                    // list(, $data)      = explode(',', $data);
+                    if (count($explodedData) >= 2) {
+                        $imgeData = base64_decode($data);
+                        $fileName = time() . $item . '.png';
+                        $directory = "uploads/informasi_publik/{$fileUpload->id}";
 
-                    // Store the image using Laravel's Storage
-                    Storage::put("public/$directory/$fileName", $imgeData);
+                        // Store the image using Laravel's Storage
+                        Storage::put("public/$directory/$fileName", $imgeData);
 
-                    // Update the image src attribute in the HTML content
-                    $newSrc = Storage::url("$directory/$fileName");
-                    $image->setAttribute('src', $newSrc);
+                        // Update the image src attribute in the HTML content
+                        $newSrc = Storage::url("$directory/$fileName");
+                        $image->setAttribute('src', $newSrc);
 
-                    $fileUploadFile = new Informasi_publik_has_file;
-                    $fileUploadFile->path = $directory;
-                    $fileUploadFile->file = $fileName;
-                    $fileUploadFile->informasi_publik_id = $fileUpload->id;
-                    $fileUploadFile->save();
+                        $fileUploadFile = new Informasi_publik_has_file;
+                        $fileUploadFile->path = $directory;
+                        $fileUploadFile->file = $fileName;
+                        $fileUploadFile->informasi_publik_id = $fileUpload->id;
+                        $fileUploadFile->save();
+                    }
+
                 }
             }
 

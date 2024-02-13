@@ -25,8 +25,8 @@
                         </div>
                         <div class="form-group">
                             <label for="kategori">Konten</label>
-                            {{-- <input type="hidden" name="old-konten" id="old-konten" class="form-control" placeholder="Masukkan Kategori" value="{{ $data->konten }}"> --}}
-                            <textarea class="form-control" id="summernote" name="konten" required>{{ $data->konten }}</textarea>
+                            <input type="hidden" name="old-konten" id="old-konten" class="form-control" placeholder="Masukkan Kategori" value="{{ $data->konten }}">
+                            <textarea class="form-control" id="summernote" name="konten" required></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary float-right mt-3">Submit</button>
                     </form>
