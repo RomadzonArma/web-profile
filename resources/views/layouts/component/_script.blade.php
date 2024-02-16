@@ -68,6 +68,9 @@
 <script src="{{ config('app.theme') }}assets/libs/twitter-bootstrap-wizard/prettify.js?q={{ Str::random(5) }}"></script>
 @endif
 
+@if (in_array('editor', $plugins))
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+@endif
 @if (in_array('swal', $plugins))
 <!-- Sweet Alerts js -->
 <script src="{{ config('app.theme') }}assets/libs/sweetalert2/sweetalert2.min.js?q={{ Str::random(5) }}"></script>

@@ -24,6 +24,9 @@
 <link rel="stylesheet" href="{{ config('app.theme') }}assets/libs/twitter-bootstrap-wizard/prettify.css">
 @endif
 
+@if (in_array('editor', @$plugins))
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+@endif
 @if (in_array('leaflet', @$plugins))
 
 <!-- leaflet Css -->
