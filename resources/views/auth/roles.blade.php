@@ -9,7 +9,7 @@
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
     <!-- App favicon -->
-    <link rel="shortcut icon" href="{{ config('app.theme') }}assets/images/favicon.ico">
+    <link rel="shortcut icon" href="{{ config('app.theme') }}assets/images/logo-tutwuri.png">
 
     <!-- Bootstrap Css -->
     <link href="{{ config('app.theme') }}assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet"
@@ -46,7 +46,7 @@
                                 <a href="index.html">
                                     <div class="avatar-md profile-user-wid mb-4">
                                         <span class="avatar-title rounded-circle bg-light">
-                                            <img src="{{ config('app.theme') }}assets/images/logo.svg" alt=""
+                                            <img src="{{ config('app.theme') }}assets/images/logo-tutwuri.png" alt=""
                                                 class="rounded-circle" height="34">
                                         </span>
                                     </div>

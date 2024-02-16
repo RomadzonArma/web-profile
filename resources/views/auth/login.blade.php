@@ -9,7 +9,7 @@
     <meta content="KSPS" name="description" />
     <meta content="alief" name="author" />
     <!-- App favicon -->
-    <link rel="shortcut icon" href="assets/images/favicon.ico">
+    <link rel="shortcut icon" href="assets/images/logo-tutwuri.png">
 
     <!-- Bootstrap Css -->
     <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
@@ -45,7 +45,7 @@
                                 <a href="">
                                     <div class="avatar-md profile-user-wid mb-4">
                                         <span class="avatar-title rounded-circle bg-light">
-                                            <img src="{{ asset('assets/images/logo.svg') }}" alt=""
+                                            <img src="{{ asset('assets/images/logo-tutwuri.png') }}" alt=""
                                                 class="rounded-circle" height="34">
                                         </span>
                                     </div>

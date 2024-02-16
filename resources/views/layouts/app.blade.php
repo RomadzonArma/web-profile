@@ -14,7 +14,7 @@
     {{--
     <meta content="{{ Route::url() }}" name="current_url"> --}}
     <!-- App favicon -->
-    <link rel="shortcut icon" href="{{ config('app.theme') }}assets/images/favicon.ico">
+    <link rel="shortcut icon" href="{{ config('app.theme') }}assets/images/logo-tutwuri.png">
 
     @include('layouts.component._style')
 
@@ -38,7 +38,7 @@
                     <div class="navbar-brand-box">
                         <a href="index.html" class="logo logo-dark">
                             <span class="logo-sm">
-                                <img src="{{ config('app.theme') }}assets/images/logo.svg" alt=""
+                                <img src="{{ config('app.theme') }}assets/images/logo-tutwuri.png" alt=""
                                     height="22">
                             </span>
                             <span class="logo-lg">
