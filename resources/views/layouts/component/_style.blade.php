@@ -4,7 +4,7 @@
 <!-- Icons Css -->
 <link href="{{ config('app.theme') }}assets/css/icons.min.css" rel="stylesheet" type="text/css" />
 <!-- App Css-->
-<link href="{{ config('app.theme') }}assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+
 <link rel="stylesheet" type="text/css" href="{{ config('app.theme') }}assets/libs/toastr/build/toastr.min.css">
 
 @if (in_array('datatable', @$plugins))
@@ -56,3 +56,5 @@
 <link href="{{ config('app.theme') }}assets/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet"
     type="text/css">
 @endif
+
+<link href="{{ config('app.theme') }}assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />

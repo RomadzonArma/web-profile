@@ -15,6 +15,9 @@
 <script src="{{ asset('js/app.js') }}?q={{ Str::random(5) }}"></script>
 <script src="{{ asset('js/menu.js') }}?q={{ Str::random(5) }}"></script>
 <script src="{{ asset('js/page/change-password/form.js') }}?q={{ Str::random(5) }}"></script>
+<!-- bs custom file input plugin -->
+<script src="{{ config('app.theme') }}assets/libs/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+<script src="{{ config('app.theme') }}assets/js/pages/form-element.init.js"></script>
 
 @if (in_array('datatable', $plugins))
 <!-- Required datatable js -->

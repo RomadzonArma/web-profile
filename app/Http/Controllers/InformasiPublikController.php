@@ -41,7 +41,7 @@ class InformasiPublikController extends Controller
         $id = decrypt($id);
         $data = Informasi_publik::where('id', $id)->first();
         return view('contents.informasi.update', [
-            'title' => 'Tambah Informasi Publik',
+            'title' => 'Edit Informasi Publik',
             'data' => $data,
         ]);
     }
