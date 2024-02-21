@@ -56,6 +56,11 @@ class RouteServiceProvider extends ServiceProvider
             $this->mapOtoritasRoutes();
 
             $this->mapInformasiRoutes();
+
+            $this->mapListKanalRoutes();
+
+            $this->mapListKategoriRoutes();
+
         });
     }
 
@@ -121,5 +126,19 @@ class RouteServiceProvider extends ServiceProvider
         Route::prefix('informasi-publik')
             ->namespace($this->namespace)
             ->group(base_path('routes/panel/informasi.php'));
+    }
+
+    protected function mapListKanalRoutes()
+    {
+        Route::prefix('list_kanal')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/panel/list_kanal.php'));
+    }
+
+    protected function mapListKategoriRoutes()
+    {
+        Route::prefix('list_kategori')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/panel/list_kategori.php'));
     }
 }
