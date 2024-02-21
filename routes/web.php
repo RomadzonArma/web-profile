@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Front\LandingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,8 +13,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', [LandingController::class, 'index'])->name('index');
 
-Route::get('/', function () {
+Route::get('/login', function () {
     return redirect()->route('login');
 });
 
