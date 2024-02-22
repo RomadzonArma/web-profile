@@ -100,11 +100,13 @@
                     </div>
 
                     <div>
-                        <p>©
-                            <script>
-                                document.write(new Date().getFullYear())
-                            </script> KSPS
-                        </p>
+                        <center>
+                            <p>©
+                                <script>
+                                    document.write(new Date().getFullYear())
+                                </script> KSPS
+                            </p>
+                        </center>
                     </div>
                 </div>
 
