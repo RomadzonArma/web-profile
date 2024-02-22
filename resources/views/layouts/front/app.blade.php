@@ -13,29 +13,12 @@
 
 </head>
 
-<body class="stretched full-height">
+<body class="stretched">
     <div id="wrapper" class="clearfix">
 
         @include('layouts.front.header_mobile')
 
-        <section class="bg-soft px-xl-5 d-lg-block d-none">
-            <div class="content-wrap py-2">
-                <div class="container-fluid">
-                    <div class="d-flex justify-content-lg-between justify-content-center align-items-center">
-                        <a href="index.html" data-dark-logo="{{ asset('assets-front/img/logo-P3GTK.png') }}">
-                            <img src="{{ asset('assets-front/img/logo-P3GTK.png') }}" class="img-fluid"
-                                width="150">
-                        </a>
-                        <form class="bg-white form-banner my-0" style="min-width: 280px;">
-                            <input type="text" placeholder="Cari kata kunci...">
-                            <div class="rounded-icon bg-secondary">
-                                <i class="icon-line-search"></i>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
+        @yield('content-header')
 
         @include('layouts.front.header')
 
