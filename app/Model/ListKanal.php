@@ -11,4 +11,10 @@ class ListKanal extends Model
     protected $table = 'ref_kanal';
 
     protected $guarded = ['id'];
+
+
+    public function list_kategori()
+    {
+        return $this->hasMany('App\Model\Listkategori', 'id_kanal' , 'id');
+    }
 }
