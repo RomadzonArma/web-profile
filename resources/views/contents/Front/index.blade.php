@@ -1,5 +1,25 @@
 @extends('layouts.front.app')
 
+@section('content-header')
+    <section class="bg-soft px-xl-5 d-lg-block d-none">
+        <div class="content-wrap py-2">
+            <div class="container-fluid">
+                <div class="d-flex justify-content-lg-between justify-content-center align-items-center">
+                    <a href="index.html" data-dark-logo="{{ asset('assets-front/img/logo-P3GTK.png') }}">
+                        <img src="{{ asset('assets-front/img/logo-P3GTK.png') }}" class="img-fluid" width="150">
+                    </a>
+                    <form class="bg-white form-banner my-0" style="min-width: 280px;">
+                        <input type="text" placeholder="Cari kata kunci...">
+                        <div class="rounded-icon bg-secondary">
+                            <i class="icon-line-search"></i>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+@endsection
+
 @section('content')
     <section class="px-xl-5">
         <div class="content-wrap scrolled">
@@ -54,48 +74,47 @@
                 <div class="row">
                     <div class="col-lg-8 col-md-7 col-12 mb-lg-0 mb-4">
                         <div class="mb-3">
-                            <div class="heading-block border-bottom-0 line-right">
+                            <div class="heading-block border-bottom-0 line-bottom">
                                 <h6 class="text-uppercase text-dark">PROGRAM FOKUS KSPSTK</h6>
                                 <div></div>
                             </div>
-                            <div class="swiper swiper-3" style="padding: 0 24px !important;">
+                            <div class="swiper swiper-3 swiper-padding">
                                 <div class="swiper-wrapper">
                                     <div class="swiper-slide">
                                         <a href="#" class="card card-custom mb-2">
                                             <div class="card-body text-center">
-                                                <p class="text-primary font-weight-normal mb-0">Pendidikan Guru
-                                                    Penggerak</p>
+                                                <p class="text-dark font-weight-normal mb-0">Pendidikan Guru Penggerak</p>
                                             </div>
                                         </a>
                                     </div>
                                     <div class="swiper-slide">
                                         <a href="#" class="card card-custom mb-2">
                                             <div class="card-body text-center">
-                                                <p class="text-primary font-weight-normal mb-0">Publikasi,
-                                                    Kemitraan dan Harlindung</p>
+                                                <p class="text-dark font-weight-normal mb-0">Publikasi, Kemitraan dan
+                                                    Harlindung</p>
                                             </div>
                                         </a>
                                     </div>
                                     <div class="swiper-slide">
                                         <a href="#" class="card card-custom mb-2">
                                             <div class="card-body text-center">
-                                                <p class="text-primary font-weight-normal mb-0">Pengembangan
-                                                    Kompetensi Berkelanjutan</p>
+                                                <p class="text-dark font-weight-normal mb-0">Pengembangan Kompetensi
+                                                    Berkelanjutan</p>
                                             </div>
                                         </a>
                                     </div>
                                     <div class="swiper-slide">
                                         <a href="#" class="card card-custom mb-2">
                                             <div class="card-body text-center">
-                                                <p class="text-primary font-weight-normal mb-0">Regulasi, Tata
-                                                    Kelola, dan Tenaga Kerja</p>
+                                                <p class="text-dark font-weight-normal mb-0">Regulasi, Tata Kelola, dan
+                                                    Tenaga Kerja</p>
                                             </div>
                                         </a>
                                     </div>
                                     <div class="swiper-slide">
                                         <a href="#" class="card card-custom mb-2">
                                             <div class="card-body text-center">
-                                                <p class="text-primary font-weight-normal mb-0">Pembelajaran</p>
+                                                <p class="text-dark font-weight-normal mb-0">Pembelajaran</p>
                                             </div>
                                         </a>
                                     </div>
@@ -105,7 +124,7 @@
                             </div>
                         </div>
                         <div class="mb-3">
-                            <div class="heading-block line-right border-bottom-0">
+                            <div class="heading-block line-bottom border-bottom-0">
                                 <h6 class="text-uppercase text-dark">PETA PERSEBARAN</h6>
                                 <div></div>
                             </div>
