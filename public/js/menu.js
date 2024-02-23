@@ -36,7 +36,7 @@ const generateMenu = (data, container, is_parent = true) => {
                 });
 
                 let menu_icon = $('<i>', {
-                    class: icon
+                    class: icon + ' text-white',
                 });
 
                 let a = $('<a>', {
@@ -46,7 +46,7 @@ const generateMenu = (data, container, is_parent = true) => {
                 });
 
                 let sub = $('<ul>', {
-                    class: 'sub-menu sub-' + encode_id,
+                    class: 'sub-menu sub-' + encode_id + ' text-white',
                     'aria-expanded': false,
                 });
 
@@ -63,7 +63,7 @@ const generateMenu = (data, container, is_parent = true) => {
                 });
 
                 let menu_icon = $('<i>', {
-                    class: icon
+                    class: icon + ' text-white',
                 });
 
                 let a = $('<a>', {

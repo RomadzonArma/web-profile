@@ -63,6 +63,8 @@ class RouteServiceProvider extends ServiceProvider
             
             $this->mapListBeritaRoutes();
 
+            $this->mapListBeritaRoutes();
+
         });
     }
 

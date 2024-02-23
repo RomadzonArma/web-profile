@@ -11,4 +11,5 @@ class ListBerita extends Model
     protected $table = 'ref_berita';
 
     protected $guarded = ['id'];
+
 }
