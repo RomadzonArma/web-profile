@@ -30,8 +30,8 @@ class ListBeritaController extends Controller
                 return encrypt($row->id);
             })
             ->make();
-        }
     }
+
 
     /**
      * Show the form for creating a new resource.
