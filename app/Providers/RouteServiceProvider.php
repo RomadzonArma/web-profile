@@ -61,6 +61,8 @@ class RouteServiceProvider extends ServiceProvider
 
             $this->mapListKategoriRoutes();
 
+            $this->mapListBeritaRoutes();
+
         });
     }
 
@@ -140,5 +142,12 @@ class RouteServiceProvider extends ServiceProvider
         Route::prefix('list_kategori')
             ->namespace($this->namespace)
             ->group(base_path('routes/panel/list_kategori.php'));
+    }
+
+    protected function mapListBeritaRoutes()
+    {
+        Route::prefix('list_berita')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/panel/list_berita.php'));
     }
 }
