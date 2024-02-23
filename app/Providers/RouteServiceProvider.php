@@ -60,6 +60,8 @@ class RouteServiceProvider extends ServiceProvider
             $this->mapListKanalRoutes();
 
             $this->mapListKategoriRoutes();
+            
+            $this->mapListBeritaRoutes();
 
             $this->mapListBeritaRoutes();
 

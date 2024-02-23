@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Model\ListBerita;
 use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
 class ListBeritaController extends Controller
 {
@@ -14,7 +15,22 @@ class ListBeritaController extends Controller
      */
     public function index()
     {
-        //
+        return view('contents.ListBerita.list', [
+            'title' => 'List Berita'
+        ]);
+    }
+
+    public function data()
+    {
+        $list = ListBerita::all();
+
+        return DataTables::of($list)
+            ->addIndexColumn()
+            ->addColumn('id', function ($row) {
+                return encrypt($row->id);
+            })
+            ->make();
+        }
     }
 
     /**
