@@ -3,16 +3,16 @@
 @endforeach
 
 <!-- JAVASCRIPT -->
-<script src="{{ config('app.theme') }}assets/libs/jquery/jquery.min.js?q={{ Str::random(5) }}"></script>
-<script src="{{ config('app.theme') }}assets/libs/bootstrap/js/bootstrap.bundle.min.js?q={{ Str::random(5) }}"></script>
-<script src="{{ config('app.theme') }}assets/libs/metismenu/metisMenu.min.js?q={{ Str::random(5) }}"></script>
+ <script src="{{ config('app.theme') }}assets/libs/jquery/jquery.min.js?q={{ Str::random(5) }}"></script>
+ <script src="{{ config('app.theme') }}assets/libs/bootstrap/js/bootstrap.bundle.min.js?q={{ Str::random(5) }}"></script>
+ <script src="{{ config('app.theme') }}assets/libs/metismenu/metisMenu.min.js?q={{ Str::random(5) }}"></script>
 <script src="{{ config('app.theme') }}assets/libs/simplebar/simplebar.min.js?q={{ Str::random(5) }}"></script>
 <script src="{{ config('app.theme') }}assets/libs/node-waves/waves.min.js?q={{ Str::random(5) }}"></script>
 <script src="{{ config('app.theme') }}assets/libs/toastr/build/toastr.min.js?q={{ Str::random(5) }}"></script>
 <script src="{{ asset('js/plugin/loading-overlay/loadingoverlay.min.js') }}?q={{ Str::random(5) }}"></script>
 
 <script src="{{ asset('js/main.js') }}?q={{ Str::random(5) }}"></script>
-<script src="{{ asset('js/app.js') }}?q={{ Str::random(5) }}"></script>
+ <script src="{{ asset('js/app.js') }}?q={{ Str::random(5) }}"></script> 
 <script src="{{ asset('js/menu.js') }}?q={{ Str::random(5) }}"></script>
 <script src="{{ asset('js/page/change-password/form.js') }}?q={{ Str::random(5) }}"></script>
 <!-- bs custom file input plugin -->

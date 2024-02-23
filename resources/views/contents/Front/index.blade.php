@@ -24,6 +24,8 @@
     <section class="px-xl-5">
         <div class="content-wrap scrolled">
             <div class="container-fluid">
+
+                {{-- SWIPER --}}
                 <div class="mb-3">
                     <div class="swiper-1 swiper swiper-banner">
                         <div class="swiper-wrapper">
@@ -71,8 +73,12 @@
                         <div class="swiper-pagination"></div>
                     </div>
                 </div>
+                {{-- END SWIPER --}}
+
                 <div class="row">
                     <div class="col-lg-8 col-md-7 col-12 mb-lg-0 mb-4">
+
+                        {{-- SWIPER PROGRAM --}}
                         <div class="mb-3">
                             <div class="heading-block border-bottom-0 line-bottom">
                                 <h6 class="text-uppercase text-dark">PROGRAM FOKUS KSPSTK</h6>
@@ -123,6 +129,9 @@
                                 <div class="swiper-button-next"></div>
                             </div>
                         </div>
+                        {{-- END SWIPER PROGRAM --}}
+
+                        {{-- PETA PERSEBARAN --}}
                         <div class="mb-3">
                             <div class="heading-block line-bottom border-bottom-0">
                                 <h6 class="text-uppercase text-dark">PETA PERSEBARAN</h6>
@@ -222,8 +231,12 @@
                                 </div>
                             </div>
                         </div>
+                        {{-- END PETA PERSEBARAN --}}
+
                     </div>
                     <div class="col-lg-4 col-md-5 col-12 mb-lg-0 mb-4">
+
+                        {{-- BERITA --}}
                         <div class="mb-3">
                             <div class="heading-block border-bottom-0 d-flex justify-content-between flex-wrap">
                                 <h6 class="text-uppercase text-dark mb-0">BERITA TERKINI</h6>
@@ -281,6 +294,9 @@
                                 </div>
                             </div>
                         </div>
+                        {{-- END BERITA --}}
+
+                        {{-- WEBINAR --}}
                         <div>
                             <div class="heading-block border-bottom-0 d-flex justify-content-between flex-wrap">
                                 <h6 class="text-uppercase text-dark mb-0">WEBINAR KSPSTK</h6>
@@ -317,6 +333,7 @@
                                 <div class="swiper-pagination"></div>
                             </div>
                         </div>
+                        {{-- END WEBINAR --}}
                     </div>
                 </div>
             </div>

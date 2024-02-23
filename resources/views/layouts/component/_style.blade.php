@@ -58,3 +58,4 @@
 @endif
 
 <link href="{{ config('app.theme') }}assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+<link href="{{ config('app.theme') }}assets-dashboard/css/custom.css" id="app-style" rel="stylesheet" type="text/css" />
