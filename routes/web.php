@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [LandingController::class, 'index'])->name('index');
 Route::get('/visi-misi', [LandingController::class, 'visi_misi'])->name('visi-misi');
 Route::get('/berita', [LandingController::class, 'berita'])->name('berita');
+Route::get('/detail', [LandingController::class, 'detail'])->name('detail');
 Route::get('/galeri', [LandingController::class, 'galeri'])->name('galeri');
 Route::get('/agenda', [LandingController::class, 'agenda'])->name('agenda');
 Route::get('/unduhan', [LandingController::class, 'unduhan'])->name('unduhan');
