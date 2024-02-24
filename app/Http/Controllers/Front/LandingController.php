@@ -17,35 +17,42 @@ class LandingController extends Controller
 
     public function visi_misi()
     {
-        return view('contents.Front.visi_misi', [
+        return view('contents.Front.profil.visi_misi', [
             'title' => 'Visi dan Misi'
         ]);
     }
 
     public function berita()
     {
-        return view('contents.Front.berita', [
+        return view('contents.Front.informasi_publik.berita', [
+            'title' => 'Berita'
+        ]);
+    }
+
+    public function detail()
+    {
+        return view('contents.Front.informasi_publik.detail', [
             'title' => 'Berita'
         ]);
     }
 
     public function galeri()
     {
-        return view('contents.Front.galeri', [
+        return view('contents.Front.informasi_publik.galeri', [
             'title' => 'Galeri'
         ]);
     }
 
     public function agenda()
     {
-        return view('contents.Front.agenda', [
+        return view('contents.Front.menu_halaman.publikasi.agenda', [
             'title' => 'Agenda'
         ]);
     }
 
     public function unduhan()
     {
-        return view('contents.Front.unduhan', [
+        return view('contents.Front.menu_halaman.publikasi.unduhan', [
             'title' => 'Unduhan'
         ]);
     }
