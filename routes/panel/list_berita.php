@@ -1,5 +1,5 @@
 <?php
-Route::get('/', 'ListBeritaController@index')->name('list_berita')->middleware('rbac:list_berita');
+Route::get('/index', 'ListBeritaController@index')->name('list_berita.index')->middleware('rbac:list_berita');
 Route::get('/data', 'ListBeritaController@data')->name('list_berita.data')->middleware('rbac:list_berita');
 Route::post('/store', 'ListBeritaController@store')->name('list_berita.store')->middleware('rbac:list_berita');
 Route::get('/edit/{id}', 'ListBeritaController@edit')->name('list_berita.edit')->middleware('rbac:list_berita');
