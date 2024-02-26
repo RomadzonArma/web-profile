@@ -32,8 +32,14 @@ $(() => {
             },
             success: (res) => {
                 console.log(res);
-                showSuccessToastr('sukses', 'Berhasil menyimpan data');
-                window.location.href = BASE_URL + 'list_berita';
+                window.location.href = BASE_URL + 'list_berita/index';
+                Swal.fire({
+                    icon: "success",
+                    title: "Berhasil Menyimpan data!",
+                    text: "Data berhasil disimpan",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
             },
             error: ({
                 status,
