@@ -16,4 +16,10 @@ class ListKategori extends Model
     {
         return $this->belongsTo('App\Model\ListKanal','id_kanal','id');
     }
+
+
+    public function list_berita()
+    {
+        return $this->hasMany('App\Model\ListBerita');
+    }
 }
