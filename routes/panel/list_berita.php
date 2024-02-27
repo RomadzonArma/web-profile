@@ -7,5 +7,3 @@ Route::post('/update/{id}', 'ListBeritaController@update')->name('list_berita.up
 Route::delete('/delete/{id}', 'ListBeritaController@delete')->name('list_berita.delete')->middleware('rbac:list_berita');
 Route::get('/tambah_data', 'ListBeritaController@tambah_data')->name('list_berita.tambah_data')->middleware('rbac:list_berita');
 Route::patch('/switch', 'ListBeritaController@switchStatus')->name('list_berita.switch')->middleware('rbac:list_berita,3');
-
-
