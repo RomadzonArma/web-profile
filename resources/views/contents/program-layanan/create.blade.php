@@ -55,23 +55,24 @@
                                 placeholder="Masukkan tag, contoh: kemendikbud, jakarta, salingberbagi" required>
                             <div id="error-tag"></div>
                         </div>
-                        <div class="row">
+                        <div class="form-group">
+                            <label for="publish_date">Tanggal Publish</label>
+                            <input type="date" name="publish_date" id="publish_date" class="form-control" required>
+                            <div id="error-publish-date"></div>
+                        </div>
+                        {{-- <div class="row">
                             <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="publish_date">Tanggal Publish</label>
-                                    <input type="date" name="publish_date" id="publish_date" class="form-control" required>
-                                    <div id="error-publish-date"></div>
-                                </div>
+
                             </div>
 
-                            <div class="col-md-6">
+                            {{-- <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="end_date">Tanggal Berakhir</label>
                                     <input type="date" name="end_date" id="end_date" class="form-control" required>
                                     <div id="error-end-date"></div>
                                 </div>
-                            </div>
-                        </div>
+                            </div> --}}
+                        {{-- </div> --}}
                         <div class="form-group">
                             <label for="file">Gambar</label>
                             <div class="custom-file mb-3">
