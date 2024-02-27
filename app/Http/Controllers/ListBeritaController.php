@@ -152,23 +152,6 @@ class ListBeritaController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Model\ListBerita  $listBerita
-     * @return \Illuminate\Http\Response
-     */
-    public function show(ListBerita $listBerita)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Model\ListBerita  $listBerita
-     * @return \Illuminate\Http\Response
-     */
     public function edit(ListBerita $listBerita, $id)
     {
         $id = decrypt($id);
@@ -189,16 +172,88 @@ class ListBeritaController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Model\ListBerita  $listBerita
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, ListBerita $listBerita)
+    public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'id_kanal' => 'required',
+            'id_kategori' => 'required',
+            'judul' => 'required',
+            'lead' => 'required',
+            'isi_konten' => 'required',
+            'tag_dinamis' => 'required',
+            'id_penulis' => 'required',
+            'date' => 'required',
+            'gambar' => 'image|mimes:jpeg,png,jpg|max:2048', // Validasi untuk file gambar
+        ], [
+            'id_kanal.required' => 'Pilih Kanal wajib diisi',
+            'id_kategori.required' => 'Pilih Kategori wajib diisi',
+            'judul.required' => 'Judul wajib diisi',
+            'lead.required' => 'Lead wajib diisi',
+            'isi_konten.required' => 'Konten wajib diisi',
+            'tag_dinamis.required' => 'Tag Dinamis wajib diisi',
+            'id_penulis.required' => 'Penulis wajib diisi',
+            'date.required' => 'Waktu Tayang wajib diisi',
+            'gambar.image' => 'File harus berupa gambar',
+            'gambar.mimes' => 'Format gambar harus jpeg, png, atau jpg',
+            'gambar.max' => 'Ukuran gambar tidak boleh melebihi 2MB',
+        ]);
+
+        try {
+            DB::beginTransaction();
+
+            $decrypted_id = decrypt($id);
+
+            $isi_konten = $request->isi_konten;
+
+            $dom = new \DomDocument();
+            $dom->loadHtml($isi_konten, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+            $imageFile = $dom->getElementsByTagName('img');
+
+            // Update existing ref_berita
+            $ref_berita = ListBerita::findOrFail($decrypted_id);
+            $ref_berita->judul = $request->judul;
+            $ref_berita->id_kanal = $request->id_kanal;
+            $ref_berita->id_kategori = $request->id_kategori;
+            $ref_berita->isi_konten = ''; // Will be updated later
+            $ref_berita->save();
+
+            // Remove existing files related to the ref_berita
+            Ref_berita_has_file::where('ref_berita_id', $ref_berita->id)->delete();
+
+            // Process and save new files
+            foreach ($imageFile as $item => $image) {
+                $data = $image->getAttribute('src');
+                list($type, $data) = explode(';', $data);
+                list(, $data)      = explode(',', $data);
+                $imgeData = base64_decode($data);
+                $fileName = time() . $item . '.png';
+                $directory = "uploads/ref_berita/{$ref_berita->id}";
+
+                // Store the image using Laravel's Storage
+                Storage::put("public/$directory/$fileName", $imgeData);
+
+                // Update the image src attribute in the HTML content
+                $newSrc = Storage::url("$directory/$fileName");
+                $image->setAttribute('src', $newSrc);
+
+                $fileUploadFile = new Ref_berita_has_file();
+                $fileUploadFile->path = $directory;
+                $fileUploadFile->file = $fileName;
+                $fileUploadFile->ref_berita_id = $ref_berita->id;
+                $fileUploadFile->save();
+            }
+
+            $isi_konten = $dom->saveHTML();
+            // Update ref_berita with the final content
+            $ref_berita->isi_konten = $dom->saveHTML();
+            $ref_berita->save();
+
+            DB::commit();
+            return response()->json(['status' => true, 'image' => $imageFile], 200);
+        } catch (\Exception $e) {
+            DB::rollback();
+            return response()->json(['status' => false, 'msg' => $e->getMessage()], 400);
+        }
     }
 
     /**
