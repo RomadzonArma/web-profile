@@ -134,7 +134,7 @@ $(() => {
                 const button_edit = $('<a>', {
                     class: 'btn btn-primary btn-update',
                     html: '<i class="bx bx-pencil"></i>',
-                    // href: BASE_URL + 'list_kanal/edit/' + row.id,
+                    href: BASE_URL + 'list_berita/edit/' + row.id,
                     'data-id': data,
                     title: 'Update Data',
                     'data-placement': 'top',

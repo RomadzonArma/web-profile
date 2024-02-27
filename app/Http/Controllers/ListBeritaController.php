@@ -150,82 +150,6 @@ class ListBeritaController extends Controller
 
             return response()->json(['success' => "Berhasil menyimpan data"]);
         }
-
-
-
-
-        // $this->validate($request, [
-        //     'id_kanal' => 'required',
-        //     'id_kategori' => 'required',
-        //     'judul' => 'required',
-        //     'lead' => 'required',
-        //     'isi_konten' => 'required',
-        //     'tag_dinamis' => 'required',
-        //     'id_penulis' => 'required',
-        //     'date' => 'required',
-        //     'gambar' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-        // ]);
-        // try {
-        //     DB::beginTransaction();
-        //     $isi_konten = $request->isi_konten;
-        //     $gambar = $request->gambar;
-
-        //     $dom = new \DomDocument();
-        //     $dom->loadHtml($isi_konten, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
-        //     $dom->loadHtml($gambar, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
-        //     $imageFile = $dom->getElementsByTagName('img');
-        //     // Create Informasi_publik first
-        //     $fileUpload = new ListBerita();
-
-        //     $fileUpload->id_kanal = $request->judul;
-        //     $fileUpload->id_kategori = $request->judul;
-        //     $fileUpload->judul = $request->judul;
-        //     $fileUpload->slug = $request->judul;
-        //     $fileUpload->lead = $request->judul;
-        //     // $fileUpload->isi_konten = $request->judul;
-        //     $fileUpload->tag_dinamis = $request->kategori;
-        //     $fileUpload->id_penulis = $request->kategori;
-        //     $fileUpload->status_video = $request->kategori;
-        //     $fileUpload->url_video = $request->kategori;
-        //     $fileUpload->status_headline = $request->kategori;
-        //     $fileUpload->gambar = $request->kategori;
-        //     $fileUpload->caption_gambar = $request->kategori;
-        //     $fileUpload->date = $request->kategori;
-        //     $fileUpload->isi_konten = ''; // Will be updated later
-        //     $fileUpload->save();
-        //     foreach ($imageFile as $item => $image) {
-        //         $data = $image->getAttribute('src');
-        //         list($type, $data) = explode(';', $data);
-        //         list(, $data)      = explode(',', $data);
-        //         $imgeData = base64_decode($data);
-        //         $fileName = time() . $item . '.png';
-        //         $directory = "uploads/list_berita/{$fileUpload->id}"; // Use the ID of the Informasi_publik as part of the directory
-
-        //         // Store the image using Laravel's Storage
-        //         Storage::put("public/$directory/$fileName", $imgeData);
-
-        //         // Update the image src attribute in the HTML content
-        //         $newSrc = Storage::url("$directory/$fileName");
-        //         $image->setAttribute('src', $newSrc);
-        //         $fileUploadFile = new Ref_berita_has_file();
-        //         $fileUploadFile->path = $directory;
-        //         $fileUploadFile->file = $fileName;
-        //         $fileUploadFile->ref_berita_id = $fileUpload->id;
-        //         $fileUploadFile->save();
-        //     }
-
-        //     $isi_konten = $dom->saveHTML();
-        //     // Update Informasi_publik with the final content
-        //     $fileUpload->isi_konten = $dom->saveHTML();
-        //     $fileUpload->save();
-
-
-        //     DB::commit();
-        //     return response()->json(['status' => true, 'image' => $imageFile], 200);
-        // } catch (\Exception $e) {
-        //     DB::rollback();
-        //     return response()->json(['status' => false, 'msg' => $e->getMessage()], 400);
-        // }
     }
 
     /**
@@ -245,9 +169,24 @@ class ListBeritaController extends Controller
      * @param  \App\Model\ListBerita  $listBerita
      * @return \Illuminate\Http\Response
      */
-    public function edit(ListBerita $listBerita)
+    public function edit(ListBerita $listBerita, $id)
     {
-        //
+        $id = decrypt($id);
+        $data = ListBerita::findOrFail($id);
+
+        // Ambil data yang diperlukan
+        $list_kanal = ListKanal::all();
+        $list_kategori = ListKategori::all();
+        $penulis = User::all();
+        // dd($data);
+        // Return view dengan data yang diperlukan
+        return view('contents.ListBerita.edit-data', [
+            'title' => 'Edit Berita',
+            'data' => $data,
+            'list_kanal' => $list_kanal,
+            'list_kategori' => $list_kategori,
+            'penulis' => $penulis,
+        ]);
     }
 
     /**
