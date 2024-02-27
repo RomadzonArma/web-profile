@@ -60,10 +60,12 @@ class RouteServiceProvider extends ServiceProvider
             $this->mapListKanalRoutes();
 
             $this->mapListKategoriRoutes();
-            
+
             $this->mapListBeritaRoutes();
 
             $this->mapListBeritaRoutes();
+
+            $this->mapListProgramLayanan();
 
         });
     }
@@ -151,5 +153,11 @@ class RouteServiceProvider extends ServiceProvider
         Route::prefix('list_berita')
             ->namespace($this->namespace)
             ->group(base_path('routes/panel/list_berita.php'));
+    }
+    protected function mapListProgramLayanan()
+    {
+        Route::prefix('program_layanan')
+        ->namespace($this->namespace)
+        ->group(base_path('routes/panel/program-layanan.php'));
     }
 }
