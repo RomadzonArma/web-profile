@@ -59,13 +59,14 @@
                                 value="{{ $list->tag }}">
                             <div id="error-tag"></div>
                         </div>
-                        <div class="row">
+                        <div class="form-group">
+                            <label for="publish_date">Tanggal Publish</label>
+                            <input type="date" name="publish_date" id="publish_date" class="form-control" value="{{ $list->publish_date }}">
+                            <div id="error-publish-date"></div>
+                        </div>
+                        {{-- <div class="row">
                             <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="publish_date">Tanggal Publish</label>
-                                    <input type="date" name="publish_date" id="publish_date" class="form-control" value="{{ $list->publish_date }}">
-                                    <div id="error-publish-date"></div>
-                                </div>
+
                             </div>
 
                             <div class="col-md-6">
@@ -75,7 +76,7 @@
                                     <div id="error-end-date"></div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="form-group">
                             <label for="file">Gambar</label>
                             <div class="custom-file mb-3">
@@ -83,7 +84,6 @@
                                     value="{{ $list->image }}"id="customFile" accept=".jpg,.jpeg,.png">
                                 <label class="custom-file-label" for="customFile">Choose file</label>
                             </div>
-                            <div id="imagePreview" class="mt-3"></div>
                         </div>
                         <div class="form-group">
                             <label for="caption_image">Caption Gambar</label>
