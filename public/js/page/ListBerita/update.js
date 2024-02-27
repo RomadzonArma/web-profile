@@ -1,8 +1,8 @@
 let table;
-let konten;
+let isi_konten;
 $(() => {
-    konten = $('#isi_konten').val();
-    var encodedContent = encodeURIComponent(konten);
+    isi_konten = $('#old-konten').val();
+    var encodedContent = encodeURIComponent(isi_konten);
     $('#summernote').summernote({
         toolbar: [
             // [groupName, [list of button]]
@@ -37,7 +37,7 @@ $(() => {
             success: (res) => {
                 console.log(res);
                 showSuccessToastr('sukses', 'Berhasil memperbarui data');
-                window.location.href = BASE_URL + 'informasi-publik';
+                window.location.href = BASE_URL + 'list_berita/index';
             },
             error: ({
                 status,
@@ -55,4 +55,15 @@ $(() => {
     })
 
 })
+document.addEventListener("DOMContentLoaded", function () {
+    var statusVideoCheckbox = document.getElementById("status_video");
+    var urlVideoContainer = document.getElementById("url_video_container");
 
+    statusVideoCheckbox.addEventListener("change", function () {
+        if (this.checked) {
+            urlVideoContainer.style.display = "block";
+        } else {
+            urlVideoContainer.style.display = "none";
+        }
+    });
+});
