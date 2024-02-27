@@ -166,9 +166,9 @@ class RouteServiceProvider extends ServiceProvider
 
     protected function mapListProgramLayanan()
     {
-        Route::prefix('program_layanan')
-        ->namespace($this->namespace)
-        ->group(base_path('routes/panel/program-layanan.php'));
+        Route::prefix('profil')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/panel/profil.php'));
     }
 
 }

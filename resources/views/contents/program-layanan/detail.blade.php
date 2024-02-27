@@ -22,10 +22,10 @@ $plugins = ['editor', 'swal', 'select2'];
                 </div>
                 <div class="flex-1 py-1">
                     <h6 class="text mb-0">Konten :</h6>
-                    <a href="javascript:void(0)" class="text-muted">{{ $list->body }}</a>
+                    <a href="javascript:void(0)" class="text-muted">{!! $list->body !!}</a>
                 </div>
                 <div class="flex-1 py-1">
-                    <h6 class="text mb-0">Iamge :</h6>
+                    <h6 class="text mb-0">Gambar :</h6>
                     <img src="{{ asset('program-image/'. $list->image)}}" alt="program-image" width="200px">
                     <a href="javascript:void(0)" class="text-muted">{{ $list->iamge }}</a>
                     <p><small>{{$list->caption_image}}</small></p>
