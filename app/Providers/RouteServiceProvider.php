@@ -69,6 +69,8 @@ class RouteServiceProvider extends ServiceProvider
 
             $this->mapListProgramLayanan();
 
+            $this->mapSosmedRoutes();
+
         });
     }
 
@@ -169,6 +171,14 @@ class RouteServiceProvider extends ServiceProvider
         Route::prefix('program_layanan')
             ->namespace($this->namespace)
             ->group(base_path('routes/panel/program-layanan.php'));
+    }
+
+
+    protected function mapSosmedRoutes()
+    {
+        Route::prefix('sosmed')
+        ->namespace($this->namespace)
+        ->group(base_path('routes/panel/sosmed.php'));
     }
 
 }
