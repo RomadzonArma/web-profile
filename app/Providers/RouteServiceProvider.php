@@ -69,6 +69,8 @@ class RouteServiceProvider extends ServiceProvider
 
             $this->mapListProgramLayanan();
 
+            $this->mapSwiper();
+
         });
     }
 
@@ -169,6 +171,13 @@ class RouteServiceProvider extends ServiceProvider
         Route::prefix('program_layanan')
             ->namespace($this->namespace)
             ->group(base_path('routes/panel/program-layanan.php'));
+    }
+
+    protected function mapSwiper()
+    {
+        Route::prefix('swiper')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/panel/swiper.php'));
     }
 
 }
