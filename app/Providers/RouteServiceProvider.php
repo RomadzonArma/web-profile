@@ -74,6 +74,8 @@ class RouteServiceProvider extends ServiceProvider
             $this->mapSosmedRoutes();
 
             $this->mapAgendaRoutes();
+
+            $this->mapWebinarRoutes();
         });
     }
 
@@ -195,5 +197,12 @@ class RouteServiceProvider extends ServiceProvider
         Route::prefix('list_agenda')
             ->namespace($this->namespace)
             ->group(base_path('routes/panel/agenda.php'));
+    }
+
+    protected function mapWebinarRoutes()
+    {
+        Route::prefix('webinar')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/panel/webinar.php'));
     }
 }
