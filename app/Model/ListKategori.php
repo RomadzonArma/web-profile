@@ -17,7 +17,6 @@ class ListKategori extends Model
         return $this->belongsTo('App\Model\ListKanal','id_kanal','id');
     }
 
-
     public function list_berita()
     {
         return $this->hasMany('App\Model\ListBerita');
@@ -26,5 +25,10 @@ class ListKategori extends Model
     public function list_agenda()
     {
         return $this->hasMany('App\Model\Agenda');
+    }
+
+    public function webinar()
+    {
+        return $this->hasMany('App\Model\Webinar');
     }
 }
