@@ -18,9 +18,4 @@ class ListKanal extends Model
         return $this->hasMany('App\Model\Listkategori', 'id_kanal' , 'id');
     }
 
-    public function list_berita()
-    {
-        return $this->hasMany('App\Model\ListBerita');
-    }
-
 }

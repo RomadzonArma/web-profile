@@ -27,31 +27,42 @@ $(() => {
             dataType: 'json',
             processData: false,
             contentType: false,
-            beforeSend: () => {
-                clearErrorMessage();
-            },
-            success: (res) => {
-                console.log(res);
-                window.location.href = BASE_URL + 'list_berita/index';
+            beforeSend: function () {
                 Swal.fire({
-                    icon: "success",
-                    title: "Berhasil Menyimpan data!",
-                    text: "Data berhasil disimpan",
+                    title: "Mohon Tunggu",
+                    allowOutsideClick: false,
+                    onBeforeOpen: () => {
+                        Swal.showLoading();
+                    },
                     showConfirmButton: false,
-                    timer: 1500
+                    showCancelButton: false,
                 });
             },
-            error: ({
-                status,
-                responseJSON
-            }) => {
-
-                if (status == 422) {
-                    generateErrorMessage(responseJSON);
-                    return false;
+            success: function (response) {
+                Swal.close();
+                if (response.status == true) {
+                    Swal.fire({
+                        icon: "success",
+                        title: "Sukses",
+                        text: "Berhasil Menyimpan Data",
+                        showConfirmButton: false,
+                        timer: 2000,
+                    }).then(() => {
+                        window.location.href = BASE_URL + 'list_berita/index';
+                    });
+                } else {
+                    toastr.error("Periksa Inputan Anda", {
+                        timeOut: 2000,
+                        fadeOut: 2000,
+                    });
                 }
-
-                showErrorToastr('oops', responseJSON.msg)
+            },
+            error: function (xhr, status, error) {
+                Swal.close();
+                toastr.error("Ada inputan yang belum terisi", "Gagal", {
+                    timeOut: 2000,
+                    fadeOut: 2000,
+                });
             }
         })
     })
