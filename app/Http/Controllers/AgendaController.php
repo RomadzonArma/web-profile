@@ -27,7 +27,7 @@ class AgendaController extends Controller
 
     public function data()
     {
-        $list = Agenda::with('user', 'list_kategori', 'list_kanal')->get();
+        $list = Agenda::with('user', 'list_kategori.list_kanal')->get();
 
         return DataTables::of($list)
             ->addIndexColumn()
@@ -62,12 +62,10 @@ class AgendaController extends Controller
 
     public function tambah_data()
     {
-        $list_kanal = ListKanal::all();
         $list_kategori = ListKategori::all();
         $penulis = User::all();
         return view('contents.Agenda.tambah-data', [
             'title' => 'Tambah Agenda',
-            'list_kanal' => $list_kanal,
             'list_kategori' => $list_kategori,
             'penulis' => $penulis,
         ]);
@@ -93,7 +91,6 @@ class AgendaController extends Controller
     {
         // Validasi data yang diterima dari form
         $validasi = Validator::make($request->all(), [
-            'id_kanal' => 'required',
             'id_kategori' => 'required',
             'judul' => 'required',
 
@@ -103,7 +100,6 @@ class AgendaController extends Controller
             'tanggal_agenda' => 'required',
             'gambar' => 'required|image|mimes:jpeg,png,jpg|max:2048', // Validasi untuk file gambar
         ], [
-            'id_kanal.required' => 'Pilih Kanal wajib diisi',
             'id_kategori.required' => 'Pilih Kategori wajib diisi',
             'judul.required' => 'Judul wajib diisi',
             'konten.required' => 'Konten wajib diisi',
@@ -124,7 +120,6 @@ class AgendaController extends Controller
 
             // Data yang akan disimpan
             $data = [
-                'id_kanal' => $request->id_kanal,
                 'id_kategori' => $request->id_kategori,
                 'judul' => $request->judul,
                 'slug' => Str::slug($request->judul),
@@ -164,7 +159,6 @@ class AgendaController extends Controller
         $data = Agenda::findOrFail($id);
 
         // Ambil data yang diperlukan
-        $list_kanal = ListKanal::all();
         $list_kategori = ListKategori::all();
         $penulis = User::all();
         // dd($data);
@@ -172,7 +166,6 @@ class AgendaController extends Controller
         return view('contents.Agenda.edit-data', [
             'title' => 'Edit Agenda',
             'data' => $data,
-            'list_kanal' => $list_kanal,
             'list_kategori' => $list_kategori,
             'penulis' => $penulis,
         ]);
@@ -189,23 +182,9 @@ class AgendaController extends Controller
     {
         $id = decrypt($id);
         $validasi = Validator::make($request->all(), [
-            'id_kanal' => 'required',
-            'id_kategori' => 'required',
-            'judul' => 'required',
-
-            'konten' => 'required',
-
-            'id_penulis' => 'required',
-            'tanggal_agenda' => 'required',
-            'gambar' => 'required|image|mimes:jpeg,png,jpg|max:2048', // Validasi untuk file gambar
+            'gambar' => 'image|mimes:jpeg,png,jpg|max:2048', // Validasi untuk file gambar
         ], [
-            'id_kanal.required' => 'Pilih Kanal wajib diisi',
-            'id_kategori.required' => 'Pilih Kategori wajib diisi',
-            'judul.required' => 'Judul wajib diisi',
-            'konten.required' => 'Konten wajib diisi',
-            'id_penulis.required' => 'Penulis wajib diisi',
-            'tanggal_agenda.required' => 'Tanggal agenda wajib diisi',
-            'gambar.required' => 'Gambar wajib diisi',
+
             'gambar.image' => 'File harus berupa gambar',
             'gambar.mimes' => 'Format gambar harus jpeg, png, atau jpg',
             'gambar.max' => 'Ukuran gambar tidak boleh melebihi 2MB',
@@ -214,23 +193,22 @@ class AgendaController extends Controller
         if ($validasi->fails()) {
             return response()->json(['erorrs' => $validasi->errors()]);
         } else {
-            // Proses upload gambar
-            $gambarName = time() . '.' . $request->gambar->extension();
-            $request->gambar->move(public_path('agenda'), $gambarName);
-
             // Data yang akan disimpan
             $data = [
-                'id_kanal' => $request->id_kanal,
                 'id_kategori' => $request->id_kategori,
                 'judul' => $request->judul,
                 'slug' => Str::slug($request->judul),
                 'konten' => $request->konten,
                 'id_penulis' => $request->id_penulis,
-                'gambar' => $gambarName,
                 'tanggal_agenda' => $request->tanggal_agenda,
                 'link_agenda' => $request->link_agenda,
             ];
 
+            if ($request->hasFile('gambar')) {
+                $gambarName = time() . '.' . $request->file('gambar')->extension();
+                $request->gambar->move(public_path('agenda'), $gambarName);
+                $data['gambar'] = $gambarName;
+            }
 
             Agenda::where('id',$id)->update($data);
             return response()->json(['status' => true], 200);

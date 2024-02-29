@@ -11,20 +11,6 @@
                 <div class="card-body">
                     <form action="{{ route('list_agenda.update', ['id' => encrypt($data->id)]) }}" method="post" name="form-update" id="form-update">
                         <div class="form-group ">
-                            <label class="col-form-label">Pilih Kanal</label>
-                            <div class="">
-                                <select class="form-control" id="id_kanal" name="id_kanal">
-                                    <option>Pilih kanal</option>
-                                    @foreach ($list_kanal as $kanal)
-                                        <option value="{{ $kanal->id }}"
-                                            {{ $data->id_kanal == $kanal->id ? 'selected' : '' }}>
-                                            {{ $kanal->nama_kanal }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group ">
                             <label class="col-form-label">Pilih Kategori</label>
                             <div class="">
                                 <select class="form-control" id="id_kategori" name="id_kategori">
