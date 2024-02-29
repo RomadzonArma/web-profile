@@ -22,4 +22,9 @@ class ListKategori extends Model
     {
         return $this->hasMany('App\Model\ListBerita');
     }
+
+    public function list_agenda()
+    {
+        return $this->hasMany('App\Model\Agenda');
+    }
 }
