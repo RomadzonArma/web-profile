@@ -71,6 +71,8 @@ class RouteServiceProvider extends ServiceProvider
 
             $this->mapSosmedRoutes();
 
+            $this->mapAgendaRoutes();
+
         });
     }
 
@@ -179,6 +181,13 @@ class RouteServiceProvider extends ServiceProvider
         Route::prefix('sosmed')
         ->namespace($this->namespace)
         ->group(base_path('routes/panel/sosmed.php'));
+    }
+
+    protected function mapAgendaRoutes()
+    {
+        Route::prefix('list_agenda')
+        ->namespace($this->namespace)
+        ->group(base_path('routes/panel/agenda.php'));
     }
 
 }
