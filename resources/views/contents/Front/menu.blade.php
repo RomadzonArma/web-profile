@@ -158,7 +158,7 @@
                                         <a class="menu-link" href="#">REGULASI</a>
                                     </li>
                                     <li class="menu-item">
-                                        <a class="menu-link" href="{{ route('agenda') }}">AGENDA</a>
+                                        <a class="menu-link" href="{{ route('agenda.list') }}">AGENDA</a>
                                     </li>
                                     <li class="menu-item">
                                         <a class="menu-link" href="{{ route('unduhan') }}">UNDUHAN</a>

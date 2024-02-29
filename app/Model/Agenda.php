@@ -5,22 +5,20 @@ namespace App\Model;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class ListKanal extends Model
+class Agenda extends Model
 {
     use SoftDeletes;
-    protected $table = 'ref_kanal';
+    protected $table = 'ref_agenda';
 
     protected $guarded = ['id'];
 
-
     public function list_kategori()
     {
-        return $this->hasMany('App\Model\Listkategori', 'id_kanal' , 'id');
+        return $this->belongsTo('App\Model\ListKategori','id_kategori','id');
     }
 
-    public function list_berita()
+    public function user()
     {
-        return $this->hasMany('App\Model\ListBerita');
+        return $this->belongsTo('App\user','id_penulis','id');
     }
-
 }
