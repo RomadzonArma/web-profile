@@ -26,4 +26,9 @@ class ListKategori extends Model
     {
         return $this->hasMany('App\Model\Agenda');
     }
+
+    public function webinar()
+    {
+        return $this->hasMany('App\Model\Webinar');
+    }
 }

@@ -69,10 +69,13 @@ class RouteServiceProvider extends ServiceProvider
 
             $this->mapListProgramLayanan();
 
+            $this->mapSwiper();
+
             $this->mapSosmedRoutes();
 
             $this->mapAgendaRoutes();
 
+            $this->mapWebinarRoutes();
         });
     }
 
@@ -175,19 +178,31 @@ class RouteServiceProvider extends ServiceProvider
             ->group(base_path('routes/panel/program-layanan.php'));
     }
 
+    protected function mapSwiper()
+    {
+        Route::prefix('swiper')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/panel/swiper.php'));
+    }
 
     protected function mapSosmedRoutes()
     {
         Route::prefix('sosmed')
-        ->namespace($this->namespace)
-        ->group(base_path('routes/panel/sosmed.php'));
+            ->namespace($this->namespace)
+            ->group(base_path('routes/panel/sosmed.php'));
     }
 
     protected function mapAgendaRoutes()
     {
         Route::prefix('list_agenda')
-        ->namespace($this->namespace)
-        ->group(base_path('routes/panel/agenda.php'));
+            ->namespace($this->namespace)
+            ->group(base_path('routes/panel/agenda.php'));
     }
 
+    protected function mapWebinarRoutes()
+    {
+        Route::prefix('webinar')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/panel/webinar.php'));
+    }
 }

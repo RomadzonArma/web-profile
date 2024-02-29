@@ -23,5 +23,4 @@ class ListKanal extends Model
         return $this->hasMany('App\Model\ListBerita');
     }
 
-  
 }
