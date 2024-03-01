@@ -183,7 +183,6 @@ $(() => {
                 });
 
 
-
                 const button_delete = $('<button>', {
                     class: 'btn btn-danger btn-delete',
                     html: '<i class="bx bx-trash"></i>',

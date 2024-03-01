@@ -28,39 +28,39 @@ $(() => {
             return;
         }
 
-        //fungsi simpan
-        $.ajax({
-            url: BASE_URL + 'list_kanal/store',
-            type: 'POST',
-            data: {
-                nama_kanal: nama_kanal,
-                status: status,
-            },
-            success: function (response) {
-                $('#table-data').DataTable().ajax.reload();
-                $('#tambah-list-kanal').modal('hide');
-                Swal.fire({
-                    icon: "success",
-                    title: "Berhasil Menyimpan data!",
-                    text: "Data berhasil disimpan",
-                    showConfirmButton: false,
-                    timer: 1500
-                });
+            //fungsi simpan
+            $.ajax({
+                url: BASE_URL + 'list_kanal/store',
+                type: 'POST',
+                data: {
+                    nama_kanal: nama_kanal,
+                    status: status,
+                },
+                success: function (response) {
+                    $('#table-data').DataTable().ajax.reload();
+                    $('#tambah-list-kanal').modal('hide');
+                    Swal.fire({
+                        icon: "success",
+                        title: "Berhasil Menyimpan data!",
+                        text: "Data berhasil disimpan",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
 
-            },
-            error: function (response) {
-                $('#table-data').DataTable().ajax.reload();
-                $('#tambah-list-kanal').modal('hide');
-                Swal.fire({
-                    icon: "error",
-                    title: "Gagal Menyimpan data!",
-                    text: "Terjadi kesalahan saat menyimpan data",
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-            }
+                },
+                error: function (response) {
+                    $('#table-data').DataTable().ajax.reload();
+                    $('#tambah-list-kanal').modal('hide');
+                    Swal.fire({
+                        icon: "error",
+                        title: "Gagal Menyimpan data!",
+                        text: "Terjadi kesalahan saat menyimpan data",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
 
-        });
+            });
     });
 
 
