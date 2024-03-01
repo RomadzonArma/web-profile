@@ -19,15 +19,13 @@ class ProgramLayananController extends Controller
      */
     public function index()
     {
-        $list = ProgramLayanan::all();
         return view('contents.program-layanan.index', [
             'title' => 'Program dan Layanan',
-            'list'  => $list,
         ]);
     }
     public function data(Request $request)
     {
-        $list = ProgramLayanan::all();
+        $list = ProgramLayanan::with('list_kategori.list_kanal')->get();
 
         return DataTables::of($list)
             ->addIndexColumn()
@@ -41,11 +39,9 @@ class ProgramLayananController extends Controller
      */
     public function create()
     {
-        $kanal      = ListKanal::all();
         $kategori   = ListKategori::all();
         return view('contents.program-layanan.create', [
             'title'     => 'Tambah Program Layanan',
-            'kanal'     => $kanal,
             'kategori'  => $kategori,
         ]);
     }
@@ -70,9 +66,8 @@ class ProgramLayananController extends Controller
                 'tag'               => $request->tag,
                 'image'             => $imageName,
                 'caption_image'     => $request->caption_image,
-                'end_date'          => $request->end_date,
-                'kanal_id'          => $request->kanal_id,
-                'kategori_id'       => $request->kategori_id,
+                'id_kategori'       => $request->id_kategori,
+                'publish_date'       => $request->publish_date,
 
             ]);
             return response()->json(['success' => "Berhasil menyimpan data"]);
@@ -104,14 +99,13 @@ class ProgramLayananController extends Controller
      */
     public function edit($id)
     {
-        $kanal      = ListKanal::all();
-        $kategori   = ListKategori::all();
-        $program = ProgramLayanan::find($id);
+        $list_kategori   = ListKategori::all();
+        $data = ProgramLayanan::findOrFail($id);
+        // dd($program);
         return view('contents.program-layanan.edit', [
             'title' => 'Edit Program Dan Layanan',
-            'list'  => $program,
-            'kanal'     => $kanal,
-            'kategori'  => $kategori,
+            'data'  => $data,
+            'list_kategori'  => $list_kategori,
         ]);
     }
 
@@ -147,9 +141,8 @@ class ProgramLayananController extends Controller
                 'body'              => $request->body,
                 'tag'               => $request->tag,
                 'caption_image'     => $request->caption_image,
-                'end_date'          => $request->end_date,
-                'kanal_id'          => $request->kanal_id,
-                'kategori_id'       => $request->kategori_id,
+                'id_kategori'       => $request->id_kategori,
+                'publish_date'       => $request->publish_date,
             ]);
 
             return response()->json(['success' => "Berhasil memperbarui data"]);
@@ -200,25 +193,5 @@ class ProgramLayananController extends Controller
             return response()->json(['status' => false, 'msg'=> $e->getMessage()], 400);
         }
     }
-    // public function switchStatus(Request $request)
-    // {
-    //     try {
-    //         $encrypted_id = $request->id;
-    //         $decrypted_id = decrypt($encrypted_id);
-    //         $program = ProgramLayanan::find($decrypted_id);
 
-
-    //         $program->status = $request->value;
-
-    //         if ($program->isDirty()) {
-    //             $program->save();
-    //         }
-
-    //         if ($program->wasChanged()) {
-    //             return response()->json(['status' => true], 200);
-    //         }
-    //     } catch (\Exception $e) {
-    //         return response()->json(['status' => false, 'msg' => $e->getMessage()], 400);
-    //     }
-    // }
 }

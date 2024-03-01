@@ -9,30 +9,17 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{ route('program_layanan.update', ['id' => encrypt($list->id)]) }}" method="post" name="form-update" id="form-update"
+                    <form action="{{ route('program_layanan.update', ['id' => encrypt($data->id)]) }}" method="post" name="form-update" id="form-update"
                         enctype="multipart/form-data">
-                        <div class="form-group ">
-                            <label class="col-form-label">Pilih Kanal</label>
-                            <div class="">
-                                <select class="form-control" id="kanal_id" name="kanal_id">
-                                    <option>Pilih kanal</option>
-                                    @foreach ($kanal as $k)
-                                        <option value="{{ $k->id }}"
-                                            {{ $list->kanal_id == $k->id ? 'selected' : '' }}>{{ $k->nama_kanal }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-
-
                         <div class="form-group ">
                             <label class="col-form-label">Pilih Kategori</label>
                             <div class="">
-                                <select class="form-control" id="kategori_id" name="kategori_id">
+                                <select class="form-control" id="id_kategori" name="id_kategori">
                                     <option>Pilih kategori</option>
-                                    @foreach ($kategori as $kat)
-                                        <option value="{{ $kat->id }}"
-                                            {{ $list->kategori_id == $kat->id ? 'selected' : '' }}>{{ $kat->nama_kategori }}
+                                    @foreach ($list_kategori as $kategori)
+                                        <option value="{{ $kategori->id }}"
+                                            {{ $data->id_kategori == $kategori->id ? 'selected' : '' }}>
+                                            {{ $kategori->nama_kategori }}
                                         </option>
                                     @endforeach
                                 </select>
@@ -41,54 +28,42 @@
                         <div class="form-group">
                             <label for="judul">Judul</label>
                             <input type="text" name="title" id="title" class="form-control"
-                                placeholder="Masukkan judul" value="{{ $list->title }}">
+                                placeholder="Masukkan judul" value="{{ $data->title }}">
                             <div id="error-judul"></div>
                         </div>
                         <div class="form-group">
                             <label for="kategori">Deskripsi Singkat</label>
-                            <textarea class="form-control" id="short_description" name="short_description">{{ $list->short_description }}</textarea>
+                            <textarea class="form-control" id="short_description" name="short_description">{{ $data->short_description }}</textarea>
                         </div>
                         <div class="form-group">
                             <label for="kategori">Konten</label>
-                            <textarea class="form-control" id="body" name="body">{{ $list->body }}</textarea>
+                            <textarea class="form-control" id="body" name="body">{{ $data->body }}</textarea>
                         </div>
                         <div class="form-group">
                             <label for="tag">Tag Dinamis</label>
                             <input type="text" name="tag" id="tag" class="form-control"
                                 placeholder="Masukkan tag, contoh: kemendikbud, jakarta, salingberbagi"
-                                value="{{ $list->tag }}">
+                                value="{{ $data->tag }}">
                             <div id="error-tag"></div>
                         </div>
                         <div class="form-group">
                             <label for="publish_date">Tanggal Publish</label>
-                            <input type="date" name="publish_date" id="publish_date" class="form-control" value="{{ $list->publish_date }}">
+                            <input type="date" name="publish_date" id="publish_date" class="form-control" value="{{ $data->publish_date }}">
                             <div id="error-publish-date"></div>
                         </div>
-                        {{-- <div class="row">
-                            <div class="col-md-6">
-
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="end_date">Tanggal Berakhir</label>
-                                    <input type="date" name="end_date" id="end_date" class="form-control" value="{{ $list->end_date }}">
-                                    <div id="error-end-date"></div>
-                                </div>
-                            </div>
-                        </div> --}}
                         <div class="form-group">
-                            <label for="file">Gambar</label>
-                            <div class="custom-file mb-3">
+                            <label for="file">Gambar</label><br>
+                            <img src="{{ asset('program-image/' . $data->image) }}" style="width:15%;"><br>
+                            <div class="custom-file mb-3" style="margin-top: 1%">
                                 <input type="file" class="custom-file-input" name="image"
-                                    value="{{ $list->image }}"id="customFile" accept=".jpg,.jpeg,.png">
+                                    value="{{ $data->image }}"id="customFile" accept=".jpg,.jpeg,.png">
                                 <label class="custom-file-label" for="customFile">Choose file</label>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="caption_image">Caption Gambar</label>
                             <input type="text" name="caption_image" id="caption_image"
-                                value="{{ $list->caption_image }}"class="form-control"
+                                value="{{ $data->caption_image }}"class="form-control"
                                 placeholder="Masukkan Caption Gambar">
                             <div id="error-caption_gambar"></div>
                         </div>

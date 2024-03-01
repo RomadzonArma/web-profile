@@ -12,22 +12,9 @@
                     <form action="{{ route('program_layanan.store') }}" method="post" name="form-store" id="form-store"
                         enctype="multipart/form-data">
                         <div class="form-group ">
-                            <label class="col-form-label">Pilih Kanal</label>
-                            <div class="">
-                                <select class="form-control" id="kanal_id" name="kanal_id">
-                                    <option>Pilih kanal</option>
-                                    @foreach ($kanal as $data)
-                                        <option value="{{ $data->id }}">{{ $data->nama_kanal }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-
-
-                        <div class="form-group ">
                             <label class="col-form-label">Pilih Kategori</label>
                             <div class="">
-                                <select class="form-control" id="kategori_id" name="kategori_id">
+                                <select class="form-control" id="id_kategori" name="id_kategori">
                                     <option>Pilih kategori</option>
                                     @foreach ($kategori as $data)
                                         <option value="{{ $data->id }}">{{ $data->nama_kategori }}</option>
@@ -60,19 +47,6 @@
                             <input type="date" name="publish_date" id="publish_date" class="form-control" required>
                             <div id="error-publish-date"></div>
                         </div>
-                        {{-- <div class="row">
-                            <div class="col-md-6">
-
-                            </div>
-
-                            {{-- <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="end_date">Tanggal Berakhir</label>
-                                    <input type="date" name="end_date" id="end_date" class="form-control" required>
-                                    <div id="error-end-date"></div>
-                                </div>
-                            </div> --}}
-                        {{-- </div> --}}
                         <div class="form-group">
                             <label for="file">Gambar</label>
                             <div class="custom-file mb-3">

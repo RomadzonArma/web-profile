@@ -24,10 +24,11 @@
                             <thead>
                                 <tr>
                                     <th style="width: 5%;">No</th>
-                                    <th>Judul</th>
+                                    <th>Judul Program</th>
+                                    <th>Kanal</th>
+                                    <th>kategori</th>
                                     <th>Status</th>
                                     <th>Tanggal Publish</th>
-                                    <th>Tanggal Berakhir</th>
                                     <th>Aksi</th>
                                     <th></th>
                                 </tr>
