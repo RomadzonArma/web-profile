@@ -23,7 +23,8 @@ class UnduhanController extends Controller
     }
     public function data(Request $request)
     {
-        $list = Unduhan::with('kategori');
+        $list = Unduhan::with('kategori.list_kanal');
+
         return DataTables::of($list)
             ->addIndexColumn()
             ->make(true);
