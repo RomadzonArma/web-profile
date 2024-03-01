@@ -161,7 +161,7 @@
                                         <a class="menu-link" href="{{ route('agenda.list') }}">AGENDA</a>
                                     </li>
                                     <li class="menu-item">
-                                        <a class="menu-link" href="{{ route('unduhan') }}">UNDUHAN</a>
+                                        <a class="menu-link" href="{{ route('unduhan.list') }}">UNDUHAN</a>
                                     </li>
                                 </ul>
                             </li>
