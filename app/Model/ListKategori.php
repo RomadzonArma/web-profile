@@ -40,5 +40,8 @@ class ListKategori extends Model
     public function program_layanan()
     {
         return $this->hasMany('App\Model\Webinar');
+
     }
+
 }
+
