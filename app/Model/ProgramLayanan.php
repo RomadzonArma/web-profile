@@ -13,13 +13,8 @@ class ProgramLayanan extends Model
     protected $guarded = ['id'];
 
 
-    public function kanal(): BelongsTo
+    public function list_kategori()
     {
-        return $this->belongsTo(ListKanal::class, 'kanal_id', 'id');
-    }
-
-    public function kategori(): BelongsTo
-    {
-        return $this->belongsTo(ListKategori::class, 'kategori_id', 'id');
+        return $this->belongsTo('App\Model\ListKategori','id_kategori','id');
     }
 }

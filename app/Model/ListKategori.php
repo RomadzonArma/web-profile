@@ -37,4 +37,8 @@ class ListKategori extends Model
     {
         return $this->hasMany(Unduhan::class);
     }
+    public function program_layanan()
+    {
+        return $this->hasMany('App\Model\Webinar');
+    }
 }

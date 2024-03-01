@@ -22,11 +22,23 @@ $(() => {
                     id,
                     _method: 'DELETE'
                 }).done((res) => {
-                    showSuccessToastr('sukses', 'Pengguna berhasil dihapus');
+                    Swal.fire({
+                        icon: "success",
+                        title: "Berhasil menghapus data!",
+                        text: "Data berhasil dihapus",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
                     table.ajax.reload();
                 }).fail((res) => {
                     let { status, responseJSON } = res;
-                    showErrorToastr('oops', responseJSON.message);
+                    Swal.fire({
+                        icon: "error",
+                        title: "Gagal menghapus data!",
+                        text: "Terjadi kesalahan saat menghapus data",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
                 })
             }
         })
@@ -45,8 +57,16 @@ $(() => {
             dataType: 'json',
             processData: false,
             contentType: false,
-            beforeSend: () => {
-                clearErrorMessage();
+            beforeSend: function () {
+                Swal.fire({
+                    title: "Mohon Tunggu",
+                    allowOutsideClick: false,
+                    onBeforeOpen: () => {
+                        Swal.showLoading();
+                    },
+                    showConfirmButton: false,
+                    showCancelButton: false,
+                });
             },
             success: (res) => {
                 console.log(res);
@@ -107,13 +127,17 @@ $(() => {
             searchable: false,
             className: 'text-center align-top'
         }, {
-            targets: [5],
+            targets: [7],
             visible: false,
         }],
         columns: [{
             data: 'DT_RowIndex'
         }, {
             data: 'title',
+        }, {
+            data: 'list_kategori.list_kanal.nama_kanal',
+        }, {
+            data: 'list_kategori.nama_kategori',
         }, {
             data: 'status',
             render: (data, type, row) => {
@@ -157,15 +181,6 @@ $(() => {
                     'data-placement': 'top',
                     'data-toggle': 'tooltip'
                 });
-                const button_show = $('<a>', {
-                    class: 'btn btn-success btn-detail',
-                    html: '<i class="bx bx-file"></i>',
-                    href: BASE_URL + 'program_layanan/show/'+row.id,
-                    'data-id': data,
-                    title: 'Detail Data',
-                    'data-placement': 'top',
-                    'data-toggle': 'tooltip'
-                });
 
 
                 const button_delete = $('<button>', {
@@ -185,7 +200,7 @@ $(() => {
                         if (permissions.update) {
                             arr.push(button_edit)
                         }
-                            arr.push(button_show)
+                          
 
                         // if (UPDATE) arr.push(button_edit)
                         if (permissions.delete) arr.push(button_delete)
