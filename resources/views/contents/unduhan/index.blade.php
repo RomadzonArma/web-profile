@@ -25,6 +25,8 @@
                             <thead>
                                 <tr>
                                     <th style="width: 5%;">No</th>
+                                    <th>Kanal</th>
+                                    <th>Kategori</th>
                                     <th>Judul</th>
                                     <th>Tanggal</th>
                                     <th>Jumlah Download</th>
@@ -189,10 +191,7 @@
 
 @push('scripts')
     <script>
-        // function preview(selector, temporaryFile, width = 200) {
-        //     $(selector).empty();
-        //     $(selector).append(`<img src="${window.URL.createObjectURL(temporaryFile)}" width="${width}">`);
-        // }
+
         function preview(selector, temporaryFile, width = 200) {
             $(selector).empty();
 

@@ -162,13 +162,19 @@ $(() => {
                 searchable: false,
             },
             {
-                targets: [5],
+                targets: [7],
                 visible: false,
             },
         ],
         columns: [
             {
                 data: "DT_RowIndex",
+            },
+            {
+                data: "kategori.list_kanal.nama_kanal",
+            },
+            {
+                data: "kategori.nama_kategori",
             },
             {
                 data: "judul",
