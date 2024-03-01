@@ -11,20 +11,6 @@
                 <div class="card-body">
                     <form action="{{ route('list_berita.update', ['id' => encrypt($data->id)]) }}" method="post" name="form-update" id="form-update">
                         <div class="form-group ">
-                            <label class="col-form-label">Pilih Kanal</label>
-                            <div class="">
-                                <select class="form-control" id="id_kanal" name="id_kanal">
-                                    <option>Pilih kanal</option>
-                                    @foreach ($list_kanal as $kanal)
-                                        <option value="{{ $kanal->id }}"
-                                            {{ $data->id_kanal == $kanal->id ? 'selected' : '' }}>
-                                            {{ $kanal->nama_kanal }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group ">
                             <label class="col-form-label">Pilih Kategori</label>
                             <div class="">
                                 <select class="form-control" id="id_kategori" name="id_kategori">
@@ -100,11 +86,6 @@
                                 {{ $data->status_headline ? 'checked' : '' }}>
                             <label class="custom-control-label" for="status_headline">Headline</label>
                         </div>
-                        {{-- <div class="form-group">
-                            <label for="gambar">Gambar </label>
-                            <img src="{{ asset('list_berita/' . $data->gambar) }}" alt="Gambar Lama"
-                                class="img-thumbnail">
-                        </div> --}}
                         <div class="form-group mt-2">
                             <label for="gambar">Gambar</label><br>
                             <img src="{{ asset('list_berita/' . $data->gambar) }}" style="width:15%;"><br>
