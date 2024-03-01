@@ -4,6 +4,10 @@ $(() => {
         height: 350,
     });
 
+    $(document).ready(function () {
+        $('#id_kategori').select2();
+    });
+
     $('#form-store').on('submit', function (e) {
         e.preventDefault();
 
@@ -21,19 +25,43 @@ $(() => {
             },
             success: (res) => {
                 console.log(res);
-                showSuccessToastr('sukses','Berhasil menyimpan data');
-                window.location.href=BASE_URL+'profil';
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Sukses',
+                    text: 'Berhasil menyimpan data',
+                    showConfirmButton: false,
+                    timer: 2000
+                }).then(() => {
+                    window.location.href = BASE_URL + 'profil';
+                });
             },
             error: ({ status, responseJSON }) => {
-
                 if (status == 422) {
-                    generateErrorMessage(responseJSON);
-                    return false;
+                    var errors = responseJSON.errors;
+                    var errorMessage = '';
+
+                    for (var key in errors) {
+                        if (errors.hasOwnProperty(key)) {
+                            errorMessage += errors[key][0] + '<br>';
+                        }
+                    }
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        html: errorMessage,
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'OK',
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: responseJSON.msg,
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
                 }
-
-                showErrorToastr('oops', responseJSON.msg)
             }
-        })
-    })
-
-})
+        });
+    });
+});

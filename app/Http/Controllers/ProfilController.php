@@ -69,9 +69,14 @@ class ProfilController extends Controller
     {
         $this->validate($request, [
             'judul' => 'required',
-            'id_kanal' => 'required',
+            // 'id_kanal' => 'required',
             'id_kategori' => 'required',
             'konten' => 'required'
+        ], [
+            'judul.required' => '<strong style="color: red;">Judul wajib diisi.</strong>',
+            // 'id_kanal' => 'required',
+            'id_kategori.required' => '<strong style="color: red;">Kategori wajib dipilih.</strong>',
+            'konten.required' => '<strong style="color: red;">Konten wajib diisi.</strong>'
         ]);
         try {
             DB::beginTransaction();
@@ -147,9 +152,14 @@ class ProfilController extends Controller
     {
         $this->validate($request, [
             'judul' => 'required',
-            'id_kanal' => 'required',
+            // 'id_kanal' => 'required',
             'id_kategori' => 'required',
             'konten' => 'required'
+        ], [
+            'judul.required' => '<strong style="color: red;">Judul wajib diisi.</strong>',
+            // 'id_kanal' => 'required',
+            'id_kategori.required' => '<strong style="color: red;">Kategori wajib dipilih.</strong>',
+            'konten.required' => '<strong style="color: red;">Konten wajib diisi.</strong>'
         ]);
 
         try {
@@ -166,7 +176,7 @@ class ProfilController extends Controller
             // Update existing Profil
             $profil = Profil::findOrFail($decrypted_id);
             $profil->judul = $request->judul;
-            $profil->id_kanal = $request->id_kanal;
+            // $profil->id_kanal = $request->id_kanal;
             $profil->id_kategori = $request->id_kategori;
             $profil->konten = ''; // Will be updated later
             $profil->save();

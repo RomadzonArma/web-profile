@@ -117,7 +117,7 @@ $(() => {
         $.each(data, (key, value) => {
             $('#update-' + key).val(value);
         })
-        $('#foto').html('<img src="' + '/' + data.foto + '" style="height: 100px; margin-top: 10px;">');
+        $('#foto').html('<img src="' + '' + data.foto + '" style="height: 100px; margin-top: 10px;">');
 
         $('#modal-swiper-update').modal('show');
     })
