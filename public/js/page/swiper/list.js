@@ -117,6 +117,7 @@ $(() => {
         $.each(data, (key, value) => {
             $('#update-' + key).val(value);
         })
+        $('#foto').html('<img src="' + '/' + data.foto + '" style="height: 100px; margin-top: 10px;">');
 
         $('#modal-swiper-update').modal('show');
     })
@@ -173,9 +174,9 @@ $(() => {
             type: 'get',
             dataType: 'json'
         },
-        order: [[5, 'desc']],
+        order: [[6, 'desc']],
         columnDefs: [{
-            targets: [0, 4],
+            targets: [0, 5],
             orderable: false,
             searchable: false,
             className: 'text-center align-top'
@@ -183,10 +184,10 @@ $(() => {
             targets: [1, 2],
             className: 'text-left align-top'
         }, {
-            targets: [3],
+            targets: [4],
             className: 'text-center align-top'
         }, {
-            targets: [5],
+            targets: [6],
             visible: false,
         }],
         columns: [{
@@ -199,7 +200,12 @@ $(() => {
         }, {
             data: 'foto',
             render: (data, type, row) => {
-                return '<img src="' + data + '" style="height: 50px">' ?? '-';
+                return data ? '<img src="' + data + '" style="height: 50px">' : '-';
+            }
+        }, {
+            data: 'link',
+            render: (data, type, row) => {
+                return data ?? '-';
             }
         }, {
             data: 'is_active',

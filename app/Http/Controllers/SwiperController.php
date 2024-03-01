@@ -13,10 +13,10 @@ class SwiperController extends Controller
 {
     public function index(Request $request)
     {
-        // $roles = Role::all();
+        // $data = Role::all();
         return view('contents.swiper.list', [
             'title' => 'Swiper',
-            // 'roles' => $roles,
+            // 'data' => $roles,
         ]);
     }
 
@@ -29,15 +29,6 @@ class SwiperController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'foto' => 'required|image|mimes:jpeg,png,jpg,jfif|max:10240',
-        ], [
-            'foto.required' => '<strong style="color: red;">Foto Swiper wajib diunggah.</strong>',
-            'foto.image' => '<strong style="color: red;">File yang diunggah harus berupa gambar.</strong>',
-            'foto.mimes' => '<strong style="color: red;">Format gambar harus JPEG, PNG, JPG atau JFIF.</strong>',
-            'foto.max' => '<strong style="color: red;">Maksimal ukuran gambar adalah 10240KB.</strong>',
-        ]);
-
         try {
 
             if ($request->hasFile('foto')) {
@@ -55,6 +46,7 @@ class SwiperController extends Controller
 
             $data = [
                 'judul' => $request->input('judul'),
+                'link' => $request->input('link'),
                 // 'desc' => $request->input('desc'),
                 // 'urutan' => $request->input('urutan'),
                 // 'updated_at' => date('Y-m-d H:i:s'),
@@ -73,46 +65,6 @@ class SwiperController extends Controller
         }
     }
 
-    // public function update(Request $request)
-    // {
-    //     $id = $request->input('id');
-    //     // $decryptedId = decrypt($id);
-    //     $data = Swiper::find($id);
-
-    //     try {
-    //         if ($request->hasFile('foto')) {
-    //             $file = $request->file('foto');
-    //             $name = time() . '_' . $file->getClientOriginalName();
-    //             $path = public_path() . '/uploads/swiper';
-    //             if (!File::isDirectory($path)) {
-    //                 File::makeDirectory($path, 0775, true, true);
-    //             }
-    //             if ($file->move($path, $name)) {
-    //                 $foto = $name;
-    //             }
-
-    //             if (!empty($data->foto)) {
-    //                 if (File::exists(public_path($data->foto))) {
-    //                     File::delete(public_path($data->foto));
-    //                 }
-    //             }
-    //             $fotoName = '/uploads/swiper/' . $foto;
-    //         }
-    //         $data = [
-    //             'judul' => $request->input('judul'),
-    //             // 'desc' => $request->input('desc'),
-    //             // 'urutan' => $request->input('urutan'),
-    //             'updated_at' => date('Y-m-d H:i:s'),
-    //             'updated_id' => Auth::user()->id,
-    //         ];
-    //         if (!empty($fotoName)) {
-    //             $data['foto'] = $fotoName;
-    //         }
-    //         Swiper::where('id', $id)->update($data);
-    //     } catch (\Exception $e) {
-    //         return response()->json(['status' => false, 'msg' => $e->getMessage()], 400);
-    //     }
-    // }
     public function update(Request $request)
     {
         try {
@@ -141,6 +93,7 @@ class SwiperController extends Controller
             }
 
             $swiper->judul = $request->judul;
+            $swiper->link = $request->link;
             $swiper->updated_at = date('Y-m-d H:i:s');
             $swiper->updated_id = Auth::user()->id;
 
