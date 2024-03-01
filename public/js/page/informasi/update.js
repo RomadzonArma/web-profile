@@ -31,22 +31,44 @@ $(() => {
             dataType: 'json',
             processData: false,
             contentType: false,
-            beforeSend: () => {
-                clearErrorMessage();
+            beforeSend: function () {
+                Swal.fire({
+                    title: "Mohon Tunggu",
+                    allowOutsideClick: false,
+                    onBeforeOpen: () => {
+                        Swal.showLoading();
+                    },
+                    showConfirmButton: false,
+                    showCancelButton: false,
+                });
             },
             success: (res) => {
                 console.log(res);
-                showSuccessToastr('sukses', 'Berhasil memperbarui data');
+                Swal.fire({
+                    icon: "success",
+                    title: "Sukses",
+                    text: "Berhasil Menyimpan Data",
+                    showConfirmButton: false,
+                    timer: 2000,
+                });
                 window.location.href = BASE_URL + 'informasi-publik';
             },
-            error: ({ status, responseJSON }) => {
+            error: ({
+                status,
+                responseJSON
+            }) => {
 
                 if (status == 422) {
                     generateErrorMessage(responseJSON);
                     return false;
                 }
-
-                showErrorToastr('oops', responseJSON.msg)
+                Swal.fire({
+                    icon: "error",
+                    title: "Gagal menyimpan data!",
+                    text: "Terjadi kesalahan saat menyimpan data",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
             }
         })
     })

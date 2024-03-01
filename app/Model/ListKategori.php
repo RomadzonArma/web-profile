@@ -36,10 +36,15 @@ class ListKategori extends Model
     public function unduhan(): HasMany
     {
         return $this->hasMany(Unduhan::class);
+    }
 
     public function program_layanan()
     {
         return $this->hasMany('App\Model\Webinar');
+    }
 
+    public function informasi_publik()
+    {
+        return $this->hasMany('App\Model\Informasi_publik');
     }
 }

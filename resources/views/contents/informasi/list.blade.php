@@ -22,9 +22,12 @@ $plugins = ['datatable', 'swal', 'select2'];
                     <table class="table table-striped" id="table-data" style="width: 100%;">
                         <thead>
                             <tr>
-                                <th style="width: 5%;">#</th>
-                                <th>Judul</th>
+                                <th style="width: 5%;">No</th>
+                                <th style="width: 40%;">Judul</th>
+                                <th>Kanal</th>
                                 <th>Kategori</th>
+                                <th>Jumlah Lihat</th>
+                                <th>Status Publish</th>
                                 <th>Aksi</th>
                                 <th></th>
                             </tr>

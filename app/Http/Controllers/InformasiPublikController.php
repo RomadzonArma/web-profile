@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\Informasi_publik;
-use App\Model\Informasi_publik_has_file;
+use App\Model\ListKategori;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Model\Informasi_publik;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use App\Model\Informasi_publik_has_file;
 use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Facades\Validator;
 
 class InformasiPublikController extends Controller
 {
@@ -20,7 +23,7 @@ class InformasiPublikController extends Controller
 
     public function data(Request $request)
     {
-        $list = Informasi_publik::select(DB::raw('*'));
+        $list = Informasi_publik::with('list_kategori.list_kanal')->get();
 
         return DataTables::of($list)
             ->addIndexColumn()
@@ -30,149 +33,128 @@ class InformasiPublikController extends Controller
             ->make();
     }
 
+
+    public function switchStatus(Request $request)
+    {
+        try {
+            $encrypted_id = $request->id;
+            $decrypted_id = decrypt($encrypted_id);
+            $list_webinar = Informasi_publik::findOrFail($decrypted_id);
+            // dd($list_webinar);
+
+            $list_webinar->status_publish = $request->value;
+
+            if ($list_webinar->isDirty()) {
+                $list_webinar->save();
+            }
+
+            if ($list_webinar->wasChanged()) {
+                return response()->json(['status' => true], 200);
+            }
+        } catch (\Exception $e) {
+            return response()->json(['status' => false, 'msg' => $e->getMessage()], 400);
+        }
+    }
+
+
     public function store(Request $request)
     {
+        $list_kategori = ListKategori::all();
         return view('contents.informasi.store', [
-            'title' => 'Tambah Informasi Publik'
+            'title' => 'Tambah Informasi Publik',
+            'list_kategori' => $list_kategori,
         ]);
     }
     public function update(Request $request, $id)
     {
         $id = decrypt($id);
-        $data = Informasi_publik::where('id', $id)->first();
+        $data = Informasi_publik::findOrFail($id);
+
+        $list_kategori = ListKategori::all();
+
         return view('contents.informasi.update', [
             'title' => 'Edit Informasi Publik',
             'data' => $data,
+            'list_kategori' => $list_kategori,
         ]);
     }
-    public function do_update(Request $request)
+    public function do_update(Request $request, $id)
     {
-        $this->validate($request, [
-            'judul' => 'required',
-            'kategori' => 'required',
-            'konten' => 'required'
+
+        $id = decrypt($id);
+        $validasi = Validator::make($request->all(), [
+            'gambar' => 'image|mimes:jpeg,png,jpg|max:2048', // Validasi untuk file gambar
+        ], [
+
+            'gambar.image' => 'File harus berupa gambar',
+            'gambar.mimes' => 'Format gambar harus jpeg, png, atau jpg',
+            'gambar.max' => 'Ukuran gambar tidak boleh melebihi 2MB',
         ]);
 
-        try {
-            DB::beginTransaction();
-            $konten = $request->konten;
-            $informasi_publik_id = $request->informasi_publik_id;
-            if ($informasi_publik_id) {
-                // Informasi_publik_has_file::where('informasi_publik_id', $informasi_publik_id)->delete();
-                // Storage::deleteDirectory("public/uploads/informasi_publik/{$informasi_publik_id}");
-                // Update existing record
-                $fileUpload = Informasi_publik::find($informasi_publik_id);
-                $fileUpload->judul = $request->judul;
-                $fileUpload->kategori = $request->kategori;
-                $fileUpload->konten = ''; // Will be updated later
-                $fileUpload->save();
-            } else {
-                // Create new record
-                $fileUpload = new Informasi_publik;
-                $fileUpload->judul = $request->judul;
-                $fileUpload->kategori = $request->kategori;
-                $fileUpload->konten = ''; // Will be updated later
-                $fileUpload->save();
+        if ($validasi->fails()) {
+            return response()->json(['erorrs' => $validasi->errors()]);
+        } else {
+
+            $data = [
+                'id_kategori' => $request->id_kategori,
+                'judul' => $request->judul,
+                'slug' => Str::slug($request->judul),
+                'konten' => $request->konten,
+                'tag' => $request->tag,
+                'caption_gambar' => $request->caption_gambar,
+            ];
+
+
+            if ($request->hasFile('gambar')) {
+                $gambarName = time() . '.' . $request->file('gambar')->extension();
+                $request->gambar->move(public_path('informasi_publik'), $gambarName);
+                $data['gambar'] = $gambarName;
             }
 
-            $dom = new \DomDocument();
-            $dom->loadHtml($konten, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
-            $imageFile = $dom->getElementsByTagName('img');
-
-            if ($imageFile) {
-                foreach ($imageFile as $item => $image) {
-                    $data = $image->getAttribute('src');
-                    $explodedData = explode(';', $data);
-                    // list($type, $data) = explode(';', $data);
-                    // list(, $data)      = explode(',', $data);
-                    if (count($explodedData) >= 2) {
-                        $imgeData = base64_decode($data);
-                        $fileName = time() . $item . '.png';
-                        $directory = "uploads/informasi_publik/{$fileUpload->id}";
-
-                        // Store the image using Laravel's Storage
-                        Storage::put("public/$directory/$fileName", $imgeData);
-
-                        // Update the image src attribute in the HTML content
-                        $newSrc = Storage::url("$directory/$fileName");
-                        $image->setAttribute('src', $newSrc);
-
-                        $fileUploadFile = new Informasi_publik_has_file;
-                        $fileUploadFile->path = $directory;
-                        $fileUploadFile->file = $fileName;
-                        $fileUploadFile->informasi_publik_id = $fileUpload->id;
-                        $fileUploadFile->save();
-                    }
-
-                }
-            }
-
-
-            $konten = $dom->saveHTML();
-
-            // Update Informasi_publik with the final content
-            $fileUpload->konten = $konten;
-            $fileUpload->save();
-
-            DB::commit();
+            Informasi_publik::where('id', $id)->update($data);
             return response()->json(['status' => true], 200);
-        } catch (\Exception $e) {
-            DB::rollback();
-            return response()->json(['status' => false, 'msg' => $e->getMessage()], 400);
         }
     }
+
     public function do_store(Request $request)
     {
-        $this->validate($request, [
+        // Validasi data yang diterima dari form
+        $validasi = Validator::make($request->all(), [
             'judul' => 'required',
-            'kategori' => 'required',
-            'konten' => 'required'
+            'id_kategori' => 'required',
+            'konten' => 'required',
+            'gambar' => 'required|image|mimes:jpeg,png,jpg|max:2048', // Validasi untuk file gambar
+        ], [
+            'id_kategori.required' => 'Pilih Kategori wajib diisi',
+            'judul.required' => 'Judul wajib diisi',
+            'konten.required' => 'Konten wajib diisi',
+            'gambar.required' => 'Gambar wajib diisi',
+            'gambar.image' => 'File harus berupa gambar',
+            'gambar.mimes' => 'Format gambar harus jpeg, png, atau jpg',
+            'gambar.max' => 'Ukuran gambar tidak boleh melebihi 2MB',
         ]);
-        try {
-            DB::beginTransaction();
-            $konten = $request->konten;
 
-            $dom = new \DomDocument();
-            $dom->loadHtml($konten, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
-            $imageFile = $dom->getElementsByTagName('img');
-            // Create Informasi_publik first
-            $fileUpload = new Informasi_publik;
-            $fileUpload->judul = $request->judul;
-            $fileUpload->kategori = $request->kategori;
-            $fileUpload->konten = ''; // Will be updated later
-            $fileUpload->save();
-            foreach ($imageFile as $item => $image) {
-                $data = $image->getAttribute('src');
-                list($type, $data) = explode(';', $data);
-                list(, $data)      = explode(',', $data);
-                $imgeData = base64_decode($data);
-                $fileName = time() . $item . '.png';
-                $directory = "uploads/informasi_publik/{$fileUpload->id}"; // Use the ID of the Informasi_publik as part of the directory
+        if ($validasi->fails()) {
+            return response()->json(['errors' => $validasi->errors()]);
+        } else {
+            // Proses upload gambar
+            $gambarName = time() . '.' . $request->gambar->extension();
+            $request->gambar->move(public_path('informasi_publik'), $gambarName);
 
-                // Store the image using Laravel's Storage
-                Storage::put("public/$directory/$fileName", $imgeData);
+            // Data yang akan disimpan
+            $data = [
+                'id_kategori' => $request->id_kategori,
+                'judul' => $request->judul,
+                'slug' => Str::slug($request->judul),
+                'konten' => $request->konten,
+                'gambar' => $gambarName,
+                'tag' => $request->tag,
+                'caption_gambar' => $request->caption_gambar,
+            ];
 
-                // Update the image src attribute in the HTML content
-                $newSrc = Storage::url("$directory/$fileName");
-                $image->setAttribute('src', $newSrc);
-                $fileUploadFile = new Informasi_publik_has_file;
-                $fileUploadFile->path = $directory;
-                $fileUploadFile->file = $fileName;
-                $fileUploadFile->informasi_publik_id = $fileUpload->id;
-                $fileUploadFile->save();
-            }
+            Informasi_publik::create($data);
 
-            $konten = $dom->saveHTML();
-            // Update Informasi_publik with the final content
-            $fileUpload->konten = $dom->saveHTML();
-            $fileUpload->save();
-
-
-            DB::commit();
-            return response()->json(['status' => true, 'image' => $imageFile], 200);
-        } catch (\Exception $e) {
-            DB::rollback();
-            return response()->json(['status' => false, 'msg' => $e->getMessage()], 400);
+            return response()->json(['status' => true], 200);
         }
     }
 

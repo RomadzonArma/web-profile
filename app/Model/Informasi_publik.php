@@ -10,10 +10,10 @@ class Informasi_publik extends Model
     use SoftDeletes;
     protected $table = 'informasi_publik';
 
-    protected $fillable = [
-        'judul',
-        'kategori',
-        'konten',
-        'is_active',
-    ];
+    protected $guarded = ['id'];
+
+    public function list_kategori()
+    {
+        return $this->belongsTo('App\Model\ListKategori','id_kategori','id');
+    }
 }
