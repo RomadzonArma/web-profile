@@ -18,7 +18,7 @@ Route::get('/visi-misi', [LandingController::class, 'visi_misi'])->name('visi-mi
 Route::get('/berita', [LandingController::class, 'berita'])->name('berita');
 Route::get('/detail', [LandingController::class, 'detail'])->name('detail');
 Route::get('/galeri', [LandingController::class, 'galeri'])->name('galeri');
-Route::get('/agenda', [LandingController::class, 'agenda'])->name('agenda');
+Route::get('/agenda/list', [LandingController::class, 'agenda'])->name('agenda.list');
 Route::get('/unduhan', [LandingController::class, 'unduhan'])->name('unduhan');
 
 Route::get('/login', function () {

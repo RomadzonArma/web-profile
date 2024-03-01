@@ -31,25 +31,42 @@ $(() => {
             dataType: 'json',
             processData: false,
             contentType: false,
-            beforeSend: () => {
-                clearErrorMessage();
+            beforeSend: function () {
+                Swal.fire({
+                    title: "Mohon Tunggu",
+                    allowOutsideClick: false,
+                    onBeforeOpen: () => {
+                        Swal.showLoading();
+                    },
+                    showConfirmButton: false,
+                    showCancelButton: false,
+                });
             },
-            success: (res) => {
-                console.log(res);
-                showSuccessToastr('sukses', 'Berhasil memperbarui data');
-                window.location.href = BASE_URL + 'list_berita/index';
-            },
-            error: ({
-                status,
-                responseJSON
-            }) => {
-
-                if (status == 422) {
-                    generateErrorMessage(responseJSON);
-                    return false;
+            success: function (response) {
+                Swal.close();
+                if (response.status == true) {
+                    Swal.fire({
+                        icon: "success",
+                        title: "Sukses",
+                        text: "Berhasil Menyimpan Data",
+                        showConfirmButton: false,
+                        timer: 2000,
+                    }).then(() => {
+                        window.location.href = BASE_URL + 'list_berita/index';
+                    });
+                } else {
+                    toastr.error("Periksa Inputan Anda", {
+                        timeOut: 2000,
+                        fadeOut: 2000,
+                    });
                 }
-
-                showErrorToastr('oops', responseJSON.msg)
+            },
+            error: function (xhr, status, error) {
+                Swal.close();
+                toastr.error("Ada inputan yang belum terisi", "Gagal", {
+                    timeOut: 2000,
+                    fadeOut: 2000,
+                });
             }
         })
     })
