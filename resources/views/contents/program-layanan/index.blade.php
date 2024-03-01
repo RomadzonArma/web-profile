@@ -24,7 +24,9 @@
                             <thead>
                                 <tr>
                                     <th style="width: 5%;">No</th>
-                                    <th>Judul</th>
+                                    <th>Judul Program</th>
+                                    <th>Kanal</th>
+                                    <th>kategori</th>
                                     <th>Status</th>
                                     <th>Tanggal Publish</th>
                                     <th>Aksi</th>

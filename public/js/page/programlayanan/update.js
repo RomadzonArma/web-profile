@@ -31,12 +31,26 @@ $(() => {
             dataType: 'json',
             processData: false,
             contentType: false,
-            beforeSend: () => {
-                clearErrorMessage();
+            beforeSend: function () {
+                Swal.fire({
+                    title: "Mohon Tunggu",
+                    allowOutsideClick: false,
+                    onBeforeOpen: () => {
+                        Swal.showLoading();
+                    },
+                    showConfirmButton: false,
+                    showCancelButton: false,
+                });
             },
             success: (res) => {
                 console.log(res);
-                showSuccessToastr('sukses', 'Berhasil memperbarui data');
+                Swal.fire({
+                    icon: "success",
+                    title: "Sukses",
+                    text: "Berhasil Menyimpan Data",
+                    showConfirmButton: false,
+                    timer: 2000,
+                });
                 window.location.href = BASE_URL + 'program_layanan';
             },
             error: ({
