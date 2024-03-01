@@ -12,20 +12,6 @@
                     <form action="{{ route('program_layanan.update', ['id' => encrypt($list->id)]) }}" method="post" name="form-update" id="form-update"
                         enctype="multipart/form-data">
                         <div class="form-group ">
-                            <label class="col-form-label">Pilih Kanal</label>
-                            <div class="">
-                                <select class="form-control" id="kanal_id" name="kanal_id">
-                                    <option>Pilih kanal</option>
-                                    @foreach ($kanal as $k)
-                                        <option value="{{ $k->id }}"
-                                            {{ $list->kanal_id == $k->id ? 'selected' : '' }}>{{ $k->nama_kanal }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-
-
-                        <div class="form-group ">
                             <label class="col-form-label">Pilih Kategori</label>
                             <div class="">
                                 <select class="form-control" id="kategori_id" name="kategori_id">

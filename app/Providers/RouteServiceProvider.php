@@ -69,6 +69,8 @@ class RouteServiceProvider extends ServiceProvider
 
             $this->mapListProgramLayanan();
 
+            $this->mapListUnduhanRoutes();
+
         });
     }
 
@@ -169,6 +171,12 @@ class RouteServiceProvider extends ServiceProvider
         Route::prefix('program_layanan')
             ->namespace($this->namespace)
             ->group(base_path('routes/panel/program-layanan.php'));
+    }
+    protected function mapListUnduhanRoutes()
+    {
+        Route::prefix('unduhan')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/panel/unduhan.php'));
     }
 
 }

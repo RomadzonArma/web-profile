@@ -107,7 +107,7 @@ $(() => {
             searchable: false,
             className: 'text-center align-top'
         }, {
-            targets: [6],
+            targets: [5],
             visible: false,
         }],
         columns: [{
@@ -146,27 +146,6 @@ $(() => {
                 return formattedDate;
             }
         },{
-            data: 'end_date',
-            render: function(data) {
-                // Mengonversi string tanggal ke objek tanggal JavaScript
-                var date = new Date(data);
-                // Daftar nama bulan untuk digunakan dalam format
-                var monthNames = ["Januari", "Februari", "Maret", "April", "Mei", "Juni",
-                    "Juli", "Agustus", "September", "Oktober", "November", "Desember"
-                ];
-                // Mendapatkan tanggal, bulan, dan tahun dari objek tanggal
-                var day = date.getDate();
-                var monthIndex = date.getMonth();
-                var year = date.getFullYear();
-                // Mendapatkan waktu dalam format 24 jam
-                var hours = date.getHours();
-                var minutes = date.getMinutes();
-                var seconds = date.getSeconds();
-                // Menggabungkan semua komponen untuk membentuk format yang diinginkan
-                var formattedDate = day + ' ' + monthNames[monthIndex] + ' ' + year + ' ' + (hours < 10 ? '0' : '') + hours + ':' + (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
-                return formattedDate;
-            }
-        },{
             data: 'id',
             render: (data, type, row) => {
                 const button_edit = $('<a>', {
@@ -183,7 +162,7 @@ $(() => {
                     html: '<i class="bx bx-file"></i>',
                     href: BASE_URL + 'program_layanan/show/'+row.id,
                     'data-id': data,
-                    title: 'Update Data',
+                    title: 'Detail Data',
                     'data-placement': 'top',
                     'data-toggle': 'tooltip'
                 });

@@ -27,7 +27,6 @@
                                     <th>Judul</th>
                                     <th>Status</th>
                                     <th>Tanggal Publish</th>
-                                    <th>Tanggal Berakhir</th>
                                     <th>Aksi</th>
                                     <th></th>
                                 </tr>
