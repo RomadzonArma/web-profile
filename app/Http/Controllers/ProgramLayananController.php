@@ -104,13 +104,11 @@ class ProgramLayananController extends Controller
      */
     public function edit($id)
     {
-        $kanal      = ListKanal::all();
         $kategori   = ListKategori::all();
         $program = ProgramLayanan::find($id);
         return view('contents.program-layanan.edit', [
             'title' => 'Edit Program Dan Layanan',
             'list'  => $program,
-            'kanal'     => $kanal,
             'kategori'  => $kategori,
         ]);
     }
@@ -148,7 +146,6 @@ class ProgramLayananController extends Controller
                 'tag'               => $request->tag,
                 'caption_image'     => $request->caption_image,
                 'end_date'          => $request->end_date,
-                'kanal_id'          => $request->kanal_id,
                 'kategori_id'       => $request->kategori_id,
             ]);
 

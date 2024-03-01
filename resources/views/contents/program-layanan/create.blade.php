@@ -11,18 +11,6 @@
                 <div class="card-body">
                     <form action="{{ route('program_layanan.store') }}" method="post" name="form-store" id="form-store"
                         enctype="multipart/form-data">
-                        <div class="form-group ">
-                            <label class="col-form-label">Pilih Kanal</label>
-                            <div class="">
-                                <select class="form-control" id="kanal_id" name="kanal_id">
-                                    <option>Pilih kanal</option>
-                                    @foreach ($kanal as $data)
-                                        <option value="{{ $data->id }}">{{ $data->nama_kanal }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-
 
                         <div class="form-group ">
                             <label class="col-form-label">Pilih Kategori</label>
