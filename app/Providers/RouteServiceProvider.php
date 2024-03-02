@@ -81,6 +81,8 @@ class RouteServiceProvider extends ServiceProvider
 
             $this->mapPengumumanRoutes();
 
+            $this->mapPanduanRoutes();
+
         });
     }
 
@@ -222,5 +224,11 @@ class RouteServiceProvider extends ServiceProvider
         Route::prefix('pengumuman')
             ->namespace($this->namespace)
             ->group(base_path('routes/panel/pengumuman.php'));
+    
+    protected function mapPanduanRoutes()
+    {
+        Route::prefix('manajemen_panduan')
+        ->namespace($this->namespace)
+        ->group(base_path('routes/panel/panduan.php'));
     }
 }

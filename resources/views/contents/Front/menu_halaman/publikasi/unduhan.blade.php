@@ -1,6 +1,7 @@
 @extends('layouts.front.app')
 
 @section('content-header')
+    @include('layouts.front.header_mobile')
     <section id="page-title" class="bg-soft px-md-5">
         <div class="content-wrap py-0">
             <div class="container-fluid">
@@ -22,6 +23,7 @@
 @endsection
 
 @section('content')
+    @include('layouts.front.header')
     <section class="px-md-5">
         <div class="content-wrap">
             <div class="container-fluid">
@@ -32,7 +34,8 @@
                                 <div class="grid-inner row no-gutters p-0">
                                     <div class="entry-image col-md-2 mb-md-0">
                                         <a href="#">
-                                            <img src="{{ asset('assets-front/img/pedoman-apresiasi.jpg')}}" alt="thumbnail_berita">
+                                            <img src="{{ asset('assets-front/img/pedoman-apresiasi.jpg') }}"
+                                                alt="thumbnail_berita">
                                         </a>
                                     </div>
                                     <div class="col-md-10 pl-md-4">
@@ -58,7 +61,8 @@
                                 <div class="grid-inner row no-gutters p-0">
                                     <div class="entry-image col-md-2 mb-md-0">
                                         <a href="#">
-                                            <img src="{{ asset('assets-front/img/pedoman-apresiasi.jpg')}}" alt="thumbnail_berita">
+                                            <img src="{{ asset('assets-front/img/pedoman-apresiasi.jpg') }}"
+                                                alt="thumbnail_berita">
                                         </a>
                                     </div>
                                     <div class="col-md-10 pl-md-4">
@@ -84,7 +88,8 @@
                                 <div class="grid-inner row no-gutters p-0">
                                     <div class="entry-image col-md-2 mb-md-0">
                                         <a href="#">
-                                            <img src="{{ asset('assets-front/img/pedoman-apresiasi.jpg')}}" alt="thumbnail_berita">
+                                            <img src="{{ asset('assets-front/img/pedoman-apresiasi.jpg') }}"
+                                                alt="thumbnail_berita">
                                         </a>
                                     </div>
                                     <div class="col-md-10 pl-md-4">
@@ -110,7 +115,8 @@
                                 <div class="grid-inner row no-gutters p-0">
                                     <div class="entry-image col-md-2 mb-md-0">
                                         <a href="#">
-                                            <img src="{{ asset('assets-front/img/pedoman-apresiasi.jpg')}}" alt="thumbnail_berita">
+                                            <img src="{{ asset('assets-front/img/pedoman-apresiasi.jpg') }}"
+                                                alt="thumbnail_berita">
                                         </a>
                                     </div>
                                     <div class="col-md-10 pl-md-4">
@@ -136,7 +142,8 @@
                                 <div class="grid-inner row no-gutters p-0">
                                     <div class="entry-image col-md-2 mb-md-0">
                                         <a href="#">
-                                            <img src="{{ asset('assets-front/img/pedoman-apresiasi.jpg')}}" alt="thumbnail_berita">
+                                            <img src="{{ asset('assets-front/img/pedoman-apresiasi.jpg') }}"
+                                                alt="thumbnail_berita">
                                         </a>
                                     </div>
                                     <div class="col-md-10 pl-md-4">
@@ -183,7 +190,8 @@
                                 <div class="slider-wrap">
                                     <div class="slide" style="max-height: 100%;">
                                         <div class="overlaying-img">
-                                            <a href="#"><img class="img-fluid" src="{{ asset('assets-front/img/podcast.jpeg')}}"
+                                            <a href="#"><img class="img-fluid"
+                                                    src="{{ asset('assets-front/img/podcast.jpeg') }}"
                                                     style="width: 100%;" alt="Image 1"></a>
                                             <div class="bg-overlay">
                                                 <div class="overlaying-desc">
@@ -194,7 +202,8 @@
                                     </div>
                                     <div class="slide" style="max-height: 100%;">
                                         <div class="overlaying-img">
-                                            <a href="#"><img class="img-fluid" src="{{ asset('assets-front/img/podcast.jpeg')}}"
+                                            <a href="#"><img class="img-fluid"
+                                                    src="{{ asset('assets-front/img/podcast.jpeg') }}"
                                                     style="width: 100%;" alt="Image 1"></a>
                                             <div class="bg-overlay">
                                                 <div class="overlaying-desc">
@@ -205,7 +214,8 @@
                                     </div>
                                     <div class="slide" style="max-height: 100%;">
                                         <div class="overlaying-img">
-                                            <a href="#"><img class="img-fluid" src="{{ asset('assets-front/img/podcast.jpeg')}}"
+                                            <a href="#"><img class="img-fluid"
+                                                    src="{{ asset('assets-front/img/podcast.jpeg') }}"
                                                     style="width: 100%;" alt="Image 1"></a>
                                             <div class="bg-overlay">
                                                 <div class="overlaying-desc">
@@ -216,7 +226,8 @@
                                     </div>
                                     <div class="slide" style="max-height: 100%;">
                                         <div class="overlaying-img">
-                                            <a href="#"><img class="img-fluid" src="{{ asset('assets-front/img/podcast.jpeg')}}"
+                                            <a href="#"><img class="img-fluid"
+                                                    src="{{ asset('assets-front/img/podcast.jpeg') }}"
                                                     style="width: 100%;" alt="Image 1"></a>
                                             <div class="bg-overlay">
                                                 <div class="overlaying-desc">
@@ -236,7 +247,8 @@
                                 <div class="grid-inner row no-gutters p-0">
                                     <div class="entry-image col-xl-4 mb-xl-0">
                                         <a href="#">
-                                            <img src="{{ asset('assets-front/img/BERITA1.jpg')}}" alt="thumbnail_berita">
+                                            <img src="{{ asset('assets-front/img/BERITA1.jpg') }}"
+                                                alt="thumbnail_berita">
                                         </a>
                                     </div>
                                     <div class="col-xl-8 pl-xl-4">
@@ -257,7 +269,8 @@
                                 <div class="grid-inner row no-gutters p-0">
                                     <div class="entry-image col-xl-4 mb-xl-0">
                                         <a href="#">
-                                            <img src="{{ asset('assets-front/img/BERITA1.jpg')}}" alt="thumbnail_berita">
+                                            <img src="{{ asset('assets-front/img/BERITA1.jpg') }}"
+                                                alt="thumbnail_berita">
                                         </a>
                                     </div>
                                     <div class="col-xl-8 pl-xl-4">
@@ -278,7 +291,8 @@
                                 <div class="grid-inner row no-gutters p-0">
                                     <div class="entry-image col-xl-4 mb-xl-0">
                                         <a href="#">
-                                            <img src="{{ asset('assets-front/img/BERITA1.jpg')}}" alt="thumbnail_berita">
+                                            <img src="{{ asset('assets-front/img/BERITA1.jpg') }}"
+                                                alt="thumbnail_berita">
                                         </a>
                                     </div>
                                     <div class="col-xl-8 pl-xl-4">
@@ -299,7 +313,8 @@
                                 <div class="grid-inner row no-gutters p-0">
                                     <div class="entry-image col-xl-4 mb-xl-0">
                                         <a href="#">
-                                            <img src="{{ asset('assets-front/img/BERITA1.jpg')}}" alt="thumbnail_berita">
+                                            <img src="{{ asset('assets-front/img/BERITA1.jpg') }}"
+                                                alt="thumbnail_berita">
                                         </a>
                                     </div>
                                     <div class="col-xl-8 pl-xl-4">
@@ -320,7 +335,8 @@
                                 <div class="grid-inner row no-gutters p-0">
                                     <div class="entry-image col-xl-4 mb-xl-0">
                                         <a href="#">
-                                            <img src="{{ asset('assets-front/img/BERITA1.jpg')}}" alt="thumbnail_berita">
+                                            <img src="{{ asset('assets-front/img/BERITA1.jpg') }}"
+                                                alt="thumbnail_berita">
                                         </a>
                                     </div>
                                     <div class="col-xl-8 pl-xl-4">
@@ -341,7 +357,8 @@
                                 <div class="grid-inner row no-gutters p-0">
                                     <div class="entry-image col-xl-4 mb-xl-0">
                                         <a href="#">
-                                            <img src="{{ asset('assets-front/img/BERITA1.jpg')}}" alt="thumbnail_berita">
+                                            <img src="{{ asset('assets-front/img/BERITA1.jpg') }}"
+                                                alt="thumbnail_berita">
                                         </a>
                                     </div>
                                     <div class="col-xl-8 pl-xl-4">

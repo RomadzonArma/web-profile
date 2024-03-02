@@ -1,6 +1,7 @@
 @extends('layouts.front.app')
 
 @section('content-header')
+    @include('layouts.front.header_mobile')
     <section id="page-title" class="bg-soft px-md-5">
         <div class="content-wrap py-0">
             <div class="container-fluid">
@@ -23,6 +24,7 @@
 @endsection
 
 @section('content')
+    @include('layouts.front.header')
     <section class="px-md-5">
         <div class="content-wrap">
             <div class="container-fluid">
@@ -41,7 +43,7 @@
                             </ul>
                         </div>
                         <div class="entry-image">
-                            <img src="{{ asset('assets-front/img/berita2.jpg')}}" alt="banner-berita">
+                            <img src="{{ asset('assets-front/img/berita2.jpg') }}" alt="banner-berita">
                         </div>
                         <div class="entry-content mt-0">
                             <p><b>KSPS - </b>Dewasa ini, gawai dan peranti digital semakin masif digunakan anak dan remaja
@@ -57,12 +59,12 @@
                         <div class="fslider" data-arrows="false" data-speed="650" data-pause="2500" data-animation="fade">
                             <div class="flexslider">
                                 <div class="slider-wrap">
-                                    <div class="slide"><a href="#"><img src="{{ asset('assets-front/img/berita2.jpg')}}"
-                                                alt="banner"></a></div>
-                                    <div class="slide"><a href="#"><img src="{{ asset('assets-front/img/berita3.jpg')}}"
-                                                alt="banner"></a></div>
-                                    <div class="slide"><a href="#"><img src="{{ asset('assets-front/img/berita4.jpg')}}"
-                                                alt="banner"></a></div>
+                                    <div class="slide"><a href="#"><img
+                                                src="{{ asset('assets-front/img/berita2.jpg') }}" alt="banner"></a></div>
+                                    <div class="slide"><a href="#"><img
+                                                src="{{ asset('assets-front/img/berita3.jpg') }}" alt="banner"></a></div>
+                                    <div class="slide"><a href="#"><img
+                                                src="{{ asset('assets-front/img/berita4.jpg') }}" alt="banner"></a></div>
                                 </div>
                             </div>
                         </div>
@@ -90,8 +92,9 @@
                                 <div class="slider-wrap">
                                     <div class="slide" style="max-height: 100%;">
                                         <div class="overlaying-img">
-                                            <a href="#"><img class="img-fluid" src="{{ asset('assets-front/img/podcast.jpeg')}}"
-                                                    style="width: 100%;" alt="Image 1"></a>
+                                            <a href="#"><img class="img-fluid"
+                                                    src="{{ asset('assets-front/img/podcast.jpeg') }}" style="width: 100%;"
+                                                    alt="Image 1"></a>
                                             <div class="bg-overlay">
                                                 <div class="overlaying-desc">
                                                     <h4 class="text-white mb-0 text-center">Podcast</h4>
@@ -101,8 +104,9 @@
                                     </div>
                                     <div class="slide" style="max-height: 100%;">
                                         <div class="overlaying-img">
-                                            <a href="#"><img class="img-fluid" src="{{ asset('assets-front/img/podcast.jpeg')}}"
-                                                    style="width: 100%;" alt="Image 1"></a>
+                                            <a href="#"><img class="img-fluid"
+                                                    src="{{ asset('assets-front/img/podcast.jpeg') }}" style="width: 100%;"
+                                                    alt="Image 1"></a>
                                             <div class="bg-overlay">
                                                 <div class="overlaying-desc">
                                                     <h4 class="text-white mb-0 text-center">Podcast</h4>
@@ -112,8 +116,9 @@
                                     </div>
                                     <div class="slide" style="max-height: 100%;">
                                         <div class="overlaying-img">
-                                            <a href="#"><img class="img-fluid" src="{{ asset('assets-front/img/podcast.jpeg')}}"
-                                                    style="width: 100%;" alt="Image 1"></a>
+                                            <a href="#"><img class="img-fluid"
+                                                    src="{{ asset('assets-front/img/podcast.jpeg') }}" style="width: 100%;"
+                                                    alt="Image 1"></a>
                                             <div class="bg-overlay">
                                                 <div class="overlaying-desc">
                                                     <h4 class="text-white mb-0 text-center">Podcast</h4>
@@ -123,7 +128,8 @@
                                     </div>
                                     <div class="slide" style="max-height: 100%;">
                                         <div class="overlaying-img">
-                                            <a href="#"><img class="img-fluid" src="{{ asset('assets-front/img/podcast.jpeg')}}"
+                                            <a href="#"><img class="img-fluid"
+                                                    src="{{ asset('assets-front/img/podcast.jpeg') }}"
                                                     style="width: 100%;" alt="Image 1"></a>
                                             <div class="bg-overlay">
                                                 <div class="overlaying-desc">
@@ -160,7 +166,8 @@
                                 <div class="grid-inner row no-gutters p-0">
                                     <div class="entry-image col-xl-4 mb-xl-0">
                                         <a href="#">
-                                            <img src="{{ asset('assets-front/img/BERITA1.jpg')}}" alt="thumbnail_berita">
+                                            <img src="{{ asset('assets-front/img/BERITA1.jpg') }}"
+                                                alt="thumbnail_berita">
                                         </a>
                                     </div>
                                     <div class="col-xl-8 pl-xl-3">
@@ -181,7 +188,8 @@
                                 <div class="grid-inner row no-gutters p-0">
                                     <div class="entry-image col-xl-4 mb-xl-0">
                                         <a href="#">
-                                            <img src="{{ asset('assets-front/img/BERITA1.jpg')}}" alt="thumbnail_berita">
+                                            <img src="{{ asset('assets-front/img/BERITA1.jpg') }}"
+                                                alt="thumbnail_berita">
                                         </a>
                                     </div>
                                     <div class="col-xl-8 pl-xl-3">
@@ -202,7 +210,8 @@
                                 <div class="grid-inner row no-gutters p-0">
                                     <div class="entry-image col-xl-4 mb-xl-0">
                                         <a href="#">
-                                            <img src="{{ asset('assets-front/img/BERITA1.jpg')}}" alt="thumbnail_berita">
+                                            <img src="{{ asset('assets-front/img/BERITA1.jpg') }}"
+                                                alt="thumbnail_berita">
                                         </a>
                                     </div>
                                     <div class="col-xl-8 pl-xl-3">
@@ -223,7 +232,8 @@
                                 <div class="grid-inner row no-gutters p-0">
                                     <div class="entry-image col-xl-4 mb-xl-0">
                                         <a href="#">
-                                            <img src="{{ asset('assets-front/img/BERITA1.jpg')}}" alt="thumbnail_berita">
+                                            <img src="{{ asset('assets-front/img/BERITA1.jpg') }}"
+                                                alt="thumbnail_berita">
                                         </a>
                                     </div>
                                     <div class="col-xl-8 pl-xl-3">
@@ -244,7 +254,8 @@
                                 <div class="grid-inner row no-gutters p-0">
                                     <div class="entry-image col-xl-4 mb-xl-0">
                                         <a href="#">
-                                            <img src="{{ asset('assets-front/img/BERITA1.jpg')}}" alt="thumbnail_berita">
+                                            <img src="{{ asset('assets-front/img/BERITA1.jpg') }}"
+                                                alt="thumbnail_berita">
                                         </a>
                                     </div>
                                     <div class="col-xl-8 pl-xl-3">

@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+use App\Model\Panduan;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -52,4 +53,11 @@ class ListKategori extends Model
     {
         return $this->hasMany('App\Model\Pengumuman');
     }
+
+    public function panduan(): HasMany
+    {
+        return $this->hasMany(Panduan::class);
+    }
+
 }
+
