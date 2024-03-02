@@ -21,19 +21,19 @@
                         <img src="{{ asset('assets-front/img/podcast.jpeg') }}" alt="podcast" class="img-fluid"
                             width="36">
                     </a>
-                    <a href="#" class="social-icon si-secondary mr-2">
+                    <a href="{{ $ref_sosmed->facebook }}" class="social-icon si-secondary mr-2" target="_blank">
                         <i class="icon-facebook"></i>
                         <i class="icon-facebook"></i>
                     </a>
-                    <a href="#" class="social-icon si-secondary mr-2">
+                    <a href="{{ $ref_sosmed->twitter }}" class="social-icon si-secondary mr-2" target="_blank">
                         <i class="icon-twitter"></i>
                         <i class="icon-twitter"></i>
                     </a>
-                    <a href="#" class="social-icon si-secondary mr-2">
+                    <a href="{{ $ref_sosmed->instagram }}" class="social-icon si-secondary mr-2" target="_blank">
                         <i class="icon-instagram"></i>
                         <i class="icon-instagram"></i>
                     </a>
-                    <a href="#" class="social-icon si-secondary mr-2">
+                    <a href="{{ $ref_sosmed->youtube }}" class="social-icon si-secondary mr-2" target="_blank">
                         <i class="icon-youtube"></i>
                         <i class="icon-youtube"></i>
                     </a>
