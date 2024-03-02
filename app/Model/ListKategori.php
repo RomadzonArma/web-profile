@@ -48,6 +48,12 @@ class ListKategori extends Model
     {
         return $this->hasMany('App\Model\Informasi_publik');
     }
+
+    public function pengumuman()
+    {
+        return $this->hasMany('App\Model\Pengumuman');
+    }
+
     public function panduan(): HasMany
     {
         return $this->hasMany(Panduan::class);

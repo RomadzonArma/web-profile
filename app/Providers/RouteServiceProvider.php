@@ -79,6 +79,8 @@ class RouteServiceProvider extends ServiceProvider
 
             $this->mapWebinarRoutes();
 
+            $this->mapPengumumanRoutes();
+
             $this->mapPanduanRoutes();
 
         });
@@ -216,6 +218,12 @@ class RouteServiceProvider extends ServiceProvider
             ->namespace($this->namespace)
             ->group(base_path('routes/panel/webinar.php'));
     }
+
+    protected function mapPengumumanRoutes()
+    {
+        Route::prefix('pengumuman')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/panel/pengumuman.php'));
     
     protected function mapPanduanRoutes()
     {
