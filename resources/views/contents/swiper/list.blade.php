@@ -27,6 +27,7 @@
                                     <th style="width: 5%;">#</th>
                                     <th>Judul</th>
                                     <th>Gambar</th>
+                                    <th>Link Youtube</th>
                                     <th>Status Keaktifan</th>
                                     <th>Aksi</th>
                                     <th></th>
@@ -60,12 +61,17 @@
                                 oninput="this.value = this.value.replace(/[^a-zA-Z0-9!%.,()\/'?\-\s]/g, '').replace(/(\..*?)\..*/g, '$1');"></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="form_foto">Foto Swiper<font color="red">*Ukuran 1422 x 320 px</font></label>
-                            <input type="file" accept=".png,.jpg,.jpeg,.jfif" class="form-control" name="foto"
-                                id="form_foto">
-                            <font color="red">*Gambar (PNG, JPG, JPEG, JFIF) Max 10MB</font>
-                            <div id="foto"></div>
-                            <div id="file-error" class="text-danger"></div>
+                            <label for="link">Link Youtube</label>
+                            <textarea class="form-control" placeholder="Link Youtube" name="link" id="link"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="form_foto">Gambar Swiper</label>
+                            <div class="custom-file mb-3">
+                                <input type="file" class="custom-file-input" name="foto" id="customFile"
+                                    accept=".jpg,.jpeg,.png">
+                                <label class="custom-file-label" for="customFile">Cari Gambar</label>
+                            </div>
+                            <div id="imagePreview" class="mt-3"></div>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -85,7 +91,8 @@
     <!-- sample modal content -->
     <div id="modal-swiper-update" class="modal fade" tabindex="-1" role="dialog"
         aria-labelledby="modal-swiper-updateLabel" aria-hidden="true">
-        <form action="{{ route('swiper.update') }}" method="post" id="form-swiper-update" autocomplete="off" enctype="multipart/form-data">
+        <form action="{{ route('swiper.update') }}" method="post" id="form-swiper-update" autocomplete="off"
+            enctype="multipart/form-data">
             @method('PATCH')
             <input type="hidden" name="id" id="update-id">
             <div class="modal-dialog">
@@ -103,12 +110,18 @@
                                 oninput="this.value = this.value.replace(/[^a-zA-Z0-9!%.,()\/'?\-\s]/g, '').replace(/(\..*?)\..*/g, '$1');"></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="udpdate-form_foto">Foto Swiper<font color="red">*Ukuran 1422 x 320 px</font></label>
-                            <input type="file" accept=".png,.jpg,.jpeg,.jfif" class="form-control" name="foto"
-                                id="udpdate-form_foto">
-                            <font color="red">*Gambar (PNG, JPG, JPEG, JFIF) Max 10MB</font>
+                            <label for="update-link">Link Youtube</label>
+                            <textarea class="form-control" placeholder="Link Youtube" name="link" id="update-link"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="updateCustomFile">Gambar Swiper</label>
+                            <div class="custom-file mb-3">
+                                <input type="file" class="custom-file-input" name="foto" id="updateCustomFile"
+                                    accept=".jpg,.jpeg,.png">
+                                <label class="custom-file-label" for="updateCustomFile">Cari Gambar</label>
+                            </div>
+                            <div id="updateImagePreview" class="mt-3"></div>
                             <div id="foto"></div>
-                            <div id="file-error" class="text-danger"></div>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -123,5 +136,39 @@
 @endsection
 
 @push('scripts')
+    <script>
+        document.getElementById("customFile").addEventListener("change", function() {
+            var file = this.files[0];
+            var fileLabel = document.querySelector('label[for="customFile"]');
+            fileLabel.innerHTML = file.name;
+
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                var imagePreview = document.getElementById("imagePreview");
+                imagePreview.innerHTML = '<img src="' + e.target.result +
+                    '" class="img-fluid" style="height:200px;width:auto" alt="Selected Image">';
+            };
+            reader.readAsDataURL(file);
+        });
+    </script>
+    <script>
+        document.getElementById("updateCustomFile").addEventListener("change", function() {
+            var file = this.files[0];
+            var fileLabel = document.querySelector('label[for="customFile"]');
+            fileLabel.innerHTML = file.name;
+
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                var imagePreview = document.getElementById("updateImagePreview");
+                imagePreview.innerHTML = '<img src="' + e.target.result +
+                    '" class="img-fluid" style="height:200px;width:auto" alt="Selected Image">';
+            };
+            reader.readAsDataURL(file);
+        });
+        $('#modal-swiper-update').on('hidden.bs.modal', function() {
+            var imagePreview = document.getElementById("updateImagePreview");
+            imagePreview.innerHTML = '';
+        });
+    </script>
     <script src="{{ asset('js/page/swiper/list.js?q=' . Str::random(5)) }}"></script>
 @endpush

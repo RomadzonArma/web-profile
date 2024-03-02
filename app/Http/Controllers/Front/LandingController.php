@@ -3,15 +3,19 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Model\Swiper;
 use Illuminate\Http\Request;
 
 class LandingController extends Controller
 {
     public function index()
     {
+        $swiper = Swiper::where('is_active', "1")
+        ->get();
         return view('contents.Front.index', [
         // return view('layouts.front.app', [
-            'title' => 'Beranda'
+            'title' => 'Beranda',
+            'swiper' => $swiper,
         ]);
     }
 
