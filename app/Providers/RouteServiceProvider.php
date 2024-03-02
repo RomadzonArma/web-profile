@@ -227,7 +227,6 @@ class RouteServiceProvider extends ServiceProvider
             ->group(base_path('routes/panel/pengumuman.php'));
 
     }
-
     protected function mapPanduanRoutes()
     {
         Route::prefix('manajemen_panduan')
