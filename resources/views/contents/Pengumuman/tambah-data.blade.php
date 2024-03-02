@@ -35,7 +35,7 @@ $plugins = ['editor', 'swal', 'select2'];
                     <div class="form-group mt-2">
                         <label for="file">Gambar</label>
                         <div class="custom-file mb-3">
-                            <input type="file" class="custom-file-input" id="gambar" name="gambar" accept=".jpg,.jpeg,.png">
+                            <input type="file" class="custom-file-input" id="customFile" name="gambar" accept=".jpg,.jpeg,.png">
                             <label class="custom-file-label" for="customFile">Choose file</label>
                         </div>
                         <div id="imagePreview" class="mt-3"></div>
@@ -73,7 +73,22 @@ $plugins = ['editor', 'swal', 'select2'];
 
 @push('scripts')
 <script>
+    document.getElementById("customFile").addEventListener("change", function() {
+        var file = this.files[0];
+        var fileLabel = document.querySelector('label[for="customFile"]');
+        fileLabel.innerHTML = file.name;
 
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            var imagePreview = document.getElementById("imagePreview");
+            imagePreview.innerHTML = '<img src="' + e.target.result +
+                '" class="img-fluid" style="height:200px;width:auto" alt="Selected Image">';
+        };
+        reader.readAsDataURL(file);
+    });
+    $('#body').summernote({
+        height: 350,
+    });
 </script>
 <script src="{{ asset('js/page/Pengumuman/store.js?q=' . Str::random(5)) }}"></script>
 @endpush

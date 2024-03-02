@@ -53,13 +53,13 @@
                         <div class="form-group">
                             <label for="pdf_preview">File PDF Preview</label>
                             <iframe id="pdf_preview" width="100%" height="500px"
-                                style="border: 1px solid #ddd;"></iframe>
+                                style="border: 1px solid #ddd;"   src="{{ asset('file-pengumuman/' . $data->file) }}"></iframe>
                         </div>
                         <div class="form-group">
                             <label for="file">File PDF</label>
                             <div class="custom-file mb-3">
                                 <input type="file" class="custom-file-input" id="file" name="file"
-                                    accept=".pdf" onchange="handlePdfUpload()"">
+                                    accept=".pdf">
                                 <label class="custom-file-label" for="customFile">Choose file</label>
                                 <div style="font-size: 11px; line-height: 13px; font-style: Italic; margin-top: 5px; margin-bottom: 5px; text-align: left;"
                                     class="text-danger">
@@ -90,4 +90,24 @@
 
 @push('scripts')
     <script src="{{ asset('js/page/Pengumuman/update.js?q=' . Str::random(5)) }}"></script>
+    <script>
+        function previewPdf(input) {
+            var pdfPreview = document.getElementById('pdf_preview');
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    // Set the src attribute of the iframe to the URL of the selected PDF file
+                    pdfPreview.src = e.target.result;
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        document.getElementById('file').addEventListener('change', function () {
+            previewPdf(this);
+        });
+    </script>
 @endpush
