@@ -1,6 +1,7 @@
 @extends('layouts.front.app')
 
 @section('content-header')
+    @include('layouts.front.header_mobile')
     <section id="page-title" class="bg-soft px-md-5">
         <div class="content-wrap py-0">
             <div class="container-fluid">
@@ -22,6 +23,7 @@
 @endsection
 
 @section('content')
+    @include('layouts.front.header')
     <section class="px-md-5">
         <div class="content-wrap">
             <div class="container-fluid">
@@ -189,7 +191,8 @@
                                 <div class="grid-inner row no-gutters p-0">
                                     <div class="entry-image col-md-4 mb-md-0">
                                         <a href="#">
-                                            <img src="{{ asset('assets-front/img/BERITA1.jpg') }}" alt="thumbnail_berita">
+                                            <img src="{{ asset('assets-front/img/BERITA1.jpg') }}"
+                                                alt="thumbnail_berita">
                                         </a>
                                     </div>
                                     <div class="col-md-8 pl-md-4">
