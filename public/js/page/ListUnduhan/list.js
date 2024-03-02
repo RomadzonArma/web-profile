@@ -25,14 +25,25 @@ $(() => {
                     id,
                     _method: "DELETE",
                 })
-                    .done((res) => {
-                        showSuccessToastr("sukses", "unduhan berhasil dihapus");
-                        table.ajax.reload();
-                    })
-                    .fail((res) => {
-                        let { status, responseJSON } = res;
-                        showErrorToastr("oops", responseJSON.message);
+                .done((res) => {
+                    Swal.fire({
+                        icon: "success",
+                        title: "Berhasil menghapus data!",
+                        text: "Data berhasil dihapus",
+                        showConfirmButton: false,
+                        timer: 1500
                     });
+                    table.ajax.reload();
+                }).fail((res) => {
+                    let { status, responseJSON } = res;
+                    Swal.fire({
+                        icon: "error",
+                        title: "Gagal menghapus data!",
+                        text: "Terjadi kesalahan saat menghapus data",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                })
             }
         });
     });
@@ -49,34 +60,40 @@ $(() => {
             dataType: "json",
             contentType: false,
             processData: false,
-            beforeSend: () => {
-                clearErrorMessage();
-                $("#modal-update-unduhan")
-                    .find(".modal-dialog")
-                    .LoadingOverlay("show");
+            beforeSend: function () {
+                Swal.fire({
+                    title: "Mohon Tunggu",
+                    allowOutsideClick: false,
+                    onBeforeOpen: () => {
+                        Swal.showLoading();
+                    },
+                    showConfirmButton: false,
+                    showCancelButton: false,
+                });
             },
             success: (res) => {
-                $("#modal-update-unduhan")
-                    .find(".modal-dialog")
-                    .LoadingOverlay("hide", true);
-                $(this)[0].reset();
-                clearErrorMessage();
-                table.ajax.reload();
-                $("#modal-update-unduhan").modal("hide");
+                console.log(res);
+                window.location.href = BASE_URL + 'unduhan';
+                Swal.fire({
+                    icon: "success",
+                    title: "Berhasil Menyimpan data!",
+                    text: "Data berhasil disimpan",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
             },
-            error: ({ status, responseJSON }) => {
-                $("#modal-otoritas-update")
-                    .find(".modal-dialog")
-                    .LoadingOverlay("hide", true);
-                    table.ajax.reload();
+            error: ({
+                status,
+                responseJSON
+            }) => {
 
                 if (status == 422) {
                     generateErrorMessage(responseJSON);
                     return false;
                 }
 
-                showErrorToastr("oops", responseJSON.msg);
-            },
+                showErrorToastr('oops', responseJSON.msg)
+            }
         });
     });
 
@@ -109,33 +126,40 @@ $(() => {
             dataType: "json",
             processData: false,
             contentType: false,
-            beforeSend: () => {
-                clearErrorMessage();
-                $("#modal-unduhan")
-                    .find(".modal-dialog")
-                    .LoadingOverlay("show"); // Fix the modal ID here
+            beforeSend: function () {
+                Swal.fire({
+                    title: "Mohon Tunggu",
+                    allowOutsideClick: false,
+                    onBeforeOpen: () => {
+                        Swal.showLoading();
+                    },
+                    showConfirmButton: false,
+                    showCancelButton: false,
+                });
             },
             success: (res) => {
-                $("#modal-unduhan")
-                    .find(".modal-dialog")
-                    .LoadingOverlay("hide", true);
-                $(this)[0].reset();
-                clearErrorMessage();
-                $("#modal-unduhan").modal("hide");
-                table.ajax.reload();
+                console.log(res);
+                Swal.fire({
+                    icon: "success",
+                    title: "Sukses",
+                    text: "Berhasil Menyimpan Data",
+                    showConfirmButton: false,
+                    timer: 2000,
+                });
+                window.location.href = BASE_URL + 'unduhan';
             },
-            error: ({ status, responseJSON }) => {
-                $("#modal-unduhan")
-                    .find(".modal-dialog")
-                    .LoadingOverlay("hide", true);
+            error: ({
+                status,
+                responseJSON
+            }) => {
 
                 if (status == 422) {
                     generateErrorMessage(responseJSON);
                     return false;
                 }
 
-                showErrorToastr("oops", responseJSON.msg);
-            },
+                showErrorToastr('oops', responseJSON.msg)
+            }
         });
     });
 
