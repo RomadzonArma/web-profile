@@ -10,7 +10,7 @@
                     </a>
                     <form class="bg-white form-banner my-0" style="min-width: 280px;">
                         <input type="text" placeholder="Cari kata kunci...">
-                        <div class="rounded-icon bg-secondary">
+                        <div class="rounded-icon bg-primary">
                             <i class="icon-line-search"></i>
                         </div>
                     </form>
