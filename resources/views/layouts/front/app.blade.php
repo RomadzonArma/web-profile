@@ -16,11 +16,11 @@
 <body class="stretched">
     <div id="wrapper" class="clearfix">
 
-        {{-- @include('layouts.front.header_mobile') --}}
+        @include('layouts.front.header_mobile')
 
         @yield('content-header')
 
-        {{-- @include('layouts.front.header') --}}
+        @include('layouts.front.header')
 
         @yield('content')
 

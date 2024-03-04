@@ -8,18 +8,16 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
-                <div class="card-body">
-                    {{-- @if (rbacCheck('manajemen_unduhan', 2)) --}}
-                    <div class="row mb-2">
-                        <div class="col-sm-12">
-                            <div class="text-sm-right">
-                                <button type="button"
-                                    class="btn btn-success btn-rounded waves-effect waves-light btn-tambah"><i
-                                        class="bx bx-plus-circle mr-1"></i> Tambah</button>
-                            </div>
+                <div class="card-header rounded-lg" style="background-color: #365984; color: white;">
+                    @if (rbacCheck('unduhan', 2))
+                        <div class="text-sm-right">
+                            <button type="button" class="btn btn-rounded waves-effect waves-light btn-tambah text-white"
+                                style="background-color: #E59537;"><i class="bx bx-plus-circle mr-1"></i>
+                                Tambah</button>
                         </div>
-                    </div>
-                    {{-- @endif --}}
+                    @endif
+                </div>
+                <div class="card-body">
                     <div class="table-responsive" data-pattern="priority-columns">
                         <table class="table table-striped" id="table-data" style="width: 100%;">
                             <thead>
@@ -41,6 +39,7 @@
             </div>
         </div>
     </div>
+
 
     <!-- sample modal content -->
     <div id="modal-unduhan" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-unduhanLabel"
@@ -74,8 +73,8 @@
                         <div class="form-group">
                             <label for="file">Cover</label>
                             <div class="custom-file mb-3">
-                                <input type="file" class="custom-file-input" id="cover" onchange="preview('.cover', this.files[0])" name="cover"
-                                    accept=".jpg,.png">
+                                <input type="file" class="custom-file-input" id="cover"
+                                    onchange="preview('.cover', this.files[0])" name="cover" accept=".jpg,.png">
                                 <label class="custom-file-label" for="customFile">Choose file</label>
                                 <div style="font-size: 11px; line-height: 13px; font-style: Italic; margin-top: 5px; margin-bottom: 5px; text-align: left;"
                                     class="text-danger">
@@ -191,7 +190,6 @@
 
 @push('scripts')
     <script>
-
         function preview(selector, temporaryFile, width = 200) {
             $(selector).empty();
 

@@ -8,18 +8,17 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
-                <div class="card-body">
-                    {{-- @if (rbacCheck('manajemen_panduan', 2)) --}}
-                    <div class="row mb-2">
-                        <div class="col-sm-12">
-                            <div class="text-sm-right">
-                                <button type="button"
-                                    class="btn btn-success btn-rounded waves-effect waves-light btn-tambah"><i
-                                        class="bx bx-plus-circle mr-1"></i> Tambah</button>
-                            </div>
+                <div class="card-header rounded-lg" style="background-color: #365984; color: white;">
+                    @if (rbacCheck('manajemen_panduan', 2))
+                        <div class="text-sm-right">
+                            <button type="button" class="btn btn-rounded waves-effect waves-light btn-tambah text-white"
+                                style="background-color: #E59537;"><i class="bx bx-plus-circle mr-1"></i>
+                                Tambah
+                            </button>
                         </div>
-                    </div>
-                    {{-- @endif --}}
+                    @endif
+                </div>
+                <div class="card-body">
                     <div class="table-responsive" data-pattern="priority-columns">
                         <table class="table table-striped" id="table-data" style="width: 100%;">
                             <thead>
@@ -40,6 +39,7 @@
             </div>
         </div>
     </div>
+
 
     <!-- sample modal content -->
     <div id="modal-panduan" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-panduanLabel"
@@ -148,7 +148,7 @@
                         </div>
                         <div class="form-group">
                             <label for="judul">Deskripsi Singkat</label>
-                            <textarea class="form-control" id="konten_edit" name="konten" ></textarea>
+                            <textarea class="form-control" id="konten_edit" name="konten"></textarea>
                         </div>
 
                         <div class="form-group">
@@ -197,7 +197,6 @@
 @endsection
 
 @push('scripts')
-
     <script>
         function preview(selector, temporaryFile, width = 200) {
             $(selector).empty();
