@@ -2,7 +2,6 @@
 @inject('carbon', 'Carbon\Carbon')
 
 @section('content-header')
-    @include('layouts.front.header_mobile')
     <section id="page-title" class="bg-soft px-md-5">
         <div class="content-wrap py-0">
             <div class="container-fluid">
@@ -24,7 +23,6 @@
 @endsection
 
 @section('content')
-    @include('layouts.front.header')
     <section class="px-md-5">
         <div class="content-wrap">
             <div class="container-fluid">
@@ -66,13 +64,13 @@
                             <div class="entry mb-5">
                                 <div class="grid-inner row no-gutters p-0">
                                     <div class="entry-image col-md-4 mb-md-0">
-                                        <a href="#">
+                                        <a href="/panduan/detail/{{$item->id}}">
                                             <img src="{{ asset('gambar-panduan/'.$item->gambar) }}" alt="thumbnail_berita" style="width: 200px;">
                                         </a>
                                     </div>
                                     <div class="col-md-8 pl-md-4">
                                         <div class="entry-title title-xs">
-                                            <h3 class="mb-1"><a href="#">{{ $item->judul}}</a>
+                                            <h3 class="mb-1"><a href="/panduan/detail/{{$item->id}}">{{ $item->judul}}</a>
                                             </h3>
                                         </div>
                                         <div class="entry-meta mb-2 mt-0">

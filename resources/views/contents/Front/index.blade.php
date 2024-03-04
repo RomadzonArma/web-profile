@@ -1,7 +1,6 @@
 @extends('layouts.front.app')
 
 @section('content-header')
-    @include('layouts.front.header_mobile')
     <section class="bg-soft px-xl-5 d-lg-block d-none">
         <div class="content-wrap py-2">
             <div class="container-fluid">
@@ -22,7 +21,6 @@
 @endsection
 
 @section('content')
-    @include('layouts.front.header')
     <section class="px-xl-5">
         <div class="content-wrap scrolled">
             <div class="container-fluid">
