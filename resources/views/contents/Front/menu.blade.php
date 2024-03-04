@@ -149,7 +149,7 @@
                                 <a class="menu-link" href="#">PUBLIKASI</a>
                                 <ul class="sub-menu-container">
                                     <li class="menu-item">
-                                        <a class="menu-link" href="#">PANDUAN</a>
+                                        <a class="menu-link" href="{{ route('panduan')}}">PANDUAN</a>
                                     </li>
                                     <li class="menu-item">
                                         <a class="menu-link" href="#">PENGUMUMAN</a>

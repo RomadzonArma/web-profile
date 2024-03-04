@@ -7,6 +7,7 @@ use App\Model\Panduan;
 use App\Model\ListKategori;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\Storage;
 
 class PanduanController extends Controller
 {
@@ -56,11 +57,12 @@ class PanduanController extends Controller
 
             // Move and save the 'file_pdf' file
             $filePDFName = time() . '.' . $request->file_pdf->extension();
-            $request->file_pdf->move(public_path('file-punduan'), $filePDFName);
+            $request->file_pdf->move(public_path('file-panduan'), $filePDFName);
 
             // Create a new Panduan record
             $panduan = Panduan::create([
                 'judul' => $request->judul,
+                'konten' => $request->konten,
                 'file_pdf' => $filePDFName,
                 'gambar' => $coverName,
                 'id_kategori' => $request->id_kategori,
@@ -103,17 +105,18 @@ class PanduanController extends Controller
             // Hapus file lama jika ada perubahan file PDF
             if ($request->hasFile('file_pdf')) {
                 // unlink file lama jika ada
-                if (file_exists(public_path('file-punduan') . '/' . $panduan->file_pdf)) {
-                    unlink(public_path('file-punduan') . '/' . $panduan->file_pdf);
+                if (file_exists(public_path('file-panduan') . '/' . $panduan->file_pdf)) {
+                    unlink(public_path('file-panduan') . '/' . $panduan->file_pdf);
                 }
 
                 $filePDFName = time() . '.' . $request->file_pdf->extension();
-                $request->file_pdf->move(public_path('file-punduan'), $filePDFName);
+                $request->file_pdf->move(public_path('file-panduan'), $filePDFName);
                 $panduan->file_pdf = $filePDFName;
             }
 
             // Update data panduan
             $panduan->judul       = $request->judul;
+            $panduan->konten      = $request->konten;
             $panduan->id_kategori = $request->id_kategori;
             $panduan->save();
 
@@ -128,14 +131,11 @@ class PanduanController extends Controller
         try {
             // Temukan panduan yang akan dihapus
             $panduan = Panduan::findOrFail($request->id);
+            // Hapus file cover (jika ada) menggunakan metode delete
+            Storage::delete('gambar-panduan/' . $panduan->gambar);
 
-            // // Hapus file cover
-            // unlink(public_path('gambar-panduan') . '/' . $panduan->gambar);
-
-            // Hapus file PDF
-            // unlink(public_path('file-punduan') . '/' . $panduan->file_pdf);
-
-            // Hapus record dari database
+            // Hapus file PDF (jika ada) menggunakan metode delete
+            Storage::delete('file-punduan/' . $panduan->file_pdf);
             $panduan->delete();
 
             return response()->json(['status' => true, 'msg' => 'Data panduan berhasil dihapus'], 200);

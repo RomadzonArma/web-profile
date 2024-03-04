@@ -71,6 +71,10 @@
                             <input type="text" class="form-control" id="judul" name="judul" required>
                         </div>
                         <div class="form-group">
+                            <label for="judul">Deskripsi Singkat</label>
+                            <textarea class="form-control" id="konten" name="konten" required></textarea>
+                        </div>
+                        <div class="form-group">
                             <label for="file">Gambar</label>
                             <div class="custom-file mb-3">
                                 <input type="file" class="custom-file-input" id="gambar"
@@ -141,6 +145,10 @@
                         <div class="form-group">
                             <label for="judul">Judul</label>
                             <input type="text" class="form-control" id="judul_edit" name="judul">
+                        </div>
+                        <div class="form-group">
+                            <label for="judul">Deskripsi Singkat</label>
+                            <textarea class="form-control" id="konten_edit" name="konten" ></textarea>
                         </div>
 
                         <div class="form-group">
