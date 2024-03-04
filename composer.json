@@ -41,7 +41,8 @@
   "autoload": {
     "files": [
       "app/Helpers/rbac.php",
-      "app/Helpers/icon.php"
+      "app/Helpers/icon.php",
+      "app/Helpers/helper.php"
     ],
     "psr-4": {
       "App\\": "app/"
