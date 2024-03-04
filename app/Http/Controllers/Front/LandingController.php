@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Front;
 
-use App\Http\Controllers\Controller;
 use App\Model\Sosmed;
 use App\Model\Swiper;
+use App\Model\Panduan;
+use App\Model\Unduhan;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class LandingController extends Controller
 {
@@ -69,9 +71,37 @@ class LandingController extends Controller
     public function unduhan()
     {
         $ref_sosmed = Sosmed::first();
+        $unduhan = Unduhan::all();
+        foreach ($unduhan as $item) {
+            $item->increment('jumlah_download');
+        }
         return view('contents.Front.menu_halaman.publikasi.unduhan', [
             'title' => 'Unduhan',
             'ref_sosmed' => $ref_sosmed,
+            'unduhan' => $unduhan,
+        ]);
+    }
+    public function panduan()
+    {
+        $ref_sosmed = Sosmed::first();
+        $panduan = Panduan::all();
+        // foreach ($panduan as $item) {
+        //     $item->increment('jumlah_download');
+        // }
+        return view('contents.Front.menu_halaman.publikasi.panduan', [
+            'title' => 'Unduhan',
+            'ref_sosmed' => $ref_sosmed,
+            'panduan' => $panduan,
+        ]);
+    }
+    public function panduanDetail($id)
+    {
+        $ref_sosmed = Sosmed::first();
+        $panduan = Panduan::where('id',$id)->first();
+        return view('contents.Front.menu_halaman.publikasi.panduan-detail', [
+            'title' => 'Unduhan',
+            'ref_sosmed' => $ref_sosmed,
+            'panduan' => $panduan,
         ]);
     }
 }

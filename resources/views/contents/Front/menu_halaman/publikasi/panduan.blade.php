@@ -1,5 +1,6 @@
 @extends('layouts.front.app')
 @inject('carbon', 'Carbon\Carbon')
+
 @section('content-header')
     @include('layouts.front.header_mobile')
     <section id="page-title" class="bg-soft px-md-5">
@@ -14,7 +15,7 @@
                 <h1 class="mb-2">{{ $title }}</h1>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('index') }}">Beranda</a></li>
-                    <li class="breadcrumb-item"><a href="#">Publikasi</a></li>
+                    <li class="breadcrumb-item"><a href="#">Informasi Publik</a></li>
                     <li class="breadcrumb-item active" aria="page">{{ $title }}</li>
                 </ol>
             </div>
@@ -29,146 +30,70 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-9 col-12">
+                        <form class="row mb-4">
+                            <div class="form-group pr-sm-2 col-lg-2 col-sm-4 mb-sm-0 mb-3">
+                                <select class="form-control" id="tahun">
+                                    <option>2021</option>
+                                    <option>2022</option>
+                                    <option>2023</option>
+                                    <option>2024</option>
+                                </select>
+                                <i class="icon-caret-down1 icon-select"></i>
+                            </div>
+                            <div class="form-group px-sm-2 col-lg-2 col-sm-4 mb-sm-0 mb-3">
+                                <select class="form-control" id="bulan">
+                                    <option>Januari</option>
+                                    <option>Februari</option>
+                                    <option>Maret</option>
+                                    <option>April</option>
+                                    <option>Mei</option>
+                                    <option>Juni</option>
+                                    <option>Juli</option>
+                                    <option>Agustus</option>
+                                    <option>September</option>
+                                    <option>Oktober</option>
+                                    <option>November</option>
+                                    <option>Desember</option>
+                                </select>
+                                <i class="icon-caret-down1 icon-select"></i>
+                            </div>
+                            <div class="col-xl-2 pl-sm-2 col-sm-4">
+                                <button class="button w-100 m-0 rounded">Cari</button>
+                            </div>
+                        </form>
                         <div class="result-berita">
-                            @foreach ($unduhan as $item)
+                            @foreach ($panduan as $item)
                             <div class="entry mb-5">
                                 <div class="grid-inner row no-gutters p-0">
-                                    <div class="entry-image col-md-2 mb-md-0">
+                                    <div class="entry-image col-md-4 mb-md-0">
                                         <a href="#">
-                                            <img src="{{ asset('cover-unduhan/'.$item->cover) }}"
-                                                alt="thumbnail_berita">
+                                            <img src="{{ asset('gambar-panduan/'.$item->gambar) }}" alt="thumbnail_berita" style="width: 200px;">
                                         </a>
                                     </div>
-                                    <div class="col-md-10 pl-md-4">
+                                    <div class="col-md-8 pl-md-4">
                                         <div class="entry-title title-xs">
-                                            <h3 class="mb-1"><a href="#">{{ $item->judul}}</a></h3>
+                                            <h3 class="mb-1"><a href="#">{{ $item->judul}}</a>
+                                            </h3>
                                         </div>
                                         <div class="entry-meta mb-2 mt-0">
                                             <ul>
-                                                <li><a href="#"><i class="icon-calendar3"></i> {{
-                                                    $carbon::parse($item->tanggal)->format('d M
-                                                    Y') }}</a>
+                                                <li><a href="#"><i class="icon-calendar3"></i>{{ $carbon::parse($item->tanggal)->format('d M Y')}}</a>
                                                 </li>
-                                                <li><a href="#"><i class="icon-line-folder"></i> Unduhan</a></li>
-                                                <li><a href="#"><i class="icon-line-download"></i> {{ $item->jumlah_download}}Diunduh</a>
-                                                </li>
+                                                <li><a href="#"><i class="icon-user1"></i> KSPTK</a></li>
+                                                <li><a href="#"><i class="icon-line-folder"></i> Panduan</a></li>
+                                                <li><a href="#"><i class="icon-line-eye"></i>{{$item->jumlah_lihat}} Dilihat</a></li>
                                             </ul>
                                         </div>
-                                        <a class="button button-mini button-aqua rounded m-0" href="{{ asset('file-unduhan/' . $item->file) }}" target="_blank">Unduh Dokumen
-                                            <i class="icon-line-download"></i></a>
+                                        <p class="mb-2 text-muted text-clamp-2">
+                                            KSPSTK - {{$item->konten}}
+                                        </p>
+                                        <a class="more-link" href="/panduan/detail/{{$item->id}}">Baca Lebih Lanjut</a>
                                     </div>
                                 </div>
                             </div>
+
                             @endforeach
-{{--
-                            <div class="entry mb-5">
-                                <div class="grid-inner row no-gutters p-0">
-                                    <div class="entry-image col-md-2 mb-md-0">
-                                        <a href="#">
-                                            <img src="{{ asset('assets-front/img/pedoman-apresiasi.jpg') }}"
-                                                alt="thumbnail_berita">
-                                        </a>
-                                    </div>
-                                    <div class="col-md-10 pl-md-4">
-                                        <div class="entry-title title-xs">
-                                            <h3 class="mb-1"><a href="#">Pedoman Apresiasi Guru dan Tenaga
-                                                    Kependidikan Tahun 2023</a></h3>
-                                        </div>
-                                        <div class="entry-meta mb-2 mt-0">
-                                            <ul>
-                                                <li><a href="#"><i class="icon-calendar3"></i> 2 Februari 2024</a>
-                                                </li>
-                                                <li><a href="#"><i class="icon-line-folder"></i> Unduhan</a></li>
-                                                <li><a href="#"><i class="icon-line-download"></i> 8 Diunduh</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <a class="button button-mini button-aqua rounded m-0" href="#">Unduh Dokumen
-                                            <i class="icon-line-download"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="entry mb-5">
-                                <div class="grid-inner row no-gutters p-0">
-                                    <div class="entry-image col-md-2 mb-md-0">
-                                        <a href="#">
-                                            <img src="{{ asset('assets-front/img/pedoman-apresiasi.jpg') }}"
-                                                alt="thumbnail_berita">
-                                        </a>
-                                    </div>
-                                    <div class="col-md-10 pl-md-4">
-                                        <div class="entry-title title-xs">
-                                            <h3 class="mb-1"><a href="#">Pedoman Apresiasi Guru dan Tenaga
-                                                    Kependidikan Tahun 2023</a></h3>
-                                        </div>
-                                        <div class="entry-meta mb-2 mt-0">
-                                            <ul>
-                                                <li><a href="#"><i class="icon-calendar3"></i> 2 Februari 2024</a>
-                                                </li>
-                                                <li><a href="{{ asset('file-unduhan/' . $list->file) }}" target="_blank"><i class="icon-line-folder"></i> Unduhan</a></li>
-                                                <li><a href="#"><i class="icon-line-download"></i> 8 Diunduh</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <a class="button button-mini button-aqua rounded m-0" href="#">Unduh Dokumen
-                                            <i class="icon-line-download"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="entry mb-5">
-                                <div class="grid-inner row no-gutters p-0">
-                                    <div class="entry-image col-md-2 mb-md-0">
-                                        <a href="#">
-                                            <img src="{{ asset('assets-front/img/pedoman-apresiasi.jpg') }}"
-                                                alt="thumbnail_berita">
-                                        </a>
-                                    </div>
-                                    <div class="col-md-10 pl-md-4">
-                                        <div class="entry-title title-xs">
-                                            <h3 class="mb-1"><a href="#">Pedoman Apresiasi Guru dan Tenaga
-                                                    Kependidikan Tahun 2023</a></h3>
-                                        </div>
-                                        <div class="entry-meta mb-2 mt-0">
-                                            <ul>
-                                                <li><a href="#"><i class="icon-calendar3"></i> 2 Februari 2024</a>
-                                                </li>
-                                                <li><a href="#"><i class="icon-line-folder"></i> Unduhan</a></li>
-                                                <li><a href="#"><i class="icon-line-download"></i> 8 Diunduh</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <a class="button button-mini button-aqua rounded m-0" href="#">Unduh Dokumen
-                                            <i class="icon-line-download"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="entry mb-5">
-                                <div class="grid-inner row no-gutters p-0">
-                                    <div class="entry-image col-md-2 mb-md-0">
-                                        <a href="#">
-                                            <img src="{{ asset('assets-front/img/pedoman-apresiasi.jpg') }}"
-                                                alt="thumbnail_berita">
-                                        </a>
-                                    </div>
-                                    <div class="col-md-10 pl-md-4">
-                                        <div class="entry-title title-xs">
-                                            <h3 class="mb-1"><a href="#">Pedoman Apresiasi Guru dan Tenaga
-                                                    Kependidikan Tahun 2023</a></h3>
-                                        </div>
-                                        <div class="entry-meta mb-2 mt-0">
-                                            <ul>
-                                                <li><a href="#"><i class="icon-calendar3"></i> 2 Februari 2024</a>
-                                                </li>
-                                                <li><a href="#"><i class="icon-line-folder"></i> Unduhan</a></li>
-                                                <li><a href="#"><i class="icon-line-download"></i> 8 Diunduh</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <a class="button button-mini button-aqua rounded m-0" href="#">Unduh Dokumen
-                                            <i class="icon-line-download"></i></a>
-                                    </div>
-                                </div>
-                            </div> --}}
+
                             <ul class="pagination pagination-circle justify-content-center">
                                 <li class="page-item disabled"><a class="page-link" href="#"
                                         aria-label="Previous">

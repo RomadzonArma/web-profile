@@ -92,13 +92,14 @@ $(() => {
         $("#form-update-panduan")[0].reset();
         clearErrorMessage();
 
-        let { id, judul, gambar, file_pdf, id_kategori} = data;
+        let { id, judul, gambar, file_pdf, id_kategori,konten} = data;
         // console.log(id);
         $("#update-id").val(id);
         $("#update-id_kategori").val(id_kategori);
         $("#judul_edit").val(judul);
+        $("#konten_edit").val(konten);
         $('#gambar-preview').html('<img src="' + asset_url + 'gambar-panduan/' + gambar + '" alt="oto" style="width: 200px; height: 200px;">');
-        $('#pdf_preview').attr('src', asset_url + 'file-punduan/' + file_pdf );
+        $('#pdf_preview').attr('src', asset_url + 'file-panduan/' + file_pdf );
 
         $("#modal-update-panduan").modal("show");
     });

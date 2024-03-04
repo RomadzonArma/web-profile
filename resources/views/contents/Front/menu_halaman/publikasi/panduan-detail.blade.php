@@ -1,5 +1,6 @@
 @extends('layouts.front.app')
 @inject('carbon', 'Carbon\Carbon')
+
 @section('content-header')
     @include('layouts.front.header_mobile')
     <section id="page-title" class="bg-soft px-md-5">
@@ -14,7 +15,7 @@
                 <h1 class="mb-2">{{ $title }}</h1>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('index') }}">Beranda</a></li>
-                    <li class="breadcrumb-item"><a href="#">Publikasi</a></li>
+                    <li class="breadcrumb-item"><a href="#">Informasi Publik</a></li>
                     <li class="breadcrumb-item active" aria="page">{{ $title }}</li>
                 </ol>
             </div>
@@ -28,160 +29,24 @@
         <div class="content-wrap">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-9 col-12">
-                        <div class="result-berita">
-                            @foreach ($unduhan as $item)
-                            <div class="entry mb-5">
-                                <div class="grid-inner row no-gutters p-0">
-                                    <div class="entry-image col-md-2 mb-md-0">
-                                        <a href="#">
-                                            <img src="{{ asset('cover-unduhan/'.$item->cover) }}"
-                                                alt="thumbnail_berita">
-                                        </a>
-                                    </div>
-                                    <div class="col-md-10 pl-md-4">
-                                        <div class="entry-title title-xs">
-                                            <h3 class="mb-1"><a href="#">{{ $item->judul}}</a></h3>
-                                        </div>
-                                        <div class="entry-meta mb-2 mt-0">
-                                            <ul>
-                                                <li><a href="#"><i class="icon-calendar3"></i> {{
-                                                    $carbon::parse($item->tanggal)->format('d M
-                                                    Y') }}</a>
-                                                </li>
-                                                <li><a href="#"><i class="icon-line-folder"></i> Unduhan</a></li>
-                                                <li><a href="#"><i class="icon-line-download"></i> {{ $item->jumlah_download}}Diunduh</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <a class="button button-mini button-aqua rounded m-0" href="{{ asset('file-unduhan/' . $item->file) }}" target="_blank">Unduh Dokumen
-                                            <i class="icon-line-download"></i></a>
-                                    </div>
+                    <div class="col-md-9 col-12 mb-md-0 mb-4">
+                        <div class="row">
+                            <div class="col-lg-5 mb-4">
+                                <img src="{{ asset('gambar-panduan/' . $panduan->gambar) }}" class="img-fluid rounded">
+                            </div>
+                            <div class="col-xl-9 col-lg-7">
+                                <div class="entry-title">
+                                    <h3 class="mb-1"><a href="#">{{ $panduan->judul }}</a>
+                                    </h3>
+                                </div>
+
+                                <p class="mb-4">
+                                    {{ $panduan->konten }}
+                                </p>
+                                <div class="mb-4">
+                                    <iframe id="pdf_preview" width="100%" height="500px"style="border: 1px solid #ddd;"   src="{{ asset('file-panduan/' . $panduan->file_pdf) }}"></iframe>
                                 </div>
                             </div>
-                            @endforeach
-{{--
-                            <div class="entry mb-5">
-                                <div class="grid-inner row no-gutters p-0">
-                                    <div class="entry-image col-md-2 mb-md-0">
-                                        <a href="#">
-                                            <img src="{{ asset('assets-front/img/pedoman-apresiasi.jpg') }}"
-                                                alt="thumbnail_berita">
-                                        </a>
-                                    </div>
-                                    <div class="col-md-10 pl-md-4">
-                                        <div class="entry-title title-xs">
-                                            <h3 class="mb-1"><a href="#">Pedoman Apresiasi Guru dan Tenaga
-                                                    Kependidikan Tahun 2023</a></h3>
-                                        </div>
-                                        <div class="entry-meta mb-2 mt-0">
-                                            <ul>
-                                                <li><a href="#"><i class="icon-calendar3"></i> 2 Februari 2024</a>
-                                                </li>
-                                                <li><a href="#"><i class="icon-line-folder"></i> Unduhan</a></li>
-                                                <li><a href="#"><i class="icon-line-download"></i> 8 Diunduh</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <a class="button button-mini button-aqua rounded m-0" href="#">Unduh Dokumen
-                                            <i class="icon-line-download"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="entry mb-5">
-                                <div class="grid-inner row no-gutters p-0">
-                                    <div class="entry-image col-md-2 mb-md-0">
-                                        <a href="#">
-                                            <img src="{{ asset('assets-front/img/pedoman-apresiasi.jpg') }}"
-                                                alt="thumbnail_berita">
-                                        </a>
-                                    </div>
-                                    <div class="col-md-10 pl-md-4">
-                                        <div class="entry-title title-xs">
-                                            <h3 class="mb-1"><a href="#">Pedoman Apresiasi Guru dan Tenaga
-                                                    Kependidikan Tahun 2023</a></h3>
-                                        </div>
-                                        <div class="entry-meta mb-2 mt-0">
-                                            <ul>
-                                                <li><a href="#"><i class="icon-calendar3"></i> 2 Februari 2024</a>
-                                                </li>
-                                                <li><a href="{{ asset('file-unduhan/' . $list->file) }}" target="_blank"><i class="icon-line-folder"></i> Unduhan</a></li>
-                                                <li><a href="#"><i class="icon-line-download"></i> 8 Diunduh</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <a class="button button-mini button-aqua rounded m-0" href="#">Unduh Dokumen
-                                            <i class="icon-line-download"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="entry mb-5">
-                                <div class="grid-inner row no-gutters p-0">
-                                    <div class="entry-image col-md-2 mb-md-0">
-                                        <a href="#">
-                                            <img src="{{ asset('assets-front/img/pedoman-apresiasi.jpg') }}"
-                                                alt="thumbnail_berita">
-                                        </a>
-                                    </div>
-                                    <div class="col-md-10 pl-md-4">
-                                        <div class="entry-title title-xs">
-                                            <h3 class="mb-1"><a href="#">Pedoman Apresiasi Guru dan Tenaga
-                                                    Kependidikan Tahun 2023</a></h3>
-                                        </div>
-                                        <div class="entry-meta mb-2 mt-0">
-                                            <ul>
-                                                <li><a href="#"><i class="icon-calendar3"></i> 2 Februari 2024</a>
-                                                </li>
-                                                <li><a href="#"><i class="icon-line-folder"></i> Unduhan</a></li>
-                                                <li><a href="#"><i class="icon-line-download"></i> 8 Diunduh</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <a class="button button-mini button-aqua rounded m-0" href="#">Unduh Dokumen
-                                            <i class="icon-line-download"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="entry mb-5">
-                                <div class="grid-inner row no-gutters p-0">
-                                    <div class="entry-image col-md-2 mb-md-0">
-                                        <a href="#">
-                                            <img src="{{ asset('assets-front/img/pedoman-apresiasi.jpg') }}"
-                                                alt="thumbnail_berita">
-                                        </a>
-                                    </div>
-                                    <div class="col-md-10 pl-md-4">
-                                        <div class="entry-title title-xs">
-                                            <h3 class="mb-1"><a href="#">Pedoman Apresiasi Guru dan Tenaga
-                                                    Kependidikan Tahun 2023</a></h3>
-                                        </div>
-                                        <div class="entry-meta mb-2 mt-0">
-                                            <ul>
-                                                <li><a href="#"><i class="icon-calendar3"></i> 2 Februari 2024</a>
-                                                </li>
-                                                <li><a href="#"><i class="icon-line-folder"></i> Unduhan</a></li>
-                                                <li><a href="#"><i class="icon-line-download"></i> 8 Diunduh</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <a class="button button-mini button-aqua rounded m-0" href="#">Unduh Dokumen
-                                            <i class="icon-line-download"></i></a>
-                                    </div>
-                                </div>
-                            </div> --}}
-                            <ul class="pagination pagination-circle justify-content-center">
-                                <li class="page-item disabled"><a class="page-link" href="#"
-                                        aria-label="Previous">
-                                        <span aria-hidden="true">«</span></a></li>
-                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                <li class="page-item"><a class="ml-2" href="#">...</a></li>
-                                <li class="page-item"><a class="page-link" href="#">5</a></li>
-                                <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span
-                                            aria-hidden="true">»</span></a></li>
-                            </ul>
                         </div>
                     </div>
                     <div class="col-md-3 col-12">
@@ -195,8 +60,8 @@
                                     <div class="slide" style="max-height: 100%;">
                                         <div class="overlaying-img">
                                             <a href="#"><img class="img-fluid"
-                                                    src="{{ asset('assets-front/img/podcast.jpeg') }}"
-                                                    style="width: 100%;" alt="Image 1"></a>
+                                                    src="{{ asset('assets-front/img/podcast.jpeg') }}" style="width: 100%;"
+                                                    alt="Image 1"></a>
                                             <div class="bg-overlay">
                                                 <div class="overlaying-desc">
                                                     <h4 class="text-white mb-0 text-center">Podcast</h4>
@@ -207,8 +72,8 @@
                                     <div class="slide" style="max-height: 100%;">
                                         <div class="overlaying-img">
                                             <a href="#"><img class="img-fluid"
-                                                    src="{{ asset('assets-front/img/podcast.jpeg') }}"
-                                                    style="width: 100%;" alt="Image 1"></a>
+                                                    src="{{ asset('assets-front/img/podcast.jpeg') }}" style="width: 100%;"
+                                                    alt="Image 1"></a>
                                             <div class="bg-overlay">
                                                 <div class="overlaying-desc">
                                                     <h4 class="text-white mb-0 text-center">Podcast</h4>
@@ -219,8 +84,8 @@
                                     <div class="slide" style="max-height: 100%;">
                                         <div class="overlaying-img">
                                             <a href="#"><img class="img-fluid"
-                                                    src="{{ asset('assets-front/img/podcast.jpeg') }}"
-                                                    style="width: 100%;" alt="Image 1"></a>
+                                                    src="{{ asset('assets-front/img/podcast.jpeg') }}" style="width: 100%;"
+                                                    alt="Image 1"></a>
                                             <div class="bg-overlay">
                                                 <div class="overlaying-desc">
                                                     <h4 class="text-white mb-0 text-center">Podcast</h4>
@@ -231,8 +96,8 @@
                                     <div class="slide" style="max-height: 100%;">
                                         <div class="overlaying-img">
                                             <a href="#"><img class="img-fluid"
-                                                    src="{{ asset('assets-front/img/podcast.jpeg') }}"
-                                                    style="width: 100%;" alt="Image 1"></a>
+                                                    src="{{ asset('assets-front/img/podcast.jpeg') }}" style="width: 100%;"
+                                                    alt="Image 1"></a>
                                             <div class="bg-overlay">
                                                 <div class="overlaying-desc">
                                                     <h4 class="text-white mb-0 text-center">Podcast</h4>
@@ -251,8 +116,7 @@
                                 <div class="grid-inner row no-gutters p-0">
                                     <div class="entry-image col-xl-4 mb-xl-0">
                                         <a href="#">
-                                            <img src="{{ asset('assets-front/img/BERITA1.jpg') }}"
-                                                alt="thumbnail_berita">
+                                            <img src="{{ asset('assets-front/img/BERITA1.jpg') }}" alt="thumbnail_berita">
                                         </a>
                                     </div>
                                     <div class="col-xl-8 pl-xl-4">
@@ -386,3 +250,26 @@
         </div>
     </section>
 @endsection
+@push('scripts')
+
+    <script>
+        function previewPdf(input) {
+            var pdfPreview = document.getElementById('pdf_preview');
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    // Set the src attribute of the iframe to the URL of the selected PDF file
+                    pdfPreview.src = e.target.result;
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        document.getElementById('file_pdf').addEventListener('change', function () {
+            previewPdf(this);
+        });
+    </script>
+@endpush
