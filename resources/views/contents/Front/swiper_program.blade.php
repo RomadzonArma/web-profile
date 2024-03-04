@@ -8,7 +8,7 @@
         <div class="swiper-wrapper">
             @foreach($program_fokus as $program_fokus)
             <div class="swiper-slide">
-                <a href="#" class="card card-custom mb-2">
+                <a href="#" class="card card-custom mb-2 bg-primary">
                     <div class="card-body text-center">
                         <p class="text-dark font-weight-normal mb-0">{{$program_fokus->title}}</p>
                     </div>
