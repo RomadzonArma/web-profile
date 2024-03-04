@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Model\Pengunjung;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Http\Request;
@@ -16,7 +17,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        view()->composer('layouts.front.footer', function ($view) {
+            $todayCount = Pengunjung::whereDate('created_at', today())->count();
+            $view->with('pengunjungHariIni', $todayCount);
+        });
     }
 
     /**

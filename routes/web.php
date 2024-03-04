@@ -20,6 +20,8 @@ Route::get('/detail', [LandingController::class, 'detail'])->name('detail');
 Route::get('/galeri', [LandingController::class, 'galeri'])->name('galeri');
 Route::get('/agenda/list', [LandingController::class, 'agenda'])->name('agenda.list');
 Route::get('/unduhan/list', [LandingController::class, 'unduhan'])->name('unduhan.list');
+Route::get('/panduan', [LandingController::class, 'panduan'])->name('panduan');
+Route::get('/panduan/detail/{id}', [LandingController::class, 'panduanDetail'])->name('panduan.detail');
 
 Route::get('/login', function () {
     return redirect()->route('login');

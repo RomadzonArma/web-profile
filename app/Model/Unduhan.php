@@ -9,7 +9,7 @@ class Unduhan extends Model
 {
     protected $table = 'unduhan';
     protected $guarded = ['id'];
-
+protected $fillable = ['jumlah_download',];
     /**
      * Get the kanal that owns the Unduhan
      *
