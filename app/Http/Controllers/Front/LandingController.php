@@ -21,12 +21,9 @@ class LandingController extends Controller
             ->orderByDesc('created_at')
             ->take(4)
             ->get();
-        $ref_sosmed = Sosmed::first();
         return view('contents.Front.index', [
-            // return view('layouts.front.app', [
             'title' => 'Beranda',
             'swiper' => $swiper,
-            'ref_sosmed' => $ref_sosmed,
             'pengunjung' => $this->recordPengunjung(request())
         ]);
     }
@@ -46,77 +43,62 @@ class LandingController extends Controller
 
     public function visi_misi()
     {
-        $ref_sosmed = Sosmed::first();
         return view('contents.Front.profil.visi_misi', [
             'title' => 'Visi dan Misi',
-            'ref_sosmed' => $ref_sosmed,
         ]);
     }
 
     public function berita()
     {
-        $ref_sosmed = Sosmed::first();
         return view('contents.Front.informasi_publik.berita', [
             'title' => 'Berita',
-            'ref_sosmed' => $ref_sosmed,
         ]);
     }
 
     public function detail()
     {
-        $ref_sosmed = Sosmed::first();
         return view('contents.Front.informasi_publik.detail', [
             'title' => 'Berita',
-            'ref_sosmed' => $ref_sosmed,
         ]);
     }
 
     public function galeri()
     {
-        $ref_sosmed = Sosmed::first();
         return view('contents.Front.informasi_publik.galeri', [
             'title' => 'Galeri',
-            'ref_sosmed' => $ref_sosmed,
         ]);
     }
 
     public function agenda()
     {
-        $ref_sosmed = Sosmed::first();
         $agenda = Agenda::all();
         return view('contents.Front.menu_halaman.publikasi.agenda', [
             'title' => 'Agenda',
-            'ref_sosmed' => $ref_sosmed,
             'agenda' => $agenda,
         ]);
     }
     public function agendaDetail($id)
     {
-        $ref_sosmed = Sosmed::first();
         $agenda = Agenda::where('id',$id)->first();
         return view('contents.Front.menu_halaman.publikasi.agenda-detail', [
             'title' => 'Agenda Detail',
-            'ref_sosmed' => $ref_sosmed,
             'agenda' => $agenda,
         ]);
     }
 
     public function unduhan()
     {
-        $ref_sosmed = Sosmed::first();
         $unduhan = Unduhan::all();
         foreach ($unduhan as $item) {
             $item->increment('jumlah_download');
         }
         return view('contents.Front.menu_halaman.publikasi.unduhan', [
             'title' => 'Unduhan',
-            'ref_sosmed' => $ref_sosmed,
             'unduhan' => $unduhan,
         ]);
     }
     public function panduan()
     {
-        $ref_sosmed = Sosmed::first();
         $panduan = Panduan::all();
         // foreach ($panduan as $item) {
         //     $item->increment('jumlah_download');
@@ -129,11 +111,9 @@ class LandingController extends Controller
     }
     public function panduanDetail($id)
     {
-        $ref_sosmed = Sosmed::first();
         $panduan = Panduan::where('id',$id)->first();
         return view('contents.Front.menu_halaman.publikasi.panduan-detail', [
             'title' => 'Panduan Detail',
-            'ref_sosmed' => $ref_sosmed,
             'panduan' => $panduan,
         ]);
     }

@@ -8,16 +8,19 @@ $plugins = ['datatable', 'swal', 'select2'];
 <div class="row">
     <div class="col-12">
         <div class="card">
-            <div class="card-body">
+            <div class="card-header rounded-lg" style="background-color: #365984; color: white;">
                 @if (rbacCheck('profil', 2))
-                <div class="row mb-2">
-                    <div class="col-sm-12">
-                        <div class="text-sm-right">
-                            <a type="button" class="btn btn-success btn-rounded waves-effect waves-light btn-tambah" href="{{ route('profil.store') }}"><i class="bx bx-plus-circle mr-1"></i> Tambah</a>
-                        </div>
+                    <div class="text-sm-right">
+                        <a type="button"
+                            class="btn btn-rounded waves-effect waves-light btn-tambah"
+                            style="background-color: #E59537; color: white;"
+                            href="{{ route('profil.store') }}">
+                            <i class="bx bx-plus-circle mr-1"></i> Tambah
+                        </a>
                     </div>
-                </div>
                 @endif
+            </div>
+            <div class="card-body">
                 <div class="table-responsive" data-pattern="priority-columns">
                     <table class="table table-striped" id="table-data" style="width: 100%;">
                         <thead>

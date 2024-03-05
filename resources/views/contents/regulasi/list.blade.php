@@ -8,18 +8,17 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
-                <div class="card-body">
+                <div class="card-header rounded-lg" style="background-color: #365984; color: white;">
                     @if (rbacCheck('regulasi', 2))
-                    <div class="row mb-2">
-                        <div class="col-sm-12">
-                            <div class="text-sm-right">
-                                <button type="button"
-                                    class="btn btn-success btn-rounded waves-effect waves-light btn-tambah"><i
-                                        class="bx bx-plus-circle mr-1"></i> Tambah</button>
-                            </div>
+                        <div class="text-sm-right">
+                            <button type="button" class="btn text-white btn-rounded waves-effect waves-light btn-tambah"
+                                style="background-color: #E59537;">
+                                <i class="bx bx-plus-circle mr-1"></i> Tambah
+                            </button>
                         </div>
-                    </div>
                     @endif
+                </div>
+                <div class="card-body">
                     <div class="table-responsive" data-pattern="priority-columns">
                         <table class="table table-striped" id="table-data" style="width: 100%;">
                             <thead>
@@ -42,6 +41,7 @@
             </div>
         </div>
     </div>
+
 
     <!-- sample modal content -->
     <div id="modal-regulasi" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-regulasiLabel"
@@ -75,8 +75,8 @@
                         <div class="form-group">
                             <label for="file">Cover</label>
                             <div class="custom-file mb-3">
-                                <input type="file" class="custom-file-input" id="cover" onchange="preview('.cover', this.files[0])" name="cover"
-                                    accept=".jpg,.png">
+                                <input type="file" class="custom-file-input" id="cover"
+                                    onchange="preview('.cover', this.files[0])" name="cover" accept=".jpg,.png">
                                 <label class="custom-file-label" for="customFile">Choose file</label>
                                 <div style="font-size: 11px; line-height: 13px; font-style: Italic; margin-top: 5px; margin-bottom: 5px; text-align: left;"
                                     class="text-danger">
@@ -115,8 +115,8 @@
     </div>
     <!-- /.modal -->
     <!-- sample modal content -->
-    <div id="modal-update-regulasi" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-update-menuLabel"
-        aria-hidden="true">
+    <div id="modal-update-regulasi" class="modal fade" tabindex="-1" role="dialog"
+        aria-labelledby="modal-update-menuLabel" aria-hidden="true">
         <form action="{{ route('regulasi.update') }}" method="post" id="form-update-regulasi" autocomplete="off">
             <input type="hidden" name="id" id="update-id">
             @method('PATCH')
@@ -193,7 +193,6 @@
 
 @push('scripts')
     <script>
-
         function preview(selector, temporaryFile, width = 200) {
             $(selector).empty();
 
