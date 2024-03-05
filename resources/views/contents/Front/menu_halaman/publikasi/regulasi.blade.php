@@ -66,13 +66,13 @@
                             <div class="entry mb-5">
                                 <div class="grid-inner row no-gutters p-0">
                                     <div class="entry-image col-md-4 mb-md-0">
-                                        <a href="/regulasi/detail/{{$item->id}}">
+                                        <a href="/regulasis/detail/{{$item->id}}">
                                             <img src="{{ asset('storage/uploads/regulasi/cover/'.$item->cover) }}" alt="thumbnail_berita" style="width: 200px;">
                                         </a>
                                     </div>
                                     <div class="col-md-8 pl-md-4">
                                         <div class="entry-title title-xs">
-                                            <h3 class="mb-1"><a href="/regulasi/detail/{{$item->id}}">{{ $item->judul}}</a>
+                                            <h3 class="mb-1"><a href="/regulasiS/detail/{{$item->id}}">{{ $item->judul}}</a>
                                             </h3>
                                         </div>
                                         <div class="entry-meta mb-2 mt-0">
