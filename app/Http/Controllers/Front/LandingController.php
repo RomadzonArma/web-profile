@@ -7,10 +7,13 @@ use App\Model\Swiper;
 use App\Model\Panduan;
 use App\Model\Unduhan;
 use App\Model\Regulasi;
+use App\Model\ListBerita;
 use App\Model\Pengumuman;
 use App\Model\Pengunjung;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Model\ProgramLayanan;
 
 class LandingController extends Controller
 {
@@ -49,8 +52,26 @@ class LandingController extends Controller
 
     public function berita()
     {
+        $berita  = ListBerita::where('status_publish', '1')->get();
         return view('contents.Front.informasi_publik.berita', [
             'title' => 'Berita',
+            'berita' => $berita,
+        ]);
+    }
+    public function beritaDetail($id)
+    {
+        $berita = ListBerita::where('id', $id)->first();
+        return view('contents.Front.informasi_publik.berita-detail', [
+            'title' => 'Berita',
+            'berita' => $berita,
+        ]);
+    }
+    public function artikel()
+    {
+        $berita  = ListBerita::where('status_publish', '1')->get();
+        return view('contents.Front.informasi_publik.berita', [
+            'title' => 'Berita',
+            'berita' => $berita,
         ]);
     }
 
@@ -67,7 +88,7 @@ class LandingController extends Controller
             'title' => 'Galeri',
         ]);
     }
-
+    // START MENU PUBLIKASI
     public function agenda()
     {
         $agenda = Agenda::all();
@@ -156,5 +177,52 @@ class LandingController extends Controller
             'regulasi' => $regulasi,
         ]);
     }
+    //END PUBLIKASI
 
+    //START MENU PROGRAM LAYANAN
+    public function sekolahPenggerak()
+    {
+        $sekolah = DB::table('program_layanan')
+            ->join('ref_kategori', 'program_layanan.id_kategori', '=', 'ref_kategori.id')
+            ->select('program_layanan.*', 'ref_kategori.nama_kategori')
+            ->where('program_layanan.id_kategori', '=', 19)
+            ->get();
+
+        return view('contents.Front.menu_halaman.program_layanan.sekolah-penggerak', [
+            'title' => 'Pogram Pendidikan Guru Penggerak',
+            'sekolah' => $sekolah,
+        ]);
+    }
+    public function sekolahPenggerakDetail($slug)
+    {
+
+        $sekolah = ProgramLayanan::where('slug',$slug)->first();
+        // dd($sekolah);
+        return view('contents.Front.menu_halaman.program_layanan.sekolah-penggerak-detail', [
+            'title' => 'Detail Pogram Pendidikan Guru Penggerak ',
+            'sekolah' => $sekolah,
+        ]);
+    }
+    public function guruPenggerak()
+    {
+        $guru = DB::table('program_layanan')
+            ->join('ref_kategori', 'program_layanan.id_kategori', '=', 'ref_kategori.id')
+            ->select('program_layanan.*', 'ref_kategori.nama_kategori')
+            ->where('program_layanan.id_kategori', '=', 20)
+            ->get();
+
+        return view('contents.Front.menu_halaman.program_layanan.guru-penggerak', [
+            'title' => 'Pogram Pendidikan Guru Penggerak',
+            'guru' => $guru,
+        ]);
+    }
+    public function guruPenggerakDetail($slug)
+    {
+        $guru = ProgramLayanan::where('slug',$slug)->first();
+        // dd($guru);
+        return view('contents.Front.menu_halaman.program_layanan.guru-penggerak-detail', [
+            'title' => 'Detail Pogram Pendidikan Guru Penggerak ',
+            'guru' => $guru,
+        ]);
+    }
 }

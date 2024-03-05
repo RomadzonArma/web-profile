@@ -73,101 +73,99 @@
                             <li class="menu-item mega-menu-title sub-menu">
                                 <a class="menu-link" href="#">PROGRAM DAN LAYANAN</a>
                                 <ul class="sub-menu-container">
-                                    <li class="menu-item">
-                                        <a class="menu-link" href="#">PROGRAM PENDIDIKAN
-                                            GURU
-                                            PENGGERAK</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a class="menu-link" href="#">PROGRAM SEKOLAH
-                                            PENGGERAK</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a class="menu-link" href="#">IMPLEMENTASI
-                                            KURIKULUM
-                                            MERDEKA</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a class="menu-link" href="#">PLATFORM MERDEKA
-                                            MENGAJAR</a>
-                                    </li>
-                                </ul>
+                                    <a class="menu-link" href="{{ route('guru-penggerak') }}">
+                                        PROGRAM PENDIDIKAN GURU PENGGERAK </a>
+                            </li>
+                            <li class="menu-item">
+                                <a class="menu-link" href="{{ route('sekolah-penggerak') }}">PROGRAM SEKOLAH
+                                    PENGGERAK</a>
+                            </li>
+                            <li class="menu-item">
+                                <a class="menu-link" href="https://kurikulum.kemdikbud.go.id/kurikulum-merdeka/">IMPLEMENTASI
+                                    KURIKULUM
+                                    MERDEKA</a>
+                            </li>
+                            <li class="menu-item">
+                                <a class="menu-link" href="#">PLATFORM MERDEKA
+                                    MENGAJAR</a>
                             </li>
                         </ul>
-                        <ul class="sub-menu-container mega-menu-column col">
-                            <li class="menu-item mega-menu-title sub-menu">
-                                <a class="menu-link" href="#">TAUTAN</a>
-                                <ul class="sub-menu-container scrolled">
-                                    <li class="menu-item">
-                                        <a class="menu-link" href="#">KEMDIKBUD</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a class="menu-link" href="#">DITJEN GTK</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a class="menu-link" href="#">PROGRAM PENDIDIKAN
-                                            GURU
-                                            PENGGERAK</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a class="menu-link" href="#">PROGRAM SEKOLAH
-                                            PENGGERAK</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a class="menu-link" href="#">ORGANISASI
-                                            PENGGERAK</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a class="menu-link" href="#">DIT. GURU PAUD
-                                            DIKMAS</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a class="menu-link" href="#">DIT. GURU
-                                            DIKDAS</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a class="menu-link" href="#">DIT. GURU
-                                            DIKMENDIKSUS</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a class="menu-link" href="#">DIT. PPG</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a class="menu-link" href="#">PENGADUAN</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a class="menu-link" href="#">PLATFORM MERDEKA
-                                            MENGAJAR</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                        <ul class="sub-menu-container mega-menu-column col">
-                            <li class="menu-item mega-menu-title sub-menu">
-                                <a class="menu-link" href="#">PUBLIKASI</a>
-                                <ul class="sub-menu-container">
-                                    <li class="menu-item">
-                                        <a class="menu-link" href="{{ route('panduan')}}">PANDUAN</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a class="menu-link" href="/pengumumans">PENGUMUMAN</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a class="menu-link" href="{{ route('regulasis')}}">REGULASI</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a class="menu-link" href="{{ route('agenda.list') }}">AGENDA</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a class="menu-link" href="{{ route('unduhan.list') }}">UNDUHAN</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
         </li>
+    </ul>
+    <ul class="sub-menu-container mega-menu-column col">
+        <li class="menu-item mega-menu-title sub-menu">
+            <a class="menu-link" href="#">TAUTAN</a>
+            <ul class="sub-menu-container scrolled">
+                <li class="menu-item">
+                    <a class="menu-link" href="#">KEMDIKBUD</a>
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link" href="#">DITJEN GTK</a>
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link" href="#">PROGRAM PENDIDIKAN
+                        GURU
+                        PENGGERAK</a>
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link" href="#">PROGRAM SEKOLAH
+                        PENGGERAK</a>
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link" href="#">ORGANISASI
+                        PENGGERAK</a>
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link" href="#">DIT. GURU PAUD
+                        DIKMAS</a>
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link" href="#">DIT. GURU
+                        DIKDAS</a>
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link" href="#">DIT. GURU
+                        DIKMENDIKSUS</a>
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link" href="#">DIT. PPG</a>
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link" href="#">PENGADUAN</a>
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link" href="#">PLATFORM MERDEKA
+                        MENGAJAR</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <ul class="sub-menu-container mega-menu-column col">
+        <li class="menu-item mega-menu-title sub-menu">
+            <a class="menu-link" href="#">PUBLIKASI</a>
+            <ul class="sub-menu-container">
+                <li class="menu-item">
+                    <a class="menu-link" href="{{ route('panduan') }}">PANDUAN</a>
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link" href="/pengumumans">PENGUMUMAN</a>
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link" href="{{ route('regulasis') }}">REGULASI</a>
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link" href="{{ route('agenda.list') }}">AGENDA</a>
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link" href="{{ route('unduhan.list') }}">UNDUHAN</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    </div>
+    </div>
+    </div>
+    </li>
     </ul>
 
 </nav><!-- #primary-menu end -->
