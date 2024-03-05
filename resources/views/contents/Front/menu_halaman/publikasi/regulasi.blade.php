@@ -72,7 +72,7 @@
                                     </div>
                                     <div class="col-md-8 pl-md-4">
                                         <div class="entry-title title-xs">
-                                            <h3 class="mb-1"><a href="/regulasiS/detail/{{$item->id}}">{{ $item->judul}}</a>
+                                            <h3 class="mb-1"><a href="/regulasis/detail/{{$item->id}}">{{ $item->judul}}</a>
                                             </h3>
                                         </div>
                                         <div class="entry-meta mb-2 mt-0">
