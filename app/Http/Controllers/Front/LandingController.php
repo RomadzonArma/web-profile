@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Front;
 
 use App\Model\Agenda;
-use App\Model\Sosmed;
 use App\Model\Swiper;
 use App\Model\Panduan;
 use App\Model\Unduhan;
@@ -105,7 +104,6 @@ class LandingController extends Controller
         // }
         return view('contents.Front.menu_halaman.publikasi.panduan', [
             'title' => 'Panduan',
-            'ref_sosmed' => $ref_sosmed,
             'panduan' => $panduan,
         ]);
     }
@@ -120,24 +118,20 @@ class LandingController extends Controller
     //start pengumuman
     public function pengumuman()
     {
-        $ref_sosmed = Sosmed::first();
         $pengumuman = Pengumuman::all();
         // foreach ($panduan as $item) {
         //     $item->increment('jumlah_download');
         // }
         return view('contents.Front.menu_halaman.publikasi.pengumuman', [
             'title' => 'Pengumuman',
-            'ref_sosmed' => $ref_sosmed,
             'pengumuman' => $pengumuman,
         ]);
     }
     public function pengumumanDetail($id)
     {
-        $ref_sosmed = Sosmed::first();
         $pengumuman = Pengumuman::where('id',$id)->first();
         return view('contents.Front.menu_halaman.publikasi.pengumuman-detail', [
             'title' => 'Pengumuman Detail',
-            'ref_sosmed' => $ref_sosmed,
             'pengumuman' => $pengumuman,
         ]);
     }
@@ -145,27 +139,22 @@ class LandingController extends Controller
     //end pengumuman
     public function regulasi()
     {
-        $ref_sosmed = Sosmed::first();
         $regulasi = Regulasi::all();
         // foreach ($panduan as $item) {
         //     $item->increment('jumlah_download');
         // }
         return view('contents.Front.menu_halaman.publikasi.regulasi', [
             'title' => 'Regulasi',
-            'ref_sosmed' => $ref_sosmed,
             'regulasi' => $regulasi,
         ]);
     }
     public function regulasiDetail($id)
     {
-        $ref_sosmed = Sosmed::first();
         $regulasi = Regulasi::where('id',$id)->first();
         return view('contents.Front.menu_halaman.publikasi.regulasi-detail', [
             'title' => 'Regulasi Detail',
-            'ref_sosmed' => $ref_sosmed,
             'regulasi' => $regulasi,
         ]);
     }
-
 
 }
