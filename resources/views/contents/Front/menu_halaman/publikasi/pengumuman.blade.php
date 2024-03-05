@@ -2,7 +2,7 @@
 @inject('carbon', 'Carbon\Carbon')
 
 @section('content-header')
-    @include('layouts.front.header_mobile')
+
     <section id="page-title" class="bg-soft px-md-5">
         <div class="content-wrap py-0">
             <div class="container-fluid">
@@ -24,7 +24,7 @@
 @endsection
 
 @section('content')
-    @include('layouts.front.header')
+
     <section class="px-md-5">
         <div class="content-wrap">
             <div class="container-fluid">

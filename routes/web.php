@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [LandingController::class, 'index'])->name('index');
 Route::get('/visi-misi', [LandingController::class, 'visi_misi'])->name('visi-misi');
 Route::get('/berita', [LandingController::class, 'berita'])->name('berita');
+Route::get('/berita/detail/{id}', [LandingController::class, 'beritaDetail'])->name('berita.detail');
 Route::get('/detail', [LandingController::class, 'detail'])->name('detail');
 Route::get('/galeri', [LandingController::class, 'galeri'])->name('galeri');
 Route::get('/agenda/list', [LandingController::class, 'agenda'])->name('agenda.list');
@@ -27,6 +28,15 @@ Route::get('/pengumumans', [LandingController::class, 'pengumuman'])->name('peng
 Route::get('/pengumumans/detail/{id}', [LandingController::class, 'pengumumanDetail'])->name('pengumuman.list');
 Route::get('/regulasis', [LandingController::class, 'regulasi'])->name('regulasis');
 Route::get('/regulasis/detail/{id}', [LandingController::class, 'regulasiDetail'])->name('regulasis.list');
+
+//PROGRAM LAYANAN
+Route::get('/sekolah-penggerak', [LandingController::class, 'sekolahPenggerak'])->name('sekolah-penggerak');
+Route::get('/sekolah-penggerak/detail/{id}', [LandingController::class, 'sekolahPenggerakDetail'])->name('sekolah-penggerak-detail');
+Route::get('/guru-penggerak', [LandingController::class, 'guruPenggerak'])->name('guru-penggerak');
+Route::get('/guru-penggerak/detail/{slug}', [LandingController::class, 'guruPenggerakDetail'])->name('guru-penggerak-detail');
+
+
+
 
 Route::get('/login', function () {
     return redirect()->route('login');

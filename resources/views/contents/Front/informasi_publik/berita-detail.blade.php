@@ -31,21 +31,26 @@
                 <div class="row">
                     <div class="col-md-9 col-12 mb-md-0 mb-4">
                         <div class="row">
-                            {{-- <div class="col-lg-5 mb-4">
-                                <img src="{{ asset('pengumuman/' . $pengumuman->gambar) }}" class="img-fluid rounded">
-                            </div> --}}
+                            <div class="col-lg-10  mb-4">
+                                <img src="{{ asset('list_berita/'.$berita->gambar) }}" alt="thumbnail_beritas">
+                                <p class="mt-1">
+                                    <small><center>{{$berita->caption_gambar}}</center></small>
+                                </p>
+                            </div>
                             <div class="col-xl-9 col-lg-7">
                                 <div class="entry-title">
-                                    <h3 class="mb-1"><a href="#">{{ $pengumuman->judul }}</a>
+                                    <h3 class="mb-1"><a href="#">{{ $berita->judul }}</a>
                                     </h3>
                                 </div>
 
                                 <p class="mb-4">
-                                    {!! $pengumuman->konten !!}
+                                    {!! $berita->isi_konten !!}
                                 </p>
-                                <div class="mb-4">
-                                    <iframe id="pdf_preview" width="100%" height="500px"style="border: 1px solid #ddd;"   src="{{ asset('file-pengumuman/' . $pengumuman->file) }}"></iframe>
+                                <div class="entry-title">
+                                    <h6 class="mb-1"><a href="#"># {{ $berita->tag_dinamis }}</a></h6>
+                                    <h6 class="mb-1"><a href="#"># {{ $berita->url_video}}</a></h6>
                                 </div>
+
                             </div>
                         </div>
                     </div>

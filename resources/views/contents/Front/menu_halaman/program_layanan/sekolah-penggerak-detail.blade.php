@@ -2,7 +2,6 @@
 @inject('carbon', 'Carbon\Carbon')
 
 @section('content-header')
-
     <section id="page-title" class="bg-soft px-md-5">
         <div class="content-wrap py-0">
             <div class="container-fluid">
@@ -24,28 +23,37 @@
 @endsection
 
 @section('content')
-
     <section class="px-md-5">
         <div class="content-wrap">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-9 col-12 mb-md-0 mb-4">
                         <div class="row">
-                            {{-- <div class="col-lg-5 mb-4">
-                                <img src="{{ asset('pengumuman/' . $pengumuman->gambar) }}" class="img-fluid rounded">
-                            </div> --}}
-                            <div class="col-xl-9 col-lg-7">
+                            <div class="col-lg-10  mb-4">
+                                <img src="{{ asset('program-image/'.$sekolah->image) }}" alt="thumbnail_program">
+                            </div>
+                            <div class=" col-lg-10">
                                 <div class="entry-title">
-                                    <h3 class="mb-1"><a href="#">{{ $pengumuman->judul }}</a>
+                                    <h3 class="mb-1"><a href="#">{{ $sekolah->title }}</a>
                                     </h3>
                                 </div>
 
                                 <p class="mb-4">
-                                    {!! $pengumuman->konten !!}
+                                    {!! $sekolah->body !!}
                                 </p>
-                                <div class="mb-4">
-                                    <iframe id="pdf_preview" width="100%" height="500px"style="border: 1px solid #ddd;"   src="{{ asset('file-pengumuman/' . $pengumuman->file) }}"></iframe>
+
+                                <div class="entry-title">
+                                    <h6 class="mb-1">
+                                        @php
+                                            $tags = explode(',', $sekolah->tag);
+                                        @endphp
+
+                                        @foreach($tags as $tag)
+                                            <a href="#"># {{ trim($tag) }}</a>
+                                        @endforeach
+                                    </h6>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -250,26 +258,3 @@
         </div>
     </section>
 @endsection
-@push('scripts')
-
-    <script>
-        function previewPdf(input) {
-            var pdfPreview = document.getElementById('pdf_preview');
-
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-
-                reader.onload = function (e) {
-                    // Set the src attribute of the iframe to the URL of the selected PDF file
-                    pdfPreview.src = e.target.result;
-                };
-
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-
-        document.getElementById('file_pdf').addEventListener('change', function () {
-            previewPdf(this);
-        });
-    </script>
-@endpush

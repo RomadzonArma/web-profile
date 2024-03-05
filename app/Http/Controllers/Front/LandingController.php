@@ -8,10 +8,13 @@ use App\Model\Swiper;
 use App\Model\Panduan;
 use App\Model\Unduhan;
 use App\Model\Regulasi;
+use App\Model\ListBerita;
 use App\Model\Pengumuman;
 use App\Model\Pengunjung;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Model\ProgramLayanan;
 
 class LandingController extends Controller
 {
@@ -50,8 +53,26 @@ class LandingController extends Controller
 
     public function berita()
     {
+        $berita  = ListBerita::where('status_publish', '1')->get();
         return view('contents.Front.informasi_publik.berita', [
             'title' => 'Berita',
+            'berita' => $berita,
+        ]);
+    }
+    public function beritaDetail($id)
+    {
+        $berita = ListBerita::where('id', $id)->first();
+        return view('contents.Front.informasi_publik.berita-detail', [
+            'title' => 'Berita',
+            'berita' => $berita,
+        ]);
+    }
+    public function artikel()
+    {
+        $berita  = ListBerita::where('status_publish', '1')->get();
+        return view('contents.Front.informasi_publik.berita', [
+            'title' => 'Berita',
+            'berita' => $berita,
         ]);
     }
 
@@ -68,7 +89,7 @@ class LandingController extends Controller
             'title' => 'Galeri',
         ]);
     }
-
+    // START MENU PUBLIKASI
     public function agenda()
     {
         $agenda = Agenda::all();
@@ -105,7 +126,6 @@ class LandingController extends Controller
         // }
         return view('contents.Front.menu_halaman.publikasi.panduan', [
             'title' => 'Panduan',
-            'ref_sosmed' => $ref_sosmed,
             'panduan' => $panduan,
         ]);
     }
@@ -120,20 +140,20 @@ class LandingController extends Controller
     //start pengumuman
     public function pengumuman()
     {
-        $ref_sosmed = Sosmed::first();
+
         $pengumuman = Pengumuman::all();
         // foreach ($panduan as $item) {
         //     $item->increment('jumlah_download');
         // }
         return view('contents.Front.menu_halaman.publikasi.pengumuman', [
             'title' => 'Pengumuman',
-            'ref_sosmed' => $ref_sosmed,
+
             'pengumuman' => $pengumuman,
         ]);
     }
     public function pengumumanDetail($id)
     {
-        $ref_sosmed = Sosmed::first();
+
         $pengumuman = Pengumuman::where('id',$id)->first();
         return view('contents.Front.menu_halaman.publikasi.pengumuman-detail', [
             'title' => 'Pengumuman Detail',
@@ -145,7 +165,7 @@ class LandingController extends Controller
     //end pengumuman
     public function regulasi()
     {
-        $ref_sosmed = Sosmed::first();
+
         $regulasi = Regulasi::all();
         // foreach ($panduan as $item) {
         //     $item->increment('jumlah_download');
@@ -158,7 +178,6 @@ class LandingController extends Controller
     }
     public function regulasiDetail($id)
     {
-        $ref_sosmed = Sosmed::first();
         $regulasi = Regulasi::where('id',$id)->first();
         return view('contents.Front.menu_halaman.publikasi.regulasi-detail', [
             'title' => 'Regulasi Detail',
@@ -167,5 +186,53 @@ class LandingController extends Controller
         ]);
     }
 
+    //END PUBLIKASI
+
+    //START MENU PROGRAM LAYANAN
+    public function sekolahPenggerak()
+    {
+        $sekolah = DB::table('program_layanan')
+            ->join('ref_kategori', 'program_layanan.id_kategori', '=', 'ref_kategori.id')
+            ->select('program_layanan.*', 'ref_kategori.nama_kategori')
+            ->where('program_layanan.id_kategori', '=', 19)
+            ->get();
+
+        return view('contents.Front.menu_halaman.program_layanan.sekolah-penggerak', [
+            'title' => 'Pogram Pendidikan Guru Penggerak',
+            'sekolah' => $sekolah,
+        ]);
+    }
+    public function sekolahPenggerakDetail($slug)
+    {
+
+        $sekolah = ProgramLayanan::where('slug',$slug)->first();
+        // dd($sekolah);
+        return view('contents.Front.menu_halaman.program_layanan.sekolah-penggerak-detail', [
+            'title' => 'Detail Pogram Pendidikan Guru Penggerak ',
+            'sekolah' => $sekolah,
+        ]);
+    }
+    public function guruPenggerak()
+    {
+        $guru = DB::table('program_layanan')
+            ->join('ref_kategori', 'program_layanan.id_kategori', '=', 'ref_kategori.id')
+            ->select('program_layanan.*', 'ref_kategori.nama_kategori')
+            ->where('program_layanan.id_kategori', '=', 20)
+            ->get();
+
+        return view('contents.Front.menu_halaman.program_layanan.guru-penggerak', [
+            'title' => 'Pogram Pendidikan Guru Penggerak',
+            'guru' => $guru,
+        ]);
+    }
+    public function guruPenggerakDetail($slug)
+    {
+        $guru = ProgramLayanan::where('slug',$slug)->first();
+        // dd($guru);
+        return view('contents.Front.menu_halaman.program_layanan.guru-penggerak-detail', [
+            'title' => 'Detail Pogram Pendidikan Guru Penggerak ',
+            'guru' => $guru,
+        ]);
+    }
 
 }
