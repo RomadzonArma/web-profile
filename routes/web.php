@@ -19,7 +19,7 @@ Route::get('/visi-misi', [LandingController::class, 'visi_misi'])->name('visi-mi
 Route::get('/berita', [LandingController::class, 'berita'])->name('berita');
 Route::get('/berita/detail/{id}', [LandingController::class, 'beritaDetail'])->name('berita.detail');
 Route::get('/artikel', [LandingController::class, 'artikel'])->name('artikel');
-Route::get('/artikel/detail/{id}', [LandingController::class, 'artikelDetail'])->name('artikel.detail');
+Route::get('/artikel/detail/{slug}', [LandingController::class, 'artikelDetail'])->name('artikel.detail');
 Route::get('/detail', [LandingController::class, 'detail'])->name('detail');
 Route::get('/galeri', [LandingController::class, 'galeri'])->name('galeri');
 //END INFORMASI PUBLIK
@@ -33,7 +33,7 @@ Route::get('/panduan/detail/{id}', [LandingController::class, 'panduanDetail'])-
 Route::get('/pengumumans', [LandingController::class, 'pengumuman'])->name('pengumuman.list');
 Route::get('/pengumumans/detail/{id}', [LandingController::class, 'pengumumanDetail'])->name('pengumuman.list');
 Route::get('/regulasis', [LandingController::class, 'regulasi'])->name('regulasis');
-Route::get('/regulasis/detail/{id}', [LandingController::class, 'regulasiDetail'])->name('regulasis.list');
+Route::get('/regulasis/detail/{slug}', [LandingController::class, 'regulasiDetail'])->name('regulasis.list');
 //END PUBLIKASI
 
 //PROGRAM LAYANAN

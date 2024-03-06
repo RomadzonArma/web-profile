@@ -21,12 +21,6 @@ class ArtikelController extends Controller
         ]);
     }
 
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function data()
     {
         $artikel = Artikel::with('kategori.list_kanal')->get();
@@ -35,12 +29,6 @@ class ArtikelController extends Controller
             ->make(true);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         try {
@@ -117,12 +105,6 @@ class ArtikelController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
 
     public function destroy(Request $request)
     {
@@ -139,6 +121,23 @@ class ArtikelController extends Controller
             $artikel->delete();
 
             return response()->json(['status' => true, 'msg' => 'Data artikel berhasil dihapus'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['status' => false, 'msg' => $e->getMessage()], 400);
+        }
+    }
+    public function switchStatus(Request $request)
+    {
+        try {
+            $list_artikel = Artikel::findOrFail($request->id);
+            $list_artikel->status_publish = $request->value;
+
+            if ($list_artikel->isDirty()) {
+                $list_artikel->save();
+            }
+
+            if ($list_artikel->wasChanged()) {
+                return response()->json(['status' => true], 200);
+            }
         } catch (\Exception $e) {
             return response()->json(['status' => false, 'msg' => $e->getMessage()], 400);
         }

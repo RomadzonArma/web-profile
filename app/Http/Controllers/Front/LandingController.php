@@ -75,9 +75,9 @@ class LandingController extends Controller
             'artikel' => $artikel,
         ]);
     }
-    public function artikelDetail($id)
+    public function artikelDetail($slug)
     {
-        $artikel = Artikel::where('id', $id)->first();
+        $artikel = Artikel::where('slug', $slug)->first();
         return view('contents.Front.informasi_publik.artikel-detail', [
             'title' => 'Berita',
             'artikel' => $artikel,
@@ -178,9 +178,9 @@ class LandingController extends Controller
             'regulasi' => $regulasi,
         ]);
     }
-    public function regulasiDetail($id)
+    public function regulasiDetail($slug)
     {
-        $regulasi = Regulasi::where('id',$id)->first();
+        $regulasi = Regulasi::where('slug',$slug)->first();
         return view('contents.Front.menu_halaman.publikasi.regulasi-detail', [
             'title' => 'Regulasi Detail',
             'regulasi' => $regulasi,

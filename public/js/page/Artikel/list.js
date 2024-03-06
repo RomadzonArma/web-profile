@@ -3,6 +3,35 @@ $(() => {
     function preview(target, image) {
         $(target).attr("src", window.URL.createObjectURL(image)).show();
     }
+    $("#table-data").on("change", ".switch-active", function () {
+        var id = $(this).data("id");
+        var value = $(this).prop("checked") ? 1 : 0;
+
+        $.post(BASE_URL + "manajemen_artikel/switch", {
+            id,
+            value,
+            _method: "PATCH",
+        })
+            .done((res) => {
+                Swal.fire({
+                    title: "Sukses",
+                    text:
+                        value === 1 ? "Artikel berhasil di publish" : "Artikels berhasil di unpublish",
+                    icon: "success",
+                }).then(() => {
+                    table.ajax.reload();
+                });
+            })
+            .fail((res) => {
+                let { status, responseJSON } = res;
+                Swal.fire({
+                    title: 'Oops',
+                    text: responseJSON.message,
+                    icon: 'error'
+                });
+                console.log(res);
+            });
+    });
 
     $("#table-data").on("click", ".btn-delete", function () {
         let data = table.row($(this).closest("tr")).data();
@@ -109,7 +138,7 @@ $(() => {
 
         $("#konten_edit").summernote({
             height: 300,
-           color: 'balck',
+            color: "balck",
         });
 
         $("#konten_edit").summernote("code", sanitizedContent);
@@ -217,6 +246,20 @@ $(() => {
             },
             {
                 data: "status_publish",
+                render: (data, type, row) => {
+                    return `
+                    <div class="custom-control custom-switch mb-3" dir="ltr">
+                        <input type="checkbox" class="custom-control-input switch-active" id="aktif-${
+                            row.id
+                        }" data-id="${row.id}" ${
+                        data == "1" ? "checked" : ""
+                    } value="${data == "1" ? 0 : 1}">
+                        <label class="custom-control-label" for="aktif-${
+                            row.id
+                        }">${data == "1" ? "Publish" : "Unpublish"}</label>
+                    </div>
+                    `;
+                },
             },
             {
                 data: "id",

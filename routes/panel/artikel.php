@@ -5,5 +5,5 @@ Route::get('/data','ArtikelController@data')->name('manajemen_artikel.data')->mi
 Route::post('/store','ArtikelController@store')->name('manajemen_artikel.store')->middleware('rbac:manajemen_artikel,2');
 Route::patch('/update','ArtikelController@update')->name('manajemen_artikel.update')->middleware('rbac:manajemen_artikel,3');
 Route::delete('/delete','ArtikelController@destroy')->name('manajemen_artikel.delete')->middleware('rbac:manajemen_artikel,4');
-
+Route::patch('/switch', 'ArtikelController@switchStatus')->name('manajemen_artikel.switch')->middleware('rbac:manajemen_artikel,3');
 
