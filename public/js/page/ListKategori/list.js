@@ -233,7 +233,6 @@ $('body').on('click', '.btn-update', function (e) {
 
                 $.ajax({
                     url: BASE_URL + 'list_kategori/update/' + id,
-                    // url: 'magang_data/' + id,
                     type: 'POST',
                     data: {
                         nama_kanal: nama_kanal,

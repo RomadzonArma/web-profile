@@ -84,6 +84,7 @@ class RouteServiceProvider extends ServiceProvider
             $this->mapPanduanRoutes();
             $this->mapRegulasiRoutes();
 
+            $this->mapPodcastRoutes();
         });
     }
 
@@ -234,6 +235,13 @@ class RouteServiceProvider extends ServiceProvider
         ->group(base_path('routes/panel/panduan.php'));
     }
 
+    protected function mapPodcastRoutes()
+    {
+        Route::prefix('podcast')
+        ->namespace($this->namespace)
+        ->group(base_path('routes/panel/podcast.php'));
+    }
+    
     protected function mapRegulasiRoutes()
     {
         Route::prefix('regulasi')
