@@ -19,7 +19,14 @@ Route::get('/berita', [LandingController::class, 'berita'])->name('berita');
 Route::get('/detail', [LandingController::class, 'detail'])->name('detail');
 Route::get('/galeri', [LandingController::class, 'galeri'])->name('galeri');
 Route::get('/agenda/list', [LandingController::class, 'agenda'])->name('agenda.list');
+Route::get('/agenda/detail/{id}', [LandingController::class, 'agendaDetail'])->name('agenda.detail');
 Route::get('/unduhan/list', [LandingController::class, 'unduhan'])->name('unduhan.list');
+Route::get('/panduan', [LandingController::class, 'panduan'])->name('panduan');
+Route::get('/panduan/detail/{id}', [LandingController::class, 'panduanDetail'])->name('panduan.detail');
+Route::get('/pengumumans', [LandingController::class, 'pengumuman'])->name('pengumuman.list');
+Route::get('/pengumumans/detail/{id}', [LandingController::class, 'pengumumanDetail'])->name('pengumuman.list');
+Route::get('/regulasis', [LandingController::class, 'regulasi'])->name('regulasis');
+Route::get('/regulasis/detail/{id}', [LandingController::class, 'regulasiDetail'])->name('regulasis.list');
 
 Route::get('/login', function () {
     return redirect()->route('login');

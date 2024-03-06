@@ -8,17 +8,17 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
-                <div class="card-body">
+                <div class="card-header rounded-lg" style="background-color: #365984; color: white;">
                     @if (rbacCheck('list_kategori', 2))
-                        <div class="row mb-2">
-                            <div class="col-sm-12">
-                                <div class="text-sm-right">
-                                    <a type="button"class="btn btn-success btn-rounded waves-effect waves-light btn-tambah"
-                                        href=""><i class="bx bx-plus-circle mr-1"></i> Tambah</a>
-                                </div>
-                            </div>
+                        <div class="text-sm-right">
+                            <a type="button" class="btn btn-rounded waves-effect waves-light btn-tambah"
+                                style="background-color: #E59537; color: white;">
+                                <i class="bx bx-plus-circle mr-1"></i> Tambah
+                            </a>
                         </div>
                     @endif
+                </div>
+                <div class="card-body">
                     <div class="table-responsive" data-pattern="priority-columns">
                         <table class="table table-striped" id="table-data" style="width: 100%;">
                             <thead>
@@ -38,6 +38,7 @@
             </div>
         </div>
     </div>
+
 
 
 
@@ -103,7 +104,8 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="judul">Nama Kategori</label>
-                        <input type="text" class="form-control" id="nama_kategori_edit" name="nama_kategori_edit" required>
+                        <input type="text" class="form-control" id="nama_kategori_edit" name="nama_kategori_edit"
+                            required>
                     </div>
                     <div class="form-group ">
                         <label class="col-form-label">Pilih Kanal</label>
