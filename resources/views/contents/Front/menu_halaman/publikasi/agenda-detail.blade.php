@@ -31,8 +31,8 @@
                 <div class="row">
                     <div class="col-md-9 col-12 mb-md-0 mb-4">
                         <div class="row">
-                            <div class="col-lg-5 mb-4">
-                                <img src="{{ asset('gambar-panduan/' . $agenda->gambar) }}" class="img-fluid rounded">
+                            <div class="col-lg-10  mb-4">
+                                <img src="{{ asset('agenda/'.$agenda->gambar) }}" alt="thumbnail_agenda">
                             </div>
                             <div class="col-xl-9 col-lg-7">
                                 <div class="entry-title">

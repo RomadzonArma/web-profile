@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Model\Agenda;
+use App\Model\Artikel;
 use App\Model\ListKanal;
 use App\Model\ListKategori;
 use Illuminate\Support\Str;

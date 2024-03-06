@@ -59,17 +59,17 @@
                             </div>
                         </form>
                         <div class="result-berita">
-                            @foreach ($berita as $item)
+                            @foreach ($artikel as $item)
                             <div class="entry mb-5">
                                 <div class="grid-inner row no-gutters p-0">
                                     <div class="entry-image col-md-4 mb-md-0">
-                                        <a href="#">
-                                            <img src="{{ asset('list_berita/'.$item->gambar) }}" alt="thumbnail_berita">
+                                        <a href="/artikel/detail/{{ $item->slug }}">
+                                            <img src="{{ asset('gambar-artikel/'.$item->gambar) }}" alt="thumbnail_berita">
                                         </a>
                                     </div>
                                     <div class="col-md-8 pl-md-4">
                                         <div class="entry-title title-xs">
-                                            <h3 class="mb-1"><a href="#">{{$item->judul}}</a>
+                                            <h3 class="mb-1"><a href="/artikel/detail/{{ $item->slug }}">{{$item->judul}}</a>
                                             </h3>
                                         </div>
                                         <div class="entry-meta mb-2 mt-0">
@@ -77,144 +77,19 @@
                                                 <li><a href="#"><i class="icon-calendar3"></i>{{ $carbon::parse($item->tanggal)->format('D M Y')}}</a>
                                                 </li>
                                                 <li><a href="#"><i class="icon-user1"></i> KSPTK</a></li>
-                                                <li><a href="#"><i class="icon-line-folder"></i> Berita</a></li>
+                                                <li><a href="#"><i class="icon-line-folder"></i> Artikel</a></li>
                                                 <li><a href="#"><i class="icon-line-eye"></i>{{$item->jumlah_lihat}} Dilihat</a></li>
                                             </ul>
                                         </div>
                                         <p class="mb-2 text-muted text-clamp-2">
-                                            {!! \Illuminate\Support\Str::words(strip_tags($item->isi_konten), 65, '...') !!}
+                                            {!! \Illuminate\Support\Str::words(strip_tags($item->konten), 65, '...') !!}
                                         </p>
-                                        <a class="more-link" href="/berita/detail/{{ $item->id }}">Baca Lebih Lanjut</a>
+                                        <a class="more-link" href="/artikel/detail/{{ $item->slug }}">Baca Lebih Lanjut</a>
                                     </div>
                                 </div>
                             </div>
                             @endforeach
 
-                            {{-- <div class="entry mb-5">
-                                <div class="grid-inner row no-gutters p-0">
-                                    <div class="entry-image col-md-4 mb-md-0">
-                                        <a href="#">
-                                            <img src="{{ asset('assets-front/img/BERITA1.jpg') }}" alt="thumbnail_berita">
-                                        </a>
-                                    </div>
-                                    <div class="col-md-8 pl-md-4">
-                                        <div class="entry-title title-xs">
-                                            <h3 class="mb-1"><a href="#">Pengelolaan Kinerja di PMM Memberikan
-                                                    Banyak Kemudahan untuk Guru dan Kepala Sekolah</a></h3>
-                                        </div>
-                                        <div class="entry-meta mb-2 mt-0">
-                                            <ul>
-                                                <li><a href="#"><i class="icon-calendar3"></i> 2 Februari 2024</a>
-                                                </li>
-                                                <li><a href="#"><i class="icon-user1"></i> KSPTK</a></li>
-                                                <li><a href="#"><i class="icon-line-folder"></i> Berita</a></li>
-                                                <li><a href="#"><i class="icon-line-eye"></i> 8 Dilihat</a></li>
-                                            </ul>
-                                        </div>
-                                        <p class="mb-2 text-muted text-clamp-2">
-                                            KSPSTK - Direktorat Jenderal Guru dan Tenaga Kependidikan (Ditjen
-                                            GTK), Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi
-                                            (Kemendikbudristek) kembali menyelenggarakan program rutin SAPA GTK yang
-                                            sudah memasuki Episode 18, pada Selasa (23/1).
-                                        </p>
-                                        <a class="more-link" href="#">Baca Lebih Lanjut</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="entry mb-5">
-                                <div class="grid-inner row no-gutters p-0">
-                                    <div class="entry-image col-md-4 mb-md-0">
-                                        <a href="#">
-                                            <img src="{{ asset('assets-front/img/BERITA1.jpg') }}" alt="thumbnail_berita">
-                                        </a>
-                                    </div>
-                                    <div class="col-md-8 pl-md-4">
-                                        <div class="entry-title title-xs">
-                                            <h3 class="mb-1"><a href="#">Pengelolaan Kinerja di PMM Memberikan
-                                                    Banyak Kemudahan untuk Guru dan Kepala Sekolah</a></h3>
-                                        </div>
-                                        <div class="entry-meta mb-2 mt-0">
-                                            <ul>
-                                                <li><a href="#"><i class="icon-calendar3"></i> 2 Februari 2024</a>
-                                                </li>
-                                                <li><a href="#"><i class="icon-user1"></i> KSPTK</a></li>
-                                                <li><a href="#"><i class="icon-line-folder"></i> Berita</a></li>
-                                                <li><a href="#"><i class="icon-line-eye"></i> 8 Dilihat</a></li>
-                                            </ul>
-                                        </div>
-                                        <p class="mb-2 text-muted text-clamp-2">
-                                            KSPSTK - Direktorat Jenderal Guru dan Tenaga Kependidikan (Ditjen
-                                            GTK), Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi
-                                            (Kemendikbudristek) kembali menyelenggarakan program rutin SAPA GTK yang
-                                            sudah memasuki Episode 18, pada Selasa (23/1).
-                                        </p>
-                                        <a class="more-link" href="#">Baca Lebih Lanjut</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="entry mb-5">
-                                <div class="grid-inner row no-gutters p-0">
-                                    <div class="entry-image col-md-4 mb-md-0">
-                                        <a href="#">
-                                            <img src="{{ asset('assets-front/img/BERITA1.jpg') }}" alt="thumbnail_berita">
-                                        </a>
-                                    </div>
-                                    <div class="col-md-8 pl-md-4">
-                                        <div class="entry-title title-xs">
-                                            <h3 class="mb-1"><a href="#">Pengelolaan Kinerja di PMM Memberikan
-                                                    Banyak Kemudahan untuk Guru dan Kepala Sekolah</a></h3>
-                                        </div>
-                                        <div class="entry-meta mb-2 mt-0">
-                                            <ul>
-                                                <li><a href="#"><i class="icon-calendar3"></i> 2 Februari 2024</a>
-                                                </li>
-                                                <li><a href="#"><i class="icon-user1"></i> KSPTK</a></li>
-                                                <li><a href="#"><i class="icon-line-folder"></i> Berita</a></li>
-                                                <li><a href="#"><i class="icon-line-eye"></i> 8 Dilihat</a></li>
-                                            </ul>
-                                        </div>
-                                        <p class="mb-2 text-muted text-clamp-2">
-                                            KSPSTK - Direktorat Jenderal Guru dan Tenaga Kependidikan (Ditjen
-                                            GTK), Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi
-                                            (Kemendikbudristek) kembali menyelenggarakan program rutin SAPA GTK yang
-                                            sudah memasuki Episode 18, pada Selasa (23/1).
-                                        </p>
-                                        <a class="more-link" href="#">Baca Lebih Lanjut</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="entry mb-5">
-                                <div class="grid-inner row no-gutters p-0">
-                                    <div class="entry-image col-md-4 mb-md-0">
-                                        <a href="#">
-                                            <img src="{{ asset('assets-front/img/BERITA1.jpg') }}"
-                                                alt="thumbnail_berita">
-                                        </a>
-                                    </div>
-                                    <div class="col-md-8 pl-md-4">
-                                        <div class="entry-title title-xs">
-                                            <h3 class="mb-1"><a href="#">Pengelolaan Kinerja di PMM Memberikan
-                                                    Banyak Kemudahan untuk Guru dan Kepala Sekolah</a></h3>
-                                        </div>
-                                        <div class="entry-meta mb-2 mt-0">
-                                            <ul>
-                                                <li><a href="#"><i class="icon-calendar3"></i> 2 Februari 2024</a>
-                                                </li>
-                                                <li><a href="#"><i class="icon-user1"></i> KSPTK</a></li>
-                                                <li><a href="#"><i class="icon-line-folder"></i> Berita</a></li>
-                                                <li><a href="#"><i class="icon-line-eye"></i> 8 Dilihat</a></li>
-                                            </ul>
-                                        </div>
-                                        <p class="mb-2 text-muted text-clamp-2">
-                                            KSPSTK - Direktorat Jenderal Guru dan Tenaga Kependidikan (Ditjen
-                                            GTK), Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi
-                                            (Kemendikbudristek) kembali menyelenggarakan program rutin SAPA GTK yang
-                                            sudah memasuki Episode 18, pada Selasa (23/1).
-                                        </p>
-                                        <a class="more-link" href="#">Baca Lebih Lanjut</a>
-                                    </div>
-                                </div>
-                            </div> --}}
                             <ul class="pagination pagination-circle justify-content-center">
                                 <li class="page-item disabled"><a class="page-link" href="#"
                                         aria-label="Previous">
