@@ -15,10 +15,16 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/', [LandingController::class, 'index'])->name('index');
 Route::get('/visi-misi', [LandingController::class, 'visi_misi'])->name('visi-misi');
+//INFORMASI PUBLIK
 Route::get('/berita', [LandingController::class, 'berita'])->name('berita');
 Route::get('/berita/detail/{id}', [LandingController::class, 'beritaDetail'])->name('berita.detail');
+Route::get('/artikel', [LandingController::class, 'artikel'])->name('artikel');
+Route::get('/artikel/detail/{id}', [LandingController::class, 'artikelDetail'])->name('artikel.detail');
 Route::get('/detail', [LandingController::class, 'detail'])->name('detail');
 Route::get('/galeri', [LandingController::class, 'galeri'])->name('galeri');
+//END INFORMASI PUBLIK
+
+//PUBLIKASI
 Route::get('/agenda/list', [LandingController::class, 'agenda'])->name('agenda.list');
 Route::get('/agenda/detail/{id}', [LandingController::class, 'agendaDetail'])->name('agenda.detail');
 Route::get('/unduhan/list', [LandingController::class, 'unduhan'])->name('unduhan.list');
@@ -28,6 +34,7 @@ Route::get('/pengumumans', [LandingController::class, 'pengumuman'])->name('peng
 Route::get('/pengumumans/detail/{id}', [LandingController::class, 'pengumumanDetail'])->name('pengumuman.list');
 Route::get('/regulasis', [LandingController::class, 'regulasi'])->name('regulasis');
 Route::get('/regulasis/detail/{id}', [LandingController::class, 'regulasiDetail'])->name('regulasis.list');
+//END PUBLIKASI
 
 //PROGRAM LAYANAN
 Route::get('/sekolah-penggerak', [LandingController::class, 'sekolahPenggerak'])->name('sekolah-penggerak');

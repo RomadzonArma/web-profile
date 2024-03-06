@@ -64,7 +64,7 @@
                                 <div class="grid-inner row no-gutters p-0">
                                     <div class="entry-image col-md-4 mb-md-0">
                                         <a href="#">
-                                            <img src="{{ asset('list_berita/'.$item->gambar) }}" alt="thumbnail_berita">
+                                            <img src="{{ asset('gambar-artikel/'.$item->gambar) }}" alt="thumbnail_berita">
                                         </a>
                                     </div>
                                     <div class="col-md-8 pl-md-4">
@@ -77,14 +77,14 @@
                                                 <li><a href="#"><i class="icon-calendar3"></i>{{ $carbon::parse($item->tanggal)->format('D M Y')}}</a>
                                                 </li>
                                                 <li><a href="#"><i class="icon-user1"></i> KSPTK</a></li>
-                                                <li><a href="#"><i class="icon-line-folder"></i> Berita</a></li>
+                                                <li><a href="#"><i class="icon-line-folder"></i> Artikel</a></li>
                                                 <li><a href="#"><i class="icon-line-eye"></i>{{$item->jumlah_lihat}} Dilihat</a></li>
                                             </ul>
                                         </div>
                                         <p class="mb-2 text-muted text-clamp-2">
-                                            {!! \Illuminate\Support\Str::words(strip_tags($item->isi_konten), 65, '...') !!}
+                                            {!! \Illuminate\Support\Str::words(strip_tags($item->konten), 65, '...') !!}
                                         </p>
-                                        <a class="more-link" href="/berita/detail/{{ $item->id }}">Baca Lebih Lanjut</a>
+                                        <a class="more-link" href="/artikel/detail/{{ $item->id }}">Baca Lebih Lanjut</a>
                                     </div>
                                 </div>
                             </div>

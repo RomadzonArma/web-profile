@@ -32,23 +32,23 @@
                     <div class="col-md-9 col-12 mb-md-0 mb-4">
                         <div class="row">
                             <div class="col-lg-10  mb-4">
-                                <img src="{{ asset('list_berita/'.$berita->gambar) }}" alt="thumbnail_beritas">
+                                <img src="{{ asset('gambar-artikel/'.$artikel->gambar) }}" alt="thumbnail_beritas">
                                 <p class="mt-1">
-                                    <small><center>{{$berita->caption_gambar}}</center></small>
+                                    <small><center>{{$artikel->caption_gambar}}</center></small>
                                 </p>
                             </div>
                             <div class="col-xl-10">
                                 <div class="entry-title">
-                                    <h3 class="mb-1"><a href="#">{{ $berita->judul }}</a>
+                                    <h3 class="mb-1"><a href="#">{{ $artikel->judul }}</a>
                                     </h3>
                                 </div>
 
                                 <p class="mb-4">
-                                    {!! $berita->isi_konten !!}
+                                    {!! $artikel->konten !!}
                                 </p>
                                 <div class="entry-title">
-                                    <h6 class="mb-1"><a href="#"># {{ $berita->tag_dinamis }}</a></h6>
-                                    <h6 class="mb-1"><a href="#"># {{ $berita->url_video}}</a></h6>
+                                    <h6 class="mb-1"><a href="#"># {{ $artikel->tag }}</a></h6>
+                                    <h6 class="mb-1"><a href="#"># {{ $artikel->link}}</a></h6>
                                 </div>
 
                             </div>

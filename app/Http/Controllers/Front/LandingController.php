@@ -13,6 +13,7 @@ use App\Model\Pengunjung;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Model\Artikel;
 use App\Model\ProgramLayanan;
 
 class LandingController extends Controller
@@ -68,10 +69,18 @@ class LandingController extends Controller
     }
     public function artikel()
     {
-        $berita  = ListBerita::where('status_publish', '1')->get();
-        return view('contents.Front.informasi_publik.berita', [
+        $artikel  = Artikel::where('status_publish', '1')->get();
+        return view('contents.Front.informasi_publik.artikel', [
             'title' => 'Berita',
-            'berita' => $berita,
+            'artikel' => $artikel,
+        ]);
+    }
+    public function artikelDetail($id)
+    {
+        $artikel = Artikel::where('id', $id)->first();
+        return view('contents.Front.informasi_publik.artikel-detail', [
+            'title' => 'Berita',
+            'artikel' => $artikel,
         ]);
     }
 
