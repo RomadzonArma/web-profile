@@ -8,17 +8,17 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
-                <div class="card-body">
+                <div class="card-header rounded-lg" style="background-color: #365984; color: white;">
                     @if (rbacCheck('podcast', 2))
-                        <div class="row mb-2">
-                            <div class="col-sm-12">
-                                <div class="text-sm-right">
-                                    <a type="button"class="btn btn-success btn-rounded waves-effect waves-light btn-tambah"
-                                        href=""><i class="bx bx-plus-circle mr-1"></i> Tambah</a>
-                                </div>
-                            </div>
+                        <div class="text-sm-right">
+                            <button type="button" class="btn text-white btn-rounded waves-effect waves-light btn-tambah"
+                                style="background-color: #E59537;">
+                                <i class="bx bx-plus-circle mr-1"></i> Tambah
+                            </button>
                         </div>
                     @endif
+                </div>
+                <div class="card-body">
                     <div class="table-responsive" data-pattern="priority-columns">
                         <table class="table table-striped" id="table-data" style="width: 100%;">
                             <thead>
@@ -110,7 +110,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form method="post"  name="form-update" id="form-update">
+                    <form method="post" name="form-update" id="form-update">
                         <div class="form-group">
                             <label for="judul">Judul</label>
                             <input type="text" class="form-control" id="judul_edit" name="judul_edit"
@@ -144,7 +144,8 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Close</button>
-                    <button type="submit" form="form-update" class="btn btn-primary waves-effect waves-light edit-data">Edit </button>
+                    <button type="submit" form="form-update"
+                        class="btn btn-primary waves-effect waves-light edit-data">Edit </button>
                 </div>
             </div>
         </div>
