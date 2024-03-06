@@ -84,6 +84,8 @@ class RouteServiceProvider extends ServiceProvider
             $this->mapPanduanRoutes();
             $this->mapRegulasiRoutes();
 
+            $this->mapListProgramFokus();
+
         });
     }
 
@@ -239,5 +241,12 @@ class RouteServiceProvider extends ServiceProvider
         Route::prefix('regulasi')
         ->namespace($this->namespace)
         ->group(base_path('routes/panel/regulasi.php'));
+    }
+
+    protected function mapListProgramFokus()
+    {
+        Route::prefix('program_fokus')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/panel/program_fokus.php'));
     }
 }
