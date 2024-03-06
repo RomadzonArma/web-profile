@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\ListKategori;
-use App\Model\Regulasi;
 use Carbon\Carbon;
+use App\Model\Regulasi;
+use App\Model\ListKategori;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
@@ -54,6 +55,7 @@ class RegulasiController extends Controller
             // dd($filePDFName);
             $unduhan = Regulasi::create([
                 'judul'         => $request->judul,
+                'slug'          => Str::slug($request->judul),
                 'tanggal'       => Carbon::now(),
                 'file'          => $filePDFName,
                 'cover'         => $coverName,

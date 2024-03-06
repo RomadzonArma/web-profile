@@ -13,6 +13,7 @@ use App\Model\Pengunjung;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Model\Artikel;
 use App\Model\ProgramLayanan;
 
 class LandingController extends Controller
@@ -68,10 +69,18 @@ class LandingController extends Controller
     }
     public function artikel()
     {
-        $berita  = ListBerita::where('status_publish', '1')->get();
-        return view('contents.Front.informasi_publik.berita', [
+        $artikel  = Artikel::where('status_publish', '1')->get();
+        return view('contents.Front.informasi_publik.artikel', [
             'title' => 'Berita',
-            'berita' => $berita,
+            'artikel' => $artikel,
+        ]);
+    }
+    public function artikelDetail($slug)
+    {
+        $artikel = Artikel::where('slug', $slug)->first();
+        return view('contents.Front.informasi_publik.artikel-detail', [
+            'title' => 'Berita',
+            'artikel' => $artikel,
         ]);
     }
 
@@ -169,9 +178,9 @@ class LandingController extends Controller
             'regulasi' => $regulasi,
         ]);
     }
-    public function regulasiDetail($id)
+    public function regulasiDetail($slug)
     {
-        $regulasi = Regulasi::where('id',$id)->first();
+        $regulasi = Regulasi::where('slug',$slug)->first();
         return view('contents.Front.menu_halaman.publikasi.regulasi-detail', [
             'title' => 'Regulasi Detail',
             'regulasi' => $regulasi,

@@ -37,7 +37,7 @@
                                     <small><center>{{$berita->caption_gambar}}</center></small>
                                 </p>
                             </div>
-                            <div class="col-xl-9 col-lg-7">
+                            <div class="col-xl-10">
                                 <div class="entry-title">
                                     <h3 class="mb-1"><a href="#">{{ $berita->judul }}</a>
                                     </h3>

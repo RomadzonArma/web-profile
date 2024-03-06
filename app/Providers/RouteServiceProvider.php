@@ -82,10 +82,14 @@ class RouteServiceProvider extends ServiceProvider
             $this->mapPengumumanRoutes();
 
             $this->mapPanduanRoutes();
-            $this->mapRegulasiRoutes();
 
             $this->mapListProgramFokus();
 
+            $this->mapRegulasiRoutes();
+            
+            $this->mapArtikelRoutes();
+
+            $this->mapPodcastRoutes();
         });
     }
 
@@ -236,6 +240,13 @@ class RouteServiceProvider extends ServiceProvider
         ->group(base_path('routes/panel/panduan.php'));
     }
 
+    protected function mapPodcastRoutes()
+    {
+        Route::prefix('podcast')
+        ->namespace($this->namespace)
+        ->group(base_path('routes/panel/podcast.php'));
+    }
+    
     protected function mapRegulasiRoutes()
     {
         Route::prefix('regulasi')
@@ -248,5 +259,11 @@ class RouteServiceProvider extends ServiceProvider
         Route::prefix('program_fokus')
             ->namespace($this->namespace)
             ->group(base_path('routes/panel/program_fokus.php'));
+    }
+    protected function mapArtikelRoutes()
+    {
+        Route::prefix('manajemen_artikel')
+        ->namespace($this->namespace)
+        ->group(base_path('routes/panel/artikel.php'));
     }
 }

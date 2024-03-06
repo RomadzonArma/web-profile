@@ -24,7 +24,7 @@
             <a href="#" class="menu-link">INFORMASI PUBLIK</a>
             <ul class="sub-menu-container">
                 <li class="menu-item"><a href="{{ route('berita') }}" class="menu-link">BERITA</a></li>
-                <li class="menu-item"><a href="" class="menu-link">ARTIKEL</a></li>
+                <li class="menu-item"><a href="{{route('artikel')}}" class="menu-link">ARTIKEL</a></li>
                 <li class="menu-item"><a href="{{ route('galeri') }}" class="menu-link">GALERI</a></li>
             </ul>
         </li>
@@ -41,7 +41,7 @@
                     <a class="menu-link" href="#">TESTIMONIAL SIAZIK </a>
                 </li>
                 <li class="menu-item">
-                    <a class="menu-link" href="#">LHKPN</a>
+                    <a class="menu-link" href="https://elhkpn.kpk.go.id/portal/user/login">LHKPN</a>
                 </li>
                 <li class="menu-item">
                     <a class="menu-link" href="#">LHKASN</a>

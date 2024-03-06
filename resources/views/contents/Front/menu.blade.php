@@ -28,7 +28,7 @@
                     <a class="menu-link" href="{{ route('berita') }}">BERITA</a>
                 </li>
                 <li class="menu-item">
-                    <a class="menu-link" href="#">ARTIKEL</a>
+                    <a class="menu-link" href="{{route('artikel')}}">ARTIKEL</a>
                 </li>
                 <li class="menu-item">
                     <a class="menu-link" href="{{ route('galeri') }}">GALERI</a>
