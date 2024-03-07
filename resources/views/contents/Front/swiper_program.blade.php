@@ -6,44 +6,15 @@
     </div>
     <div class="swiper swiper-3 swiper-padding">
         <div class="swiper-wrapper">
+            @foreach($program_fokus as $program_fokus)
             <div class="swiper-slide">
                 <a href="#" class="card card-custom mb-2">
                     <div class="card-body text-center">
-                        <p class="text-dark font-weight-normal mb-0">Pendidikan Guru Penggerak</p>
+                        <p class="text-dark font-weight-normal mb-0">{{$program_fokus->title}}</p>
                     </div>
                 </a>
             </div>
-            <div class="swiper-slide">
-                <a href="#" class="card card-custom mb-2">
-                    <div class="card-body text-center">
-                        <p class="text-dark font-weight-normal mb-0">Publikasi, Kemitraan dan
-                            Harlindung</p>
-                    </div>
-                </a>
-            </div>
-            <div class="swiper-slide">
-                <a href="#" class="card card-custom mb-2">
-                    <div class="card-body text-center">
-                        <p class="text-dark font-weight-normal mb-0">Pengembangan Kompetensi
-                            Berkelanjutan</p>
-                    </div>
-                </a>
-            </div>
-            <div class="swiper-slide">
-                <a href="#" class="card card-custom mb-2">
-                    <div class="card-body text-center">
-                        <p class="text-dark font-weight-normal mb-0">Regulasi, Tata Kelola, dan
-                            Tenaga Kerja</p>
-                    </div>
-                </a>
-            </div>
-            <div class="swiper-slide">
-                <a href="#" class="card card-custom mb-2">
-                    <div class="card-body text-center">
-                        <p class="text-dark font-weight-normal mb-0">Pembelajaran</p>
-                    </div>
-                </a>
-            </div>
+            @endforeach
         </div>
         <div class="swiper-button-prev"></div>
         <div class="swiper-button-next"></div>
