@@ -4,7 +4,10 @@ $(() => {
     $('#table-data').on('click', '.btn-delete', function () {
         let data = table.row($(this).closest('tr')).data();
 
-        let { id, judul } = data;
+        let {
+            id,
+            judul
+        } = data;
 
         Swal.fire({
             title: 'Anda yakin?',
@@ -22,11 +25,26 @@ $(() => {
                     id,
                     _method: 'DELETE'
                 }).done((res) => {
-                    showSuccessToastr('sukses', 'Pengguna berhasil dihapus');
+                    Swal.fire({
+                        icon: "success",
+                        title: "Berhasil menghapus data!",
+                        text: "Data berhasil dihapus",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
                     table.ajax.reload();
                 }).fail((res) => {
-                    let { status, responseJSON } = res;
-                    showErrorToastr('oops', responseJSON.message);
+                    let {
+                        status,
+                        responseJSON
+                    } = res;
+                    Swal.fire({
+                        icon: "error",
+                        title: "Gagal menghapus data!",
+                        text: "Terjadi kesalahan saat menghapus data",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
                 })
             }
         })
@@ -42,7 +60,9 @@ $(() => {
             type: 'get',
             dataType: 'json'
         },
-        order: [[4, 'desc']],
+        order: [
+            [4, 'desc']
+        ],
         columnDefs: [{
             targets: [0, 4],
             orderable: false,
@@ -55,7 +75,7 @@ $(() => {
             targets: [3],
             className: 'text-center align-top'
         }, {
-            targets: [4],
+            targets: [7],
             visible: false,
         }],
         columns: [{
@@ -63,14 +83,28 @@ $(() => {
         }, {
             data: 'judul',
         }, {
-            data: 'kategori'
+            data: 'list_kategori.list_kanal.nama_kanal'
+        }, {
+            data: 'list_kategori.nama_kategori'
+        }, {
+            data: 'jumlah_lihat',
+        }, {
+            data: 'status_publish',
+            render: (data, type, row) => {
+                return `
+                <div class="custom-control custom-switch mb-3" dir="ltr">
+                    <input type="checkbox" class="custom-control-input switch-active" id="aktif-${row.id}" data-id="${row.id}" ${data == '1' ? 'checked' : ''} value="${data == '1' ? 0 : 1}">
+                    <label class="custom-control-label" for="aktif-${row.id}">${data == '1' ? 'Publish' : 'Unpublish'}</label>
+                </div>
+                `;
+            }
         }, {
             data: 'id',
             render: (data, type, row) => {
                 const button_edit = $('<a>', {
                     class: 'btn btn-primary btn-update',
                     html: '<i class="bx bx-pencil"></i>',
-                    href: BASE_URL + 'informasi-publik/update/'+row.id,
+                    href: BASE_URL + 'informasi-publik/update/' + row.id,
                     'data-id': data,
                     title: 'Update Data',
                     'data-placement': 'top',
@@ -104,5 +138,27 @@ $(() => {
         }, {
             data: 'created_at'
         }]
+    })
+})
+
+$('#table-data').on('change', '.switch-active', function () {
+    var id = $(this).data('id');
+    var value = $(this).prop('checked') ? 1 : 0;
+
+
+    $.post(BASE_URL + 'informasi-publik/switch', {
+        id,
+        value,
+        _method: 'PATCH'
+    }).done((res) => {
+        showSuccessToastr('sukses', value == '1' ? 'Informasi publik berhasil di publish' : 'Informasi publik berhasil di unpublish');
+        table.ajax.reload();
+    }).fail((res) => {
+        let {
+            status,
+            responseJSON
+        } = res;
+        showErrorToastr('oops', responseJSON.message);
+        console.log(res);
     })
 })

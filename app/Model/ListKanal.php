@@ -17,4 +17,5 @@ class ListKanal extends Model
     {
         return $this->hasMany('App\Model\Listkategori', 'id_kanal' , 'id');
     }
+
 }

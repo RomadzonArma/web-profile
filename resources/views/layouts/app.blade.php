@@ -50,7 +50,7 @@
                                 <img src="{{ asset('img/logo-kemendikbud.png') }}" alt="" height="31">
                             </span>
                             <span class="logo-lg">
-                                <img src="{{ asset('img/logo-kemendikbud.png') }}" alt="" height="62">
+                                <img src="{{ asset('img/logo-P3GTK.png') }}" alt="" height="62">
                             </span>
                         </a>
                     </div>

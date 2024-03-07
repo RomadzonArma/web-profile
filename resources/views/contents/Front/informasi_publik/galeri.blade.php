@@ -41,7 +41,7 @@
                                                 <div class="entry-image">
                                                     <a href="https://www.youtube.com/watch?embeds_referring_euri=https%3A%2F%2Fkspstendik.kemdikbud.go.id%2F&source_ve_path=MTY0NTA2LDE2NDUwMw&feature=emb_share&v=coZijINyLDs"
                                                         data-lightbox="iframe">
-                                                        <img src="{{ asset('assets-front/img/video_thumb.jpg')}}"
+                                                        <img src="{{ asset('assets-front/img/video_thumb.jpg') }}"
                                                             style="width: 100%; height: auto; border-radius: 12px; object-fit: cover;"
                                                             alt="Video">
                                                     </a>
@@ -63,7 +63,7 @@
                                                 <div class="entry-image">
                                                     <a href="https://www.youtube.com/watch?embeds_referring_euri=https%3A%2F%2Fkspstendik.kemdikbud.go.id%2F&source_ve_path=MTY0NTA2LDE2NDUwMw&feature=emb_share&v=coZijINyLDs"
                                                         data-lightbox="iframe">
-                                                        <img src="{{ asset('assets-front/img/video_thumb.jpg')}}"
+                                                        <img src="{{ asset('assets-front/img/video_thumb.jpg') }}"
                                                             style="width: 100%; height: auto; border-radius: 12px; object-fit: cover;"
                                                             alt="Video">
                                                     </a>
@@ -85,7 +85,7 @@
                                                 <div class="entry-image">
                                                     <a href="https://www.youtube.com/watch?embeds_referring_euri=https%3A%2F%2Fkspstendik.kemdikbud.go.id%2F&source_ve_path=MTY0NTA2LDE2NDUwMw&feature=emb_share&v=coZijINyLDs"
                                                         data-lightbox="iframe">
-                                                        <img src="{{ asset('assets-front/img/video_thumb.jpg')}}"
+                                                        <img src="{{ asset('assets-front/img/video_thumb.jpg') }}"
                                                             style="width: 100%; height: auto; border-radius: 12px; object-fit: cover;"
                                                             alt="Video">
                                                     </a>
@@ -107,7 +107,7 @@
                                                 <div class="entry-image">
                                                     <a href="https://www.youtube.com/watch?embeds_referring_euri=https%3A%2F%2Fkspstendik.kemdikbud.go.id%2F&source_ve_path=MTY0NTA2LDE2NDUwMw&feature=emb_share&v=coZijINyLDs"
                                                         data-lightbox="iframe">
-                                                        <img src="{{ asset('assets-front/img/video_thumb.jpg')}}"
+                                                        <img src="{{ asset('assets-front/img/video_thumb.jpg') }}"
                                                             style="width: 100%; height: auto; border-radius: 12px; object-fit: cover;"
                                                             alt="Video">
                                                     </a>
@@ -129,7 +129,7 @@
                                                 <div class="entry-image">
                                                     <a href="https://www.youtube.com/watch?embeds_referring_euri=https%3A%2F%2Fkspstendik.kemdikbud.go.id%2F&source_ve_path=MTY0NTA2LDE2NDUwMw&feature=emb_share&v=coZijINyLDs"
                                                         data-lightbox="iframe">
-                                                        <img src="{{ asset('assets-front/img/video_thumb.jpg')}}"
+                                                        <img src="{{ asset('assets-front/img/video_thumb.jpg') }}"
                                                             style="width: 100%; height: auto; border-radius: 12px; object-fit: cover;"
                                                             alt="Video">
                                                     </a>
@@ -151,7 +151,7 @@
                                                 <div class="entry-image">
                                                     <a href="https://www.youtube.com/watch?embeds_referring_euri=https%3A%2F%2Fkspstendik.kemdikbud.go.id%2F&source_ve_path=MTY0NTA2LDE2NDUwMw&feature=emb_share&v=coZijINyLDs"
                                                         data-lightbox="iframe">
-                                                        <img src="{{ asset('assets-front/img/video_thumb.jpg')}}"
+                                                        <img src="{{ asset('assets-front/img/video_thumb.jpg') }}"
                                                             style="width: 100%; height: auto; border-radius: 12px; object-fit: cover;"
                                                             alt="Video">
                                                     </a>
@@ -173,7 +173,7 @@
                                                 <div class="entry-image">
                                                     <a href="https://www.youtube.com/watch?embeds_referring_euri=https%3A%2F%2Fkspstendik.kemdikbud.go.id%2F&source_ve_path=MTY0NTA2LDE2NDUwMw&feature=emb_share&v=coZijINyLDs"
                                                         data-lightbox="iframe">
-                                                        <img src="{{ asset('assets-front/img/video_thumb.jpg')}}"
+                                                        <img src="{{ asset('assets-front/img/video_thumb.jpg') }}"
                                                             style="width: 100%; height: auto; border-radius: 12px; object-fit: cover;"
                                                             alt="Video">
                                                     </a>
@@ -195,7 +195,7 @@
                                                 <div class="entry-image">
                                                     <a href="https://www.youtube.com/watch?embeds_referring_euri=https%3A%2F%2Fkspstendik.kemdikbud.go.id%2F&source_ve_path=MTY0NTA2LDE2NDUwMw&feature=emb_share&v=coZijINyLDs"
                                                         data-lightbox="iframe">
-                                                        <img src="{{ asset('assets-front/img/video_thumb.jpg')}}"
+                                                        <img src="{{ asset('assets-front/img/video_thumb.jpg') }}"
                                                             style="width: 100%; height: auto; border-radius: 12px; object-fit: cover;"
                                                             alt="Video">
                                                     </a>
@@ -217,7 +217,7 @@
                                                 <div class="entry-image">
                                                     <a href="https://www.youtube.com/watch?embeds_referring_euri=https%3A%2F%2Fkspstendik.kemdikbud.go.id%2F&source_ve_path=MTY0NTA2LDE2NDUwMw&feature=emb_share&v=coZijINyLDs"
                                                         data-lightbox="iframe">
-                                                        <img src="{{ asset('assets-front/img/video_thumb.jpg')}}"
+                                                        <img src="{{ asset('assets-front/img/video_thumb.jpg') }}"
                                                             style="width: 100%; height: auto; border-radius: 12px; object-fit: cover;"
                                                             alt="Video">
                                                     </a>
@@ -239,7 +239,7 @@
                                                 <div class="entry-image">
                                                     <a href="https://www.youtube.com/watch?embeds_referring_euri=https%3A%2F%2Fkspstendik.kemdikbud.go.id%2F&source_ve_path=MTY0NTA2LDE2NDUwMw&feature=emb_share&v=coZijINyLDs"
                                                         data-lightbox="iframe">
-                                                        <img src="{{ asset('assets-front/img/video_thumb.jpg')}}"
+                                                        <img src="{{ asset('assets-front/img/video_thumb.jpg') }}"
                                                             style="width: 100%; height: auto; border-radius: 12px; object-fit: cover;"
                                                             alt="Video">
                                                     </a>
@@ -261,7 +261,7 @@
                                                 <div class="entry-image">
                                                     <a href="https://www.youtube.com/watch?embeds_referring_euri=https%3A%2F%2Fkspstendik.kemdikbud.go.id%2F&source_ve_path=MTY0NTA2LDE2NDUwMw&feature=emb_share&v=coZijINyLDs"
                                                         data-lightbox="iframe">
-                                                        <img src="{{ asset('assets-front/img/video_thumb.jpg')}}"
+                                                        <img src="{{ asset('assets-front/img/video_thumb.jpg') }}"
                                                             style="width: 100%; height: auto; border-radius: 12px; object-fit: cover;"
                                                             alt="Video">
                                                     </a>
@@ -283,7 +283,7 @@
                                                 <div class="entry-image">
                                                     <a href="https://www.youtube.com/watch?embeds_referring_euri=https%3A%2F%2Fkspstendik.kemdikbud.go.id%2F&source_ve_path=MTY0NTA2LDE2NDUwMw&feature=emb_share&v=coZijINyLDs"
                                                         data-lightbox="iframe">
-                                                        <img src="{{ asset('assets-front/img/video_thumb.jpg')}}"
+                                                        <img src="{{ asset('assets-front/img/video_thumb.jpg') }}"
                                                             style="width: 100%; height: auto; border-radius: 12px; object-fit: cover;"
                                                             alt="Video">
                                                     </a>
@@ -303,7 +303,7 @@
                                     </div><!-- #posts end -->
 
                                     <!-- Pagination
-                                    ============================================= -->
+                                        ============================================= -->
                                     <ul class="pagination pagination-circle justify-content-center">
                                         <li class="page-item disabled"><a class="page-link" href="#"
                                                 aria-label="Previous"> <span aria-hidden="true">«</span></a></li>
@@ -326,66 +326,23 @@
                                                         <div class="flexslider">
                                                             <div class="slider-wrap">
                                                                 <div class="slide">
-                                                                    <a href="{{ asset('assets-front/img/foto1.jpeg')}}"
+                                                                    <a href="{{ asset('assets-front/img/foto1.jpeg') }}"
                                                                         data-lightbox="gallery-item">
-                                                                        <img src="{{ asset('assets-front/img/foto1.jpeg')}}"
+                                                                        <img src="{{ asset('assets-front/img/foto1.jpeg') }}"
                                                                             alt="Standard Post with Gallery">
                                                                     </a>
                                                                 </div>
                                                                 <div class="slide">
-                                                                    <a href="{{ asset('assets-front/img/foto2.jpeg')}}"
+                                                                    <a href="{{ asset('assets-front/img/foto2.jpeg') }}"
                                                                         data-lightbox="gallery-item">
-                                                                        <img src="{{ asset('assets-front/img/foto2.jpeg')}}"
+                                                                        <img src="{{ asset('assets-front/img/foto2.jpeg') }}"
                                                                             alt="Standard Post with Gallery">
                                                                     </a>
                                                                 </div>
                                                                 <div class="slide">
-                                                                    <a href="{{ asset('assets-front/img/foto3.jpeg')}}"
+                                                                    <a href="{{ asset('assets-front/img/foto3.jpeg') }}"
                                                                         data-lightbox="gallery-item">
-                                                                        <img src="{{ asset('assets-front/img/foto3.jpeg')}}"
-                                                                            alt="Standard Post with Gallery">
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="entry-title">
-                                                    <h2><a href="blog-single.html">Hari Ketiga, Apresiasi KSPSTK
-                                                            2023</a></h2>
-                                                </div>
-                                                <div class="entry-meta">
-                                                    <ul>
-                                                        <li><i class="icon-calendar3"></i> 23 November 2023</li>
-                                                        <li><i class="icon-line-eye"></i> 10 Dilihat</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="entry col-md-4 col-sm-6 col-12">
-                                            <div class="grid-inner hover-custom">
-                                                <div class="entry-image">
-                                                    <div class="fslider" data-arrows="false" data-lightbox="gallery">
-                                                        <div class="flexslider">
-                                                            <div class="slider-wrap">
-                                                                <div class="slide">
-                                                                    <a href="{{ asset('assets-front/img/foto1.jpeg')}}"
-                                                                        data-lightbox="gallery-item">
-                                                                        <img src="{{ asset('assets-front/img/foto1.jpeg')}}"
-                                                                            alt="Standard Post with Gallery">
-                                                                    </a>
-                                                                </div>
-                                                                <div class="slide">
-                                                                    <a href="{{ asset('assets-front/img/foto2.jpeg')}}"
-                                                                        data-lightbox="gallery-item">
-                                                                        <img src="{{ asset('assets-front/img/foto2.jpeg')}}"
-                                                                            alt="Standard Post with Gallery">
-                                                                    </a>
-                                                                </div>
-                                                                <div class="slide">
-                                                                    <a href="{{ asset('assets-front/img/foto3.jpeg')}}"
-                                                                        data-lightbox="gallery-item">
-                                                                        <img src="{{ asset('assets-front/img/foto3.jpeg')}}"
+                                                                        <img src="{{ asset('assets-front/img/foto3.jpeg') }}"
                                                                             alt="Standard Post with Gallery">
                                                                     </a>
                                                                 </div>
@@ -412,66 +369,23 @@
                                                         <div class="flexslider">
                                                             <div class="slider-wrap">
                                                                 <div class="slide">
-                                                                    <a href="{{ asset('assets-front/img/foto1.jpeg')}}"
+                                                                    <a href="{{ asset('assets-front/img/foto1.jpeg') }}"
                                                                         data-lightbox="gallery-item">
-                                                                        <img src="{{ asset('assets-front/img/foto1.jpeg')}}"
+                                                                        <img src="{{ asset('assets-front/img/foto1.jpeg') }}"
                                                                             alt="Standard Post with Gallery">
                                                                     </a>
                                                                 </div>
                                                                 <div class="slide">
-                                                                    <a href="{{ asset('assets-front/img/foto2.jpeg')}}"
+                                                                    <a href="{{ asset('assets-front/img/foto2.jpeg') }}"
                                                                         data-lightbox="gallery-item">
-                                                                        <img src="{{ asset('assets-front/img/foto2.jpeg')}}"
+                                                                        <img src="{{ asset('assets-front/img/foto2.jpeg') }}"
                                                                             alt="Standard Post with Gallery">
                                                                     </a>
                                                                 </div>
                                                                 <div class="slide">
-                                                                    <a href="{{ asset('assets-front/img/foto3.jpeg')}}"
+                                                                    <a href="{{ asset('assets-front/img/foto3.jpeg') }}"
                                                                         data-lightbox="gallery-item">
-                                                                        <img src="{{ asset('assets-front/img/foto3.jpeg')}}"
-                                                                            alt="Standard Post with Gallery">
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="entry-title">
-                                                    <h2><a href="blog-single.html">Hari Ketiga, Apresiasi KSPSTK
-                                                            2023</a></h2>
-                                                </div>
-                                                <div class="entry-meta">
-                                                    <ul>
-                                                        <li><i class="icon-calendar3"></i> 23 November 2023</li>
-                                                        <li><i class="icon-line-eye"></i> 10 Dilihat</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="entry col-md-4 col-sm-6 col-12">
-                                            <div class="grid-inner hover-custom">
-                                                <div class="entry-image">
-                                                    <div class="fslider" data-arrows="false" data-lightbox="gallery">
-                                                        <div class="flexslider">
-                                                            <div class="slider-wrap">
-                                                                <div class="slide">
-                                                                    <a href="{{ asset('assets-front/img/foto1.jpeg')}}"
-                                                                        data-lightbox="gallery-item">
-                                                                        <img src="{{ asset('assets-front/img/foto1.jpeg')}}"
-                                                                            alt="Standard Post with Gallery">
-                                                                    </a>
-                                                                </div>
-                                                                <div class="slide">
-                                                                    <a href="{{ asset('assets-front/img/foto2.jpeg')}}"
-                                                                        data-lightbox="gallery-item">
-                                                                        <img src="{{ asset('assets-front/img/foto2.jpeg')}}"
-                                                                            alt="Standard Post with Gallery">
-                                                                    </a>
-                                                                </div>
-                                                                <div class="slide">
-                                                                    <a href="{{ asset('assets-front/img/foto3.jpeg')}}"
-                                                                        data-lightbox="gallery-item">
-                                                                        <img src="{{ asset('assets-front/img/foto3.jpeg')}}"
+                                                                        <img src="{{ asset('assets-front/img/foto3.jpeg') }}"
                                                                             alt="Standard Post with Gallery">
                                                                     </a>
                                                                 </div>
@@ -498,66 +412,23 @@
                                                         <div class="flexslider">
                                                             <div class="slider-wrap">
                                                                 <div class="slide">
-                                                                    <a href="{{ asset('assets-front/img/foto1.jpeg')}}"
+                                                                    <a href="{{ asset('assets-front/img/foto1.jpeg') }}"
                                                                         data-lightbox="gallery-item">
-                                                                        <img src="{{ asset('assets-front/img/foto1.jpeg')}}"
+                                                                        <img src="{{ asset('assets-front/img/foto1.jpeg') }}"
                                                                             alt="Standard Post with Gallery">
                                                                     </a>
                                                                 </div>
                                                                 <div class="slide">
-                                                                    <a href="{{ asset('assets-front/img/foto2.jpeg')}}"
+                                                                    <a href="{{ asset('assets-front/img/foto2.jpeg') }}"
                                                                         data-lightbox="gallery-item">
-                                                                        <img src="{{ asset('assets-front/img/foto2.jpeg')}}"
+                                                                        <img src="{{ asset('assets-front/img/foto2.jpeg') }}"
                                                                             alt="Standard Post with Gallery">
                                                                     </a>
                                                                 </div>
                                                                 <div class="slide">
-                                                                    <a href="{{ asset('assets-front/img/foto3.jpeg')}}"
+                                                                    <a href="{{ asset('assets-front/img/foto3.jpeg') }}"
                                                                         data-lightbox="gallery-item">
-                                                                        <img src="{{ asset('assets-front/img/foto3.jpeg')}}"
-                                                                            alt="Standard Post with Gallery">
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="entry-title">
-                                                    <h2><a href="blog-single.html">Hari Ketiga, Apresiasi KSPSTK
-                                                            2023</a></h2>
-                                                </div>
-                                                <div class="entry-meta">
-                                                    <ul>
-                                                        <li><i class="icon-calendar3"></i> 23 November 2023</li>
-                                                        <li><i class="icon-line-eye"></i> 10 Dilihat</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="entry col-md-4 col-sm-6 col-12">
-                                            <div class="grid-inner hover-custom">
-                                                <div class="entry-image">
-                                                    <div class="fslider" data-arrows="false" data-lightbox="gallery">
-                                                        <div class="flexslider">
-                                                            <div class="slider-wrap">
-                                                                <div class="slide">
-                                                                    <a href="{{ asset('assets-front/img/foto1.jpeg')}}"
-                                                                        data-lightbox="gallery-item">
-                                                                        <img src="{{ asset('assets-front/img/foto1.jpeg')}}"
-                                                                            alt="Standard Post with Gallery">
-                                                                    </a>
-                                                                </div>
-                                                                <div class="slide">
-                                                                    <a href="{{ asset('assets-front/img/foto2.jpeg')}}"
-                                                                        data-lightbox="gallery-item">
-                                                                        <img src="{{ asset('assets-front/img/foto2.jpeg')}}"
-                                                                            alt="Standard Post with Gallery">
-                                                                    </a>
-                                                                </div>
-                                                                <div class="slide">
-                                                                    <a href="{{ asset('assets-front/img/foto3.jpeg')}}"
-                                                                        data-lightbox="gallery-item">
-                                                                        <img src="{{ asset('assets-front/img/foto3.jpeg')}}"
+                                                                        <img src="{{ asset('assets-front/img/foto3.jpeg') }}"
                                                                             alt="Standard Post with Gallery">
                                                                     </a>
                                                                 </div>
@@ -584,66 +455,23 @@
                                                         <div class="flexslider">
                                                             <div class="slider-wrap">
                                                                 <div class="slide">
-                                                                    <a href="{{ asset('assets-front/img/foto1.jpeg')}}"
+                                                                    <a href="{{ asset('assets-front/img/foto1.jpeg') }}"
                                                                         data-lightbox="gallery-item">
-                                                                        <img src="{{ asset('assets-front/img/foto1.jpeg')}}"
+                                                                        <img src="{{ asset('assets-front/img/foto1.jpeg') }}"
                                                                             alt="Standard Post with Gallery">
                                                                     </a>
                                                                 </div>
                                                                 <div class="slide">
-                                                                    <a href="{{ asset('assets-front/img/foto2.jpeg')}}"
+                                                                    <a href="{{ asset('assets-front/img/foto2.jpeg') }}"
                                                                         data-lightbox="gallery-item">
-                                                                        <img src="{{ asset('assets-front/img/foto2.jpeg')}}"
+                                                                        <img src="{{ asset('assets-front/img/foto2.jpeg') }}"
                                                                             alt="Standard Post with Gallery">
                                                                     </a>
                                                                 </div>
                                                                 <div class="slide">
-                                                                    <a href="{{ asset('assets-front/img/foto3.jpeg')}}"
+                                                                    <a href="{{ asset('assets-front/img/foto3.jpeg') }}"
                                                                         data-lightbox="gallery-item">
-                                                                        <img src="{{ asset('assets-front/img/foto3.jpeg')}}"
-                                                                            alt="Standard Post with Gallery">
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="entry-title">
-                                                    <h2><a href="blog-single.html">Hari Ketiga, Apresiasi KSPSTK
-                                                            2023</a></h2>
-                                                </div>
-                                                <div class="entry-meta">
-                                                    <ul>
-                                                        <li><i class="icon-calendar3"></i> 23 November 2023</li>
-                                                        <li><i class="icon-line-eye"></i> 10 Dilihat</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="entry col-md-4 col-sm-6 col-12">
-                                            <div class="grid-inner hover-custom">
-                                                <div class="entry-image">
-                                                    <div class="fslider" data-arrows="false" data-lightbox="gallery">
-                                                        <div class="flexslider">
-                                                            <div class="slider-wrap">
-                                                                <div class="slide">
-                                                                    <a href="{{ asset('assets-front/img/foto1.jpeg')}}"
-                                                                        data-lightbox="gallery-item">
-                                                                        <img src="{{ asset('assets-front/img/foto1.jpeg')}}"
-                                                                            alt="Standard Post with Gallery">
-                                                                    </a>
-                                                                </div>
-                                                                <div class="slide">
-                                                                    <a href="{{ asset('assets-front/img/foto2.jpeg')}}"
-                                                                        data-lightbox="gallery-item">
-                                                                        <img src="{{ asset('assets-front/img/foto2.jpeg')}}"
-                                                                            alt="Standard Post with Gallery">
-                                                                    </a>
-                                                                </div>
-                                                                <div class="slide">
-                                                                    <a href="{{ asset('assets-front/img/foto3.jpeg')}}"
-                                                                        data-lightbox="gallery-item">
-                                                                        <img src="{{ asset('assets-front/img/foto3.jpeg')}}"
+                                                                        <img src="{{ asset('assets-front/img/foto3.jpeg') }}"
                                                                             alt="Standard Post with Gallery">
                                                                     </a>
                                                                 </div>
@@ -670,23 +498,195 @@
                                                         <div class="flexslider">
                                                             <div class="slider-wrap">
                                                                 <div class="slide">
-                                                                    <a href="{{ asset('assets-front/img/foto1.jpeg')}}"
+                                                                    <a href="{{ asset('assets-front/img/foto1.jpeg') }}"
                                                                         data-lightbox="gallery-item">
-                                                                        <img src="{{ asset('assets-front/img/foto1.jpeg')}}"
+                                                                        <img src="{{ asset('assets-front/img/foto1.jpeg') }}"
                                                                             alt="Standard Post with Gallery">
                                                                     </a>
                                                                 </div>
                                                                 <div class="slide">
-                                                                    <a href="{{ asset('assets-front/img/foto2.jpeg')}}"
+                                                                    <a href="{{ asset('assets-front/img/foto2.jpeg') }}"
                                                                         data-lightbox="gallery-item">
-                                                                        <img src="{{ asset('assets-front/img/foto2.jpeg')}}"
+                                                                        <img src="{{ asset('assets-front/img/foto2.jpeg') }}"
                                                                             alt="Standard Post with Gallery">
                                                                     </a>
                                                                 </div>
                                                                 <div class="slide">
-                                                                    <a href="{{ asset('assets-front/img/foto3.jpeg')}}"
+                                                                    <a href="{{ asset('assets-front/img/foto3.jpeg') }}"
                                                                         data-lightbox="gallery-item">
-                                                                        <img src="{{ asset('assets-front/img/foto3.jpeg')}}"
+                                                                        <img src="{{ asset('assets-front/img/foto3.jpeg') }}"
+                                                                            alt="Standard Post with Gallery">
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="entry-title">
+                                                    <h2><a href="blog-single.html">Hari Ketiga, Apresiasi KSPSTK
+                                                            2023</a></h2>
+                                                </div>
+                                                <div class="entry-meta">
+                                                    <ul>
+                                                        <li><i class="icon-calendar3"></i> 23 November 2023</li>
+                                                        <li><i class="icon-line-eye"></i> 10 Dilihat</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="entry col-md-4 col-sm-6 col-12">
+                                            <div class="grid-inner hover-custom">
+                                                <div class="entry-image">
+                                                    <div class="fslider" data-arrows="false" data-lightbox="gallery">
+                                                        <div class="flexslider">
+                                                            <div class="slider-wrap">
+                                                                <div class="slide">
+                                                                    <a href="{{ asset('assets-front/img/foto1.jpeg') }}"
+                                                                        data-lightbox="gallery-item">
+                                                                        <img src="{{ asset('assets-front/img/foto1.jpeg') }}"
+                                                                            alt="Standard Post with Gallery">
+                                                                    </a>
+                                                                </div>
+                                                                <div class="slide">
+                                                                    <a href="{{ asset('assets-front/img/foto2.jpeg') }}"
+                                                                        data-lightbox="gallery-item">
+                                                                        <img src="{{ asset('assets-front/img/foto2.jpeg') }}"
+                                                                            alt="Standard Post with Gallery">
+                                                                    </a>
+                                                                </div>
+                                                                <div class="slide">
+                                                                    <a href="{{ asset('assets-front/img/foto3.jpeg') }}"
+                                                                        data-lightbox="gallery-item">
+                                                                        <img src="{{ asset('assets-front/img/foto3.jpeg') }}"
+                                                                            alt="Standard Post with Gallery">
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="entry-title">
+                                                    <h2><a href="blog-single.html">Hari Ketiga, Apresiasi KSPSTK
+                                                            2023</a></h2>
+                                                </div>
+                                                <div class="entry-meta">
+                                                    <ul>
+                                                        <li><i class="icon-calendar3"></i> 23 November 2023</li>
+                                                        <li><i class="icon-line-eye"></i> 10 Dilihat</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="entry col-md-4 col-sm-6 col-12">
+                                            <div class="grid-inner hover-custom">
+                                                <div class="entry-image">
+                                                    <div class="fslider" data-arrows="false" data-lightbox="gallery">
+                                                        <div class="flexslider">
+                                                            <div class="slider-wrap">
+                                                                <div class="slide">
+                                                                    <a href="{{ asset('assets-front/img/foto1.jpeg') }}"
+                                                                        data-lightbox="gallery-item">
+                                                                        <img src="{{ asset('assets-front/img/foto1.jpeg') }}"
+                                                                            alt="Standard Post with Gallery">
+                                                                    </a>
+                                                                </div>
+                                                                <div class="slide">
+                                                                    <a href="{{ asset('assets-front/img/foto2.jpeg') }}"
+                                                                        data-lightbox="gallery-item">
+                                                                        <img src="{{ asset('assets-front/img/foto2.jpeg') }}"
+                                                                            alt="Standard Post with Gallery">
+                                                                    </a>
+                                                                </div>
+                                                                <div class="slide">
+                                                                    <a href="{{ asset('assets-front/img/foto3.jpeg') }}"
+                                                                        data-lightbox="gallery-item">
+                                                                        <img src="{{ asset('assets-front/img/foto3.jpeg') }}"
+                                                                            alt="Standard Post with Gallery">
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="entry-title">
+                                                    <h2><a href="blog-single.html">Hari Ketiga, Apresiasi KSPSTK
+                                                            2023</a></h2>
+                                                </div>
+                                                <div class="entry-meta">
+                                                    <ul>
+                                                        <li><i class="icon-calendar3"></i> 23 November 2023</li>
+                                                        <li><i class="icon-line-eye"></i> 10 Dilihat</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="entry col-md-4 col-sm-6 col-12">
+                                            <div class="grid-inner hover-custom">
+                                                <div class="entry-image">
+                                                    <div class="fslider" data-arrows="false" data-lightbox="gallery">
+                                                        <div class="flexslider">
+                                                            <div class="slider-wrap">
+                                                                <div class="slide">
+                                                                    <a href="{{ asset('assets-front/img/foto1.jpeg') }}"
+                                                                        data-lightbox="gallery-item">
+                                                                        <img src="{{ asset('assets-front/img/foto1.jpeg') }}"
+                                                                            alt="Standard Post with Gallery">
+                                                                    </a>
+                                                                </div>
+                                                                <div class="slide">
+                                                                    <a href="{{ asset('assets-front/img/foto2.jpeg') }}"
+                                                                        data-lightbox="gallery-item">
+                                                                        <img src="{{ asset('assets-front/img/foto2.jpeg') }}"
+                                                                            alt="Standard Post with Gallery">
+                                                                    </a>
+                                                                </div>
+                                                                <div class="slide">
+                                                                    <a href="{{ asset('assets-front/img/foto3.jpeg') }}"
+                                                                        data-lightbox="gallery-item">
+                                                                        <img src="{{ asset('assets-front/img/foto3.jpeg') }}"
+                                                                            alt="Standard Post with Gallery">
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="entry-title">
+                                                    <h2><a href="blog-single.html">Hari Ketiga, Apresiasi KSPSTK
+                                                            2023</a></h2>
+                                                </div>
+                                                <div class="entry-meta">
+                                                    <ul>
+                                                        <li><i class="icon-calendar3"></i> 23 November 2023</li>
+                                                        <li><i class="icon-line-eye"></i> 10 Dilihat</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="entry col-md-4 col-sm-6 col-12">
+                                            <div class="grid-inner hover-custom">
+                                                <div class="entry-image">
+                                                    <div class="fslider" data-arrows="false" data-lightbox="gallery">
+                                                        <div class="flexslider">
+                                                            <div class="slider-wrap">
+                                                                <div class="slide">
+                                                                    <a href="{{ asset('assets-front/img/foto1.jpeg') }}"
+                                                                        data-lightbox="gallery-item">
+                                                                        <img src="{{ asset('assets-front/img/foto1.jpeg') }}"
+                                                                            alt="Standard Post with Gallery">
+                                                                    </a>
+                                                                </div>
+                                                                <div class="slide">
+                                                                    <a href="{{ asset('assets-front/img/foto2.jpeg') }}"
+                                                                        data-lightbox="gallery-item">
+                                                                        <img src="{{ asset('assets-front/img/foto2.jpeg') }}"
+                                                                            alt="Standard Post with Gallery">
+                                                                    </a>
+                                                                </div>
+                                                                <div class="slide">
+                                                                    <a href="{{ asset('assets-front/img/foto3.jpeg') }}"
+                                                                        data-lightbox="gallery-item">
+                                                                        <img src="{{ asset('assets-front/img/foto3.jpeg') }}"
                                                                             alt="Standard Post with Gallery">
                                                                     </a>
                                                                 </div>
@@ -708,7 +708,7 @@
                                         </div>
                                     </div>
                                     <!-- Pagination
-                                    ============================================= -->
+                                        ============================================= -->
                                     <ul class="pagination pagination-circle justify-content-center">
                                         <li class="page-item disabled"><a class="page-link" href="#"
                                                 aria-label="Previous"> <span aria-hidden="true">«</span></a></li>
@@ -735,7 +735,8 @@
                                 <div class="slider-wrap">
                                     <div class="slide" style="max-height: 100%;">
                                         <div class="overlaying-img">
-                                            <a href="#"><img class="img-fluid" src="{{ asset('assets-front/img/podcast.jpeg')}}"
+                                            <a href="#"><img class="img-fluid"
+                                                    src="{{ asset('assets-front/img/podcast.jpeg') }}"
                                                     style="width: 100%;" alt="Image 1"></a>
                                             <div class="bg-overlay">
                                                 <div class="overlaying-desc">
@@ -746,7 +747,8 @@
                                     </div>
                                     <div class="slide" style="max-height: 100%;">
                                         <div class="overlaying-img">
-                                            <a href="#"><img class="img-fluid" src="{{ asset('assets-front/img/podcast.jpeg')}}"
+                                            <a href="#"><img class="img-fluid"
+                                                    src="{{ asset('assets-front/img/podcast.jpeg') }}"
                                                     style="width: 100%;" alt="Image 1"></a>
                                             <div class="bg-overlay">
                                                 <div class="overlaying-desc">
@@ -757,7 +759,8 @@
                                     </div>
                                     <div class="slide" style="max-height: 100%;">
                                         <div class="overlaying-img">
-                                            <a href="#"><img class="img-fluid" src="{{ asset('assets-front/img/podcast.jpeg')}}"
+                                            <a href="#"><img class="img-fluid"
+                                                    src="{{ asset('assets-front/img/podcast.jpeg') }}"
                                                     style="width: 100%;" alt="Image 1"></a>
                                             <div class="bg-overlay">
                                                 <div class="overlaying-desc">
@@ -768,7 +771,8 @@
                                     </div>
                                     <div class="slide" style="max-height: 100%;">
                                         <div class="overlaying-img">
-                                            <a href="#"><img class="img-fluid" src="{{ asset('assets-front/img/podcast.jpeg')}}"
+                                            <a href="#"><img class="img-fluid"
+                                                    src="{{ asset('assets-front/img/podcast.jpeg') }}"
                                                     style="width: 100%;" alt="Image 1"></a>
                                             <div class="bg-overlay">
                                                 <div class="overlaying-desc">
@@ -788,7 +792,8 @@
                                 <div class="grid-inner row no-gutters p-0">
                                     <div class="entry-image col-xl-4 mb-xl-0">
                                         <a href="#">
-                                            <img src="{{ asset('assets-front/img/BERITA1.jpg')}}" alt="thumbnail_berita">
+                                            <img src="{{ asset('assets-front/img/BERITA1.jpg') }}"
+                                                alt="thumbnail_berita">
                                         </a>
                                     </div>
                                     <div class="col-xl-8 pl-xl-3">
@@ -809,7 +814,8 @@
                                 <div class="grid-inner row no-gutters p-0">
                                     <div class="entry-image col-xl-4 mb-xl-0">
                                         <a href="#">
-                                            <img src="{{ asset('assets-front/img/BERITA1.jpg')}}" alt="thumbnail_berita">
+                                            <img src="{{ asset('assets-front/img/BERITA1.jpg') }}"
+                                                alt="thumbnail_berita">
                                         </a>
                                     </div>
                                     <div class="col-xl-8 pl-xl-3">
@@ -830,7 +836,8 @@
                                 <div class="grid-inner row no-gutters p-0">
                                     <div class="entry-image col-xl-4 mb-xl-0">
                                         <a href="#">
-                                            <img src="{{ asset('assets-front/img/BERITA1.jpg')}}" alt="thumbnail_berita">
+                                            <img src="{{ asset('assets-front/img/BERITA1.jpg') }}"
+                                                alt="thumbnail_berita">
                                         </a>
                                     </div>
                                     <div class="col-xl-8 pl-xl-3">
@@ -851,7 +858,8 @@
                                 <div class="grid-inner row no-gutters p-0">
                                     <div class="entry-image col-xl-4 mb-xl-0">
                                         <a href="#">
-                                            <img src="{{ asset('assets-front/img/BERITA1.jpg')}}" alt="thumbnail_berita">
+                                            <img src="{{ asset('assets-front/img/BERITA1.jpg') }}"
+                                                alt="thumbnail_berita">
                                         </a>
                                     </div>
                                     <div class="col-xl-8 pl-xl-3">
@@ -872,7 +880,8 @@
                                 <div class="grid-inner row no-gutters p-0">
                                     <div class="entry-image col-xl-4 mb-xl-0">
                                         <a href="#">
-                                            <img src="{{ asset('assets-front/img/BERITA1.jpg')}}" alt="thumbnail_berita">
+                                            <img src="{{ asset('assets-front/img/BERITA1.jpg') }}"
+                                                alt="thumbnail_berita">
                                         </a>
                                     </div>
                                     <div class="col-xl-8 pl-xl-3">

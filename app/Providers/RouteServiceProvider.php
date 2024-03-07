@@ -60,11 +60,38 @@ class RouteServiceProvider extends ServiceProvider
             $this->mapListKanalRoutes();
 
             $this->mapListKategoriRoutes();
-            
-            $this->mapListBeritaRoutes();
 
             $this->mapListBeritaRoutes();
 
+            $this->mapListBeritaRoutes();
+
+            $this->mapListProfilRoutes();
+
+            $this->mapListProgramLayanan();
+
+            $this->mapListUnduhanRoutes();
+
+            $this->mapSwiper();
+
+            $this->mapSosmedRoutes();
+
+            $this->mapAgendaRoutes();
+
+            $this->mapWebinarRoutes();
+
+            $this->mapPengumumanRoutes();
+
+            $this->mapPanduanRoutes();
+
+            $this->mapListProgramFokus();
+
+            $this->mapRegulasiRoutes();
+
+            $this->mapArtikelRoutes();
+
+            $this->mapPodcastRoutes();
+
+            $this->mapTautanRoutes();
         });
     }
 
@@ -151,5 +178,102 @@ class RouteServiceProvider extends ServiceProvider
         Route::prefix('list_berita')
             ->namespace($this->namespace)
             ->group(base_path('routes/panel/list_berita.php'));
+    }
+
+    protected function mapListProfilRoutes()
+    {
+        Route::prefix('profil')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/panel/profil.php'));
+    }
+
+    protected function mapListProgramLayanan()
+    {
+        Route::prefix('program_layanan')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/panel/program-layanan.php'));
+    }
+    protected function mapListUnduhanRoutes()
+    {
+        Route::prefix('unduhan')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/panel/unduhan.php'));
+    }
+
+    protected function mapSwiper()
+    {
+        Route::prefix('swiper')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/panel/swiper.php'));
+    }
+
+    protected function mapSosmedRoutes()
+    {
+        Route::prefix('sosmed')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/panel/sosmed.php'));
+    }
+
+    protected function mapAgendaRoutes()
+    {
+        Route::prefix('list_agenda')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/panel/agenda.php'));
+    }
+
+    protected function mapWebinarRoutes()
+    {
+        Route::prefix('webinar')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/panel/webinar.php'));
+    }
+
+    protected function mapPengumumanRoutes()
+    {
+        Route::prefix('pengumuman')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/panel/pengumuman.php'));
+
+    }
+    protected function mapPanduanRoutes()
+    {
+        Route::prefix('manajemen_panduan')
+        ->namespace($this->namespace)
+        ->group(base_path('routes/panel/panduan.php'));
+    }
+
+    protected function mapPodcastRoutes()
+    {
+        Route::prefix('podcast')
+        ->namespace($this->namespace)
+        ->group(base_path('routes/panel/podcast.php'));
+    }
+
+    protected function mapRegulasiRoutes()
+    {
+        Route::prefix('regulasi')
+        ->namespace($this->namespace)
+        ->group(base_path('routes/panel/regulasi.php'));
+    }
+
+    protected function mapListProgramFokus()
+    {
+        Route::prefix('program_fokus')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/panel/program_fokus.php'));
+    }
+    
+    protected function mapArtikelRoutes()
+    {
+        Route::prefix('manajemen_artikel')
+        ->namespace($this->namespace)
+        ->group(base_path('routes/panel/artikel.php'));
+    }
+
+    protected function mapTautanRoutes()
+    {
+        Route::prefix('tautan')
+        ->namespace($this->namespace)
+        ->group(base_path('routes/panel/tautan.php'));
     }
 }

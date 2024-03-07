@@ -49,4 +49,14 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Role::class, 'user_roles', 'user_id', 'role_id');
     }
+
+    public function list_berita()
+    {
+        return $this->hasMany('App\Model\ListBerita');
+    }
+
+    public function list_agenda()
+    {
+        return $this->hasMany('App\Model\Agenda');
+    }
 }

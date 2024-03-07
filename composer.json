@@ -15,7 +15,8 @@
     "laravel/framework": "^7.29",
     "laravel/tinker": "^2.5",
     "laravel/ui": "^2.4",
-    "yajra/laravel-datatables": "^1.5"
+    "yajra/laravel-datatables": "^1.5",
+    "laravel/breeze": "^1.10"
   },
   "require-dev": {
     "facade/ignition": "^2.0",
@@ -27,7 +28,10 @@
   "config": {
     "optimize-autoloader": true,
     "preferred-install": "dist",
-    "sort-packages": true
+    "sort-packages": true,
+    "platform": {
+      "php": "7.4.3"
+    }
   },
   "extra": {
     "laravel": {
@@ -37,7 +41,8 @@
   "autoload": {
     "files": [
       "app/Helpers/rbac.php",
-      "app/Helpers/icon.php"
+      "app/Helpers/icon.php",
+      "app/Helpers/helper.php"
     ],
     "psr-4": {
       "App\\": "app/"

@@ -12,4 +12,13 @@ class ListBerita extends Model
 
     protected $guarded = ['id'];
 
+    public function list_kategori()
+    {
+        return $this->belongsTo('App\Model\ListKategori','id_kategori','id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\user','id_penulis','id');
+    }
 }

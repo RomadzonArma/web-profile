@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Model\Pengunjung;
+use App\Model\Sosmed;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Http\Request;
@@ -16,7 +18,18 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        view()->composer('layouts.front.header', function ($view) {
+            $ref_sosmed = Sosmed::first();
+            $view->with('ref_sosmed', $ref_sosmed);
+        });
+        view()->composer('layouts.front.header_mobile', function ($view) {
+            $ref_sosmed = Sosmed::first();
+            $view->with('ref_sosmed', $ref_sosmed);
+        });
+        view()->composer('layouts.front.footer', function ($view) {
+            $todayCount = Pengunjung::whereDate('created_at', today())->count();
+            $view->with('pengunjungHariIni', $todayCount);
+        });
     }
 
     /**

@@ -1,5 +1,5 @@
 @extends('layouts.front.app')
-
+@inject('carbon', 'Carbon\Carbon')
 @section('content-header')
     <section id="page-title" class="bg-soft px-md-5">
         <div class="content-wrap py-0">
@@ -59,40 +59,38 @@
                             </div>
                         </form>
                         <div class="result-berita">
+                            @foreach ($berita as $item)
                             <div class="entry mb-5">
                                 <div class="grid-inner row no-gutters p-0">
                                     <div class="entry-image col-md-4 mb-md-0">
                                         <a href="#">
-                                            <img src="{{ asset('assets-front/img/berita2.jpg') }}" alt="thumbnail_berita">
+                                            <img src="{{ asset('list_berita/'.$item->gambar) }}" alt="thumbnail_berita">
                                         </a>
                                     </div>
                                     <div class="col-md-8 pl-md-4">
                                         <div class="entry-title title-xs">
-                                            <h3 class="mb-1"><a href="#">Hadapi Era Digital, Kemendikbudristek
-                                                    Optimalkan Peran Orang Tua dan Guru dalam Membimbing Anak</a>
+                                            <h3 class="mb-1"><a href="#">{{$item->judul}}</a>
                                             </h3>
                                         </div>
                                         <div class="entry-meta mb-2 mt-0">
                                             <ul>
-                                                <li><a href="#"><i class="icon-calendar3"></i> 10 Februari 2024</a>
+                                                <li><a href="#"><i class="icon-calendar3"></i>{{ $carbon::parse($item->tanggal)->format('D M Y')}}</a>
                                                 </li>
                                                 <li><a href="#"><i class="icon-user1"></i> KSPTK</a></li>
                                                 <li><a href="#"><i class="icon-line-folder"></i> Berita</a></li>
-                                                <li><a href="#"><i class="icon-line-eye"></i> 8 Dilihat</a></li>
+                                                <li><a href="#"><i class="icon-line-eye"></i>{{$item->jumlah_lihat}} Dilihat</a></li>
                                             </ul>
                                         </div>
                                         <p class="mb-2 text-muted text-clamp-2">
-                                            KSPSTK - Dewasa ini, gawai dan peranti digital semakin masif digunakan
-                                            anak dan remaja Indonesia untuk berpartisipasi dalam kegiatan
-                                            pembelajaran jarak jauh, baik untuk jenjang pendidikan anak usia dini
-                                            hingga pendidikan tinggi. Namun di saat yang sama, muncul pula berbagai
-                                            permasalahan akibat meningkatnya intensitas penggunaan gawai tersebut.
+                                            {!! \Illuminate\Support\Str::words(strip_tags($item->isi_konten), 65, '...') !!}
                                         </p>
-                                        <a class="more-link" href="#">Baca Lebih Lanjut</a>
+                                        <a class="more-link" href="/berita/detail/{{ $item->id }}">Baca Lebih Lanjut</a>
                                     </div>
                                 </div>
                             </div>
-                            <div class="entry mb-5">
+                            @endforeach
+
+                            {{-- <div class="entry mb-5">
                                 <div class="grid-inner row no-gutters p-0">
                                     <div class="entry-image col-md-4 mb-md-0">
                                         <a href="#">
@@ -189,7 +187,8 @@
                                 <div class="grid-inner row no-gutters p-0">
                                     <div class="entry-image col-md-4 mb-md-0">
                                         <a href="#">
-                                            <img src="{{ asset('assets-front/img/BERITA1.jpg') }}" alt="thumbnail_berita">
+                                            <img src="{{ asset('assets-front/img/BERITA1.jpg') }}"
+                                                alt="thumbnail_berita">
                                         </a>
                                     </div>
                                     <div class="col-md-8 pl-md-4">
@@ -215,7 +214,7 @@
                                         <a class="more-link" href="#">Baca Lebih Lanjut</a>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                             <ul class="pagination pagination-circle justify-content-center">
                                 <li class="page-item disabled"><a class="page-link" href="#"
                                         aria-label="Previous">

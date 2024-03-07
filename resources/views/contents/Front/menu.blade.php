@@ -28,7 +28,7 @@
                     <a class="menu-link" href="{{ route('berita') }}">BERITA</a>
                 </li>
                 <li class="menu-item">
-                    <a class="menu-link" href="#">ARTIKEL</a>
+                    <a class="menu-link" href="{{route('artikel')}}">ARTIKEL</a>
                 </li>
                 <li class="menu-item">
                     <a class="menu-link" href="{{ route('galeri') }}">GALERI</a>
@@ -80,21 +80,21 @@
                                 <a class="menu-link" href="#">PROGRAM DAN LAYANAN</a>
                                 <ul class="sub-menu-container">
                                     <li class="menu-item">
-                                        <a class="menu-link" href="#">PROGRAM PENDIDIKAN
+                                        <a class="menu-link" href="{{ route('guru-penggerak') }}">PROGRAM PENDIDIKAN
                                             GURU
+                                            PENGGERAK </a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a class="menu-link" href="{{ route('sekolah-penggerak') }}">PROGRAM SEKOLAH
                                             PENGGERAK</a>
                                     </li>
                                     <li class="menu-item">
-                                        <a class="menu-link" href="#">PROGRAM SEKOLAH
-                                            PENGGERAK</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a class="menu-link" href="#">IMPLEMENTASI
+                                        <a class="menu-link" href="https://kurikulum.kemdikbud.go.id/kurikulum-merdeka/" target="_blank">IMPLEMENTASI
                                             KURIKULUM
                                             MERDEKA</a>
                                     </li>
                                     <li class="menu-item">
-                                        <a class="menu-link" href="#">PLATFORM MERDEKA
+                                        <a class="menu-link" href="https://guru.kemdikbud.go.id/" target="_blank">PLATFORM MERDEKA
                                             MENGAJAR</a>
                                     </li>
                                 </ul>
@@ -105,26 +105,26 @@
                                 <a class="menu-link" href="#">TAUTAN</a>
                                 <ul class="sub-menu-container scrolled">
                                     <li class="menu-item">
-                                        <a class="menu-link" href="#">KEMDIKBUD</a>
+                                        <a class="menu-link" href="https://www.kemdikbud.go.id/" target="_blank">KEMDIKBUD</a>
                                     </li>
                                     <li class="menu-item">
-                                        <a class="menu-link" href="#">DITJEN GTK</a>
+                                        <a class="menu-link" href="https://gtk.kemdikbud.go.id/" target="_blank">DITJEN GTK</a>
                                     </li>
                                     <li class="menu-item">
-                                        <a class="menu-link" href="#">PROGRAM PENDIDIKAN
+                                        <a class="menu-link" href="https://sekolah.penggerak.kemdikbud.go.id/gurupenggerak/" target="_blank">PROGRAM PENDIDIKAN
                                             GURU
                                             PENGGERAK</a>
                                     </li>
                                     <li class="menu-item">
-                                        <a class="menu-link" href="#">PROGRAM SEKOLAH
+                                        <a class="menu-link" href="https://psp-web.pauddikdasmen.kemdikbud.go.id/#/home" target="_blank">PROGRAM SEKOLAH
                                             PENGGERAK</a>
                                     </li>
                                     <li class="menu-item">
-                                        <a class="menu-link" href="#">ORGANISASI
+                                        <a class="menu-link" href="https://sekolah.penggerak.kemdikbud.go.id/organisasipenggerak/" target="_blank">ORGANISASI
                                             PENGGERAK</a>
                                     </li>
                                     <li class="menu-item">
-                                        <a class="menu-link" href="#">DIT. GURU PAUD
+                                        <a class="menu-link" href="https://gurupauddikmas.kemdikbud.go.id/" target="_blank">DIT. GURU PAUD
                                             DIKMAS</a>
                                     </li>
                                     <li class="menu-item">
@@ -136,10 +136,10 @@
                                             DIKMENDIKSUS</a>
                                     </li>
                                     <li class="menu-item">
-                                        <a class="menu-link" href="#">DIT. PPG</a>
+                                        <a class="menu-link" href="https://ppg.kemdikbud.go.id/" target="_blank">DIT. PPG</a>
                                     </li>
                                     <li class="menu-item">
-                                        <a class="menu-link" href="#">PENGADUAN</a>
+                                        <a class="menu-link" href="https://posko-pengaduan.itjen.kemdikbud.go.id/" target="_blank">PENGADUAN</a>
                                     </li>
                                 </ul>
                             </li>
@@ -149,19 +149,19 @@
                                 <a class="menu-link" href="#">PUBLIKASI</a>
                                 <ul class="sub-menu-container">
                                     <li class="menu-item">
-                                        <a class="menu-link" href="#">PANDUAN</a>
+                                        <a class="menu-link" href="{{ route('panduan') }}">PANDUAN</a>
                                     </li>
                                     <li class="menu-item">
-                                        <a class="menu-link" href="#">PENGUMUMAN</a>
+                                        <a class="menu-link" href="/pengumumans">PENGUMUMAN</a>
                                     </li>
                                     <li class="menu-item">
-                                        <a class="menu-link" href="#">REGULASI</a>
+                                        <a class="menu-link" href="{{ route('regulasis') }}">REGULASI</a>
                                     </li>
                                     <li class="menu-item">
-                                        <a class="menu-link" href="{{ route('agenda') }}">AGENDA</a>
+                                        <a class="menu-link" href="{{ route('agenda.list') }}">AGENDA</a>
                                     </li>
                                     <li class="menu-item">
-                                        <a class="menu-link" href="{{ route('unduhan') }}">UNDUHAN</a>
+                                        <a class="menu-link" href="{{ route('unduhan.list') }}">UNDUHAN</a>
                                     </li>
                                 </ul>
                             </li>
