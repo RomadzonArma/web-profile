@@ -84,10 +84,12 @@ class RouteServiceProvider extends ServiceProvider
             $this->mapPanduanRoutes();
 
             $this->mapRegulasiRoutes();
-            
+
             $this->mapArtikelRoutes();
 
             $this->mapPodcastRoutes();
+
+            $this->mapTautanRoutes();
         });
     }
 
@@ -244,17 +246,25 @@ class RouteServiceProvider extends ServiceProvider
         ->namespace($this->namespace)
         ->group(base_path('routes/panel/podcast.php'));
     }
-    
+
     protected function mapRegulasiRoutes()
     {
         Route::prefix('regulasi')
         ->namespace($this->namespace)
         ->group(base_path('routes/panel/regulasi.php'));
     }
+
     protected function mapArtikelRoutes()
     {
         Route::prefix('manajemen_artikel')
         ->namespace($this->namespace)
         ->group(base_path('routes/panel/artikel.php'));
+    }
+
+    protected function mapTautanRoutes()
+    {
+        Route::prefix('tautan')
+        ->namespace($this->namespace)
+        ->group(base_path('routes/panel/tautan.php'));
     }
 }
