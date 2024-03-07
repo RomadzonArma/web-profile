@@ -19,39 +19,7 @@ $(() => {
     });
     $("#summernote").summernote("code", decodeURIComponent(encodedContent));
 
-    // $('#form-update').on('submit', function (e) {
-    //     e.preventDefault();
 
-    //     var data = new FormData(this);
-    //     $.ajax({
-    //         url: $(this).attr('action'),
-    //         type: $(this).attr('method'),
-    //         data: data,
-    //         dataType: 'json',
-    //         processData: false,
-    //         contentType: false,
-    //         beforeSend: () => {
-    //             clearErrorMessage();
-    //         },
-    //         success: (res) => {
-    //             console.log(res);
-    //             showSuccessToastr('sukses', 'Berhasil memperbarui data');
-    //             window.location.href = BASE_URL + 'list_agenda';
-    //         },
-    //         error: ({
-    //             status,
-    //             responseJSON
-    //         }) => {
-
-    //             if (status == 422) {
-    //                 generateErrorMessage(responseJSON);
-    //                 return false;
-    //             }
-
-    //             showErrorToastr('oops', responseJSON.msg)
-    //         }
-    //     })
-    // })
 
 
     $("#form-update").submit(function (e) {
@@ -109,3 +77,9 @@ $(() => {
 
 
 })
+
+
+$(document).ready(function() {
+    $('#id_kategori').select2();
+});
+
