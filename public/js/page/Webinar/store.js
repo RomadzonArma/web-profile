@@ -68,3 +68,8 @@ $(() => {
         });
     });
 });
+
+$(document).ready(function() {
+    $('#id_kategori').select2();
+});
+
