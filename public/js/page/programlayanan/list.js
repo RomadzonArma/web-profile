@@ -200,7 +200,7 @@ $(() => {
                         if (permissions.update) {
                             arr.push(button_edit)
                         }
-                          
+
 
                         // if (UPDATE) arr.push(button_edit)
                         if (permissions.delete) arr.push(button_delete)
@@ -214,3 +214,8 @@ $(() => {
         }]
     })
 })
+
+
+$(document).ready(function() {
+    $('#id_kategori').select2();
+});
