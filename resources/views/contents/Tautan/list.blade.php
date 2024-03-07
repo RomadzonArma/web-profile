@@ -57,7 +57,7 @@
                         <div class="form-group ">
                             <label class="col-form-label">Pilih Kategori</label>
                             <div class="">
-                                <select class="form-control" id="id_kategori" name="id_kategori">
+                                <select class="form-control"  style="width: 100%" id="id_kategori" name="id_kategori">
                                     <option>Pilih kategori</option>
                                     @foreach ($list_kategori as $data)
                                         <option value="{{ $data->id }}">{{ $data->nama_kategori }}</option>
@@ -100,7 +100,7 @@
                         <div class="form-group ">
                             <label class="col-form-label">Pilih Kategori</label>
                             <div class="">
-                                <select class="form-control" id="id_kategori_edit" name="id_kategori_edit">
+                                <select class="form-control"  style="width: 100%"  id="id_kategori_edit" name="id_kategori_edit">
                                     <option>Pilih kategori</option>
                                     @foreach ($list_kategori as $data)
                                         <option value="{{ $data->id }}">{{ $data->nama_kategori }}</option>
