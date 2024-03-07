@@ -14,19 +14,58 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Model\Artikel;
+use App\Model\ListKanal;
+use App\Model\ListKategori;
+use App\Model\ProgramFokus;
 use App\Model\ProgramLayanan;
 
 class LandingController extends Controller
 {
+    
+
     public function index()
     {
         $swiper = Swiper::where('is_active', '1')
             ->orderByDesc('created_at')
             ->take(4)
             ->get();
+
+        $program_fokus = ProgramFokus::where('status', '1')->orderByDesc('created_at')->get();
+
+        $list_kanal_1 = ListKanal::where('status', '1')
+            ->where(function ($query) {
+                $query->where('nama_kanal', 'LIKE', '%profil%')
+                    ->orWhere('nama_kanal', 'LIKE', '%informasi publik%')
+                    ->orWhere('nama_kanal', 'LIKE', '%zi/wbk%');
+            })
+            ->get();
+
+        $list_kanal_2 = ListKanal::where('status', '1')
+            ->where(function ($query) {
+                $query->where('nama_kanal', 'LIKE', '%program dan layanan%')
+                    ->orWhere('nama_kanal', 'LIKE', '%tautan%')
+                    ->orWhere('nama_kanal', 'LIKE', '%publikasi%');
+            })
+            ->get();
+
+        $list_kategori_1 = [];
+        foreach ($list_kanal_1 as $kanal_1) {
+            $list_kategori_1[$kanal_1->id] = ListKategori::where('id_kanal', $kanal_1->id)->get();
+        }
+
+        $list_kategori_2 = [];
+        foreach ($list_kanal_2 as $kanal_2) {
+            $list_kategori_2[$kanal_2->id] = ListKategori::where('id_kanal', $kanal_2->id)->get();
+        }
+
         return view('contents.Front.index', [
             'title' => 'Beranda',
             'swiper' => $swiper,
+            'program_fokus' => $program_fokus,
+            'list_kanal_1' => $list_kanal_1,
+            'list_kanal_2' => $list_kanal_2,
+            'list_kategori_1' => $list_kategori_1,
+            'list_kategori_2' => $list_kategori_2,
             'pengunjung' => $this->recordPengunjung(request())
         ]);
     }
@@ -70,9 +109,41 @@ class LandingController extends Controller
     public function artikel()
     {
         $artikel  = Artikel::where('status_publish', '1')->get();
+
+        $list_kanal_1 = ListKanal::where('status', '1')
+            ->where(function ($query) {
+                $query->where('nama_kanal', 'LIKE', '%profil%')
+                    ->orWhere('nama_kanal', 'LIKE', '%informasi publik%')
+                    ->orWhere('nama_kanal', 'LIKE', '%zi/wbk%');
+            })
+            ->get();
+
+        $list_kanal_2 = ListKanal::where('status', '1')
+            ->where(function ($query) {
+                $query->where('nama_kanal', 'LIKE', '%program dan layanan%')
+                    ->orWhere('nama_kanal', 'LIKE', '%tautan%')
+                    ->orWhere('nama_kanal', 'LIKE', '%publikasi%');
+            })
+            ->get();
+
+        $list_kategori_1 = [];
+        foreach ($list_kanal_1 as $kanal_1) {
+            $list_kategori_1[$kanal_1->id] = ListKategori::where('id_kanal', $kanal_1->id)->get();
+        }
+
+        $list_kategori_2 = [];
+        foreach ($list_kanal_2 as $kanal_2) {
+            $list_kategori_2[$kanal_2->id] = ListKategori::where('id_kanal', $kanal_2->id)->get();
+        }
+
         return view('contents.Front.informasi_publik.artikel', [
             'title' => 'Berita',
             'artikel' => $artikel,
+            'list_kanal_1' => $list_kanal_1,
+            'list_kanal_2' => $list_kanal_2,
+            'list_kategori_1' => $list_kategori_1,
+            'list_kategori_2' => $list_kategori_2,
+
         ]);
     }
     public function artikelDetail($slug)
@@ -108,7 +179,7 @@ class LandingController extends Controller
     }
     public function agendaDetail($id)
     {
-        $agenda = Agenda::where('id',$id)->first();
+        $agenda = Agenda::where('id', $id)->first();
         return view('contents.Front.menu_halaman.publikasi.agenda-detail', [
             'title' => 'Agenda Detail',
             'agenda' => $agenda,
@@ -139,7 +210,7 @@ class LandingController extends Controller
     }
     public function panduanDetail($id)
     {
-        $panduan = Panduan::where('id',$id)->first();
+        $panduan = Panduan::where('id', $id)->first();
         return view('contents.Front.menu_halaman.publikasi.panduan-detail', [
             'title' => 'Panduan Detail',
             'panduan' => $panduan,
@@ -159,7 +230,7 @@ class LandingController extends Controller
     }
     public function pengumumanDetail($id)
     {
-        $pengumuman = Pengumuman::where('id',$id)->first();
+        $pengumuman = Pengumuman::where('id', $id)->first();
         return view('contents.Front.menu_halaman.publikasi.pengumuman-detail', [
             'title' => 'Pengumuman Detail',
             'pengumuman' => $pengumuman,
@@ -180,7 +251,7 @@ class LandingController extends Controller
     }
     public function regulasiDetail($slug)
     {
-        $regulasi = Regulasi::where('slug',$slug)->first();
+        $regulasi = Regulasi::where('slug', $slug)->first();
         return view('contents.Front.menu_halaman.publikasi.regulasi-detail', [
             'title' => 'Regulasi Detail',
             'regulasi' => $regulasi,
@@ -205,7 +276,7 @@ class LandingController extends Controller
     public function sekolahPenggerakDetail($slug)
     {
 
-        $sekolah = ProgramLayanan::where('slug',$slug)->first();
+        $sekolah = ProgramLayanan::where('slug', $slug)->first();
         // dd($sekolah);
         return view('contents.Front.menu_halaman.program_layanan.sekolah-penggerak-detail', [
             'title' => 'Detail Pogram Pendidikan Guru Penggerak ',
@@ -227,7 +298,7 @@ class LandingController extends Controller
     }
     public function guruPenggerakDetail($slug)
     {
-        $guru = ProgramLayanan::where('slug',$slug)->first();
+        $guru = ProgramLayanan::where('slug', $slug)->first();
         // dd($guru);
         return view('contents.Front.menu_halaman.program_layanan.guru-penggerak-detail', [
             'title' => 'Detail Pogram Pendidikan Guru Penggerak ',
