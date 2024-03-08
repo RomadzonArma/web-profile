@@ -58,6 +58,10 @@ class ListKategori extends Model
     {
         return $this->hasMany(Panduan::class);
     }
+    public function galeri(): HasMany
+    {
+        return $this->hasMany(Galeri::class);
+    }
 
     public function tautan()
     {
