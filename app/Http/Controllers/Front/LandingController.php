@@ -16,12 +16,14 @@ use App\Http\Controllers\Controller;
 use App\Model\Artikel;
 use App\Model\ListKanal;
 use App\Model\ListKategori;
+use App\Model\Profil;
 use App\Model\ProgramFokus;
 use App\Model\ProgramLayanan;
+use Illuminate\Database\Eloquent\Builder;
 
 class LandingController extends Controller
 {
-    
+
 
     public function index()
     {
@@ -85,8 +87,49 @@ class LandingController extends Controller
 
     public function visi_misi()
     {
+        $data_visi = Profil::whereHas('list_kategori' , function (Builder $query) {
+            $query->where('nama_kategori', 'LIKE', '%visi%')->where('is_active', '1');
+        })->get();
+
         return view('contents.Front.profil.visi_misi', [
             'title' => 'Visi dan Misi',
+            'data_visi' => $data_visi,
+        ]);
+    }
+
+    public function struktur_organisasi()
+    {
+        $data_struktur = Profil::whereHas('list_kategori' , function (Builder $query) {
+            $query->where('nama_kategori', 'LIKE', '%struktur%')->where('is_active', '1');
+        })->get();
+
+        return view('contents.Front.profil.struktur_organisasi', [
+            'title' => 'Struktur Organisasi',
+            'data_struktur' => $data_struktur,
+        ]);
+    }
+
+    public function tugas_fungsi()
+    {
+        $data_tugas = Profil::whereHas('list_kategori' , function (Builder $query) {
+            $query->where('nama_kategori', 'LIKE', '%tugas%')->where('is_active', '1');
+        })->get();
+
+        return view('contents.Front.profil.tugas_fungsi', [
+            'title' => 'Tugas & Fungsi ',
+            'data_tugas' => $data_tugas,
+        ]);
+    }
+
+    public function kontak_kami()
+    {
+        $data_kontak = Profil::whereHas('list_kategori' , function (Builder $query) {
+            $query->where('nama_kategori', 'LIKE', '%kontak%')->where('is_active', '1');
+        })->get();
+
+        return view('contents.Front.profil.kontak_kami', [
+            'title' => 'Kontak Kami',
+            'data_kontak' =>  $data_kontak,
         ]);
     }
 
