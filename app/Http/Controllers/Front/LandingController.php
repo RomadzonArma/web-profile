@@ -95,20 +95,23 @@ class LandingController extends Controller
     public function galeri()
     {
         $video = Galeri::where('is_video','=','1')->get();
+        $foto = Galeri::where('is_image','=','1')->with('refGaleri')->get();
         // $video = Galeri::all();
         return view('contents.Front.informasi_publik.galeri', [
-            'title' => 'Berita',
+            'title' => 'Galeri',
             'video' => $video,
-        ]);
-    }
-    public function FotoGaleri()
-    {
-        $foto = Galeri::where('is_image','=','1')->get();
-        return view('contents.Front.informasi_publik.galeri-foto', [
-            'title' => 'Berita',
             'foto' => $foto,
         ]);
     }
+    // public function FotoGaleri()
+    // {
+    //     $foto = Galeri::where('is_image','=','1')->get();
+    //     // dd($foto);
+    //     return view('contents.Front.informasi_publik.galeri-foto', [
+    //         'title' => 'Galeri Foto',
+    //         'foto' => $foto,
+    //     ]);
+    // }
     // START MENU PUBLIKASI
     public function agenda()
     {

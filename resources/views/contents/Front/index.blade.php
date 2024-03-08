@@ -20,7 +20,7 @@
     </section>
 @endsection
 
-@section('content')
+@section('content-index')
     <section class="px-xl-5">
         <div class="content-wrap scrolled">
             <div class="container-fluid">

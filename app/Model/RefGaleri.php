@@ -13,4 +13,10 @@ class RefGaleri extends Model
         'id_galeri',
         'image'
     ];
+
+    public function galeri()
+    {
+        return $this->belongsTo(Galeri::class, 'galeri_id', 'id');
+    }
+    
 }
