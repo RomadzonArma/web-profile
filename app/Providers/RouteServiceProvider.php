@@ -84,8 +84,10 @@ class RouteServiceProvider extends ServiceProvider
             $this->mapPanduanRoutes();
 
             $this->mapRegulasiRoutes();
-            
+
             $this->mapArtikelRoutes();
+
+            $this->mapGaleriRoutes();
 
         });
     }
@@ -248,5 +250,11 @@ class RouteServiceProvider extends ServiceProvider
         Route::prefix('manajemen_artikel')
         ->namespace($this->namespace)
         ->group(base_path('routes/panel/artikel.php'));
+    }
+    protected function mapGaleriRoutes()
+    {
+        Route::prefix('manajemen_galeri')
+        ->namespace($this->namespace)
+        ->group(base_path('routes/panel/galeri.php'));
     }
 }

@@ -22,6 +22,8 @@ Route::get('/artikel', [LandingController::class, 'artikel'])->name('artikel');
 Route::get('/artikel/detail/{slug}', [LandingController::class, 'artikelDetail'])->name('artikel.detail');
 Route::get('/detail', [LandingController::class, 'detail'])->name('detail');
 Route::get('/galeri', [LandingController::class, 'galeri'])->name('galeri');
+Route::get('/galeri/foto', [LandingController::class, 'FotoGaleri'])->name('galeri.foto');
+
 //END INFORMASI PUBLIK
 
 //PUBLIKASI
