@@ -9,12 +9,12 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{ route('program_layanan.update', ['id' => encrypt($data->id)]) }}" method="post" name="form-update" id="form-update"
-                        enctype="multipart/form-data">
+                    <form action="{{ route('program_layanan.update', ['id' => encrypt($data->id)]) }}" method="post"
+                        name="form-update" id="form-update" enctype="multipart/form-data">
                         <div class="form-group ">
                             <label class="col-form-label">Pilih Kategori</label>
                             <div class="">
-                                <select class="form-control" id="id_kategori" name="id_kategori">
+                                <select class="form-control" style="width: 100%" id="id_kategori" name="id_kategori">
                                     <option>Pilih kategori</option>
                                     @foreach ($list_kategori as $kategori)
                                         <option value="{{ $kategori->id }}"
@@ -48,7 +48,8 @@
                         </div>
                         <div class="form-group">
                             <label for="publish_date">Tanggal Publish</label>
-                            <input type="date" name="publish_date" id="publish_date" class="form-control" value="{{ $data->publish_date }}">
+                            <input type="date" name="publish_date" id="publish_date" class="form-control"
+                                value="{{ $data->publish_date }}">
                             <div id="error-publish-date"></div>
                         </div>
                         <div class="form-group">
@@ -91,7 +92,7 @@
             };
             reader.readAsDataURL(file);
         });
-         $('#body').summernote({
+        $('#body').summernote({
             height: 350,
         });
     </script>

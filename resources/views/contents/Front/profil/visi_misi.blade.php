@@ -27,38 +27,17 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-9 col-12 mb-md-0 mb-4">
-                        <div class="row">
-                            <div class="col-xl-3 col-lg-5 mb-4">
-                                <img src="{{ asset('assets-front/img/quotes.jpeg') }}" class="img-fluid rounded">
+                        @foreach ($data_visi as $profil)
+                            <div class="row">
+                                <div class="col-xl-9 col-lg-7">
+                                    <p class="mb-4">
+                                        {!! $profil->konten !!}
+                                    </p>
+
+                                </div>
                             </div>
-                            <div class="col-xl-9 col-lg-7">
-                                <p class="mb-4">
-                                    Kementerian Pendidikan dan Kebudayaan mendukung Visi dan Misi Presiden untuk
-                                    mewujudkan Indonesia Maju yang berdaulat, mandiri, dan berkepribadian melalui
-                                    terciptanya Pelajar Pancasila yang bernalar kritis, kreatif, mandiri, beriman,
-                                    bertakwa kepada Tuhan YME, dan berakhlak mulia, bergotong royong, dan
-                                    berkebinekaan global.
-                                </p>
-                                <p class="mb-4">
-                                    Untuk mendukung pencapaian Visi Presiden, Kemendikbud sesuai tugas dan
-                                    kewenangannya, melaksanakan Misi Presiden yang dikenal sebagai Nawacita kedua,
-                                    yaitu menjabarkan misi nomor (1) Peningkatan kualitas manusia Indonesia; nomor
-                                    (5) Kemajuan budaya yang mencerminkan kepribadian bangsa; dan nomor (8)
-                                    Pengelolaan pemerintahan yang bersih, efektif, dan terpercaya. Untuk itu, misi
-                                    Kemendikbud dalam melaksanakan Nawacita kedua tersebut adalah sebagai berikut:
-                                </p>
-                            </div>
-                        </div>
-                        <ul class="iconlist mb-0 indent">
-                            <li><i class="icon-line-chevrons-right"></i> Mewujudkan pendidikan yang relevan dan
-                                berkualitas tinggi, merata dan berkelanjutan, didukung oleh infrastruktur dan
-                                teknologi.</li>
-                            <li><i class="icon-line-chevrons-right"></i> Mewujudkan pelestarian dan pemajuan
-                                kebudayaan serta pengembangan bahasa dan sastra.</li>
-                            <li><i class="icon-line-chevrons-right"></i> Mengoptimalkan peran serta seluruh pemangku
-                                kepentingan untuk mendukung transformasi dan reformasi pengelolaan pendidikan dan
-                                kebudayaan.</li>
-                        </ul>
+                        @endforeach
+                      
                     </div>
                     <div class="col-md-3 col-12">
                         <div class="heading-block md mb-3">

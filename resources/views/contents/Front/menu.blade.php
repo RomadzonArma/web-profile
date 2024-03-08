@@ -11,13 +11,13 @@
                     <a class="menu-link" href="{{ route('visi-misi') }}">VISI & MISI</a>
                 </li>
                 <li class="menu-item">
-                    <a class="menu-link" href="#">STRUKTUR ORGANISASI</a>
+                    <a class="menu-link" href="{{ route('struktur-organisasi') }}">STRUKTUR ORGANISASI</a>
                 </li>
                 <li class="menu-item">
-                    <a class="menu-link" href="#">TUGAS & FUNGSI</a>
+                    <a class="menu-link" href="{{ route('tugas-fungsi') }}">TUGAS & FUNGSI</a>
                 </li>
                 <li class="menu-item">
-                    <a class="menu-link" href="#">KONTAK KAMI</a>
+                    <a class="menu-link" href="{{ route('kontak-kami') }}">KONTAK KAMI</a>
                 </li>
             </ul>
         </li>

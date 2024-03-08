@@ -9,11 +9,12 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{ route('list_agenda.update', ['id' => encrypt($data->id)]) }}" method="post" name="form-update" id="form-update">
+                    <form action="{{ route('list_agenda.update', ['id' => encrypt($data->id)]) }}" method="post"
+                        name="form-update" id="form-update">
                         <div class="form-group ">
                             <label class="col-form-label">Pilih Kategori</label>
                             <div class="">
-                                <select class="form-control" id="id_kategori" name="id_kategori">
+                                <select class="form-control" style="width: 100%" id="id_kategori" name="id_kategori">
                                     <option>Pilih kategori</option>
                                     @foreach ($list_kategori as $kategori)
                                         <option value="{{ $kategori->id }}"
@@ -64,7 +65,8 @@
                             <label for="gambar">Gambar</label><br>
                             <img src="{{ asset('agenda/' . $data->gambar) }}" style="width:15%;"><br>
                             <div class="custom-file mb-3" style="margin-top: 1%">
-                                <input type="file" class="custom-file-input" id="gambar" name="gambar" accept=".jpg,.jpeg,.png">
+                                <input type="file" class="custom-file-input" id="gambar" name="gambar"
+                                    accept=".jpg,.jpeg,.png">
                                 <label class="custom-file-label" for="customFile">Choose file</label>
                             </div>
                             <div id="imagePreview" class="mt-3"></div>

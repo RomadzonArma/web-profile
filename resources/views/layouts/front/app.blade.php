@@ -54,110 +54,31 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
                 <div class="modal-body py-0 my-3">
+                    @foreach ($podcast as $podcast)
                     <div class="entry mb-5">
                         <div class="grid-inner row no-gutters p-0">
                             <div class="entry-image col-3 mb-0">
                                 <a href="#">
-                                    <img src="{{ asset('assets-front/img/thumb-podcast.png') }}"
+                                    <img src="{{ asset('podcast/'.$podcast->gambar) }}"
                                         alt="thumbnail_podcast">
                                 </a>
                             </div>
                             <div class="col-9 pl-3">
                                 <div class="entry-title title-xs text-clamp-2">
-                                    <h6 class="mb-1"><a href="detail.html">Pengelolaan Kinerja di PMM Memberikan
-                                            Banyak Kemudahan untuk Guru dan Kepala Sekolah</a></h6>
+                                    <h6 class="mb-1"><a href="detail.html">{{$podcast->judul}}</a></h6>
                                 </div>
                                 <div class="entry-meta mb-2 mt-0">
                                     <ul>
                                         <li><a href="#"><i class="icon-users"></i> 11rb penonton</a>
-                                        <li><a href="#"><i class="icon-calendar3"></i> 1 tahun yang lalu</a>
+                                        <li><a href="#"><i class="icon-calendar3"></i>{{$podcast->date}}</a>
                                         </li>
                                     </ul>
                                 </div>
-                                <p class="text-muted fs-6 text-clamp-1 mb-0">Selamat datang di Channel Youtube resmi
-                                    Direktorat Kepala Sekolah Pengawas Sekolah dan Tenaga Kependidikan, Dirjen GTK,
-                                    Kemendikbudristek.</p>
+                                <p class="text-muted fs-6 text-clamp-1 mb-0">{{$podcast->deskripsi}}</p>
                             </div>
                         </div>
                     </div>
-                    <div class="entry mb-5">
-                        <div class="grid-inner row no-gutters p-0">
-                            <div class="entry-image col-3 mb-0">
-                                <a href="#">
-                                    <img src="{{ asset('assets-front/img/thumb-podcast.png') }}"
-                                        alt="thumbnail_podcast">
-                                </a>
-                            </div>
-                            <div class="col-9 pl-3">
-                                <div class="entry-title title-xs text-clamp-2">
-                                    <h6 class="mb-1"><a href="detail.html">Pengelolaan Kinerja di PMM Memberikan
-                                            Banyak Kemudahan untuk Guru dan Kepala Sekolah</a></h6>
-                                </div>
-                                <div class="entry-meta mb-2 mt-0">
-                                    <ul>
-                                        <li><a href="#"><i class="icon-users"></i> 11rb penonton</a>
-                                        <li><a href="#"><i class="icon-calendar3"></i> 1 tahun yang lalu</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <p class="text-muted fs-6 text-clamp-1 mb-0">Selamat datang di Channel Youtube resmi
-                                    Direktorat Kepala Sekolah Pengawas Sekolah dan Tenaga Kependidikan, Dirjen GTK,
-                                    Kemendikbudristek.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="entry mb-5">
-                        <div class="grid-inner row no-gutters p-0">
-                            <div class="entry-image col-3 mb-0">
-                                <a href="#">
-                                    <img src="{{ asset('assets-front/img/thumb-podcast.png') }}"
-                                        alt="thumbnail_podcast">
-                                </a>
-                            </div>
-                            <div class="col-9 pl-3">
-                                <div class="entry-title title-xs text-clamp-2">
-                                    <h6 class="mb-1"><a href="detail.html">Pengelolaan Kinerja di PMM Memberikan
-                                            Banyak Kemudahan untuk Guru dan Kepala Sekolah</a></h6>
-                                </div>
-                                <div class="entry-meta mb-2 mt-0">
-                                    <ul>
-                                        <li><a href="#"><i class="icon-users"></i> 11rb penonton</a>
-                                        <li><a href="#"><i class="icon-calendar3"></i> 1 tahun yang lalu</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <p class="text-muted fs-6 text-clamp-1 mb-0">Selamat datang di Channel Youtube resmi
-                                    Direktorat Kepala Sekolah Pengawas Sekolah dan Tenaga Kependidikan, Dirjen GTK,
-                                    Kemendikbudristek.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="entry mb-0">
-                        <div class="grid-inner row no-gutters p-0">
-                            <div class="entry-image col-3 mb-0">
-                                <a href="#">
-                                    <img src="{{ asset('assets-front/img/thumb-podcast.png') }}"
-                                        alt="thumbnail_podcast">
-                                </a>
-                            </div>
-                            <div class="col-9 pl-3">
-                                <div class="entry-title title-xs text-clamp-2">
-                                    <h6 class="mb-1"><a href="detail.html">Pengelolaan Kinerja di PMM Memberikan
-                                            Banyak Kemudahan untuk Guru dan Kepala Sekolah</a></h6>
-                                </div>
-                                <div class="entry-meta mb-2 mt-0">
-                                    <ul>
-                                        <li><a href="#"><i class="icon-users"></i> 11rb penonton</a>
-                                        <li><a href="#"><i class="icon-calendar3"></i> 1 tahun yang lalu</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <p class="text-muted fs-6 text-clamp-1 mb-0">Selamat datang di Channel Youtube resmi
-                                    Direktorat Kepala Sekolah Pengawas Sekolah dan Tenaga Kependidikan, Dirjen GTK,
-                                    Kemendikbudristek.</p>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
