@@ -83,12 +83,16 @@ class RouteServiceProvider extends ServiceProvider
 
             $this->mapPanduanRoutes();
 
+            $this->mapListProgramFokus();
+
             $this->mapRegulasiRoutes();
 
             $this->mapArtikelRoutes();
 
             $this->mapGaleriRoutes();
+            $this->mapPodcastRoutes();
 
+            $this->mapTautanRoutes();
         });
     }
 
@@ -239,12 +243,27 @@ class RouteServiceProvider extends ServiceProvider
         ->group(base_path('routes/panel/panduan.php'));
     }
 
+    protected function mapPodcastRoutes()
+    {
+        Route::prefix('podcast')
+        ->namespace($this->namespace)
+        ->group(base_path('routes/panel/podcast.php'));
+    }
+
     protected function mapRegulasiRoutes()
     {
         Route::prefix('regulasi')
         ->namespace($this->namespace)
         ->group(base_path('routes/panel/regulasi.php'));
     }
+
+    protected function mapListProgramFokus()
+    {
+        Route::prefix('program_fokus')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/panel/program_fokus.php'));
+    }
+    
     protected function mapArtikelRoutes()
     {
         Route::prefix('manajemen_artikel')
@@ -256,5 +275,12 @@ class RouteServiceProvider extends ServiceProvider
         Route::prefix('manajemen_galeri')
         ->namespace($this->namespace)
         ->group(base_path('routes/panel/galeri.php'));
+    }
+
+    protected function mapTautanRoutes()
+    {
+        Route::prefix('tautan')
+        ->namespace($this->namespace)
+        ->group(base_path('routes/panel/tautan.php'));
     }
 }

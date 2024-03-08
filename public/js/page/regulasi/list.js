@@ -310,3 +310,12 @@ $(() => {
         ],
     });
 });
+
+$(document).ready(function() {
+    $('#id_kategori').select2();
+});
+
+$(document).ready(function() {
+    $('#update-id_kategori').select2();
+});
+

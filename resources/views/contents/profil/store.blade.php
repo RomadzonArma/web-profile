@@ -10,21 +10,11 @@
             <div class="card">
                 <div class="card-body">
                     <form action="{{ route('profil.do_store') }}" method="post" name="form-store" id="form-store">
-                        {{-- <div class="form-group ">
-                            <label class="col-form-label">Pilih Kanal</label>
-                            <div class="">
-                                <select class="form-control" id="id_kanal" name="id_kanal">
-                                    <option>Pilih kanal</option>
-                                    @foreach ($list_kanal as $data)
-                                        <option value="{{ $data->id }}">{{ $data->nama_kanal }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div> --}}
+
                         <div class="form-group ">
                             <label class="col-form-label">Pilih Kategori</label>
                             <div class="">
-                                <select class="form-control" id="id_kategori" name="id_kategori">
+                                <select class="form-control" style="width: 100%" id="id_kategori" name="id_kategori">
                                     <option value="" selected disabled>Pilih kategori</option>
                                     @foreach ($list_kategori as $data)
                                         <option value="{{ $data->id }}">{{ $data->nama_kategori }}</option>
