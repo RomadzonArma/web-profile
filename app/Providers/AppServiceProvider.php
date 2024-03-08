@@ -2,12 +2,13 @@
 
 namespace App\Providers;
 
-use App\Model\Pengunjung;
 use App\Model\Sosmed;
-use Illuminate\Support\Facades\View;
-use Illuminate\Support\ServiceProvider;
+use App\Model\Podcast;
+use App\Model\Pengunjung;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -29,6 +30,10 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('layouts.front.footer', function ($view) {
             $todayCount = Pengunjung::whereDate('created_at', today())->count();
             $view->with('pengunjungHariIni', $todayCount);
+        });
+        view()->composer('layouts.front.app', function ($view) {
+            $podcast = Podcast::where('status_publish', '1')->orderByDesc('created_at')->get();
+            $view->with('podcast', $podcast);
         });
     }
 
