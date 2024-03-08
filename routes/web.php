@@ -18,6 +18,7 @@ Route::get('/visi-misi', [LandingController::class, 'visi_misi'])->name('visi-mi
 Route::get('/struktur-organisasi', [LandingController::class, 'struktur_organisasi'])->name('struktur-organisasi');
 Route::get('/tugas-fungsi', [LandingController::class, 'tugas_fungsi'])->name('tugas-fungsi');
 Route::get('/kontak-kami', [LandingController::class, 'kontak_kami'])->name('kontak-kami');
+
 //INFORMASI PUBLIK
 Route::get('/berita', [LandingController::class, 'berita'])->name('berita');
 Route::get('/berita/detail/{id}', [LandingController::class, 'beritaDetail'])->name('berita.detail');

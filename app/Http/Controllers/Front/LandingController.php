@@ -16,6 +16,7 @@ use App\Http\Controllers\Controller;
 use App\Model\Artikel;
 use App\Model\ListKanal;
 use App\Model\ListKategori;
+use App\Model\Podcast;
 use App\Model\Profil;
 use App\Model\ProgramFokus;
 use App\Model\ProgramLayanan;
@@ -27,6 +28,7 @@ class LandingController extends Controller
 
     public function index()
     {
+      
         $swiper = Swiper::where('is_active', '1')
             ->orderByDesc('created_at')
             ->take(4)
@@ -63,6 +65,7 @@ class LandingController extends Controller
         return view('contents.Front.index', [
             'title' => 'Beranda',
             'swiper' => $swiper,
+            'podcast' => $podcast,
             'program_fokus' => $program_fokus,
             'list_kanal_1' => $list_kanal_1,
             'list_kanal_2' => $list_kanal_2,
