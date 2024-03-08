@@ -27,17 +27,17 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-9 col-12 mb-md-0 mb-4">
-                        @foreach ($data_visi as $profil)
+                        @foreach ($data_kontak as $data_kontak)
                             <div class="row">
                                 <div class="col-xl-9 col-lg-7">
                                     <p class="mb-4">
-                                        {!! $profil->konten !!}
+                                        {!! $data_kontak->konten !!}
                                     </p>
 
                                 </div>
                             </div>
                         @endforeach
-                      
+
                     </div>
                     <div class="col-md-3 col-12">
                         <div class="heading-block md mb-3">
