@@ -2,9 +2,10 @@
 
 namespace App\Providers;
 
-use App\Model\ListBerita;
 use App\Model\Sosmed;
+use App\Model\Tautan;
 use App\Model\Podcast;
+use App\Model\ListBerita;
 use App\Model\Pengunjung;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
