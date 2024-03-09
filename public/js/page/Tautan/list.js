@@ -296,3 +296,12 @@ $('body').on('click', '.btn-update', function (e) {
         }
     })
 })
+
+
+$(document).ready(function() {
+    $('#id_kategori').select2();
+});
+
+$(document).ready(function() {
+    $('#id_kategori_edit').select2();
+});

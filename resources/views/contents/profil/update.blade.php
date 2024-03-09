@@ -12,24 +12,11 @@
                     <form action="{{ route('profil.do_update', ['id' => encrypt($data->id)]) }}" method="post"
                         name="form-update" id="form-update" enctype="multipart/form-data">
                         @csrf
-                        {{-- <div class="form-group">
-                            <label class="col-form-label">Pilih Kanal</label>
-                            <div class="">
-                                <select class="form-control" id="id_kanal" name="id_kanal">
-                                    <option value="" disabled selected>Pilih kanal</option>
-                                    @foreach ($list_kanal as $kanal)
-                                        <option value="{{ $kanal->id }}"
-                                            {{ $kanal->id == $data->id_kanal ? 'selected' : '' }}>
-                                            {{ $kanal->nama_kanal }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div> --}}
+
                         <div class="form-group">
                             <label class="col-form-label">Pilih Kategori</label>
                             <div class="">
-                                <select class="form-control" id="id_kategori" name="id_kategori">
+                                <select class="form-control" style="width: 100%" id="id_kategori" name="id_kategori">
                                     <option value="" disabled selected>Pilih kategori</option>
                                     @foreach ($list_kategori as $kategori)
                                         <option value="{{ $kategori->id }}"
@@ -67,6 +54,5 @@
 @endsection
 
 @push('scripts')
-
     <script src="{{ asset('js/page/profil/update.js?q=' . Str::random(5)) }}"></script>
 @endpush

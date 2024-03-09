@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Front;
 
 use App\Model\Agenda;
+use App\Model\Galeri;
 use App\Model\Swiper;
+use App\Model\Artikel;
 use App\Model\Panduan;
 use App\Model\Unduhan;
 use App\Model\Regulasi;
@@ -11,9 +13,9 @@ use App\Model\ListBerita;
 use App\Model\Pengumuman;
 use App\Model\Pengunjung;
 use Illuminate\Http\Request;
+use App\Model\ProgramLayanan;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Model\Artikel;
 use App\Model\ListKanal;
 use App\Model\ListKategori;
 use App\Model\Podcast;
@@ -214,10 +216,24 @@ class LandingController extends Controller
 
     public function galeri()
     {
+        $video = Galeri::where('is_video','=','1')->get();
+        $foto = Galeri::where('is_image','=','1')->with('refGaleri')->get();
+        // $video = Galeri::all();
         return view('contents.Front.informasi_publik.galeri', [
             'title' => 'Galeri',
+            'video' => $video,
+            'foto' => $foto,
         ]);
     }
+    // public function FotoGaleri()
+    // {
+    //     $foto = Galeri::where('is_image','=','1')->get();
+    //     // dd($foto);
+    //     return view('contents.Front.informasi_publik.galeri-foto', [
+    //         'title' => 'Galeri Foto',
+    //         'foto' => $foto,
+    //     ]);
+    // }
     // START MENU PUBLIKASI
     public function agenda()
     {
@@ -354,5 +370,9 @@ class LandingController extends Controller
             'title' => 'Detail Pogram Pendidikan Guru Penggerak ',
             'guru' => $guru,
         ]);
+    }
+    public function GaleriFoto()
+    {
+
     }
 }
