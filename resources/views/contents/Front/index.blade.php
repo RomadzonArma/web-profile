@@ -35,7 +35,7 @@
                         @include('contents.Front.swiper_program')
 
                         {{-- PETA --}}
-                        @include('contents.Front.peta')
+                        {{-- @include('contents.Front.peta') --}}
 
                     </div>
                     <div class="col-lg-4 col-md-5 col-12 mb-lg-0 mb-4">
