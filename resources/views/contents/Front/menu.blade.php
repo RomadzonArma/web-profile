@@ -28,7 +28,7 @@
                     <a class="menu-link" href="{{ route('berita') }}">BERITA</a>
                 </li>
                 <li class="menu-item">
-                    <a class="menu-link" href="{{route('artikel')}}">ARTIKEL</a>
+                    <a class="menu-link" href="{{ route('artikel') }}">ARTIKEL</a>
                 </li>
                 <li class="menu-item">
                     <a class="menu-link" href="{{ route('galeri') }}">GALERI</a>
@@ -89,12 +89,14 @@
                                             PENGGERAK</a>
                                     </li>
                                     <li class="menu-item">
-                                        <a class="menu-link" href="https://kurikulum.kemdikbud.go.id/kurikulum-merdeka/" target="_blank">IMPLEMENTASI
+                                        <a class="menu-link" href="https://kurikulum.kemdikbud.go.id/kurikulum-merdeka/"
+                                            target="_blank">IMPLEMENTASI
                                             KURIKULUM
                                             MERDEKA</a>
                                     </li>
                                     <li class="menu-item">
-                                        <a class="menu-link" href="https://guru.kemdikbud.go.id/" target="_blank">PLATFORM MERDEKA
+                                        <a class="menu-link" href="https://guru.kemdikbud.go.id/"
+                                            target="_blank">PLATFORM MERDEKA
                                             MENGAJAR</a>
                                     </li>
                                 </ul>
@@ -104,43 +106,12 @@
                             <li class="menu-item mega-menu-title sub-menu">
                                 <a class="menu-link" href="#">TAUTAN</a>
                                 <ul class="sub-menu-container scrolled">
-                                    <li class="menu-item">
-                                        <a class="menu-link" href="https://www.kemdikbud.go.id/" target="_blank">KEMDIKBUD</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a class="menu-link" href="https://gtk.kemdikbud.go.id/" target="_blank">DITJEN GTK</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a class="menu-link" href="https://sekolah.penggerak.kemdikbud.go.id/gurupenggerak/" target="_blank">PROGRAM PENDIDIKAN
-                                            GURU
-                                            PENGGERAK</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a class="menu-link" href="https://psp-web.pauddikdasmen.kemdikbud.go.id/#/home" target="_blank">PROGRAM SEKOLAH
-                                            PENGGERAK</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a class="menu-link" href="https://sekolah.penggerak.kemdikbud.go.id/organisasipenggerak/" target="_blank">ORGANISASI
-                                            PENGGERAK</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a class="menu-link" href="https://gurupauddikmas.kemdikbud.go.id/" target="_blank">DIT. GURU PAUD
-                                            DIKMAS</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a class="menu-link" href="#">DIT. GURU
-                                            DIKDAS</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a class="menu-link" href="#">DIT. GURU
-                                            DIKMENDIKSUS</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a class="menu-link" href="https://ppg.kemdikbud.go.id/" target="_blank">DIT. PPG</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a class="menu-link" href="https://posko-pengaduan.itjen.kemdikbud.go.id/" target="_blank">PENGADUAN</a>
-                                    </li>
+                                    @foreach ($tautan as $tautan)
+                                        <li class="menu-item">
+                                            <a class="menu-link" href="{{ $tautan->link_tautan }}"
+                                                target="_blank">{{ $tautan->list_kategori->nama_kategori }}</a>
+                                        </li>
+                                    @endforeach
                                 </ul>
                             </li>
                         </ul>
