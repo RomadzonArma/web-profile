@@ -22,26 +22,17 @@
 @endsection
 
 @section('content')
-    <section class="px-md-5">
-        <div class="content-wrap">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-9 col-12 mb-md-0 mb-4">
-                        @foreach ($data_visi as $profil)
-                            <div class="row">
-                                <div class="col-xl-9 col-lg-7">
-                                    <p class="mb-4">
-                                        {!! $profil->konten !!}
-                                    </p>
+    <div class="col-md-9 col-12 mb-md-0 mb-4">
+        @foreach ($data_visi as $profil)
+            <div class="row">
+                <div class="col-xl-9 col-lg-7">
+                    <p class="mb-4">
+                        {!! $profil->konten !!}
+                    </p>
 
-                                </div>
-                            </div>
-                        @endforeach
-                      
-                    </div>
-                   
                 </div>
             </div>
-        </div>
-    </section>
+        @endforeach
+
+    </div>
 @endsection

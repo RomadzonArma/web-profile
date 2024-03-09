@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Model\ListBerita;
 use App\Model\Sosmed;
 use App\Model\Podcast;
 use App\Model\Pengunjung;
@@ -34,6 +35,10 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('layouts.front.app', function ($view) {
             $podcast = Podcast::where('status_publish', '1')->orderByDesc('created_at')->get();
             $view->with('podcast', $podcast);
+        });
+        view()->composer('layouts.front.app', function ($view) {
+            $berita = ListBerita::where('status_publish', '1')->orderByDesc('created_at')->get();
+            $view->with('berita', $berita);
         });
     }
 

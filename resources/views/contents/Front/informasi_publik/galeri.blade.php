@@ -22,9 +22,6 @@
 @endsection
 
 @section('content')
-    <section class="px-md-5">
-        <div class="content-wrap">
-            <div class="container-fluid">
                 <div class="col-md-9 col-12">
                     <div class="tabs clearfix" id="tab-3">
 
@@ -33,18 +30,30 @@
                             <li><a href="#foto">Foto</a></li>
                         </ul>
                         <div class="tab-container clearfix" id="video">
-                            @php
-                                $counter = 0;
-                            @endphp
+
                             <div class="row">
                                 @foreach ($video as $item)
                                     <div class="entry col-md-4 col-sm-6 col-12">
                                         <div class="grid-inner hover-custom">
                                             <div class="entry-image">
-                                                <a href="{{ $item->link }}" target="_blank" data-lightbox="iframe">
-                                                    <iframe src="https://www.youtube.com/embed/{{ $item->video_id }}"
-                                                        data-provider="youtube" frameborder="0"></iframe>
+                                                @if (!empty($item->link))
+                                                @php
+                                                    // Extract video ID from YouTube link
+                                                    preg_match(
+                                                        '/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/|youtube\.com\/live\/)([^"&?\/\s]{11})/',
+                                                        $item->link,
+                                                        $matches,
+                                                    );
+                                                    $videoId = $matches[1] ?? null;
+                                                    $thumbnailUrl = "https://img.youtube.com/vi/{$videoId}/hqdefault.jpg";
+                                                @endphp
+                                                   @if ($videoId)
+                                                <a href="https://www.youtube.com/watch?v={{ $videoId }}" target="_blank" data-lightbox="iframe">
+                                                    <img src="{{ $thumbnailUrl }}" class="img-fluid" width="380" alt="Video"
+                                                    draggable="false">
                                                 </a>
+                                                @endif
+                                                @endif
                                             </div>
                                             <div class="entry-title">
                                                 <h2><a href="{{ $item->link }}">{{ $item->judul }}</a>
@@ -73,16 +82,22 @@
                                             <div class="entry-image">
                                                 <div class="fslider" data-arrows="false" data-lightbox="gallery">
                                                     <div class="flexslider">
+                                                        @foreach ($item->refGaleri as $item)
                                                         <div class="slider-wrap">
                                                             <div class="slide">
-                                                                <a href="{{ asset('file-galeri/gambar/' . $item->refGaleri[0]->image) }}"
+                                                                <a href="{{ asset('file-galeri/gambar/' . $item->image) }}"
+                                                                    data-lightbox="gallery-item">
+                                                                    <img src="{{ asset('file-galeri/gambar/' . $item->image) }}"
+                                                                        alt="Standard Post with Gallery">
+                                                                </a>
+                                                                {{-- <a href="{{ asset('file-galeri/gambar/' . $item->refGaleri[0]->image) }}"
                                                                     data-lightbox="gallery-item">
                                                                     <img src="{{ asset('file-galeri/gambar/' . $item->refGaleri[0]->image) }}"
                                                                         alt="Standard Post with Gallery">
-                                                                </a>
+                                                                </a> --}}
                                                             </div>
-
                                                         </div>
+                                                        @endforeach
                                                     </div>
                                                 </div>
                                             </div>
@@ -105,178 +120,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 col-12">
-                    <div class="heading-block md mb-3">
-                        <h4 class="mb-1">MEDIA SOSIAL</h4>
-                    </div>
-                    <div class="fslider fslider-banner testimonial-full mb-4" data-animation="slide" data-arrows="false">
-                        <div class="flexslider">
-                            <div class="slider-wrap">
-                                <div class="slide" style="max-height: 100%;">
-                                    <div class="overlaying-img">
-                                        <a href="#"><img class="img-fluid"
-                                                src="{{ asset('assets-front/img/podcast.jpeg') }}" style="width: 100%;"
-                                                alt="Image 1"></a>
-                                        <div class="bg-overlay">
-                                            <div class="overlaying-desc">
-                                                <h4 class="text-white mb-0 text-center">Podcast</h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="slide" style="max-height: 100%;">
-                                    <div class="overlaying-img">
-                                        <a href="#"><img class="img-fluid"
-                                                src="{{ asset('assets-front/img/podcast.jpeg') }}" style="width: 100%;"
-                                                alt="Image 1"></a>
-                                        <div class="bg-overlay">
-                                            <div class="overlaying-desc">
-                                                <h4 class="text-white mb-0 text-center">Podcast</h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="slide" style="max-height: 100%;">
-                                    <div class="overlaying-img">
-                                        <a href="#"><img class="img-fluid"
-                                                src="{{ asset('assets-front/img/podcast.jpeg') }}" style="width: 100%;"
-                                                alt="Image 1"></a>
-                                        <div class="bg-overlay">
-                                            <div class="overlaying-desc">
-                                                <h4 class="text-white mb-0 text-center">Podcast</h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="slide" style="max-height: 100%;">
-                                    <div class="overlaying-img">
-                                        <a href="#"><img class="img-fluid"
-                                                src="{{ asset('assets-front/img/podcast.jpeg') }}" style="width: 100%;"
-                                                alt="Image 1"></a>
-                                        <div class="bg-overlay">
-                                            <div class="overlaying-desc">
-                                                <h4 class="text-white mb-0 text-center">Podcast</h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="widget clearfix">
-                        <div class="heading-block md mb-3">
-                            <h4 class="mb-1">INFORMASI TERBARU</h4>
-                        </div>
-                        <div class="entry mb-4">
-                            <div class="grid-inner row no-gutters p-0">
-                                <div class="entry-image col-xl-4 mb-xl-0">
-                                    <a href="#">
-                                        <img src="{{ asset('assets-front/img/BERITA1.jpg') }}" alt="thumbnail_berita">
-                                    </a>
-                                </div>
-                                <div class="col-xl-8 pl-xl-3">
-                                    <div class="entry-title title-xs text-clamp-2">
-                                        <h5 class="mb-1"><a href="#">Pengelolaan Kinerja di PMM Memberikan
-                                                Banyak Kemudahan untuk Guru dan Kepala Sekolah</a></h5>
-                                    </div>
-                                    <div class="entry-meta mb-2 mt-0">
-                                        <ul>
-                                            <li><a href="#"><i class="icon-calendar3"></i> 2 Februari 2024</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="entry mb-4">
-                            <div class="grid-inner row no-gutters p-0">
-                                <div class="entry-image col-xl-4 mb-xl-0">
-                                    <a href="#">
-                                        <img src="{{ asset('assets-front/img/BERITA1.jpg') }}" alt="thumbnail_berita">
-                                    </a>
-                                </div>
-                                <div class="col-xl-8 pl-xl-3">
-                                    <div class="entry-title title-xs text-clamp-2">
-                                        <h5 class="mb-1"><a href="#">Pengelolaan Kinerja di PMM Memberikan
-                                                Banyak Kemudahan untuk Guru dan Kepala Sekolah</a></h5>
-                                    </div>
-                                    <div class="entry-meta mb-2 mt-0">
-                                        <ul>
-                                            <li><a href="#"><i class="icon-calendar3"></i> 2 Februari 2024</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="entry mb-4">
-                            <div class="grid-inner row no-gutters p-0">
-                                <div class="entry-image col-xl-4 mb-xl-0">
-                                    <a href="#">
-                                        <img src="{{ asset('assets-front/img/BERITA1.jpg') }}" alt="thumbnail_berita">
-                                    </a>
-                                </div>
-                                <div class="col-xl-8 pl-xl-3">
-                                    <div class="entry-title title-xs text-clamp-2">
-                                        <h5 class="mb-1"><a href="#">Pengelolaan Kinerja di PMM Memberikan
-                                                Banyak Kemudahan untuk Guru dan Kepala Sekolah</a></h5>
-                                    </div>
-                                    <div class="entry-meta mb-2 mt-0">
-                                        <ul>
-                                            <li><a href="#"><i class="icon-calendar3"></i> 2 Februari 2024</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="entry mb-4">
-                            <div class="grid-inner row no-gutters p-0">
-                                <div class="entry-image col-xl-4 mb-xl-0">
-                                    <a href="#">
-                                        <img src="{{ asset('assets-front/img/BERITA1.jpg') }}" alt="thumbnail_berita">
-                                    </a>
-                                </div>
-                                <div class="col-xl-8 pl-xl-3">
-                                    <div class="entry-title title-xs text-clamp-2">
-                                        <h5 class="mb-1"><a href="#">Pengelolaan Kinerja di PMM Memberikan
-                                                Banyak Kemudahan untuk Guru dan Kepala Sekolah</a></h5>
-                                    </div>
-                                    <div class="entry-meta mb-2 mt-0">
-                                        <ul>
-                                            <li><a href="#"><i class="icon-calendar3"></i> 2 Februari 2024</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="entry mb-4">
-                            <div class="grid-inner row no-gutters p-0">
-                                <div class="entry-image col-xl-4 mb-xl-0">
-                                    <a href="#">
-                                        <img src="{{ asset('assets-front/img/BERITA1.jpg') }}" alt="thumbnail_berita">
-                                    </a>
-                                </div>
-                                <div class="col-xl-8 pl-xl-3">
-                                    <div class="entry-title title-xs text-clamp-2">
-                                        <h5 class="mb-1"><a href="#">Pengelolaan Kinerja di PMM Memberikan
-                                                Banyak Kemudahan untuk Guru dan Kepala Sekolah</a></h5>
-                                    </div>
-                                    <div class="entry-meta mb-2 mt-0">
-                                        <ul>
-                                            <li><a href="#"><i class="icon-calendar3"></i> 2 Februari 2024</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 @endsection
 @push('script')
     {{-- <script>
