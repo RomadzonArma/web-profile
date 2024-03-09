@@ -23,7 +23,7 @@
 
 @section('content')
     <div class="col-md-9 col-12">
-        <form class="row mb-4">
+        <form class="row mb-4 mt-4">
             <div class="form-group pr-sm-2 col-lg-2 col-sm-4 mb-sm-0 mb-3">
                 <select class="form-control" id="tahun">
                     <option>2021</option>
