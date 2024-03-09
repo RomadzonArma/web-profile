@@ -36,6 +36,30 @@ class ListKategoriController extends Controller
             ->make();
     }
 
+    public function switchStatus(Request $request)
+    {
+        try {
+            $encrypted_id = $request->id;
+            $decrypted_id = decrypt($encrypted_id);
+            $list_kategori = ListKategori::findOrFail($decrypted_id);
+            // dd($list_kategori);
+
+            $list_kategori->status = $request->value;
+
+            if ($list_kategori->isDirty()) {
+                $list_kategori->save();
+            }
+
+            if ($list_kategori->wasChanged()) {
+                return response()->json(['status' => true], 200);
+            }
+        } catch (\Exception $e) {
+            return response()->json(['status' => false, 'msg' => $e->getMessage()], 400);
+        }
+    }
+
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -57,11 +81,9 @@ class ListKategoriController extends Controller
 
         $validasi = Validator::make($request->all(), [
             'nama_kanal' => 'required',
-            'status' => 'required ',
             'nama_kategori' => 'required ',
         ], [
             'nama_kanal.required' => 'Nama Kanal  wajib diisi',
-            'status.required' => 'Status Kanal wajib diisi',
             'nama_kategori.required' => 'Nama Kategori wajib diisi',
 
 
@@ -72,7 +94,7 @@ class ListKategoriController extends Controller
         } else {
             $data = [
                 'id_kanal' => $request->nama_kanal,
-                'status' => $request->status,
+                'status' => '0',
                 'nama_kategori' => $request->nama_kategori,
             ];
             ListKategori::create($data);
@@ -116,12 +138,11 @@ class ListKategoriController extends Controller
         $id = decrypt($id);
         $validasi = Validator::make($request->all(), [
             'nama_kanal' => 'required',
-            'status' => 'required ',
             'nama_kategori' => 'required ',
         ], [
             'nama_kanal.required' => 'Nama Kanal  wajib diisi',
-            'status.required' => 'Status Kanal wajib diisi',
             'nama_kategori.required' => 'Nama Kategori wajib diisi',
+
 
 
         ]);
@@ -131,11 +152,10 @@ class ListKategoriController extends Controller
         } else {
             $data = [
                 'id_kanal' => $request->nama_kanal,
-                'status' => $request->status,
                 'nama_kategori' => $request->nama_kategori,
             ];
 
-            ListKategori::where('id',$id)->update($data);
+            ListKategori::where('id', $id)->update($data);
             return response()->json(['success' => "Berhasil menyimpan data"]);
         }
     }

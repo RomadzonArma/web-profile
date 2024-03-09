@@ -68,5 +68,10 @@ class ListKategori extends Model
         return $this->hasMany('App\Model\Tautan');
     }
 
+    public function sub_kategori()
+    {
+        return $this->hasMany('App\Model\SubKategori');
+    }
+
 }
 

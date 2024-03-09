@@ -30,16 +30,16 @@ class TautanController extends Controller
         try {
             $encrypted_id = $request->id;
             $decrypted_id = decrypt($encrypted_id);
-            $list_webinar = Tautan::findOrFail($decrypted_id);
-            // dd($list_webinar);
+            $tautan = Tautan::findOrFail($decrypted_id);
+            // dd($tautan);
 
-            $list_webinar->status_publish = $request->value;
+            $tautan->status_publish = $request->value;
 
-            if ($list_webinar->isDirty()) {
-                $list_webinar->save();
+            if ($tautan->isDirty()) {
+                $tautan->save();
             }
 
-            if ($list_webinar->wasChanged()) {
+            if ($tautan->wasChanged()) {
                 return response()->json(['status' => true], 200);
             }
         } catch (\Exception $e) {
