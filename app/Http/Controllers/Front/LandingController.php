@@ -16,13 +16,11 @@ use Illuminate\Http\Request;
 use App\Model\ProgramLayanan;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Model\Artikel;
 use App\Model\ListKanal;
 use App\Model\ListKategori;
 use App\Model\Podcast;
 use App\Model\Profil;
 use App\Model\ProgramFokus;
-use App\Model\ProgramLayanan;
 use Illuminate\Database\Eloquent\Builder;
 
 class LandingController extends Controller
@@ -31,7 +29,7 @@ class LandingController extends Controller
 
     public function index()
     {
-      
+
         $swiper = Swiper::where('is_active', '1')
             ->orderByDesc('created_at')
             ->take(4)
@@ -68,7 +66,7 @@ class LandingController extends Controller
         return view('contents.Front.index', [
             'title' => 'Beranda',
             'swiper' => $swiper,
-            'podcast' => $podcast,
+            // 'podcast' => $podcast,
             'program_fokus' => $program_fokus,
             'list_kanal_1' => $list_kanal_1,
             'list_kanal_2' => $list_kanal_2,
@@ -214,20 +212,23 @@ class LandingController extends Controller
     public function galeri()
     {
         $video = Galeri::where('is_video','=','1')->get();
+        $foto = Galeri::where('is_image','=','1')->with('refGaleri')->get();
         // $video = Galeri::all();
         return view('contents.Front.informasi_publik.galeri', [
-            'title' => 'Berita',
+            'title' => 'Galeri',
             'video' => $video,
-        ]);
-    }
-    public function FotoGaleri()
-    {
-        $foto = Galeri::where('is_image','=','1')->get();
-        return view('contents.Front.informasi_publik.galeri-foto', [
-            'title' => 'Berita',
             'foto' => $foto,
         ]);
     }
+    // public function FotoGaleri()
+    // {
+    //     $foto = Galeri::where('is_image','=','1')->get();
+    //     // dd($foto);
+    //     return view('contents.Front.informasi_publik.galeri-foto', [
+    //         'title' => 'Galeri Foto',
+    //         'foto' => $foto,
+    //     ]);
+    // }
     // START MENU PUBLIKASI
     public function agenda()
     {

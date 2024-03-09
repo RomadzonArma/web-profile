@@ -18,9 +18,9 @@ class Galeri extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function ref_galeri(): HasMany
+    public function refGaleri()
     {
-        return $this->hasMany(RefGaleri::class);
+        return $this->hasMany(RefGaleri::class, 'id_galeri', 'id');
     }
     public function list_kategori()
     {
