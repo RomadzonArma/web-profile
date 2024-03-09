@@ -20,6 +20,7 @@ use App\Model\Podcast;
 use App\Model\Profil;
 use App\Model\ProgramFokus;
 use App\Model\ProgramLayanan;
+use App\Model\Tautan;
 use Illuminate\Database\Eloquent\Builder;
 
 class LandingController extends Controller
@@ -28,13 +29,15 @@ class LandingController extends Controller
 
     public function index()
     {
-      
+
         $swiper = Swiper::where('is_active', '1')
             ->orderByDesc('created_at')
             ->take(4)
             ->get();
 
         $program_fokus = ProgramFokus::where('status', '1')->orderByDesc('created_at')->get();
+
+        $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
 
         $list_kanal_1 = ListKanal::where('status', '1')
             ->where(function ($query) {
@@ -65,7 +68,8 @@ class LandingController extends Controller
         return view('contents.Front.index', [
             'title' => 'Beranda',
             'swiper' => $swiper,
-            'podcast' => $podcast,
+            // 'podcast' => $podcast,
+            'tautan' => $tautan,
             'program_fokus' => $program_fokus,
             'list_kanal_1' => $list_kanal_1,
             'list_kanal_2' => $list_kanal_2,

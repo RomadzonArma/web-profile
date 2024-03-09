@@ -25,6 +25,28 @@ class TautanController extends Controller
         ]);
     }
 
+    public function switchStatus(Request $request)
+    {
+        try {
+            $encrypted_id = $request->id;
+            $decrypted_id = decrypt($encrypted_id);
+            $list_webinar = Tautan::findOrFail($decrypted_id);
+            // dd($list_webinar);
+
+            $list_webinar->status_publish = $request->value;
+
+            if ($list_webinar->isDirty()) {
+                $list_webinar->save();
+            }
+
+            if ($list_webinar->wasChanged()) {
+                return response()->json(['status' => true], 200);
+            }
+        } catch (\Exception $e) {
+            return response()->json(['status' => false, 'msg' => $e->getMessage()], 400);
+        }
+    }
+
     public function data()
     {
         $list = Tautan::with('list_kategori.list_kanal')->get();

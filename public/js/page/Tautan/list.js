@@ -211,12 +211,12 @@ $('#table-data').on('change', '.switch-active', function () {
     var value = $(this).prop('checked') ? 1 : 0;
 
 
-    $.post(BASE_URL + 'list_agenda/switch', {
+    $.post(BASE_URL + 'tautan/switch', {
         id,
         value,
         _method: 'PATCH'
     }).done((res) => {
-        showSuccessToastr('sukses', value == '1' ? 'Agenda berhasil di publish' : 'Agenda berhasil di unpublish');
+        showSuccessToastr('sukses', value == '1' ? 'Tautan berhasil di publish' : 'Tautan berhasil di unpublish');
         table.ajax.reload();
     }).fail((res) => {
         let {
