@@ -23,15 +23,38 @@
 
 @section('content')
     <div class="col-md-9 col-12">
-        <form class="row mb-4 align-items-center">
-            <div class="col-lg-2 mb-lg-0">
-                <label>Pilih Tanggal</label>
+        <form class="row mb-4" method="get" action="{{ url('/regulasis') }}">
+            <div class="form-group pr-sm-2 col-lg-2 col-sm-4 mb-sm-0 mb-3">
+                <select class="form-control" id="tahun" name="tahun">
+                    <option value="2024">2024</option>
+                    <option value="2023">2023</option>
+                    <option value="2022">2022</option>
+                    <option value="2021">2021</option>
+                </select>
+                <i class="icon-caret-down1 icon-select"></i>
             </div>
-            <div class="col-lg-10">
-                <input type="text" class="form-control daterange1 reportrange" value="01/01/2021 - 01/31/2021" />
+            <div class="form-group px-sm-2 col-lg-2 col-sm-4 mb-sm-0 mb-3">
+                <select class="form-control" id="bulan" name="bulan">
+                    <option value="1">Januari</option>
+                    <option value="2">Februari</option>
+                    <option value="3">Maret</option>
+                    <option value="4">April</option>
+                    <option value="5">Mei</option>
+                    <option value="6">Juni</option>
+                    <option value="7">Juli</option>
+                    <option value="8">Agustus</option>
+                    <option value="9">September</option>
+                    <option value="10">Oktober</option>
+                    <option value="11">November</option>
+                    <option value="12">Desember</option>
+                </select>
+                <i class="icon-caret-down1 icon-select"></i>
+            </div>
+            <div class="col-xl-2 pl-sm-2 col-sm-4">
+                <button type="submit" class="button w-100 m-0 rounded">Cari</button>
             </div>
         </form>
-        <div class="result-berita">
+        <div class="result-agenda">
             @foreach ($agenda as $item)
                 <div class="entry mb-5">
                     <div class="grid-inner row no-gutters p-0">
@@ -47,7 +70,7 @@
                             <div class="entry-meta mb-2 mt-0">
                                 <ul>
                                     <li><a href="#"><i
-                                                class="icon-calendar3"></i>{{ $carbon::parse($item->created_at)->format('d M Y') }}</a>
+                                                class="icon-calendar3"></i>{{ $carbon::parse($item->tanggal_agenda)->format('d M Y') }}</a>
                                     </li>
                                     <li><a href="#"><i class="icon-user1"></i> KSPTK</a></li>
                                     <li><a href="#"><i class="icon-line-folder"></i> Agenda</a></li>
@@ -100,16 +123,25 @@
                                 </div>
                             </div> --}}
             <ul class="pagination pagination-circle justify-content-center">
-                <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true">«</span></a></li>
-                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">4</a></li>
-                <li class="page-item"><a class="ml-2" href="#">...</a></li>
-                <li class="page-item"><a class="page-link" href="#">5</a></li>
-                <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span
-                            aria-hidden="true">»</span></a></li>
+                @if ($agenda->onFirstPage())
+                    <li class="page-item disabled"><span class="page-link" aria-hidden="true">«</span></li>
+                @else
+                    <li class="page-item"><a class="page-link" href="{{ $agenda->previousPageUrl() }}"
+                            aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+                @endif
+
+                @foreach (range(1, $agenda->lastPage()) as $page)
+                    <li class="page-item{{ $page == $agenda->currentPage() ? ' active' : '' }}">
+                        <a class="page-link" href="{{ $agenda->url($page) }}">{{ $page }}</a>
+                    </li>
+                @endforeach
+
+                @if ($agenda->hasMorePages())
+                    <li class="page-item"><a class="page-link" href="{{ $agenda->nextPageUrl() }}" aria-label="Next"><span
+                                aria-hidden="true">»</span></a></li>
+                @else
+                    <li class="page-item disabled"><span class="page-link" aria-hidden="true">»</span></li>
+                @endif
             </ul>
         </div>
     </div>

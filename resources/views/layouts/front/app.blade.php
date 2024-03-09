@@ -23,7 +23,7 @@
 
         @include('layouts.front.header')
 
-        @yield('content-index')
+        {{-- @yield('content-index') --}}
 
 
         {{-- @dd($podcast) --}}
@@ -31,7 +31,9 @@
             <div class="content-wrap">
                 <div class="container-fluid">
                     <div class="row">
+
                         @yield('content')
+
                         <div class="col-md-3 col-12">
                             <div class="heading-block md mb-3">
                                 <h4 class="mb-1">MEDIA SOSIAL</h4>

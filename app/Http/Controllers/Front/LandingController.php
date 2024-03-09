@@ -30,14 +30,15 @@ class LandingController extends Controller
     public function index()
     {
 
-        $swiper = Swiper::where('is_active', '1')
+        $swiper         = Swiper::where('is_active', '1')
             ->orderByDesc('created_at')
             ->take(4)
             ->get();
 
-        $program_fokus = ProgramFokus::where('status', '1')->orderByDesc('created_at')->get();
-
-        $list_kanal_1 = ListKanal::where('status', '1')
+        $program_fokus  = ProgramFokus::where('status', '1')->orderByDesc('created_at')->get();
+        $podcast        = Podcast::where('status_publish', '1')->orderByDesc('created_at')->get();
+        $berita = ListBerita::where('status_publish', '1')->orderByDesc('created_at')->get();
+        $list_kanal_1   = ListKanal::where('status', '1')
             ->where(function ($query) {
                 $query->where('nama_kanal', 'LIKE', '%profil%')
                     ->orWhere('nama_kanal', 'LIKE', '%informasi publik%')
@@ -45,7 +46,7 @@ class LandingController extends Controller
             })
             ->get();
 
-        $list_kanal_2 = ListKanal::where('status', '1')
+        $list_kanal_2   = ListKanal::where('status', '1')
             ->where(function ($query) {
                 $query->where('nama_kanal', 'LIKE', '%program dan layanan%')
                     ->orWhere('nama_kanal', 'LIKE', '%tautan%')
@@ -64,15 +65,16 @@ class LandingController extends Controller
         }
 
         return view('contents.Front.index', [
-            'title' => 'Beranda',
-            'swiper' => $swiper,
-            // 'podcast' => $podcast,
-            'program_fokus' => $program_fokus,
-            'list_kanal_1' => $list_kanal_1,
-            'list_kanal_2' => $list_kanal_2,
-            'list_kategori_1' => $list_kategori_1,
-            'list_kategori_2' => $list_kategori_2,
-            'pengunjung' => $this->recordPengunjung(request())
+            'title'             => 'Beranda',
+            'swiper'            => $swiper,
+            'berita'            => $berita,
+            'podcast'           => $podcast,
+            'program_fokus'     => $program_fokus,
+            'list_kanal_1'      => $list_kanal_1,
+            'list_kanal_2'      => $list_kanal_2,
+            'list_kategori_1'   => $list_kategori_1,
+            'list_kategori_2'   => $list_kategori_2,
+            'pengunjung'        => $this->recordPengunjung(request())
         ]);
     }
 
@@ -91,7 +93,7 @@ class LandingController extends Controller
 
     public function visi_misi()
     {
-        $data_visi = Profil::whereHas('list_kategori' , function (Builder $query) {
+        $data_visi = Profil::whereHas('list_kategori', function (Builder $query) {
             $query->where('nama_kategori', 'LIKE', '%visi%')->where('is_active', '1');
         })->get();
 
@@ -103,7 +105,7 @@ class LandingController extends Controller
 
     public function struktur_organisasi()
     {
-        $data_struktur = Profil::whereHas('list_kategori' , function (Builder $query) {
+        $data_struktur = Profil::whereHas('list_kategori', function (Builder $query) {
             $query->where('nama_kategori', 'LIKE', '%struktur%')->where('is_active', '1');
         })->get();
 
@@ -115,7 +117,7 @@ class LandingController extends Controller
 
     public function tugas_fungsi()
     {
-        $data_tugas = Profil::whereHas('list_kategori' , function (Builder $query) {
+        $data_tugas = Profil::whereHas('list_kategori', function (Builder $query) {
             $query->where('nama_kategori', 'LIKE', '%tugas%')->where('is_active', '1');
         })->get();
 
@@ -127,7 +129,7 @@ class LandingController extends Controller
 
     public function kontak_kami()
     {
-        $data_kontak = Profil::whereHas('list_kategori' , function (Builder $query) {
+        $data_kontak = Profil::whereHas('list_kategori', function (Builder $query) {
             $query->where('nama_kategori', 'LIKE', '%kontak%')->where('is_active', '1');
         })->get();
 
@@ -137,14 +139,38 @@ class LandingController extends Controller
         ]);
     }
 
-    public function berita()
+    public function berita(Request $request)
     {
-        $berita  = ListBerita::where('status_publish', '1')->get();
+        $query = ListBerita::where('status_publish', '1');
+
+        $tahun = $request->tahun;
+        $bulan = $request->bulan;
+
+        if ($tahun) {
+            $query->whereYear('date', $tahun);
+        }
+        if ($bulan) {
+            $query->whereMonth('date', $bulan);
+        }
+
+        $berita = $query->paginate(5);
+
         return view('contents.Front.informasi_publik.berita', [
             'title' => 'Berita',
             'berita' => $berita,
         ]);
     }
+
+
+    // public function berita()
+    // {
+
+    //     $berita  = ListBerita::where('status_publish', '1')->paginate(5);
+    //     return view('contents.Front.informasi_publik.berita', [
+    //         'title' => 'Berita',
+    //         'berita' => $berita,
+    //     ]);
+    // }
     public function beritaDetail($id)
     {
         $berita = ListBerita::where('id', $id)->first();
@@ -153,9 +179,19 @@ class LandingController extends Controller
             'berita' => $berita,
         ]);
     }
-    public function artikel()
+    public function artikel(Request $request)
     {
-        $artikel  = Artikel::where('status_publish', '1')->get();
+        $query  = Artikel::where('status_publish', '1');
+        $tahun = $request->tahun;
+        $bulan = $request->bulan;
+
+        if ($tahun) {
+            $query->whereYear('created_at', $tahun);
+        }
+        if ($bulan) {
+            $query->whereMonth('created_at', $bulan);
+        }
+        $artikel = $query->paginate(5);
 
         $list_kanal_1 = ListKanal::where('status', '1')
             ->where(function ($query) {
@@ -211,8 +247,8 @@ class LandingController extends Controller
 
     public function galeri()
     {
-        $video = Galeri::where('is_video','=','1')->get();
-        $foto = Galeri::where('is_image','=','1')->with('refGaleri')->get();
+        $video = Galeri::where('is_video', '=', '1')->get();
+        $foto = Galeri::where('is_image', '=', '1')->with('refGaleri')->get();
         // $video = Galeri::all();
         return view('contents.Front.informasi_publik.galeri', [
             'title' => 'Galeri',
@@ -230,9 +266,20 @@ class LandingController extends Controller
     //     ]);
     // }
     // START MENU PUBLIKASI
-    public function agenda()
+    public function agenda(Request $request)
     {
-        $agenda = Agenda::all();
+        $query = Agenda::query();
+        $tahun = $request->tahun;
+        $bulan = $request->bulan;
+
+        if ($tahun) {
+            $query->whereYear('tanggal_agenda', $tahun);
+        }
+        if ($bulan) {
+            $query->whereMonth('tanggal_agenda', $bulan);
+        }
+        $agenda = $query->paginate(5);
+
         return view('contents.Front.menu_halaman.publikasi.agenda', [
             'title' => 'Agenda',
             'agenda' => $agenda,
@@ -247,9 +294,20 @@ class LandingController extends Controller
         ]);
     }
 
-    public function unduhan()
+    public function unduhan(Request $request)
     {
-        $unduhan = Unduhan::all();
+        $query = Unduhan::query();
+        $tahun = $request->tahun;
+        $bulan = $request->bulan;
+
+        if ($tahun) {
+            $query->whereYear('tanggal', $tahun);
+        }
+        if ($bulan) {
+            $query->whereMonth('tanggal', $bulan);
+        }
+        $unduhan = $query->paginate(5);
+
         foreach ($unduhan as $item) {
             $item->increment('jumlah_download');
         }
@@ -258,12 +316,20 @@ class LandingController extends Controller
             'unduhan' => $unduhan,
         ]);
     }
-    public function panduan()
+    public function panduan(Request $request)
     {
-        $panduan = Panduan::all();
-        // foreach ($panduan as $item) {
-        //     $item->increment('jumlah_download');
-        // }
+        $query = Panduan::query();
+        $tahun = $request->tahun;
+        $bulan = $request->bulan;
+
+        if ($tahun) {
+            $query->whereYear('created_at', $tahun);
+        }
+        if ($bulan) {
+            $query->whereMonth('created_at', $bulan);
+        }
+        $panduan = $query->paginate(5);
+
         return view('contents.Front.menu_halaman.publikasi.panduan', [
             'title' => 'Panduan',
             'panduan' => $panduan,
@@ -278,12 +344,20 @@ class LandingController extends Controller
         ]);
     }
     //start pengumuman
-    public function pengumuman()
+    public function pengumuman(Request $request)
     {
-        $pengumuman = Pengumuman::all();
-        // foreach ($panduan as $item) {
-        //     $item->increment('jumlah_download');
-        // }
+        $query = Pengumuman::query();
+        $tahun = $request->tahun;
+        $bulan = $request->bulan;
+
+        if ($tahun) {
+            $query->whereYear('date', $tahun);
+        }
+        if ($bulan) {
+            $query->whereMonth('date', $bulan);
+        }
+        $pengumuman = $query->paginate(5);
+
         return view('contents.Front.menu_halaman.publikasi.pengumuman', [
             'title' => 'Pengumuman',
             'pengumuman' => $pengumuman,
@@ -299,12 +373,20 @@ class LandingController extends Controller
     }
 
     //end pengumuman
-    public function regulasi()
+    public function regulasi(Request $request)
     {
-        $regulasi = Regulasi::all();
-        // foreach ($panduan as $item) {
-        //     $item->increment('jumlah_download');
-        // }
+        $query = Regulasi::query();
+        $tahun = $request->tahun;
+        $bulan = $request->bulan;
+
+        if ($tahun) {
+            $query->whereYear('created_at', $tahun);
+        }
+        if ($bulan) {
+            $query->whereMonth('created_at', $bulan);
+        }
+        $regulasi = $query->paginate(5);
+
         return view('contents.Front.menu_halaman.publikasi.regulasi', [
             'title' => 'Regulasi',
             'regulasi' => $regulasi,
@@ -321,14 +403,22 @@ class LandingController extends Controller
     //END PUBLIKASI
 
     //START MENU PROGRAM LAYANAN
-    public function sekolahPenggerak()
+    public function sekolahPenggerak(Request $request)
     {
-        $sekolah = DB::table('program_layanan')
+        $query = DB::table('program_layanan')
             ->join('ref_kategori', 'program_layanan.id_kategori', '=', 'ref_kategori.id')
             ->select('program_layanan.*', 'ref_kategori.nama_kategori')
-            ->where('program_layanan.id_kategori', '=', 19)
-            ->get();
+            ->where('program_layanan.id_kategori', '=', 19);
+        $tahun = $request->tahun;
+        $bulan = $request->bulan;
 
+        if ($tahun) {
+            $query->whereYear('publish_date', $tahun);
+        }
+        if ($bulan) {
+            $query->whereMonth('publish_date', $bulan);
+        }
+        $sekolah = $query->paginate(5);
         return view('contents.Front.menu_halaman.program_layanan.sekolah-penggerak', [
             'title' => 'Pogram Pendidikan Guru Penggerak',
             'sekolah' => $sekolah,
@@ -344,14 +434,22 @@ class LandingController extends Controller
             'sekolah' => $sekolah,
         ]);
     }
-    public function guruPenggerak()
+    public function guruPenggerak(Request $request)
     {
-        $guru = DB::table('program_layanan')
+        $query = DB::table('program_layanan')
             ->join('ref_kategori', 'program_layanan.id_kategori', '=', 'ref_kategori.id')
             ->select('program_layanan.*', 'ref_kategori.nama_kategori')
-            ->where('program_layanan.id_kategori', '=', 20)
-            ->get();
+            ->where('program_layanan.id_kategori', '=', 20);
+        $tahun = $request->tahun;
+        $bulan = $request->bulan;
 
+        if ($tahun) {
+            $query->whereYear('publish_date', $tahun);
+        }
+        if ($bulan) {
+            $query->whereMonth('publish_date', $bulan);
+        }
+        $guru =  $query->paginate(5);
         return view('contents.Front.menu_halaman.program_layanan.guru-penggerak', [
             'title' => 'Pogram Pendidikan Guru Penggerak',
             'guru' => $guru,
@@ -368,6 +466,5 @@ class LandingController extends Controller
     }
     public function GaleriFoto()
     {
-
     }
 }
