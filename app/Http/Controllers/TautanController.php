@@ -119,7 +119,7 @@ class TautanController extends Controller
     public function edit($id)
     {
         $id = decrypt($id);
-        $data =Tautan::where('id', $id)->first();
+        $data = Tautan::where('id', $id)->first();
         return response()->json(['result' => $data]);
     }
 
@@ -134,14 +134,13 @@ class TautanController extends Controller
     {
         $id = decrypt($id);
 
-            $data = [
-                'id_kategori' => $request->id_kategori_edit,
-                'link_tautan' => $request->link_tautan_edit,
-            ];
+        $data = [
+            'id_kategori' => $request->id_kategori_edit,
+            'link_tautan' => $request->link_tautan_edit,
+        ];
 
-            Tautan::where('id', $id)->update($data);
-            return response()->json(['status' => true], 200);
-
+        Tautan::where('id', $id)->update($data);
+        return response()->json(['status' => true], 200);
     }
 
     /**
