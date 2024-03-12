@@ -73,5 +73,10 @@ class ListKategori extends Model
         return $this->hasMany('App\Model\SubKategori');
     }
 
+    public function zi_wbk()
+    {
+        return $this->hasMany('App\Model\ZiWbk');
+    }
+
 }
 
