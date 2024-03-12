@@ -23,13 +23,13 @@
 
 @section('content')
     <div class="col-md-9 col-12">
-        <div class="result-berita">
+        <div class="result-unduhan">
             @foreach ($unduhan as $item)
                 <div class="entry mb-5">
                     <div class="grid-inner row no-gutters p-0">
                         <div class="entry-image col-md-2 mb-md-0">
                             <a href="#">
-                                <img src="{{ asset('cover-unduhan/' . $item->cover) }}" alt="thumbnail_berita">
+                                <img src="{{ asset('cover-unduhan/' . $item->cover) }}" alt="thumbnail_unduhan">
                             </a>
                         </div>
                         <div class="col-md-10 pl-md-4">
@@ -40,7 +40,7 @@
                                 <ul>
                                     <li><a href="#"><i class="icon-calendar3"></i>
                                             {{ $carbon::parse($item->tanggal)->format('d M
-                                                                                                Y') }}</a>
+                                                                                                                                            Y') }}</a>
                                     </li>
                                     <li><a href="#"><i class="icon-line-folder"></i> Unduhan</a></li>
                                     <li><a href="#"><i class="icon-line-download"></i>
@@ -61,7 +61,7 @@
                                     <div class="entry-image col-md-2 mb-md-0">
                                         <a href="#">
                                             <img src="{{ asset('assets-front/img/pedoman-apresiasi.jpg') }}"
-                                                alt="thumbnail_berita">
+                                                alt="thumbnail_unduhan">
                                         </a>
                                     </div>
                                     <div class="col-md-10 pl-md-4">
@@ -88,7 +88,7 @@
                                     <div class="entry-image col-md-2 mb-md-0">
                                         <a href="#">
                                             <img src="{{ asset('assets-front/img/pedoman-apresiasi.jpg') }}"
-                                                alt="thumbnail_berita">
+                                                alt="thumbnail_unduhan">
                                         </a>
                                     </div>
                                     <div class="col-md-10 pl-md-4">
@@ -115,7 +115,7 @@
                                     <div class="entry-image col-md-2 mb-md-0">
                                         <a href="#">
                                             <img src="{{ asset('assets-front/img/pedoman-apresiasi.jpg') }}"
-                                                alt="thumbnail_berita">
+                                                alt="thumbnail_unduhan">
                                         </a>
                                     </div>
                                     <div class="col-md-10 pl-md-4">
@@ -142,7 +142,7 @@
                                     <div class="entry-image col-md-2 mb-md-0">
                                         <a href="#">
                                             <img src="{{ asset('assets-front/img/pedoman-apresiasi.jpg') }}"
-                                                alt="thumbnail_berita">
+                                                alt="thumbnail_unduhan">
                                         </a>
                                     </div>
                                     <div class="col-md-10 pl-md-4">
@@ -165,16 +165,25 @@
                                 </div>
                             </div> --}}
             <ul class="pagination pagination-circle justify-content-center">
-                <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true">«</span></a></li>
-                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">4</a></li>
-                <li class="page-item"><a class="ml-2" href="#">...</a></li>
-                <li class="page-item"><a class="page-link" href="#">5</a></li>
-                <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span
-                            aria-hidden="true">»</span></a></li>
+                @if ($unduhan->onFirstPage())
+                    <li class="page-item disabled"><span class="page-link" aria-hidden="true">«</span></li>
+                @else
+                    <li class="page-item"><a class="page-link" href="{{ $unduhan->previousPageUrl() }}"
+                            aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+                @endif
+
+                @foreach (range(1, $unduhan->lastPage()) as $page)
+                    <li class="page-item{{ $page == $unduhan->currentPage() ? ' active' : '' }}">
+                        <a class="page-link" href="{{ $unduhan->url($page) }}">{{ $page }}</a>
+                    </li>
+                @endforeach
+
+                @if ($unduhan->hasMorePages())
+                    <li class="page-item"><a class="page-link" href="{{ $unduhan->nextPageUrl() }}" aria-label="Next"><span
+                                aria-hidden="true">»</span></a></li>
+                @else
+                    <li class="page-item disabled"><span class="page-link" aria-hidden="true">»</span></li>
+                @endif
             </ul>
         </div>
     </div>

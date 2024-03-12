@@ -23,11 +23,18 @@
 
         @include('layouts.front.header')
 
-        @yield('content-index')
+        {{-- @yield('content-index') --}}
 
 
         {{-- @dd($podcast) --}}
         <section class="px-md-5">
+            <div class="content-wrap">
+                <div class="container-fluid">
+                    <div class="row">
+
+                        @yield('content')
+
+                        <div class="col-md-3 col-12">
             {{--  <div class="content-wrap">  --}}
             <div class="container-fluid">
                 <div class="row">

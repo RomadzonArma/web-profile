@@ -1,4 +1,4 @@
-@extends('layouts.front.app')
+@extends('layouts.front.app-beranda')
 
 @section('content-header')
     <section class="bg-soft px-xl-5 d-lg-block d-none">
@@ -20,7 +20,7 @@
     </section>
 @endsection
 
-@section('content-index')
+@section('content')
     <section class="px-xl-5">
         <div class="content-wrap scrolled">
             <div class="container-fluid">
