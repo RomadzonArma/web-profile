@@ -51,6 +51,8 @@ class LandingController extends Controller
             'podcast'           => $podcast,
             'tautan'            => $tautan,
             'program_fokus'     => $program_fokus,
+            'list_kanal_1'      => $list_kanal_1,
+            'list_kanal_2'      => $list_kanal_2,
             'pengunjung'        => $this->recordPengunjung(request()),
         ]);
     }
