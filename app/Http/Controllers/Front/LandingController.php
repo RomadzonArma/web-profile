@@ -38,6 +38,21 @@ class LandingController extends Controller
         $program_fokus  = ProgramFokus::where('status', '1')->orderByDesc('created_at')->get();
         $podcast        = Podcast::where('status_publish', '1')->orderByDesc('created_at')->get();
         $berita = ListBerita::where('status_publish', '1')->orderByDesc('created_at')->get();
+        $list_kanal_1   = ListKanal::where('status', '1')
+            ->where(function ($query) {
+                $query->where('nama_kanal', 'LIKE', '%profil%')
+                    ->orWhere('nama_kanal', 'LIKE', '%informasi publik%')
+                    ->orWhere('nama_kanal', 'LIKE', '%zi/wbk%');
+            })
+            ->get();
+
+        $list_kanal_2   = ListKanal::where('status', '1')
+            ->where(function ($query) {
+                $query->where('nama_kanal', 'LIKE', '%program dan layanan%')
+                    ->orWhere('nama_kanal', 'LIKE', '%tautan%')
+                    ->orWhere('nama_kanal', 'LIKE', '%publikasi%');
+            })
+            ->get();
         $program_fokus = ProgramFokus::where('status', '1')->orderByDesc('created_at')->get();
 
         $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
@@ -49,7 +64,6 @@ class LandingController extends Controller
             'swiper'            => $swiper,
             'berita'            => $berita,
             'podcast'           => $podcast,
-            'tautan'            => $tautan,
             'program_fokus'     => $program_fokus,
             'list_kanal_1'      => $list_kanal_1,
             'list_kanal_2'      => $list_kanal_2,
