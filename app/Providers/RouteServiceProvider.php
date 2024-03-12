@@ -90,12 +90,14 @@ class RouteServiceProvider extends ServiceProvider
             $this->mapArtikelRoutes();
 
             $this->mapGaleriRoutes();
-            
+
             $this->mapPodcastRoutes();
 
             $this->mapTautanRoutes();
 
             $this->mapSubKategoriRoutes();
+
+            $this->mapZiWbkRoutes();
         });
     }
 
@@ -292,5 +294,12 @@ class RouteServiceProvider extends ServiceProvider
         Route::prefix('sub_kategori')
         ->namespace($this->namespace)
         ->group(base_path('routes/panel/sub_kategori.php'));
+    }
+
+    protected function mapZiWbkRoutes()
+    {
+        Route::prefix('zi_wbk')
+        ->namespace($this->namespace)
+        ->group(base_path('routes/panel/zi_wbk.php'));
     }
 }
