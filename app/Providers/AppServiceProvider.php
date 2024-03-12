@@ -41,6 +41,10 @@ class AppServiceProvider extends ServiceProvider
             $berita = ListBerita::where('status_publish', '1')->orderByDesc('created_at')->get();
             $view->with('berita', $berita);
         });
+        view()->composer('contents.Front.menu', function ($view) {
+            $tautan = Tautan::all();
+            $view->with('tautan', $tautan);
+        });
     }
 
     /**

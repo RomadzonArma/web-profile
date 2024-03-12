@@ -67,8 +67,6 @@ class LandingController extends Controller
             'program_fokus'     => $program_fokus,
             'list_kanal_1'      => $list_kanal_1,
             'list_kanal_2'      => $list_kanal_2,
-            'list_kategori_1'   => $list_kategori_1,
-            'list_kategori_2'   => $list_kategori_2,
             'pengunjung'        => $this->recordPengunjung(request()),
         ]);
     }
@@ -90,7 +88,6 @@ class LandingController extends Controller
 
     public function visi_misi()
     {
-        $data_visi = Profil::whereHas('list_kategori', function (Builder $query) {
         $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
 
         $data_visi = Profil::whereHas('list_kategori' , function (Builder $query) {
@@ -103,6 +100,7 @@ class LandingController extends Controller
             'data_visi' => $data_visi,
         ]);
     }
+
 
     public function struktur_organisasi()
     {
@@ -245,7 +243,7 @@ class LandingController extends Controller
             'tautan' => $tautan,
         ]);
     }
-    
+
     // START MENU PUBLIKASI
     public function agenda(Request $request)
     {
@@ -410,7 +408,7 @@ class LandingController extends Controller
     //START MENU PROGRAM LAYANAN
     public function sekolahPenggerak(Request $request)
     {
-        $query = DB::table('program_layanan')
+        $query = DB::table('program_layanan');
         $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
 
         $sekolah = DB::table('program_layanan')
@@ -448,7 +446,7 @@ class LandingController extends Controller
     }
     public function guruPenggerak(Request $request)
     {
-        $query = DB::table('program_layanan')
+        $query = DB::table('program_layanan');
         $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
 
         $guru = DB::table('program_layanan')
