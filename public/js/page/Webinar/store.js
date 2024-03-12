@@ -49,7 +49,7 @@ $(() => {
                         showConfirmButton: false,
                         timer: 2000,
                     }).then(() => {
-                        window.location.href = BASE_URL + 'webinar';
+                        window.location.href = BASE_URL + 'webinar/list';
                     });
                 } else {
                     toastr.error("Periksa Inputan Anda", {

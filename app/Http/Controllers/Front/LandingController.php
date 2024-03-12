@@ -296,9 +296,9 @@ class LandingController extends Controller
 
         $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
 
-        foreach ($unduhan as $item) {
-            $item->increment('jumlah_download');
-        }
+        // foreach ($unduhan as $item) {
+        //     $item->increment('jumlah_download');
+        // }
         return view('contents.Front.menu_halaman.publikasi.unduhan', [
             'title' => 'Unduhan',
             'unduhan' => $unduhan,

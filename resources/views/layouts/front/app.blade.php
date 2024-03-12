@@ -7,6 +7,7 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="author" content="SemiColonWeb" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     @include('layouts.front.css')
     <!-- Document Title ============================================= -->
@@ -29,157 +30,77 @@
         {{-- @dd($podcast) --}}
         <section class="px-md-5">
             <div class="content-wrap">
-
-                {{--  <div class="content-wrap">  --}}
                 <div class="container-fluid">
                     <div class="row">
+
                         @yield('content')
-                        @if (Request::route()->getName() !== 'index')
-                            <div class="col-md-3 col-12 mt-4">
-                                <div class="heading-block md mb-3">
-                                    <h4 class="mb-1">MEDIA SOSIAL</h4>
-                                </div>
-                                <div class="fslider fslider-banner testimonial-full mb-4" data-animation="slide"
-                                    data-arrows="false">
-                                    <div class="flexslider">
-                                        <div class="slider-wrap">
-                                            @foreach ($podcast as $item)
-                                                <div class="slide" style="max-height: 100%;">
-                                                    <div class="overlaying-img">
-                                                        <a href="{{ $item->link_podcast }}"><img class="img-fluid"
-                                                                src="{{ asset('podcast/' . $item->gambar) }}"
-                                                                style="width: 100%;" alt="Image 1"></a>
 
-                        <div class="col-md-3 col-12">
-                            {{--  <div class="content-wrap">  --}}
-                            <div class="container-fluid">
-                                <div class="row">
-                                    @yield('content')
-                                    @if (Request::route()->getName() !== 'index')
-                                        <div class="col-md-3 col-12 mt-4">
-                                            <div class="heading-block md mb-3">
-                                                <h4 class="mb-1">MEDIA SOSIAL</h4>
-                                            </div>
-                                            <div class="fslider fslider-banner testimonial-full mb-4"
-                                                data-animation="slide" data-arrows="false">
-                                                <div class="flexslider">
-                                                    <div class="slider-wrap">
-                                                        @foreach ($podcast as $item)
-                                                            <div class="slide" style="max-height: 100%;">
-                                                                <div class="overlaying-img">
-                                                                    <a href="{{ $item->link_podcast }}"><img
-                                                                            class="img-fluid"
-                                                                            src="{{ asset('podcast/' . $item->gambar) }}"
-                                                                            style="width: 100%;" alt="Image 1"></a>
+                        <div class="col-md-3 col-12 mt-4">
+                            <div class="heading-block md mb-3">
+                                <h4 class="mb-1">MEDIA SOSIAL</h4>
+                            </div>
+                            <div class="fslider fslider-banner testimonial-full mb-4" data-animation="slide"
+                                data-arrows="false">
+                                <div class="flexslider">
+                                    <div class="slider-wrap">
+                                        @foreach ($podcast as $item)
+                                            <div class="slide" style="max-height: 100%;">
+                                                <div class="overlaying-img">
+                                                    <a href="{{ $item->link_podcast }}"><img class="img-fluid"
+                                                            src="{{ asset('podcast/' . $item->gambar) }}"
+                                                            style="width: 100%;" alt="Image 1"></a>
 
-                                                                    <a href="{{ $item->link_podcast }}" target="_blank">
-                                                                        <div class="bg-overlay">
-                                                                            <div class="overlaying-desc">
-                                                                                <a href="{{ $item->link_podcast }}"
-                                                                                    target="_blank">
-                                                                                    <h4
-                                                                                        class="text-white mb-0 text-center">
-                                                                                        Podcast</h4>
-                                                                                </a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </a>
-
-                                                                </div>
-                                                            </div>
-                                                        @endforeach
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="widget clearfix">
-                                                <div class="heading-block md mb-3">
-                                                    <h4 class="mb-1">BERITA TERKINI</h4>
-                                                </div>
-                                                @foreach ($berita as $item)
-                                                    <div class="entry mb-4">
-                                                        <div class="grid-inner row no-gutters p-0">
-                                                            <div class="entry-image col-xl-4 mb-xl-0">
-                                                                <a href="#">
-                                                                    <img src="{{ asset('list_berita/' . $item->gambar) }}"
-                                                                        alt="thumbnail_berita">
+                                                    <a href="{{ $item->link_podcast }}" target="_blank">
+                                                        <div class="bg-overlay">
+                                                            <div class="overlaying-desc">
+                                                                <a href="{{ $item->link_podcast }}" target="_blank">
+                                                                    <h4 class="text-white mb-0 text-center">Podcast</h4>
                                                                 </a>
                                                             </div>
-                                                            <div class="col-xl-8 pl-xl-4">
-                                                                <div class="entry-title title-xs text-clamp-2">
-                                                                    <h5 class="mb-1"><a
-                                                                            href="#">{{ $item->judul }}</a></h5>
-                                                                </div>
-                                                                <div class="entry-meta mb-2 mt-0">
-                                                                    <ul>
-                                                                        <li><a href="#"><i
-                                                                                    class="icon-calendar3"></i>
-                                                                                {{ $carbon::parse($item->date)->format('d M Y') }}</a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
                                                         </div>
-                                                    </div>
-                                                @endforeach
-
-                                            </div>
-                                        </div>
-                                    @endif
-                                </div>
-                            </div>
-                                                        <a href="{{ $item->link_podcast }}" target="_blank">
-                                                            <div class="bg-overlay">
-                                                                <div class="overlaying-desc">
-                                                                    <a href="{{ $item->link_podcast }}" target="_blank">
-                                                                        <h4 class="text-white mb-0 text-center">
-                                                                            Podcast</h4>
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-                                                        </a>
-
-                                                    </div>
-                                                </div>
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="widget clearfix">
-                                    <div class="heading-block md mb-3">
-                                        <h4 class="mb-1">BERITA TERKINI</h4>
-                                    </div>
-                                    @foreach ($berita as $item)
-                                        <div class="entry mb-4">
-                                            <div class="grid-inner row no-gutters p-0">
-                                                <div class="entry-image col-xl-4 mb-xl-0">
-                                                    <a href="#">
-                                                        <img src="{{ asset('list_berita/' . $item->gambar) }}"
-                                                            alt="thumbnail_berita">
                                                     </a>
+
                                                 </div>
-                                                <div class="col-xl-8 pl-xl-4">
-                                                    <div class="entry-title title-xs text-clamp-2">
-                                                        <h5 class="mb-1"><a href="#">{{ $item->judul }}</a>
-                                                        </h5>
-                                                    </div>
-                                                    <div class="entry-meta mb-2 mt-0">
-                                                        <ul>
-                                                            <li><a href="#"><i class="icon-calendar3"></i>
-                                                                    {{ $carbon::parse($item->date)->format('d M Y') }}</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="widget clearfix">
+                                <div class="heading-block md mb-3">
+                                    <h4 class="mb-1">BERITA TERKINI</h4>
+                                </div>
+                                @foreach ($berita as $item)
+                                    <div class="entry mb-4">
+                                        <div class="grid-inner row no-gutters p-0">
+                                            <div class="entry-image col-xl-4 mb-xl-0">
+                                                <a href="#">
+                                                    <img src="{{ asset('list_berita/' . $item->gambar) }}"
+                                                        alt="thumbnail_berita">
+                                                </a>
+                                            </div>
+                                            <div class="col-xl-8 pl-xl-4">
+                                                <div class="entry-title title-xs text-clamp-2">
+                                                    <h5 class="mb-1"><a href="#">{{ $item->judul }}</a></h5>
+                                                </div>
+                                                <div class="entry-meta mb-2 mt-0">
+                                                    <ul>
+                                                        <li><a href="#"><i class="icon-calendar3"></i>
+                                                                {{ $carbon::parse($item->date)->format('d M Y') }}</a>
+                                                        </li>
+                                                    </ul>
                                                 </div>
                                             </div>
                                         </div>
-                                    @endforeach
+                                    </div>
+                                @endforeach
 
-                                </div>
                             </div>
-                        @endif
-                    </div>
-                    {{--  </div>  --}}
+                        </div>
+
                 </div>
+            {{--  </div>  --}}
+            </div>
         </section>
 
         @include('layouts.front.footer')
@@ -215,17 +136,17 @@
                         <div class="entry mb-5">
                             <div class="grid-inner row no-gutters p-0">
                                 <div class="entry-image col-3 mb-0">
-                                    <a href="#">
+                                    <a href="{{$podcast->link_podcast}}">
                                         <img src="{{ asset('podcast/' . $podcast->gambar) }}" alt="thumbnail_podcast">
                                     </a>
                                 </div>
                                 <div class="col-9 pl-3">
                                     <div class="entry-title title-xs text-clamp-2">
-                                        <h6 class="mb-1"><a href="detail.html">{{ $podcast->judul }}</a></h6>
+                                        <h6 class="mb-1"><a href="{{$podcast->link_podcast}}">{{ $podcast->judul }}</a></h6>
                                     </div>
                                     <div class="entry-meta mb-2 mt-0">
                                         <ul>
-                                            <li><a href="#"><i class="icon-users"></i> 11rb penonton</a>
+                                            <li><a href="#"><i class="icon-users"></i> {{$podcast->jumlah_lihat ?? 0}} penonton</a>
                                             <li><a href="#"><i
                                                         class="icon-calendar3"></i>{{ $podcast->date }}</a>
                                             </li>
