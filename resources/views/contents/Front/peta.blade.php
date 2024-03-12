@@ -15,66 +15,27 @@
                 </div>
                 <div class="tab-pane fade" id="pengawas-sekolah" role="tabpanel"
                     aria-labelledby="list-pengawas-sekolah">
-                    <p>Nobis laudantium est repellendus ad cumque ex quasi alias, quas
-                        veritatis nam optio deleniti itaque, expedita, quo quidem
-                        temporibus? Voluptate ratione numquam ex quae, culpa eos eum dolor a
-                        dolore vitae praesentium animi? Lorem ipsum dolor sit amet,
-                        consectetur adipisicing elit. Voluptatum earum beatae quibusdam
-                        aspernatur impedit fuga excepturi sapiente pariatur blanditiis
-                        provident repudiandae inventore veritatis tenetur eum nisi magni
-                        explicabo dolorem atque recusandae praesentium non, mollitia
-                        dignissimos fugit! Reiciendis consectetur eligendi corporis!</p>
+                    <div id="peta-pengawas">
+                        <script src="{{ asset('assets-front/js/geo-indonesia.json') }}"></script>
+                    </div>
                 </div>
                 <div class="tab-pane fade" id="tas" role="tabpanel"
                     aria-labelledby="list-tas">
-                    <p>Quam aspernatur incidunt iure soluta consequatur veniam
-                        exercitationem deleniti ullam, molestiae similique odio facilis
-                        iusto numquam. Quasi voluptatem laborum deleniti neque,
-                        necessitatibus repellat, ipsam repudiandae dignissimos. Deleniti
-                        soluta facere fugiat repudiandae delectus, perspiciatis quibusdam
-                        animi odit, eius iste vitae modi nesciunt maiores quasi repellendus
-                        eaque ratione tempora eos minus eum excepturi qui praesentium,
-                        ipsam. Maiores nulla eum dolorum saepe ullam officia consequatur
-                        blanditiis harum aperiam sequi. Dolorem odio aliquid amet error
-                        eveniet excepturi quis, suscipit, cumque itaque ab dicta magnam
-                        dolorum voluptatum cupiditate placeat atque delectus eius facilis
-                        mollitia possimus!</p>
+                    <div id="peta-tas">
+                        <script src="{{ asset('assets-front/js/geo-indonesia.json') }}"></script>
+                    </div>
                 </div>
                 <div class="tab-pane fade" id="laboran" role="tabpanel"
                     aria-labelledby="list-laboran">
-                    <p>Placeat doloribus earum voluptate delectus porro reprehenderit unde
-                        vero neque obcaecati, aperiam, dicta, tenetur labore consequuntur
-                        enim error quidem facere eum eveniet repellendus et fugit debitis!
-                        Laudantium, dolore quasi quae rem repellendus sit hic. Nobis vel ab
-                        ratione quisquam nesciunt blanditiis et itaque iste eos atque
-                        placeat expedita quis aliquam rerum dolore fuga, dicta. Veritatis
-                        inventore adipisci cupiditate ducimus laborum eaque atque deleniti
-                        repellendus pariatur veniam repellat id laudantium, asperiores
-                        provident tempora eveniet, nihil esse facere iusto aliquam maiores,
-                        iste. Quaerat, sapiente repudiandae aspernatur animi maiores,
-                        nesciunt veritatis quam, suscipit asperiores vitae itaque! Autem,
-                        architecto, repellendus. Laudantium labore, doloremque
-                        necessitatibus quod sint iure ab officiis delectus molestias sunt
-                        illum velit harum ullam! Blanditiis corporis reiciendis pariatur,
-                        amet magni animi. Laboriosam animi ducimus a.</p>
+                    <div id="peta-laboran">
+                        <script src="{{ asset('assets-front/js/geo-indonesia.json') }}"></script>
+                    </div>
                 </div>
                 <div class="tab-pane fade" id="perpustakaan" role="tabpanel"
                     aria-labelledby="list-perpustakaan">
-                    <p>Placeat doloribus earum voluptate delectus porro reprehenderit unde
-                        vero neque obcaecati, aperiam, dicta, tenetur labore consequuntur
-                        enim error quidem facere eum eveniet repellendus et fugit debitis!
-                        Laudantium, dolore quasi quae rem repellendus sit hic. Nobis vel ab
-                        ratione quisquam nesciunt blanditiis et itaque iste eos atque
-                        placeat expedita quis aliquam rerum dolore fuga, dicta. Veritatis
-                        inventore adipisci cupiditate ducimus laborum eaque atque deleniti
-                        repellendus pariatur veniam repellat id laudantium, asperiores
-                        provident tempora eveniet, nihil esse facere iusto aliquam maiores,
-                        iste. Quaerat, sapiente repudiandae aspernatur animi maiores,
-                        nesciunt veritatis quam, suscipit asperiores vitae itaque! Autem,
-                        architecto, repellendus. Laudantium labore, doloremque
-                        necessitatibus quod sint iure ab officiis delectus molestias sunt
-                        illum velit harum ullam! Blanditiis corporis reiciendis pariatur,
-                        amet magni animi. Laboriosam animi ducimus a.</p>
+                    <div id="peta-perpustakaan">
+                        <script src="{{ asset('assets-front/js/geo-indonesia.json') }}"></script>
+                    </div>
                 </div>
             </div>
         </div>

@@ -24,8 +24,8 @@
                             <thead>
                                 <tr>
                                     <th style="width: 5%;">No</th>
-                                    <th>Nama Kategori</th>
-                                    <th>Nama Kanal</th>
+                                    <th>Kategori</th>
+                                    <th>Kanal</th>
                                     <th>Status</th>
                                     <th>Aksi</th>
                                     <th></th>
@@ -56,7 +56,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="judul">Nama Kategori</label>
+                        <label for="judul">Kategori</label>
                         <input type="text" class="form-control" id="nama_kategori" name="nama_kategori" required>
                     </div>
                     <div class="form-group ">
@@ -67,16 +67,6 @@
                                 @foreach ($list_kanal as $data)
                                     <option value="{{ $data->id }}">{{ $data->nama_kanal }}</option>
                                 @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group ">
-                        <label class="col-form-label">Status</label>
-                        <div class="">
-                            <select class="form-control" id="status_kategori" name="status_kategori">
-                                <option>Pilih status</option>
-                                <option value="1">Active</option>
-                                <option value="0">In Active</option>
                             </select>
                         </div>
                     </div>
@@ -103,7 +93,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="judul">Nama Kategori</label>
+                        <label for="judul">Kategori</label>
                         <input type="text" class="form-control" id="nama_kategori_edit" name="nama_kategori_edit"
                             required>
                     </div>
@@ -118,16 +108,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group ">
-                        <label class="col-form-label">Status</label>
-                        <div class="">
-                            <select class="form-control" id="status_kategori_edit" name="status_kategori_edit">
-                                <option>Pilih status</option>
-                                <option value="1">Active</option>
-                                <option value="0">In Active</option>
-                            </select>
-                        </div>
-                    </div>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Close</button>

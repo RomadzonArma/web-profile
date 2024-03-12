@@ -80,7 +80,7 @@
                                     </div> --}}
                                 @endif
                             @else
-                                <div style="height: 180px; overflow: hidden;">
+                                <div style="height: 400px; overflow: hidden;" class="d-flex align-items-center justify-content-center">
                                     <img src="{{ asset($data->foto) }}" alt="foto"
                                         style="width: 100%; height: 100%; object-fit: cover;">
                                 </div>

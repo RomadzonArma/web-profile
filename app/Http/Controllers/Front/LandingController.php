@@ -21,6 +21,7 @@ use App\Model\ListKategori;
 use App\Model\Podcast;
 use App\Model\Profil;
 use App\Model\ProgramFokus;
+use App\Model\Tautan;
 use Illuminate\Database\Eloquent\Builder;
 
 class LandingController extends Controller
@@ -34,7 +35,6 @@ class LandingController extends Controller
             ->orderByDesc('created_at')
             ->take(4)
             ->get();
-
         $program_fokus  = ProgramFokus::where('status', '1')->orderByDesc('created_at')->get();
         $podcast        = Podcast::where('status_publish', '1')->orderByDesc('created_at')->get();
         $berita = ListBerita::where('status_publish', '1')->orderByDesc('created_at')->get();
@@ -53,16 +53,11 @@ class LandingController extends Controller
                     ->orWhere('nama_kanal', 'LIKE', '%publikasi%');
             })
             ->get();
+        $program_fokus = ProgramFokus::where('status', '1')->orderByDesc('created_at')->get();
 
-        $list_kategori_1 = [];
-        foreach ($list_kanal_1 as $kanal_1) {
-            $list_kategori_1[$kanal_1->id] = ListKategori::where('id_kanal', $kanal_1->id)->get();
-        }
+        $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
 
-        $list_kategori_2 = [];
-        foreach ($list_kanal_2 as $kanal_2) {
-            $list_kategori_2[$kanal_2->id] = ListKategori::where('id_kanal', $kanal_2->id)->get();
-        }
+
 
         return view('contents.Front.index', [
             'title'             => 'Beranda',
@@ -74,7 +69,7 @@ class LandingController extends Controller
             'list_kanal_2'      => $list_kanal_2,
             'list_kategori_1'   => $list_kategori_1,
             'list_kategori_2'   => $list_kategori_2,
-            'pengunjung'        => $this->recordPengunjung(request())
+            'pengunjung'        => $this->recordPengunjung(request()),
         ]);
     }
 
@@ -91,51 +86,66 @@ class LandingController extends Controller
         return response()->json(['success' => true]);
     }
 
+
+
     public function visi_misi()
     {
         $data_visi = Profil::whereHas('list_kategori', function (Builder $query) {
+        $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
+
+        $data_visi = Profil::whereHas('list_kategori' , function (Builder $query) {
             $query->where('nama_kategori', 'LIKE', '%visi%')->where('is_active', '1');
         })->get();
 
         return view('contents.Front.profil.visi_misi', [
             'title' => 'Visi dan Misi',
+            'tautan' => $tautan,
             'data_visi' => $data_visi,
         ]);
     }
 
     public function struktur_organisasi()
     {
-        $data_struktur = Profil::whereHas('list_kategori', function (Builder $query) {
+        $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
+
+        $data_struktur = Profil::whereHas('list_kategori' , function (Builder $query) {
             $query->where('nama_kategori', 'LIKE', '%struktur%')->where('is_active', '1');
         })->get();
 
         return view('contents.Front.profil.struktur_organisasi', [
             'title' => 'Struktur Organisasi',
+            'tautan' => $tautan,
             'data_struktur' => $data_struktur,
         ]);
     }
 
     public function tugas_fungsi()
     {
-        $data_tugas = Profil::whereHas('list_kategori', function (Builder $query) {
+        $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
+
+        $data_tugas = Profil::whereHas('list_kategori' , function (Builder $query) {
             $query->where('nama_kategori', 'LIKE', '%tugas%')->where('is_active', '1');
         })->get();
 
         return view('contents.Front.profil.tugas_fungsi', [
             'title' => 'Tugas & Fungsi ',
             'data_tugas' => $data_tugas,
+            'tautan' => $tautan,
         ]);
     }
 
     public function kontak_kami()
     {
-        $data_kontak = Profil::whereHas('list_kategori', function (Builder $query) {
+        $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
+
+        $data_kontak = Profil::whereHas('list_kategori' , function (Builder $query) {
             $query->where('nama_kategori', 'LIKE', '%kontak%')->where('is_active', '1');
         })->get();
 
         return view('contents.Front.profil.kontak_kami', [
             'title' => 'Kontak Kami',
             'data_kontak' =>  $data_kontak,
+            'tautan' => $tautan,
         ]);
     }
 
@@ -155,28 +165,24 @@ class LandingController extends Controller
 
         $berita = $query->paginate(5);
 
+        $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
+
         return view('contents.Front.informasi_publik.berita', [
             'title' => 'Berita',
             'berita' => $berita,
+            'tautan' => $tautan,
         ]);
     }
 
-
-    // public function berita()
-    // {
-
-    //     $berita  = ListBerita::where('status_publish', '1')->paginate(5);
-    //     return view('contents.Front.informasi_publik.berita', [
-    //         'title' => 'Berita',
-    //         'berita' => $berita,
-    //     ]);
-    // }
     public function beritaDetail($id)
     {
+        $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
+
         $berita = ListBerita::where('id', $id)->first();
         return view('contents.Front.informasi_publik.berita-detail', [
             'title' => 'Berita',
             'berita' => $berita,
+            'tautan' => $tautan,
         ]);
     }
     public function artikel(Request $request)
@@ -192,56 +198,35 @@ class LandingController extends Controller
             $query->whereMonth('created_at', $bulan);
         }
         $artikel = $query->paginate(5);
+        $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
 
-        $list_kanal_1 = ListKanal::where('status', '1')
-            ->where(function ($query) {
-                $query->where('nama_kanal', 'LIKE', '%profil%')
-                    ->orWhere('nama_kanal', 'LIKE', '%informasi publik%')
-                    ->orWhere('nama_kanal', 'LIKE', '%zi/wbk%');
-            })
-            ->get();
-
-        $list_kanal_2 = ListKanal::where('status', '1')
-            ->where(function ($query) {
-                $query->where('nama_kanal', 'LIKE', '%program dan layanan%')
-                    ->orWhere('nama_kanal', 'LIKE', '%tautan%')
-                    ->orWhere('nama_kanal', 'LIKE', '%publikasi%');
-            })
-            ->get();
-
-        $list_kategori_1 = [];
-        foreach ($list_kanal_1 as $kanal_1) {
-            $list_kategori_1[$kanal_1->id] = ListKategori::where('id_kanal', $kanal_1->id)->get();
-        }
-
-        $list_kategori_2 = [];
-        foreach ($list_kanal_2 as $kanal_2) {
-            $list_kategori_2[$kanal_2->id] = ListKategori::where('id_kanal', $kanal_2->id)->get();
-        }
 
         return view('contents.Front.informasi_publik.artikel', [
             'title' => 'Berita',
             'artikel' => $artikel,
-            'list_kanal_1' => $list_kanal_1,
-            'list_kanal_2' => $list_kanal_2,
-            'list_kategori_1' => $list_kategori_1,
-            'list_kategori_2' => $list_kategori_2,
+            'tautan' => $tautan,
 
         ]);
     }
     public function artikelDetail($slug)
     {
+        $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
+
         $artikel = Artikel::where('slug', $slug)->first();
         return view('contents.Front.informasi_publik.artikel-detail', [
             'title' => 'Berita',
             'artikel' => $artikel,
+            'tautan' => $tautan,
         ]);
     }
 
     public function detail()
     {
+        $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
+
         return view('contents.Front.informasi_publik.detail', [
             'title' => 'Berita',
+            'tautan' => $tautan,
         ]);
     }
 
@@ -249,22 +234,18 @@ class LandingController extends Controller
     {
         $video = Galeri::where('is_video', '=', '1')->get();
         $foto = Galeri::where('is_image', '=', '1')->with('refGaleri')->get();
-        // $video = Galeri::all();
+        $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
+
+        $video = Galeri::where('is_video','=','1')->get();
+        $foto = Galeri::where('is_image','=','1')->with('refGaleri')->get();
         return view('contents.Front.informasi_publik.galeri', [
             'title' => 'Galeri',
             'video' => $video,
             'foto' => $foto,
+            'tautan' => $tautan,
         ]);
     }
-    // public function FotoGaleri()
-    // {
-    //     $foto = Galeri::where('is_image','=','1')->get();
-    //     // dd($foto);
-    //     return view('contents.Front.informasi_publik.galeri-foto', [
-    //         'title' => 'Galeri Foto',
-    //         'foto' => $foto,
-    //     ]);
-    // }
+    
     // START MENU PUBLIKASI
     public function agenda(Request $request)
     {
@@ -280,17 +261,24 @@ class LandingController extends Controller
         }
         $agenda = $query->paginate(5);
 
+        $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
+
+        $agenda = Agenda::all();
         return view('contents.Front.menu_halaman.publikasi.agenda', [
             'title' => 'Agenda',
             'agenda' => $agenda,
+            'tautan' => $tautan,
         ]);
     }
     public function agendaDetail($id)
     {
+        $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
+
         $agenda = Agenda::where('id', $id)->first();
         return view('contents.Front.menu_halaman.publikasi.agenda-detail', [
             'title' => 'Agenda Detail',
             'agenda' => $agenda,
+            'tautan' => $tautan,
         ]);
     }
 
@@ -308,12 +296,15 @@ class LandingController extends Controller
         }
         $unduhan = $query->paginate(5);
 
+        $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
+
         foreach ($unduhan as $item) {
             $item->increment('jumlah_download');
         }
         return view('contents.Front.menu_halaman.publikasi.unduhan', [
             'title' => 'Unduhan',
             'unduhan' => $unduhan,
+            'tautan' => $tautan,
         ]);
     }
     public function panduan(Request $request)
@@ -330,17 +321,22 @@ class LandingController extends Controller
         }
         $panduan = $query->paginate(5);
 
+        $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
         return view('contents.Front.menu_halaman.publikasi.panduan', [
             'title' => 'Panduan',
             'panduan' => $panduan,
+            'tautan' => $tautan,
         ]);
     }
     public function panduanDetail($id)
     {
+        $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
+
         $panduan = Panduan::where('id', $id)->first();
         return view('contents.Front.menu_halaman.publikasi.panduan-detail', [
             'title' => 'Panduan Detail',
             'panduan' => $panduan,
+            'tautan' => $tautan,
         ]);
     }
     //start pengumuman
@@ -358,17 +354,22 @@ class LandingController extends Controller
         }
         $pengumuman = $query->paginate(5);
 
+        $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
         return view('contents.Front.menu_halaman.publikasi.pengumuman', [
             'title' => 'Pengumuman',
             'pengumuman' => $pengumuman,
+            'tautan' => $tautan,
         ]);
     }
     public function pengumumanDetail($id)
     {
+        $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
+
         $pengumuman = Pengumuman::where('id', $id)->first();
         return view('contents.Front.menu_halaman.publikasi.pengumuman-detail', [
             'title' => 'Pengumuman Detail',
             'pengumuman' => $pengumuman,
+            'tautan' => $tautan,
         ]);
     }
 
@@ -386,18 +387,22 @@ class LandingController extends Controller
             $query->whereMonth('created_at', $bulan);
         }
         $regulasi = $query->paginate(5);
-
+        $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
         return view('contents.Front.menu_halaman.publikasi.regulasi', [
             'title' => 'Regulasi',
             'regulasi' => $regulasi,
+            'tautan' => $tautan,
         ]);
     }
     public function regulasiDetail($slug)
     {
         $regulasi = Regulasi::where('slug', $slug)->first();
+        $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
+
         return view('contents.Front.menu_halaman.publikasi.regulasi-detail', [
             'title' => 'Regulasi Detail',
             'regulasi' => $regulasi,
+            'tautan' => $tautan,
         ]);
     }
     //END PUBLIKASI
@@ -406,6 +411,9 @@ class LandingController extends Controller
     public function sekolahPenggerak(Request $request)
     {
         $query = DB::table('program_layanan')
+        $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
+
+        $sekolah = DB::table('program_layanan')
             ->join('ref_kategori', 'program_layanan.id_kategori', '=', 'ref_kategori.id')
             ->select('program_layanan.*', 'ref_kategori.nama_kategori')
             ->where('program_layanan.id_kategori', '=', 19);
@@ -422,21 +430,28 @@ class LandingController extends Controller
         return view('contents.Front.menu_halaman.program_layanan.sekolah-penggerak', [
             'title' => 'Pogram Pendidikan Guru Penggerak',
             'sekolah' => $sekolah,
+            'tautan' => $tautan,
         ]);
     }
     public function sekolahPenggerakDetail($slug)
     {
+
+        $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
 
         $sekolah = ProgramLayanan::where('slug', $slug)->first();
         // dd($sekolah);
         return view('contents.Front.menu_halaman.program_layanan.sekolah-penggerak-detail', [
             'title' => 'Detail Pogram Pendidikan Guru Penggerak ',
             'sekolah' => $sekolah,
+            'tautan' => $tautan,
         ]);
     }
     public function guruPenggerak(Request $request)
     {
         $query = DB::table('program_layanan')
+        $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
+
+        $guru = DB::table('program_layanan')
             ->join('ref_kategori', 'program_layanan.id_kategori', '=', 'ref_kategori.id')
             ->select('program_layanan.*', 'ref_kategori.nama_kategori')
             ->where('program_layanan.id_kategori', '=', 20);
@@ -453,15 +468,19 @@ class LandingController extends Controller
         return view('contents.Front.menu_halaman.program_layanan.guru-penggerak', [
             'title' => 'Pogram Pendidikan Guru Penggerak',
             'guru' => $guru,
+            'tautan' => $tautan,
         ]);
     }
     public function guruPenggerakDetail($slug)
     {
+        $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
+
         $guru = ProgramLayanan::where('slug', $slug)->first();
         // dd($guru);
         return view('contents.Front.menu_halaman.program_layanan.guru-penggerak-detail', [
             'title' => 'Detail Pogram Pendidikan Guru Penggerak ',
             'guru' => $guru,
+            'tautan' => $tautan,
         ]);
     }
     public function GaleriFoto()

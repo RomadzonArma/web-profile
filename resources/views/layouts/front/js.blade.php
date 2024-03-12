@@ -12,18 +12,46 @@
 
 <script>
     // map
-    var map = L.map('peta-persebaran').setView([-3.1073741, 117.4016219], 3.8);
+    var map1 = L.map('peta-persebaran').setView([-3.1073741, 117.4016219], 3.8);
 
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 20,
         attribution: '<a href="http://www.openstreetmap.org/copyright"></a>'
-    }).addTo(map);
+    }).addTo(map1);
+    // map
+    var map2 = L.map('peta-pengawas').setView([-3.1073741, 117.4016219], 3.8);
+
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 20,
+        attribution: '<a href="http://www.openstreetmap.org/copyright"></a>'
+    }).addTo(map2);
+    // map
+    var map3 = L.map('peta-tas').setView([-3.1073741, 117.4016219], 3.8);
+
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 20,
+        attribution: '<a href="http://www.openstreetmap.org/copyright"></a>'
+    }).addTo(map3);
+    // map
+    var map4 = L.map('peta-laboran').setView([-3.1073741, 117.4016219], 3.8);
+
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 20,
+        attribution: '<a href="http://www.openstreetmap.org/copyright"></a>'
+    }).addTo(map4);
+    // map
+    var map5 = L.map('peta-perpustakaan').setView([-3.1073741, 117.4016219], 3.8);
+
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 20,
+        attribution: '<a href="http://www.openstreetmap.org/copyright"></a>'
+    }).addTo(map5);
 </script>
 
 <script>
     const swiper1 = new Swiper('.swiper-1', {
         // Optional parameters
-        // loop: true,
+        loop: true,
         slidesPerView: 1,
         spaceBetween: 30,
         // autoHeight: true,

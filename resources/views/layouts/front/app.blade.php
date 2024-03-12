@@ -35,6 +35,12 @@
                         @yield('content')
 
                         <div class="col-md-3 col-12">
+            {{--  <div class="content-wrap">  --}}
+            <div class="container-fluid">
+                <div class="row">
+                    @yield('content')
+                    @if (Request::route()->getName() !== 'index')
+                        <div class="col-md-3 col-12 mt-4">
                             <div class="heading-block md mb-3">
                                 <h4 class="mb-1">MEDIA SOSIAL</h4>
                             </div>
@@ -85,7 +91,7 @@
                                                 <div class="entry-meta mb-2 mt-0">
                                                     <ul>
                                                         <li><a href="#"><i class="icon-calendar3"></i>
-                                                            {{ $carbon::parse($item->date)->format('d M Y') }}</a>
+                                                                {{ $carbon::parse($item->date)->format('d M Y') }}</a>
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -94,130 +100,11 @@
                                     </div>
                                 @endforeach
 
-                                {{-- <div class="entry mb-4">
-                                    <div class="grid-inner row no-gutters p-0">
-                                        <div class="entry-image col-xl-4 mb-xl-0">
-                                            <a href="#">
-                                                <img src="{{ asset('assets-front/img/BERITA1.jpg') }}"
-                                                    alt="thumbnail_berita">
-                                            </a>
-                                        </div>
-                                        <div class="col-xl-8 pl-xl-4">
-                                            <div class="entry-title title-xs text-clamp-2">
-                                                <h5 class="mb-1"><a href="#">Pengelolaan Kinerja di PMM
-                                                        Memberikan
-                                                        Banyak Kemudahan untuk Guru dan Kepala Sekolah</a></h5>
-                                            </div>
-                                            <div class="entry-meta mb-2 mt-0">
-                                                <ul>
-                                                    <li><a href="#"><i class="icon-calendar3"></i> 2 Februari
-                                                            2024</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="entry mb-4">
-                                    <div class="grid-inner row no-gutters p-0">
-                                        <div class="entry-image col-xl-4 mb-xl-0">
-                                            <a href="#">
-                                                <img src="{{ asset('assets-front/img/BERITA1.jpg') }}"
-                                                    alt="thumbnail_berita">
-                                            </a>
-                                        </div>
-                                        <div class="col-xl-8 pl-xl-4">
-                                            <div class="entry-title title-xs text-clamp-2">
-                                                <h5 class="mb-1"><a href="#">Pengelolaan Kinerja di PMM
-                                                        Memberikan
-                                                        Banyak Kemudahan untuk Guru dan Kepala Sekolah</a></h5>
-                                            </div>
-                                            <div class="entry-meta mb-2 mt-0">
-                                                <ul>
-                                                    <li><a href="#"><i class="icon-calendar3"></i> 2 Februari
-                                                            2024</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="entry mb-4">
-                                    <div class="grid-inner row no-gutters p-0">
-                                        <div class="entry-image col-xl-4 mb-xl-0">
-                                            <a href="#">
-                                                <img src="{{ asset('assets-front/img/BERITA1.jpg') }}"
-                                                    alt="thumbnail_berita">
-                                            </a>
-                                        </div>
-                                        <div class="col-xl-8 pl-xl-4">
-                                            <div class="entry-title title-xs text-clamp-2">
-                                                <h5 class="mb-1"><a href="#">Pengelolaan Kinerja di PMM
-                                                        Memberikan
-                                                        Banyak Kemudahan untuk Guru dan Kepala Sekolah</a></h5>
-                                            </div>
-                                            <div class="entry-meta mb-2 mt-0">
-                                                <ul>
-                                                    <li><a href="#"><i class="icon-calendar3"></i> 2 Februari
-                                                            2024</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="entry mb-4">
-                                    <div class="grid-inner row no-gutters p-0">
-                                        <div class="entry-image col-xl-4 mb-xl-0">
-                                            <a href="#">
-                                                <img src="{{ asset('assets-front/img/BERITA1.jpg') }}"
-                                                    alt="thumbnail_berita">
-                                            </a>
-                                        </div>
-                                        <div class="col-xl-8 pl-xl-4">
-                                            <div class="entry-title title-xs text-clamp-2">
-                                                <h5 class="mb-1"><a href="#">Pengelolaan Kinerja di PMM
-                                                        Memberikan
-                                                        Banyak Kemudahan untuk Guru dan Kepala Sekolah</a></h5>
-                                            </div>
-                                            <div class="entry-meta mb-2 mt-0">
-                                                <ul>
-                                                    <li><a href="#"><i class="icon-calendar3"></i> 2 Februari
-                                                            2024</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="entry mb-4">
-                                    <div class="grid-inner row no-gutters p-0">
-                                        <div class="entry-image col-xl-4 mb-xl-0">
-                                            <a href="#">
-                                                <img src="{{ asset('assets-front/img/BERITA1.jpg') }}"
-                                                    alt="thumbnail_berita">
-                                            </a>
-                                        </div>
-                                        <div class="col-xl-8 pl-xl-4">
-                                            <div class="entry-title title-xs text-clamp-2">
-                                                <h5 class="mb-1"><a href="#">Pengelolaan Kinerja di PMM
-                                                        Memberikan
-                                                        Banyak Kemudahan untuk Guru dan Kepala Sekolah</a></h5>
-                                            </div>
-                                            <div class="entry-meta mb-2 mt-0">
-                                                <ul>
-                                                    <li><a href="#"><i class="icon-calendar3"></i> 2 Februari
-                                                            2024</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> --}}
                             </div>
                         </div>
-                    </div>
+                    @endif
                 </div>
+            {{--  </div>  --}}
             </div>
         </section>
 
@@ -242,8 +129,7 @@
         </form>
     </div>
 
-    <div class="modal fade" id="podcast" tabindex="-1" role="dialog" aria-labelledby="Podcast"
-        aria-hidden="true">
+    <div class="modal fade" id="podcast" tabindex="-1" role="dialog" aria-labelledby="Podcast" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
@@ -286,3 +172,123 @@
 </body>
 
 </html>
+{{-- <div class="entry mb-4">
+    <div class="grid-inner row no-gutters p-0">
+        <div class="entry-image col-xl-4 mb-xl-0">
+            <a href="#">
+                <img src="{{ asset('assets-front/img/BERITA1.jpg') }}"
+                    alt="thumbnail_berita">
+            </a>
+        </div>
+        <div class="col-xl-8 pl-xl-4">
+            <div class="entry-title title-xs text-clamp-2">
+                <h5 class="mb-1"><a href="#">Pengelolaan Kinerja di PMM
+                        Memberikan
+                        Banyak Kemudahan untuk Guru dan Kepala Sekolah</a></h5>
+            </div>
+            <div class="entry-meta mb-2 mt-0">
+                <ul>
+                    <li><a href="#"><i class="icon-calendar3"></i> 2 Februari
+                            2024</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="entry mb-4">
+    <div class="grid-inner row no-gutters p-0">
+        <div class="entry-image col-xl-4 mb-xl-0">
+            <a href="#">
+                <img src="{{ asset('assets-front/img/BERITA1.jpg') }}"
+                    alt="thumbnail_berita">
+            </a>
+        </div>
+        <div class="col-xl-8 pl-xl-4">
+            <div class="entry-title title-xs text-clamp-2">
+                <h5 class="mb-1"><a href="#">Pengelolaan Kinerja di PMM
+                        Memberikan
+                        Banyak Kemudahan untuk Guru dan Kepala Sekolah</a></h5>
+            </div>
+            <div class="entry-meta mb-2 mt-0">
+                <ul>
+                    <li><a href="#"><i class="icon-calendar3"></i> 2 Februari
+                            2024</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="entry mb-4">
+    <div class="grid-inner row no-gutters p-0">
+        <div class="entry-image col-xl-4 mb-xl-0">
+            <a href="#">
+                <img src="{{ asset('assets-front/img/BERITA1.jpg') }}"
+                    alt="thumbnail_berita">
+            </a>
+        </div>
+        <div class="col-xl-8 pl-xl-4">
+            <div class="entry-title title-xs text-clamp-2">
+                <h5 class="mb-1"><a href="#">Pengelolaan Kinerja di PMM
+                        Memberikan
+                        Banyak Kemudahan untuk Guru dan Kepala Sekolah</a></h5>
+            </div>
+            <div class="entry-meta mb-2 mt-0">
+                <ul>
+                    <li><a href="#"><i class="icon-calendar3"></i> 2 Februari
+                            2024</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="entry mb-4">
+    <div class="grid-inner row no-gutters p-0">
+        <div class="entry-image col-xl-4 mb-xl-0">
+            <a href="#">
+                <img src="{{ asset('assets-front/img/BERITA1.jpg') }}"
+                    alt="thumbnail_berita">
+            </a>
+        </div>
+        <div class="col-xl-8 pl-xl-4">
+            <div class="entry-title title-xs text-clamp-2">
+                <h5 class="mb-1"><a href="#">Pengelolaan Kinerja di PMM
+                        Memberikan
+                        Banyak Kemudahan untuk Guru dan Kepala Sekolah</a></h5>
+            </div>
+            <div class="entry-meta mb-2 mt-0">
+                <ul>
+                    <li><a href="#"><i class="icon-calendar3"></i> 2 Februari
+                            2024</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="entry mb-4">
+    <div class="grid-inner row no-gutters p-0">
+        <div class="entry-image col-xl-4 mb-xl-0">
+            <a href="#">
+                <img src="{{ asset('assets-front/img/BERITA1.jpg') }}"
+                    alt="thumbnail_berita">
+            </a>
+        </div>
+        <div class="col-xl-8 pl-xl-4">
+            <div class="entry-title title-xs text-clamp-2">
+                <h5 class="mb-1"><a href="#">Pengelolaan Kinerja di PMM
+                        Memberikan
+                        Banyak Kemudahan untuk Guru dan Kepala Sekolah</a></h5>
+            </div>
+            <div class="entry-meta mb-2 mt-0">
+                <ul>
+                    <li><a href="#"><i class="icon-calendar3"></i> 2 Februari
+                            2024</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div> --}}

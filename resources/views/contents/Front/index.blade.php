@@ -10,7 +10,7 @@
                     </a>
                     <form class="bg-white form-banner my-0" style="min-width: 280px;">
                         <input type="text" placeholder="Cari kata kunci...">
-                        <div class="rounded-icon bg-secondary">
+                        <div class="rounded-icon bg-primary">
                             <i class="icon-line-search"></i>
                         </div>
                     </form>
@@ -35,7 +35,7 @@
                         @include('contents.Front.swiper_program')
 
                         {{-- PETA --}}
-                        @include('contents.Front.peta')
+                        {{-- @include('contents.Front.peta') --}}
 
                     </div>
                     <div class="col-lg-4 col-md-5 col-12 mb-lg-0 mb-4">

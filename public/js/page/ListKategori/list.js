@@ -151,8 +151,13 @@ $(() => {
             data: 'list_kanal.nama_kanal',
         }, {
             data: 'status',
-            render: function (data, type, full, meta) {
-                return data === 1 ? 'Active' : 'Inactive';
+            render: (data, type, row) => {
+                return `
+                <div class="custom-control custom-switch mb-3" dir="ltr">
+                    <input type="checkbox" class="custom-control-input switch-active" id="aktif-${row.id}" data-id="${row.id}" ${data == '1' ? 'checked' : ''} value="${data == '1' ? 0 : 1}">
+                    <label class="custom-control-label" for="aktif-${row.id}">${data == '1' ? 'Active' : 'In Active'}</label>
+                </div>
+                `;
             }
         }, {
             data: 'id',
@@ -271,3 +276,23 @@ $('body').on('click', '.btn-update', function (e) {
         }
     })
 })
+
+$('#table-data').on('change', '.switch-active', function () {
+    var id = $(this).data('id');
+    var value = $(this).prop('checked') ? 1 : 0;
+
+
+    $.post(BASE_URL + 'list_kategori/switch', {
+        id,
+        value,
+        _method: 'PATCH'
+    }).done((res) => {
+        showSuccessToastr('sukses', value == '1' ? 'Kategori berhasil di aktifkan' : 'kategori berhasil di non aktifkan');
+        table.ajax.reload();
+    }).fail((res) => {
+        let { status, responseJSON } = res;
+        showErrorToastr('oops', responseJSON.message);
+        console.log(res);
+    })
+})
+
