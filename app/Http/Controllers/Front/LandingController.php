@@ -18,6 +18,8 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Model\ListKanal;
 use App\Model\ListKategori;
+use App\Model\PengunjungArtikel;
+use App\Model\PengunjungBerita;
 use App\Model\Podcast;
 use App\Model\Profil;
 use App\Model\ProgramFokus;
@@ -26,8 +28,6 @@ use Illuminate\Database\Eloquent\Builder;
 
 class LandingController extends Controller
 {
-
-
     public function index()
     {
 
@@ -84,13 +84,11 @@ class LandingController extends Controller
         return response()->json(['success' => true]);
     }
 
-
-
     public function visi_misi()
     {
         $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
 
-        $data_visi = Profil::whereHas('list_kategori' , function (Builder $query) {
+        $data_visi = Profil::whereHas('list_kategori', function (Builder $query) {
             $query->where('nama_kategori', 'LIKE', '%visi%')->where('is_active', '1');
         })->get();
 
@@ -106,7 +104,7 @@ class LandingController extends Controller
     {
         $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
 
-        $data_struktur = Profil::whereHas('list_kategori' , function (Builder $query) {
+        $data_struktur = Profil::whereHas('list_kategori', function (Builder $query) {
             $query->where('nama_kategori', 'LIKE', '%struktur%')->where('is_active', '1');
         })->get();
 
@@ -121,7 +119,7 @@ class LandingController extends Controller
     {
         $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
 
-        $data_tugas = Profil::whereHas('list_kategori' , function (Builder $query) {
+        $data_tugas = Profil::whereHas('list_kategori', function (Builder $query) {
             $query->where('nama_kategori', 'LIKE', '%tugas%')->where('is_active', '1');
         })->get();
 
@@ -136,7 +134,7 @@ class LandingController extends Controller
     {
         $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
 
-        $data_kontak = Profil::whereHas('list_kategori' , function (Builder $query) {
+        $data_kontak = Profil::whereHas('list_kategori', function (Builder $query) {
             $query->where('nama_kategori', 'LIKE', '%kontak%')->where('is_active', '1');
         })->get();
 
@@ -172,17 +170,38 @@ class LandingController extends Controller
         ]);
     }
 
-    public function beritaDetail($id)
+    public function beritaDetail($slug)
     {
         $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
 
-        $berita = ListBerita::where('id', $id)->first();
+        $berita = ListBerita::where('slug', $slug)->first();
+        $this->recordPengunjungBerita(request(), $berita->id);
+
+        $jumlah_lihat = PengunjungBerita::hitungPengunjungBerita($berita->id);
+        $berita->jumlah_lihat = $jumlah_lihat;
+        $berita->save();
+
         return view('contents.Front.informasi_publik.berita-detail', [
             'title' => 'Berita',
             'berita' => $berita,
             'tautan' => $tautan,
         ]);
     }
+
+    public function recordPengunjungBerita(Request $request, $id_berita)
+    {
+        $ipAddress = $request->ip();
+        $userAgent = uniqid() . '-' . $request->header('User-Agent');
+
+        PengunjungBerita::create([
+            'id_berita' => $id_berita,
+            'ip_address' => $ipAddress,
+            'user_agent' => $userAgent,
+        ]);
+
+        return response()->json(['success' => true]);
+    }
+
     public function artikel(Request $request)
     {
         $query  = Artikel::where('status_publish', '1');
@@ -200,22 +219,43 @@ class LandingController extends Controller
 
 
         return view('contents.Front.informasi_publik.artikel', [
-            'title' => 'Berita',
+            'title' => 'Artikel',
             'artikel' => $artikel,
             'tautan' => $tautan,
 
         ]);
     }
+
     public function artikelDetail($slug)
     {
         $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
 
         $artikel = Artikel::where('slug', $slug)->first();
+        $this->recordPengunjungArtikel(request(), $artikel->id);
+
+        $jumlah_lihat = PengunjungArtikel::hitungPengunjungArtikel($artikel->id);
+        $artikel->jumlah_lihat = $jumlah_lihat;
+        $artikel->save();
+
         return view('contents.Front.informasi_publik.artikel-detail', [
-            'title' => 'Berita',
+            'title' => 'Artikel',
             'artikel' => $artikel,
             'tautan' => $tautan,
         ]);
+    }
+
+    public function recordPengunjungArtikel(Request $request, $id_artikel)
+    {
+        $ipAddress = $request->ip();
+        $userAgent = uniqid() . '-' . $request->header('User-Agent');
+
+        PengunjungArtikel::create([
+            'id_artikel' => $id_artikel,
+            'ip_address' => $ipAddress,
+            'user_agent' => $userAgent,
+        ]);
+
+        return response()->json(['success' => true]);
     }
 
     public function detail()
@@ -234,8 +274,8 @@ class LandingController extends Controller
         $foto = Galeri::where('is_image', '=', '1')->with('refGaleri')->get();
         $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
 
-        $video = Galeri::where('is_video','=','1')->get();
-        $foto = Galeri::where('is_image','=','1')->with('refGaleri')->get();
+        $video = Galeri::where('is_video', '=', '1')->get();
+        $foto = Galeri::where('is_image', '=', '1')->with('refGaleri')->get();
         return view('contents.Front.informasi_publik.galeri', [
             'title' => 'Galeri',
             'video' => $video,
