@@ -117,7 +117,10 @@ $(() => {
                 return formattedDate;
             }
         }, {
-            data: 'counter',
+            data: 'jumlah_lihat',
+            render: function(data, type, row) {
+                return data ? data : '0';
+            }
         }, {
             data: 'status_publish',
             render: (data, type, row) => {

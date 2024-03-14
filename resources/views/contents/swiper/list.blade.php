@@ -149,8 +149,6 @@
             };
             reader.readAsDataURL(file);
         });
-    </script>
-    <script>
         document.getElementById("updateCustomFile").addEventListener("change", function() {
             var file = this.files[0];
             var fileLabel = document.querySelector('label[for="customFile"]');
@@ -163,6 +161,10 @@
                     '" class="img-fluid" style="height:200px;width:auto" alt="Selected Image">';
             };
             reader.readAsDataURL(file);
+        });
+        $('#modal-swiper').on('hidden.bs.modal', function() {
+            document.getElementById("ImagePreview");
+            imagePreview.innerHTML = '';
         });
         $('#modal-swiper-update').on('hidden.bs.modal', function() {
             var imagePreview = document.getElementById("updateImagePreview");
