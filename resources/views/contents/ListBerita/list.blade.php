@@ -31,7 +31,7 @@
                                 <th>Kategori</th>
                                 <th>Headline</th>
                                 <th>Tanggal Tayang</th>
-                                <th>Counter</th>
+                                <th>Jumlah Lihat</th>
                                 <th>Status Publish</th>
                                 <th>Aksi</th>
                                 <th></th>
