@@ -48,9 +48,10 @@
                                     </li>
                                 </ul>
                             </div>
-                            <a class="button button-mini button-aqua rounded m-0"
-                                href="{{ asset('file-unduhan/' . $item->file) }}" target="_blank">Unduh Dokumen
-                                <i class="icon-line-download"></i></a>
+                            <a class="button button-mini button-aqua rounded m-0 unduh-dokumen"
+                            href="{{ asset('file-unduhan/' . $item->file) }}" target="_blank"
+                            data-id="{{ $item->id }}">Unduh Dokumen <i class="icon-line-download"></i></a>
+
                         </div>
                     </div>
                 </div>

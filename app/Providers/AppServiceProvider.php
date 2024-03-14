@@ -7,6 +7,7 @@ use App\Model\Tautan;
 use App\Model\Podcast;
 use App\Model\ListBerita;
 use App\Model\Pengunjung;
+use App\Model\Webinar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Blade;
@@ -44,6 +45,10 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('contents.Front.menu', function ($view) {
             $tautan = Tautan::all();
             $view->with('tautan', $tautan);
+        });
+        view()->composer('contents.Front.webinar', function ($view) {
+            $webinar = Webinar::all();
+            $view->with('webinar', $webinar);
         });
     }
 

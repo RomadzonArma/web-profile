@@ -117,7 +117,7 @@ class UnduhanController extends Controller
             if (file_exists(public_path('file-unduhan') . '/' . $unduhan->file)) {
                 unlink(public_path('file-unduhan') . '/' . $unduhan->file);
             }
-            
+
             // Hapus record dari database
             $unduhan->delete();
 
@@ -126,19 +126,17 @@ class UnduhanController extends Controller
             return response()->json(['status' => false, 'msg' => $e->getMessage()], 400);
         }
     }
-    public function download($id)
+    public function incrementUnduhan($id)
     {
-        try {
-            $unduhan = Unduhan::findOrFail($id);
+        $unduhan = Unduhan::find($id);
 
-            // Increment the download count if needed
+        if ($unduhan) {
             $unduhan->increment('jumlah_download');
-
-            $filePath = public_path('file-unduhan') . '/' . $unduhan->file;
-
-            return response()->download($filePath, $unduhan->judul . '.pdf');
-        } catch (\Exception $e) {
-            return response()->json(['status' => false, 'msg' => $e->getMessage()], 400);
+            return response()->json(['success' => true]);
         }
+
+        return response()->json(['success' => false]);
+        
     }
+
 }

@@ -36,6 +36,7 @@ Route::get('/galeri/foto', [LandingController::class, 'FotoGaleri'])->name('gale
 Route::get('/agenda/list', [LandingController::class, 'agenda'])->name('agenda.list');
 Route::get('/agenda/detail/{id}', [LandingController::class, 'agendaDetail'])->name('agenda.detail');
 Route::get('/unduhan/list', [LandingController::class, 'unduhan'])->name('unduhan.list');
+Route::post('/unduhan/{id}/increment', 'UnduhanController@incrementUnduhan');
 Route::get('/panduan', [LandingController::class, 'panduan'])->name('panduan');
 Route::get('/panduan/detail/{id}', [LandingController::class, 'panduanDetail'])->name('panduan.detail');
 Route::get('/pengumumans', [LandingController::class, 'pengumuman'])->name('pengumuman.list');

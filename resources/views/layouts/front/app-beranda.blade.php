@@ -47,8 +47,7 @@
         </form>
     </div>
 
-    <div class="modal fade" id="podcast" tabindex="-1" role="dialog" aria-labelledby="Podcast"
-        aria-hidden="true">
+    <div class="modal fade" id="podcast" tabindex="-1" role="dialog" aria-labelledby="Podcast" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
@@ -60,17 +59,17 @@
                         <div class="entry mb-5">
                             <div class="grid-inner row no-gutters p-0">
                                 <div class="entry-image col-3 mb-0">
-                                    <a href="#">
+                                    <a href="{{$podcast->link_podcast}}">
                                         <img src="{{ asset('podcast/' . $podcast->gambar) }}" alt="thumbnail_podcast">
                                     </a>
                                 </div>
                                 <div class="col-9 pl-3">
                                     <div class="entry-title title-xs text-clamp-2">
-                                        <h6 class="mb-1"><a href="detail.html">{{ $podcast->judul }}</a></h6>
+                                        <h6 class="mb-1"><a href="{{$podcast->link_podcast}}">{{ $podcast->judul }}</a></h6>
                                     </div>
                                     <div class="entry-meta mb-2 mt-0">
                                         <ul>
-                                            <li><a href="#"><i class="icon-users"></i> 11rb penonton</a>
+                                            <li><a href="#"><i class="icon-users"></i> {{$podcast->jumlah_lihat ?? 0}} penonton</a>
                                             <li><a href="#"><i
                                                         class="icon-calendar3"></i>{{ $podcast->date }}</a>
                                             </li>
