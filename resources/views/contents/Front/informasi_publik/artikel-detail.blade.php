@@ -2,7 +2,6 @@
 @inject('carbon', 'Carbon\Carbon')
 
 @section('content-header')
-
     <section id="page-title" class="bg-soft px-md-5">
         <div class="content-wrap py-0">
             <div class="container-fluid">
@@ -24,239 +23,42 @@
 @endsection
 
 @section('content')
-
-    <section class="px-md-5">
-        <div class="content-wrap">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-9 col-12 mb-md-0 mb-4">
-                        <div class="row">
-                            <div class="col-lg-10  mb-4">
-                                <img src="{{ asset('gambar-artikel/'.$artikel->gambar) }}" alt="thumbnail_beritas">
-                                <p class="mt-1">
-                                    <small><center>{{$artikel->caption_gambar}}</center></small>
-                                </p>
-                            </div>
-                            <div class="col-xl-10">
-                                <div class="entry-title">
-                                    <h3 class="mb-1"><a href="#">{{ $artikel->judul }}</a>
-                                    </h3>
-                                </div>
-
-                                <p class="mb-4">
-                                    {!! $artikel->konten !!}
-                                </p>
-                                <div class="entry-title">
-                                    <h6 class="mb-1"><a href="#"># {{ $artikel->tag }}</a></h6>
-                                    <h6 class="mb-1"><a href="#"># {{ $artikel->link}}</a></h6>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-12">
-                        <div class="heading-block md mb-3">
-                            <h4 class="mb-1">MEDIA SOSIAL</h4>
-                        </div>
-                        <div class="fslider fslider-banner testimonial-full mb-4" data-animation="slide"
-                            data-arrows="false">
-                            <div class="flexslider">
-                                <div class="slider-wrap">
-                                    <div class="slide" style="max-height: 100%;">
-                                        <div class="overlaying-img">
-                                            <a href="#"><img class="img-fluid"
-                                                    src="{{ asset('assets-front/img/podcast.jpeg') }}" style="width: 100%;"
-                                                    alt="Image 1"></a>
-                                            <div class="bg-overlay">
-                                                <div class="overlaying-desc">
-                                                    <h4 class="text-white mb-0 text-center">Podcast</h4>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="slide" style="max-height: 100%;">
-                                        <div class="overlaying-img">
-                                            <a href="#"><img class="img-fluid"
-                                                    src="{{ asset('assets-front/img/podcast.jpeg') }}" style="width: 100%;"
-                                                    alt="Image 1"></a>
-                                            <div class="bg-overlay">
-                                                <div class="overlaying-desc">
-                                                    <h4 class="text-white mb-0 text-center">Podcast</h4>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="slide" style="max-height: 100%;">
-                                        <div class="overlaying-img">
-                                            <a href="#"><img class="img-fluid"
-                                                    src="{{ asset('assets-front/img/podcast.jpeg') }}" style="width: 100%;"
-                                                    alt="Image 1"></a>
-                                            <div class="bg-overlay">
-                                                <div class="overlaying-desc">
-                                                    <h4 class="text-white mb-0 text-center">Podcast</h4>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="slide" style="max-height: 100%;">
-                                        <div class="overlaying-img">
-                                            <a href="#"><img class="img-fluid"
-                                                    src="{{ asset('assets-front/img/podcast.jpeg') }}" style="width: 100%;"
-                                                    alt="Image 1"></a>
-                                            <div class="bg-overlay">
-                                                <div class="overlaying-desc">
-                                                    <h4 class="text-white mb-0 text-center">Podcast</h4>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="widget clearfix">
-                            <div class="heading-block md mb-3">
-                                <h4 class="mb-1">BERITA TERKINI</h4>
-                            </div>
-                            <div class="entry mb-4">
-                                <div class="grid-inner row no-gutters p-0">
-                                    <div class="entry-image col-xl-4 mb-xl-0">
-                                        <a href="#">
-                                            <img src="{{ asset('assets-front/img/BERITA1.jpg') }}" alt="thumbnail_berita">
-                                        </a>
-                                    </div>
-                                    <div class="col-xl-8 pl-xl-4">
-                                        <div class="entry-title title-xs text-clamp-2">
-                                            <h5 class="mb-1"><a href="#">Pengelolaan Kinerja di PMM Memberikan
-                                                    Banyak Kemudahan untuk Guru dan Kepala Sekolah</a></h5>
-                                        </div>
-                                        <div class="entry-meta mb-2 mt-0">
-                                            <ul>
-                                                <li><a href="#"><i class="icon-calendar3"></i> 2 Februari 2024</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="entry mb-4">
-                                <div class="grid-inner row no-gutters p-0">
-                                    <div class="entry-image col-xl-4 mb-xl-0">
-                                        <a href="#">
-                                            <img src="{{ asset('assets-front/img/BERITA1.jpg') }}"
-                                                alt="thumbnail_berita">
-                                        </a>
-                                    </div>
-                                    <div class="col-xl-8 pl-xl-4">
-                                        <div class="entry-title title-xs text-clamp-2">
-                                            <h5 class="mb-1"><a href="#">Pengelolaan Kinerja di PMM Memberikan
-                                                    Banyak Kemudahan untuk Guru dan Kepala Sekolah</a></h5>
-                                        </div>
-                                        <div class="entry-meta mb-2 mt-0">
-                                            <ul>
-                                                <li><a href="#"><i class="icon-calendar3"></i> 2 Februari 2024</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="entry mb-4">
-                                <div class="grid-inner row no-gutters p-0">
-                                    <div class="entry-image col-xl-4 mb-xl-0">
-                                        <a href="#">
-                                            <img src="{{ asset('assets-front/img/BERITA1.jpg') }}"
-                                                alt="thumbnail_berita">
-                                        </a>
-                                    </div>
-                                    <div class="col-xl-8 pl-xl-4">
-                                        <div class="entry-title title-xs text-clamp-2">
-                                            <h5 class="mb-1"><a href="#">Pengelolaan Kinerja di PMM Memberikan
-                                                    Banyak Kemudahan untuk Guru dan Kepala Sekolah</a></h5>
-                                        </div>
-                                        <div class="entry-meta mb-2 mt-0">
-                                            <ul>
-                                                <li><a href="#"><i class="icon-calendar3"></i> 2 Februari 2024</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="entry mb-4">
-                                <div class="grid-inner row no-gutters p-0">
-                                    <div class="entry-image col-xl-4 mb-xl-0">
-                                        <a href="#">
-                                            <img src="{{ asset('assets-front/img/BERITA1.jpg') }}"
-                                                alt="thumbnail_berita">
-                                        </a>
-                                    </div>
-                                    <div class="col-xl-8 pl-xl-4">
-                                        <div class="entry-title title-xs text-clamp-2">
-                                            <h5 class="mb-1"><a href="#">Pengelolaan Kinerja di PMM Memberikan
-                                                    Banyak Kemudahan untuk Guru dan Kepala Sekolah</a></h5>
-                                        </div>
-                                        <div class="entry-meta mb-2 mt-0">
-                                            <ul>
-                                                <li><a href="#"><i class="icon-calendar3"></i> 2 Februari 2024</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="entry mb-4">
-                                <div class="grid-inner row no-gutters p-0">
-                                    <div class="entry-image col-xl-4 mb-xl-0">
-                                        <a href="#">
-                                            <img src="{{ asset('assets-front/img/BERITA1.jpg') }}"
-                                                alt="thumbnail_berita">
-                                        </a>
-                                    </div>
-                                    <div class="col-xl-8 pl-xl-4">
-                                        <div class="entry-title title-xs text-clamp-2">
-                                            <h5 class="mb-1"><a href="#">Pengelolaan Kinerja di PMM Memberikan
-                                                    Banyak Kemudahan untuk Guru dan Kepala Sekolah</a></h5>
-                                        </div>
-                                        <div class="entry-meta mb-2 mt-0">
-                                            <ul>
-                                                <li><a href="#"><i class="icon-calendar3"></i> 2 Februari 2024</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="entry mb-4">
-                                <div class="grid-inner row no-gutters p-0">
-                                    <div class="entry-image col-xl-4 mb-xl-0">
-                                        <a href="#">
-                                            <img src="{{ asset('assets-front/img/BERITA1.jpg') }}"
-                                                alt="thumbnail_berita">
-                                        </a>
-                                    </div>
-                                    <div class="col-xl-8 pl-xl-4">
-                                        <div class="entry-title title-xs text-clamp-2">
-                                            <h5 class="mb-1"><a href="#">Pengelolaan Kinerja di PMM Memberikan
-                                                    Banyak Kemudahan untuk Guru dan Kepala Sekolah</a></h5>
-                                        </div>
-                                        <div class="entry-meta mb-2 mt-0">
-                                            <ul>
-                                                <li><a href="#"><i class="icon-calendar3"></i> 2 Februari 2024</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+    <div class="col-md-9 col-12 mb-md-0 mb-4">
+        <div class="row">
+            <div class="col-xl-10">
+                <div class="entry-title">
+                    <h3 class="mb-1">{{ $artikel->judul }}</h3>
+                </div>
+                <div class="entry-meta my-4">
+                    <ul>
+                        <li><i class="icon-calendar3"></i> {{ $carbon::parse($artikel->date)->format('d M Y') }}</li>
+                        <li><i class="icon-user1"></i> KSPTK</li>
+                        <li><i class="icon-line-folder"></i> Artikel</li>
+                        <li><i class="icon-line-eye"></i> {{ $artikel->jumlah_lihat }} Dilihat</li>
+                    </ul>
+                </div>
+                <div class="entry-image">
+                    <img src="{{ asset('gambar-artikel/' . $artikel->gambar) }}" alt="img">
+                    <p class="mt-1">
+                        <small>
+                            <center>{{ $artikel->caption_gambar }}</center>
+                        </small>
+                    </p>
+                </div>
+                <div class="entry-content mt-0">
+                    <p class="mb-4">
+                        {!! $artikel->konten !!}
+                    </p>
+                </div>
+                <div class="entry-title">
+                    <h6 class="mb-1"><a href="#"># {{ $artikel->tag }}</a></h6>
+                    <h6 class="mb-1"><a href="#"># {{ $artikel->link }}</a></h6>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 @endsection
 @push('scripts')
-
     <script>
         function previewPdf(input) {
             var pdfPreview = document.getElementById('pdf_preview');
@@ -264,7 +66,7 @@
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
 
-                reader.onload = function (e) {
+                reader.onload = function(e) {
                     // Set the src attribute of the iframe to the URL of the selected PDF file
                     pdfPreview.src = e.target.result;
                 };
@@ -273,7 +75,7 @@
             }
         }
 
-        document.getElementById('file_pdf').addEventListener('change', function () {
+        document.getElementById('file_pdf').addEventListener('change', function() {
             previewPdf(this);
         });
     </script>

@@ -25,32 +25,46 @@
 @section('content')
     <div class="col-md-9 col-12 mb-md-0 mb-4">
         <div class="row">
-            <div class="col-lg-10  mb-4">
-                <img src="{{ asset('list_berita/' . $berita->gambar) }}" alt="thumbnail_beritas">
-                <p class="mt-1">
-                    <small>
-                        <center>{{ $berita->caption_gambar }}</center>
-                    </small>
-                </p>
-            </div>
             <div class="col-xl-10">
                 <div class="entry-title">
-                    <h3 class="mb-1"><a href="#">{{ $berita->judul }}</a>
-                    </h3>
+                    <h3 class="mb-1">{{ $berita->judul }}</h3>
                 </div>
-
-                <p class="mb-4">
-                    {!! $berita->isi_konten !!}
-                </p>
+                <div class="entry-meta my-4">
+                    <ul>
+                        <li><i class="icon-calendar3"></i> {{ $carbon::parse($berita->date)->format('d M Y') }}</li>
+                        <li><i class="icon-user1"></i> KSPTK</li>
+                        <li><i class="icon-line-folder"></i> Berita</li>
+                        <li><i class="icon-line-eye"></i> {{ $berita->jumlah_lihat }} Dilihat</li>
+                    </ul>
+                </div>
+                <div class="entry-image">
+                    <img src="{{ asset('list_berita/' . $berita->gambar) }}" alt="thumbnail_berita">
+                    <p class="mt-1">
+                        <small>
+                            <center>{{ $berita->caption_gambar }}</center>
+                        </small>
+                    </p>
+                </div>
+                <div class="entry-content mt-0">
+                    <p class="mb-4">
+                        {!! $berita->isi_konten !!}
+                    </p>
+                </div>
                 <div class="entry-title">
                     <h6 class="mb-1"><a href="#"># {{ $berita->tag_dinamis }}</a></h6>
                     <h6 class="mb-1"><a href="#"># {{ $berita->url_video }}</a></h6>
                 </div>
-
+            </div>
+            <div class="col-lg-10  mb-4">
+                {{-- <img src="{{ asset('list_berita/' . $berita->gambar) }}" alt="thumbnail_berita">
+                <p class="mt-1">
+                    <small>
+                        <center>{{ $berita->caption_gambar }}</center>
+                    </small>
+                </p> --}}
             </div>
         </div>
     </div>
-
 @endsection
 @push('scripts')
     <script>
