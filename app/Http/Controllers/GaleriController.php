@@ -162,7 +162,7 @@ class GaleriController extends Controller
             }
 
             if ($list_galeri->wasChanged()) {
-                return response()->json(['status' => true], 200);
+                
             }
         } catch (\Exception $e) {
             return response()->json(['status' => false, 'msg' => $e->getMessage()], 400);

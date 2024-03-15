@@ -7,7 +7,9 @@ use App\Model\Tautan;
 use App\Model\Podcast;
 use App\Model\ListBerita;
 use App\Model\Pengunjung;
+use App\Model\SubKategori;
 use App\Model\Webinar;
+use App\Model\ZiWbk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Blade;
@@ -49,6 +51,11 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('contents.Front.webinar', function ($view) {
             $webinar = Webinar::all();
             $view->with('webinar', $webinar);
+        });
+        view()->composer('contents.Front.menu', function ($view) {
+            // $zi = ZiWbk::with('list_kategori','sub_kategori');
+            $zi = ZiWbk::all();
+            $view->with('ziwbk', $zi);
         });
     }
 

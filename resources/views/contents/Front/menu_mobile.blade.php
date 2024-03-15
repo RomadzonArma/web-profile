@@ -31,7 +31,26 @@
         <li class="menu-item sub-menu">
             <a class="menu-link" href="#">ZI/WBK</a>
             <ul class="sub-menu-container">
-                <li class="menu-item">
+                @foreach ($ziwbk as $item)
+                    @if (!empty($item->link_kategori))
+                        <li class="menu-item">
+                            <a class="menu-link" href="{{ $item->link_kategori }}"
+                                target="_blank">{{$item->list_kategori->nama_kategori }}</a>
+                        </li>
+                    @else
+                        <li class="menu-item sub-menu">
+                            <a href="#" class="menu-link">
+                                <div>{{ $item->list_kategori->nama_kategori }}<i class="icon-angle-down"></i></div>
+                            </a>
+                            <ul class="sub-menu-container">
+                                <li class="menu-item">
+                                    <a href="{{ $item->link }}" class="menu-link">{{$item->sub_kategori}}</a>
+                                </li>
+                            </ul>
+                        </li>
+                    @endif
+                @endforeach
+                {{-- <li class="menu-item">
                     <a class="menu-link" href="#">LKE</a>
                 </li>
                 <li class="menu-item">
@@ -61,7 +80,7 @@
                             <a class="menu-link" href="#">RENSTRA 2020-2024 </a>
                         </li>
                     </ul>
-                </li>
+                </li> --}}
             </ul>
         </li>
         <li class="menu-item sub-menu">
