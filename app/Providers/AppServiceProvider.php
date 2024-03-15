@@ -57,6 +57,11 @@ class AppServiceProvider extends ServiceProvider
             $zi = ZiWbk::all();
             $view->with('ziwbk', $zi);
         });
+        view()->composer('contents.Front.menu_mobile', function ($view) {
+            // $zi = ZiWbk::with('list_kategori','sub_kategori');
+            $zi = ZiWbk::all();
+            $view->with('ziwbk', $zi);
+        });
     }
 
     /**
