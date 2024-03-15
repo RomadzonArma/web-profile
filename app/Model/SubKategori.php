@@ -9,16 +9,16 @@ class SubKategori extends Model
 {
     use SoftDeletes;
     protected $table = 'ref_subkategori';
-
+    protected $fillable = ['id_kategori', 'sub_kategori', 'link_kategori','status_publish'];
     protected $guarded = ['id'];
 
     public function list_kategori()
     {
         return $this->belongsTo('App\Model\ListKategori','id_kategori','id');
     }
-    public function zi_wbk()
+    public function ziWbks()
     {
-        return $this->belongsTo('App\Model\ZiWbk','id_subkategori','id');
+        return $this->hasMany(ZiWbk::class, 'id_subkategori');
     }
 
 }

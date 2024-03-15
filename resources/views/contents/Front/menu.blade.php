@@ -38,7 +38,28 @@
         <li class="menu-item sub-menu">
             <a class="menu-link has-menu" href="#">ZI/WBK <i class="icon-angle-down1"></i></a>
             <ul class="sub-menu-container">
-                <li class="menu-item">
+                @foreach ($ziwbk as $item)
+                    @if (!empty($item->link_kategori))
+                        <li class="menu-item">
+                            <a class="menu-link" href="{{ $item->link_kategori }}"
+                                target="_blank">{{$item->list_kategori->nama_kategori }}</a>
+                        </li>
+                    @else
+                        <li class="menu-item sub-menu">
+                            <a href="#" class="menu-link">
+                                <div>{{ $item->list_kategori->nama_kategori }}<i class="icon-angle-down"></i></div>
+                            </a>
+                            <ul class="sub-menu-container">
+                                <li class="menu-item">
+                                    <a href="{{ $item->link }}" class="menu-link">{{$item->sub_kategori}}</a>
+                                </li>
+                            </ul>
+                        </li>
+                    @endif
+                @endforeach
+
+
+                {{-- <li class="menu-item">
                     <a class="menu-link" href="#">LKE</a>
                 </li>
                 <li class="menu-item">
@@ -53,19 +74,7 @@
                 <li class="menu-item">
                     <a class="menu-link" href="#">LHKASN</a>
                 </li>
-                <li class="menu-item sub-menu">
-                    <a href="#" class="menu-link">
-                        <div>SAKIP<i class="icon-angle-down"></i></div>
-                    </a>
-                    <ul class="sub-menu-container">
-                        <li class="menu-item">
-                            <a href="#" class="menu-link">AKUNTABILITAS</a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="#" class="menu-link">RENSTRA 2020 - 2024</a>
-                        </li>
-                    </ul>
-                </li>
+               --}}
             </ul>
         </li>
         <li class="menu-item mega-menu sub-menu">

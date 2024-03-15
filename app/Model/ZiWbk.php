@@ -8,10 +8,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class ZiWbk extends Model
 {
     use SoftDeletes;
-    protected $table = 'ref_ziwbk';
+    protected $table = 'ziwbk';
 
     protected $guarded = ['id'];
-
 
     public function list_kategori()
     {
@@ -21,7 +20,5 @@ class ZiWbk extends Model
     {
         return $this->belongsTo('App\Model\SubKategori','id_subkategori','id');
     }
-
-
 
 }
