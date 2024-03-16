@@ -76,7 +76,7 @@
                                     </li>
                                     <li><a href="#"><i class="icon-user1"></i> KSPTK</a></li>
                                     <li><a href="#"><i class="icon-line-folder"></i> Pengumuman</a></li>
-                                    <li><a href="#"><i class="icon-line-eye"></i>{{ $item->jumlah_lihat }}
+                                    <li><a href="#"><i class="icon-line-eye"></i>{{ $item->jumlah_lihat ?? 0 }}
                                             Dilihat</a></li>
                                 </ul>
                             </div>

@@ -33,7 +33,14 @@
                     <h3 class="mb-1"><a href="#">{{ $pengumuman->judul }}</a>
                     </h3>
                 </div>
-
+                <div class="entry-meta my-4">
+                    <ul>
+                        <li><i class="icon-calendar3"></i> {{ $carbon::parse($pengumuman->date)->format('d M Y') }}</li>
+                        <li><i class="icon-user1"></i> KSPTK</li>
+                        <li><i class="icon-line-folder"></i> Pengumuman</li>
+                        <li><i class="icon-line-eye"></i> {{ $pengumuman->jumlah_lihat }} Dilihat</li>
+                    </ul>
+                </div>
                 <p class="mb-4">
                     {!! $pengumuman->konten !!}
                 </p>
@@ -44,80 +51,26 @@
             </div>
         </div>
     </div>
-    <div class="col-md-3 col-12">
-        <div class="heading-block md mb-3">
-            <h4 class="mb-1">MEDIA SOSIAL</h4>
-        </div>
-        <div class="fslider fslider-banner testimonial-full mb-4" data-animation="slide" data-arrows="false">
-            <div class="flexslider">
-                <div class="slider-wrap">
-                    <div class="slide" style="max-height: 100%;">
-                        <div class="overlaying-img">
-                            <a href="#"><img class="img-fluid" src="{{ asset('assets-front/img/podcast.jpeg') }}"
-                                    style="width: 100%;" alt="Image 1"></a>
-                            <div class="bg-overlay">
-                                <div class="overlaying-desc">
-                                    <h4 class="text-white mb-0 text-center">Podcast</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="slide" style="max-height: 100%;">
-                        <div class="overlaying-img">
-                            <a href="#"><img class="img-fluid" src="{{ asset('assets-front/img/podcast.jpeg') }}"
-                                    style="width: 100%;" alt="Image 1"></a>
-                            <div class="bg-overlay">
-                                <div class="overlaying-desc">
-                                    <h4 class="text-white mb-0 text-center">Podcast</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="slide" style="max-height: 100%;">
-                        <div class="overlaying-img">
-                            <a href="#"><img class="img-fluid" src="{{ asset('assets-front/img/podcast.jpeg') }}"
-                                    style="width: 100%;" alt="Image 1"></a>
-                            <div class="bg-overlay">
-                                <div class="overlaying-desc">
-                                    <h4 class="text-white mb-0 text-center">Podcast</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="slide" style="max-height: 100%;">
-                        <div class="overlaying-img">
-                            <a href="#"><img class="img-fluid" src="{{ asset('assets-front/img/podcast.jpeg') }}"
-                                    style="width: 100%;" alt="Image 1"></a>
-                            <div class="bg-overlay">
-                                <div class="overlaying-desc">
-                                    <h4 class="text-white mb-0 text-center">Podcast</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    @endsection
-    @push('scripts')
-        <script>
-            function previewPdf(input) {
-                var pdfPreview = document.getElementById('pdf_preview');
+@endsection
+@push('scripts')
+    <script>
+        function previewPdf(input) {
+            var pdfPreview = document.getElementById('pdf_preview');
 
-                if (input.files && input.files[0]) {
-                    var reader = new FileReader();
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
 
-                    reader.onload = function(e) {
-                        // Set the src attribute of the iframe to the URL of the selected PDF file
-                        pdfPreview.src = e.target.result;
-                    };
+                reader.onload = function(e) {
+                    // Set the src attribute of the iframe to the URL of the selected PDF file
+                    pdfPreview.src = e.target.result;
+                };
 
-                    reader.readAsDataURL(input.files[0]);
-                }
+                reader.readAsDataURL(input.files[0]);
             }
+        }
 
-            document.getElementById('file_pdf').addEventListener('change', function() {
-                previewPdf(this);
-            });
-        </script>
-    @endpush
+        document.getElementById('file_pdf').addEventListener('change', function() {
+            previewPdf(this);
+        });
+    </script>
+@endpush
