@@ -28,7 +28,7 @@ class GaleriController extends Controller
 
     public function data()
     {
-        $galeri = Galeri::with('list_kategori.list_kanal')->get();
+        $galeri = Galeri::with('list_kategori.list_kanal')->orderByDesc('created_at')->get();
 
         return DataTables::of($galeri)
             ->addIndexColumn()
@@ -162,7 +162,7 @@ class GaleriController extends Controller
             }
 
             if ($list_galeri->wasChanged()) {
-                
+
             }
         } catch (\Exception $e) {
             return response()->json(['status' => false, 'msg' => $e->getMessage()], 400);

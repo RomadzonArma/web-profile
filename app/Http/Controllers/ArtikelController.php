@@ -23,7 +23,7 @@ class ArtikelController extends Controller
 
     public function data()
     {
-        $artikel = Artikel::with('kategori.list_kanal')->get();
+        $artikel = Artikel::with('kategori.list_kanal')->orderByDesc('created_at')->get();
         return DataTables::of($artikel)
             ->addIndexColumn()
             ->make(true);

@@ -41,7 +41,7 @@ class AppServiceProvider extends ServiceProvider
             $view->with('podcast', $podcast);
         });
         view()->composer('layouts.front.app', function ($view) {
-            $berita = ListBerita::where('status_publish', '1')->orderByDesc('created_at')->get();
+            $berita = ListBerita::where('status_publish', '1')->orderByDesc('created_at')->take(5)->get();
             $view->with('berita', $berita);
         });
         view()->composer('contents.Front.menu', function ($view) {
@@ -49,7 +49,7 @@ class AppServiceProvider extends ServiceProvider
             $view->with('tautan', $tautan);
         });
         view()->composer('contents.Front.webinar', function ($view) {
-            $webinar = Webinar::all();
+            $webinar = Webinar::where('status_publish', '1')->orderByDesc('created_at')->get();
             $view->with('webinar', $webinar);
         });
         view()->composer('contents.Front.menu', function ($view) {

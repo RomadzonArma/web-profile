@@ -16,13 +16,13 @@
         <div class="entry mb-4">
             <div class="grid-inner row no-gutters p-0">
                 <div class="entry-image col-xl-4 mb-xl-0">
-                    <a href="#">
+                    <a href="/berita/detail/{{ $item->slug }}">
                         <img src="{{ asset('list_berita/' . $item->gambar) }}" alt="thumbnail_berita">
                     </a>
                 </div>
                 <div class="col-xl-8 pl-xl-4">
                     <div class="entry-title title-xs text-clamp-2">
-                        <h5 class="mb-1"><a href="#">{{ $item->judul }}</a></h5>
+                        <h5 class="mb-1"><a href="/berita/detail/{{ $item->slug }}">{{ $item->judul }}</a></h5>
                     </div>
                     <div class="entry-meta mb-2 mt-0">
                         <ul>

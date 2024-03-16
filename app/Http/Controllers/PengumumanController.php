@@ -25,7 +25,7 @@ class PengumumanController extends Controller
 
     public function data()
     {
-        $list = Pengumuman::with('list_kategori.list_kanal')->get();
+        $list = Pengumuman::with('list_kategori.list_kanal')->orderByDesc('created_at')->get();
         return DataTables::of($list)
             ->addIndexColumn()
             ->addColumn('id', function ($row) {

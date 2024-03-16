@@ -25,7 +25,7 @@ class ProgramLayananController extends Controller
     }
     public function data(Request $request)
     {
-        $list = ProgramLayanan::with('list_kategori.list_kanal')->get();
+        $list = ProgramLayanan::with('list_kategori.list_kanal')->orderByDesc('created_at')->get();
 
         return DataTables::of($list)
             ->addIndexColumn()

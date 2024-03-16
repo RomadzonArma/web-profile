@@ -24,7 +24,7 @@ class PanduanController extends Controller
     }
     public function data(Request $request)
     {
-        $list = Panduan::with('kategori.list_kanal');
+        $list = Panduan::with('kategori.list_kanal')->orderByDesc('created_at')->get();
 
         return DataTables::of($list)
             ->addIndexColumn()
