@@ -43,7 +43,7 @@
                         <a class="menu-link" href="{{ $item->link_kategori }}" target="_blank">{{ $item->list_kategori->nama_kategori }}</a>
                     </li>
                 @endforeach
-        
+
                 <!-- Tampilkan nama kategori di luar perulangan submenu -->
                 @if ($ziwbk2->isNotEmpty())
                 {{-- Iterate through unique categories --}}
@@ -56,7 +56,7 @@
                             {{-- Iterate through subcategories related to the current category --}}
                             @foreach ($ziwbk2->where('id_kategori', $data->id_kategori) as $item)
                                 <li class="menu-item">
-                                    <a href="{{ $item->link }}" class="menu-link">{{ $item->sub_kategori->nama_sub_kategori }}</a>
+                                    <a href="{{ $item->link }}" class="menu-link">{{ $item->sub_kategori->sub_kategori }}</a>
                                 </li>
                             @endforeach
                         </ul>
@@ -64,7 +64,7 @@
                 @endforeach
             @endif
             </ul>
-        </li>       
+        </li>
 
         <li class="menu-item mega-menu sub-menu">
             <a class="menu-link" href="#">MENU HALAMAN
