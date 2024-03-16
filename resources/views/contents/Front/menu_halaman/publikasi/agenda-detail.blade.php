@@ -2,7 +2,7 @@
 @inject('carbon', 'Carbon\Carbon')
 
 @section('content-header')
-    @include('layouts.front.header_mobile')
+    {{-- @include('layouts.front.header_mobile') --}}
     <section id="page-title" class="bg-soft px-md-5">
         <div class="content-wrap py-0">
             <div class="container-fluid">
@@ -24,25 +24,28 @@
 @endsection
 
 @section('content')
-
-
     <div class="col-md-9 col-12 mb-md-0 mb-4">
         <div class="row">
-            <div class="col-lg-10  mb-4">
-                <img src="{{ asset('agenda/' . $agenda->gambar) }}" alt="thumbnail_agenda">
-            </div>
-            <div class="col-xl-9 col-lg-7">
+            <div class="col-xl-10">
                 <div class="entry-title">
-                    <h3 class="mb-1"><a href="#">{{ $agenda->judul }}</a>
-                    </h3>
+                    <h3 class="mb-1">{{ $agenda->judul }}</h3>
                 </div>
-
-                <p class="mb-4">
-                    {!! $agenda->konten !!}
-                </p>
-                <a class="more-link" href="{{ $agenda->link_agenda }}"><i class="icon-external-link mr-0 ml-2"></i><b
-                        class="text-warning">Link untuk melihat </b></a>
-
+                <div class="entry-meta my-4">
+                    <ul>
+                        <li><i class="icon-calendar3"></i> {{ $carbon::parse($agenda->date)->format('d M Y') }}</li>
+                        <li><i class="icon-user1"></i> KSPTK</li>
+                        <li><i class="icon-line-folder"></i> Agenda</li>
+                        <li><i class="icon-line-eye"></i> {{ $agenda->jumlah_lihat }} Dilihat</li>
+                    </ul>
+                </div>
+                <div class="entry-image">
+                    <img src="{{ asset('agenda/' . $agenda->gambar) }}" alt="img">
+                </div>
+                <div class="entry-content mt-0">
+                    <p class="mb-4">
+                        {!! $agenda->konten !!}
+                    </p>
+                </div>
             </div>
         </div>
     </div>

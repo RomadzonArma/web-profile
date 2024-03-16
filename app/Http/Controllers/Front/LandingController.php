@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Model\ListKanal;
 use App\Model\ListKategori;
+use App\Model\PengunjungAgenda;
 use App\Model\PengunjungArtikel;
 use App\Model\PengunjungBerita;
 use App\Model\PengunjungRegulasi;
@@ -297,11 +298,11 @@ class LandingController extends Controller
         if ($bulan) {
             $query->whereMonth('tanggal_agenda', $bulan);
         }
+
+        $query->where('status_publish', '1');
         $agenda = $query->paginate(5);
 
         $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
-        $agenda = Agenda::where('status_publish', '1')->orderBy('tanggal_agenda');
-        // $agenda = Agenda::all();
         return view('contents.Front.menu_halaman.publikasi.agenda', [
             'title' => 'Agenda',
             'agenda' => $agenda,
@@ -310,14 +311,31 @@ class LandingController extends Controller
     }
     public function agendaDetail($id)
     {
-        $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
 
         $agenda = Agenda::where('id', $id)->first();
+        $this->recordPengunjungAgenda(request(), $agenda->id);
+
+        $jumlah_lihat = PengunjungAgenda::hitungPengunjungAgenda($agenda->id);
+        $agenda->jumlah_lihat = $jumlah_lihat;
+        $agenda->save();
         return view('contents.Front.menu_halaman.publikasi.agenda-detail', [
             'title' => 'Agenda Detail',
             'agenda' => $agenda,
-            'tautan' => $tautan,
         ]);
+    }
+
+    public function recordPengunjungAgenda(Request $request, $id_agenda)
+    {
+        $ipAddress = $request->ip();
+        $userAgent = uniqid() . '-' . $request->header('User-Agent');
+
+        PengunjungAgenda::create([
+            'id_agenda' => $id_agenda,
+            'ip_address' => $ipAddress,
+            'user_agent' => $userAgent,
+        ]);
+
+        return response()->json(['success' => true]);
     }
 
     public function unduhan(Request $request)
