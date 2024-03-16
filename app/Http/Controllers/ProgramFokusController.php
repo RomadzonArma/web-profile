@@ -35,19 +35,21 @@ class ProgramFokusController extends Controller
         $this->validate($request, [
             'title' => 'required',
             'publish_date' => 'required',
-            'body' => 'required',
+            'link' => 'required',
+            // 'body' => 'required',
         ], [
             'title.required' => '<strong style="color: red;">Judul wajib diisi.</strong>',
             'publish_date.required' => '<strong style="color: red;">Tanggal Publish wajib dipilih.</strong>',
-            'body.required' => '<strong style="color: red;">Konten wajib diisi.</strong>',
+            'link.required' => '<strong style="color: red;">Link wajib diisi.</strong>',
+            // 'body.required' => '<strong style="color: red;">Konten wajib diisi.</strong>',
         ]);
         try {
             ProgramFokus::create([
                 'title'             => $request->title,
                 'slug'              => Str::slug($request->title),
                 'publish_date'      => $request->publish_date,
-                // 'body'              => $request->body,
-                'body'              => $text,
+                'link'              => $request->link,
+                // 'body'              => $text,
                 'tag'              => $request->tag,
 
             ]);
@@ -63,11 +65,13 @@ class ProgramFokusController extends Controller
         $this->validate($request, [
             'title' => 'required',
             'publish_date' => 'required',
-            'body' => 'required',
+            'link' => 'required',
+            // 'body' => 'required',
         ], [
             'title.required' => '<strong style="color: red;">Judul wajib diisi.</strong>',
             'publish_date.required' => '<strong style="color: red;">Tanggal Publish wajib dipilih.</strong>',
-            'body.required' => '<strong style="color: red;">Konten wajib diisi.</strong>',
+            'link.required' => '<strong style="color: red;">Link wajib diisi.</strong>',
+            // 'body.required' => '<strong style="color: red;">Konten wajib diisi.</strong>',
         ]);
 
         try {
@@ -77,8 +81,8 @@ class ProgramFokusController extends Controller
                 'title' => $request->title,
                 'slug' => Str::slug($request->title),
                 'publish_date' => $request->publish_date,
-                // 'body' => $request->body,
-                'body'              => $text,
+                'link' => $request->link,
+                // 'body' => $text,
                 'tag' => $request->tag,
             ]);
 

@@ -22,11 +22,11 @@ $(() => {
     $("#table-data").on("click", ".btn-delete", function () {
         let data = table.row($(this).closest("tr")).data();
 
-        let { id, judul } = data;
+        let { id, title } = data;
 
         Swal.fire({
             title: "Anda yakin?",
-            html: `Anda akan menghapus program_fokus "<b>${judul}</b>"!`,
+            html: `Anda akan menghapus Program "<b>${title}</b>"!`,
             footer: "Data yang sudah dihapus tidak bisa dikembalikan kembali!",
             icon: "warning",
             showCancelButton: true,
@@ -157,13 +157,14 @@ $(() => {
         $("#form-update-program_fokus")[0].reset();
         clearErrorMessage();
 
-        let { id, title, tag, body, publish_date } = data;
+        let { id, title, tag, body, publish_date, link } = data;
 
         // Sanitize the HTML content for the specific 'konten' variable
         var sanitizedContent = sanitizeHtml(body);
 
         $("#update-id").val(id);
         $("#update-title").val(title);
+        $("#update-link").val(link);
 
         $("#body_edit").summernote({
             height: 150,
@@ -249,6 +250,10 @@ $(() => {
         $('#form-program_fokus')[0].reset();
         clearErrorMessage();
         $('#modal-program_fokus').modal('show');
+        $('#modal-program_fokus .modal-body').css({
+            'max-height': '450px', // Adjust the height as needed
+            'overflow-y': 'auto', // Enable vertical scrolling
+        });
     });
 
     table = $("#table-data").DataTable({

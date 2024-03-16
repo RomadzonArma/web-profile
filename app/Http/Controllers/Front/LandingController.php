@@ -53,7 +53,7 @@ class LandingController extends Controller
                     ->orWhere('nama_kanal', 'LIKE', '%publikasi%');
             })
             ->get();
-        $program_fokus = ProgramFokus::where('status', '1')->orderByDesc('created_at')->get();
+        $program_fokus = ProgramFokus::where('status', '1')->orderBy('publish_date')->get();
 
         $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
 

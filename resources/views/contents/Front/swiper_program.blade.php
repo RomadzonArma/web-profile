@@ -5,17 +5,30 @@
         <div></div>
     </div>
     <div class="swiper swiper-3 swiper-padding">
+        @php
+            use Illuminate\Support\Str;
+        @endphp
         <div class="swiper-wrapper">
-            @foreach($program_fokus as $program_fokus)
-            <div class="swiper-slide">
-                <a href="#" class="card card-custom mb-2 bg-primary" style="min-height: 150px">
-                    <div class="card-body text-center">
-                        <p class="text-white font-weight-normal mb-0">{{$program_fokus->title}}</p>
-                    </div>
-                </a>
-            </div>
+            @foreach ($program_fokus as $prokus)
+                <div class="swiper-slide">
+                    @if ($prokus->link)
+                        <a href="{{ Str::startsWith($prokus->link, 'http') ? $prokus->link : 'https://' . $prokus->link }}"
+                            target="_blank" class="card card-custom mb-2 bg-primary" style="min-height: 150px">
+                            <div class="card-body text-center">
+                                <p class="text-white font-weight-normal mb-0">{{ $prokus->title }}</p>
+                            </div>
+                        </a>
+                    @else
+                        <a href="#" class="card card-custom mb-2 bg-primary" style="min-height: 150px">
+                            <div class="card-body text-center">
+                                <p class="text-white font-weight-normal mb-0">{{ $prokus->title }}</p>
+                            </div>
+                        </a>
+                    @endif
+                </div>
             @endforeach
         </div>
+
         <div class="swiper-button-prev"></div>
         <div class="swiper-button-next"></div>
     </div>
