@@ -21,7 +21,9 @@ use App\Model\ListKategori;
 use App\Model\PengunjungAgenda;
 use App\Model\PengunjungArtikel;
 use App\Model\PengunjungBerita;
+use App\Model\PengunjungPengumuman;
 use App\Model\PengunjungRegulasi;
+use App\Model\PengunjungUnduhan;
 use App\Model\Podcast;
 use App\Model\Profil;
 use App\Model\ProgramFokus;
@@ -363,6 +365,35 @@ class LandingController extends Controller
             'tautan' => $tautan,
         ]);
     }
+
+    public function rekamPengunjungUnduhan(Request $request)
+    {
+        $data = $request->validate([
+            'id_unduhan' => 'required|integer',
+        ]);
+
+        PengunjungUnduhan::create([
+            'ip_address' => $request->ip(),
+            'user_agent' => $request->userAgent(),
+            'id_unduhan' => $data['id_unduhan'],
+        ]);
+
+        return response()->json(['message' => 'Pengunjung unduhan direkam.'], 200);
+    }
+    // public function recordPengunjungUnduhan(Request $request, $id_unduhan)
+    // {
+    //     $ipAddress = $request->ip();
+    //     $userAgent = uniqid() . '-' . $request->header('User-Agent');
+
+    //     PengunjungUnduhan::create([
+    //         'id_unduhan' => $id_unduhan,
+    //         'ip_address' => $ipAddress,
+    //         'user_agent' => $userAgent,
+    //     ]);
+
+    //     return response()->json(['success' => true]);
+    // }
+
     public function panduan(Request $request)
     {
         $query = Panduan::query();
@@ -422,11 +453,29 @@ class LandingController extends Controller
         $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
 
         $pengumuman = Pengumuman::where('id', $id)->first();
+        $this->recordPengunjungPengumuman(request(), $pengumuman->id);
+        $jumlah_lihat = PengunjungPengumuman::hitungPengunjungPengumuman($pengumuman->id);
+        $pengumuman->jumlah_lihat = $jumlah_lihat;
+        $pengumuman->save();
         return view('contents.Front.menu_halaman.publikasi.pengumuman-detail', [
             'title' => 'Pengumuman Detail',
             'pengumuman' => $pengumuman,
             'tautan' => $tautan,
         ]);
+    }
+
+    public function recordPengunjungPengumuman(Request $request, $id_pengumuman)
+    {
+        $ipAddress = $request->ip();
+        $userAgent = uniqid() . '-' . $request->header('User-Agent');
+
+        PengunjungPengumuman::create([
+            'id_pengumuman' => $id_pengumuman,
+            'ip_address' => $ipAddress,
+            'user_agent' => $userAgent,
+        ]);
+
+        return response()->json(['success' => true]);
     }
 
     //end pengumuman
@@ -558,8 +607,5 @@ class LandingController extends Controller
             'guru' => $guru,
             'tautan' => $tautan,
         ]);
-    }
-    public function GaleriFoto()
-    {
     }
 }
