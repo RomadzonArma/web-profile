@@ -385,9 +385,9 @@
     <script type="text/javascript">
         var i = 0;
         $(document).ready(function() {
-        // Memanggil fungsi untuk menangani tampilan berdasarkan nilai radio yang terpilih
-        handleRadioChange();
-    });
+            // Memanggil fungsi untuk menangani tampilan berdasarkan nilai radio yang terpilih
+            handleRadioChange();
+        });
         $(document).ready(function() {
             $("#dynamic-ar").click(function() {
                 ++i;
@@ -402,15 +402,15 @@
                 $(this).closest('.input-group').remove();
             });
 
-            $(".add-more-btn").click(function() {
-                var index = $('.form-repe').length; // Hitung jumlah elemen yang sudah ada
+            $(document).on('click', '.add-more-btn', function() {
+                var index = $('.form-repe').length;
                 var newRow = $('<div class="form-group form-repe">' +
                     '<div class="rep">' +
                     '<div class="form-group">' +
                     '<label class="col-form-label">Sub Kategori</label>' +
                     '<div class="">' +
                     '<select class="form-control" style="width: 100%" name="links[' + index +
-                    '][id_subkategori]">' + // Perbarui nama input menjadi 'id_subkategori'
+                    '][id_subkategori]">' +
                     '<option value="">Pilih Sub Kategori</option>' +
                     '@foreach ($sub as $data)' +
                     '<option value="{{ $data->id }}">{{ $data->sub_kategori }}</option>' +
@@ -423,17 +423,18 @@
                     '<input type="text" name="links[' + index +
                     '][link]" class="form-control edit-link">' +
                     '</div>' +
-                    '<a class="btn btn-primary remove-btn">Remove</a>' +
+                    '<a class="btn btn-primary add-more-btn">Add </a>' +
+                    '<a class="btn btn-danger remove-btn">Remove</a>' +
                     '</div>' +
                     '</div>');
                 $('.row_form').append(newRow);
             });
 
-
-            // Tambahkan event handler untuk menghapus elemen
+            // Add event handler to remove dynamically added form fields
             $(document).on('click', '.remove-btn', function() {
                 $(this).closest('.form-repe').remove();
             });
+
 
 
 
