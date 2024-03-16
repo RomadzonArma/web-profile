@@ -24,7 +24,7 @@
 @endsection
 
 @section('content')
-    @include('layouts.front.header')
+
 
     <div class="col-md-9 col-12 mb-md-0 mb-4">
         <div class="row">
