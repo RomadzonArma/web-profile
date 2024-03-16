@@ -1151,7 +1151,4 @@ select.form-control {
 	.tab-custom .list-group .list-group-item{
 		flex: 1 0 160px;
 	}
-	.swiper-wrapper{
-		align-items: start;
-	}
 }
