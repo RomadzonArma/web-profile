@@ -147,7 +147,7 @@ class LandingController extends Controller
 
     public function berita(Request $request)
     {
-        $query = ListBerita::where('status_publish', '1');
+        $query = ListBerita::where('status_publish', '1')->orderByDesc('created_at');
 
         $tahun = $request->tahun;
         $bulan = $request->bulan;

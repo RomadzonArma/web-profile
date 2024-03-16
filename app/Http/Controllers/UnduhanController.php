@@ -23,7 +23,7 @@ class UnduhanController extends Controller
     }
     public function data(Request $request)
     {
-        $list = Unduhan::with('kategori.list_kanal');
+        $list = Unduhan::with('kategori.list_kanal')->orderByDesc('created_at')->get();
 
         return DataTables::of($list)
             ->addIndexColumn()
@@ -136,7 +136,7 @@ class UnduhanController extends Controller
         }
 
         return response()->json(['success' => false]);
-        
+
     }
 
 }
