@@ -24,6 +24,9 @@ $(() => {
         // Memanggil fungsi untuk menangani tampilan berdasarkan nilai radio yang terpilih
         handleRadioChange();
     });
+    $('#modal-ziwbk').on('shown.bs.modal', function (e) {
+        $("#form-ziwbk").trigger('reset');
+    });
 
 
     $("#table-data").on("change", ".switch-active", function () {
