@@ -25,13 +25,18 @@
 @section('content')
     <div class="col-md-9 col-12 mb-md-0 mb-4">
         <div class="row">
-            {{-- <div class="col-lg-5 mb-4">
-                                <img src="{{ asset('pengumuman/' . $regulasi->gambar) }}" class="img-fluid rounded">
-                            </div> --}}
             <div class="col-xl-9 col-lg-7">
                 <div class="entry-title">
-                    <h3 class="mb-1"><a href="#">{{ $regulasi->judul }}</a>
+                    <h3 class="mb-1">{{ $regulasi->judul }}
                     </h3>
+                </div>
+                <div class="entry-meta my-4">
+                    <ul>
+                        <li><i class="icon-calendar3"></i> {{ $carbon::parse($regulasi->tanggal)->format('d M Y') }}</li>
+                        <li><i class="icon-user1"></i> KSPTK</li>
+                        <li><i class="icon-line-folder"></i> Regulasi</li>
+                        <li><i class="icon-line-eye"></i> {{ $regulasi->jumlah_lihat }} Dilihat</li>
+                    </ul>
                 </div>
 
                 <div class="mb-4">

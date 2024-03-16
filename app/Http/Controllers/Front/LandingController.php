@@ -18,8 +18,10 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Model\ListKanal;
 use App\Model\ListKategori;
+use App\Model\PengunjungAgenda;
 use App\Model\PengunjungArtikel;
 use App\Model\PengunjungBerita;
+use App\Model\PengunjungRegulasi;
 use App\Model\Podcast;
 use App\Model\Profil;
 use App\Model\ProgramFokus;
@@ -31,14 +33,13 @@ class LandingController extends Controller
     public function index()
     {
 
-        $swiper         = Swiper::where('is_active', '1')
+        $swiper = Swiper::where('is_active', '1')
             ->orderByDesc('created_at')
             ->take(4)
             ->get();
-        $program_fokus  = ProgramFokus::where('status', '1')->orderByDesc('created_at')->get();
-        $podcast        = Podcast::where('status_publish', '1')->orderByDesc('created_at')->get();
-        $berita = ListBerita::where('status_publish', '1')->orderByDesc('created_at')->get();
-        $list_kanal_1   = ListKanal::where('status', '1')
+        $podcast = Podcast::where('status_publish', '1')->orderByDesc('created_at')->get();
+        $berita = ListBerita::where('status_publish', '1')->orderByDesc('date')->get();
+        $list_kanal_1 = ListKanal::where('status', '1')
             ->where(function ($query) {
                 $query->where('nama_kanal', 'LIKE', '%profil%')
                     ->orWhere('nama_kanal', 'LIKE', '%informasi publik%')
@@ -46,7 +47,7 @@ class LandingController extends Controller
             })
             ->get();
 
-        $list_kanal_2   = ListKanal::where('status', '1')
+        $list_kanal_2 = ListKanal::where('status', '1')
             ->where(function ($query) {
                 $query->where('nama_kanal', 'LIKE', '%program dan layanan%')
                     ->orWhere('nama_kanal', 'LIKE', '%tautan%')
@@ -297,11 +298,11 @@ class LandingController extends Controller
         if ($bulan) {
             $query->whereMonth('tanggal_agenda', $bulan);
         }
+
+        $query->where('status_publish', '1');
         $agenda = $query->paginate(5);
 
         $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
-
-        // $agenda = Agenda::all();
         return view('contents.Front.menu_halaman.publikasi.agenda', [
             'title' => 'Agenda',
             'agenda' => $agenda,
@@ -310,14 +311,31 @@ class LandingController extends Controller
     }
     public function agendaDetail($id)
     {
-        $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
 
         $agenda = Agenda::where('id', $id)->first();
+        $this->recordPengunjungAgenda(request(), $agenda->id);
+
+        $jumlah_lihat = PengunjungAgenda::hitungPengunjungAgenda($agenda->id);
+        $agenda->jumlah_lihat = $jumlah_lihat;
+        $agenda->save();
         return view('contents.Front.menu_halaman.publikasi.agenda-detail', [
             'title' => 'Agenda Detail',
             'agenda' => $agenda,
-            'tautan' => $tautan,
         ]);
+    }
+
+    public function recordPengunjungAgenda(Request $request, $id_agenda)
+    {
+        $ipAddress = $request->ip();
+        $userAgent = uniqid() . '-' . $request->header('User-Agent');
+
+        PengunjungAgenda::create([
+            'id_agenda' => $id_agenda,
+            'ip_address' => $ipAddress,
+            'user_agent' => $userAgent,
+        ]);
+
+        return response()->json(['success' => true]);
     }
 
     public function unduhan(Request $request)
@@ -414,7 +432,8 @@ class LandingController extends Controller
     //end pengumuman
     public function regulasi(Request $request)
     {
-        $query = Regulasi::query();
+        // $query = Regulasi::query();
+        $query = Regulasi::where('is_active', '1')->orderByDesc('tanggal');
         $tahun = $request->tahun;
         $bulan = $request->bulan;
 
@@ -436,12 +455,31 @@ class LandingController extends Controller
     {
         $regulasi = Regulasi::where('slug', $slug)->first();
         $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
+        $this->recordPengunjungRegulasi(request(), $regulasi->id);
+
+        $jumlah_lihat = PengunjungRegulasi::hitungPengunjungRegulasi($regulasi->id);
+        $regulasi->jumlah_lihat = $jumlah_lihat;
+        $regulasi->save();
 
         return view('contents.Front.menu_halaman.publikasi.regulasi-detail', [
             'title' => 'Regulasi Detail',
             'regulasi' => $regulasi,
             'tautan' => $tautan,
         ]);
+    }
+
+    public function recordPengunjungRegulasi(Request $request, $id_regulasi)
+    {
+        $ipAddress = $request->ip();
+        $userAgent = uniqid() . '-' . $request->header('User-Agent');
+
+        PengunjungRegulasi::create([
+            'id_regulasi' => $id_regulasi,
+            'ip_address' => $ipAddress,
+            'user_agent' => $userAgent,
+        ]);
+
+        return response()->json(['success' => true]);
     }
     //END PUBLIKASI
 
