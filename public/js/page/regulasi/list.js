@@ -253,7 +253,10 @@ $(() => {
                 data: "tanggal",
             },
             {
-                data: "jumlah_download",
+                data: "jumlah_lihat",
+                render: function(data, type, row) {
+                    return data ? data : '0';
+                }
             },
             {
                 data: 'is_active',
