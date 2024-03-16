@@ -55,23 +55,29 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body" style="overflow-y: auto;">
                         <div class="form-group">
                             <label for="judul">Judul</label>
                             <input type="text" name="title" id="title" class="form-control"
                                 placeholder="Masukkan judul" required>
                             <div id="error-judul"></div>
                         </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label for="kategori">Konten</label>
                             <textarea class="form-control" id="body" name="body" required></textarea>
-                        </div>
+                        </div> --}}
                         <div class="form-group">
+                            <label for="link">Link</label>
+                            <input type="text" name="link" id="link" class="form-control"
+                                placeholder="Masukkan link" required>
+                            <div id="error-link"></div>
+                        </div>
+                        {{-- <div class="form-group">
                             <label for="tag">Tag Dinamis</label>
                             <input type="text" name="tag" id="tag" class="form-control"
                                 placeholder="Masukkan tag, contoh: kemendikbud, jakarta, salingberbagi" required>
                             <div id="error-tag"></div>
-                        </div>
+                        </div> --}}
                         <div class="form-group">
                             <label for="publish_date">Tanggal Publish</label>
                             <input type="date" name="publish_date" id="publish_date" class="form-control" required>
@@ -110,6 +116,12 @@
                             <div id="error-judul"></div>
                         </div>
                         <div class="form-group">
+                            <label for="update-link">Link</label>
+                            <input type="text" name="link" id="update-link" class="form-control"
+                                placeholder="Masukkan link" required>
+                            <div id="error-update-link"></div>
+                        </div>
+                        {{-- <div class="form-group">
                             <label for="update-body">Konten</label>
                             <textarea class="form-control" id="body_edit" name="body" required>{!! $program_fokus->body !!}</textarea>
                         </div>
@@ -118,7 +130,7 @@
                             <input type="text" name="tag" id="tag_edit" class="form-control"
                                 placeholder="Masukkan tag, contoh: kemendikbud, jakarta, salingberbagi" required>
                             <div id="error-tag"></div>
-                        </div>
+                        </div> --}}
                         <div class="form-group">
                             <label for="update-publish_date">Tanggal Publish</label>
                             <input type="date" name="publish_date" id="publish_date_edit" class="form-control"

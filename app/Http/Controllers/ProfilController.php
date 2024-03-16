@@ -56,8 +56,8 @@ class ProfilController extends Controller
 
     public function store(Request $request)
     {
-        $list_kanal = ListKanal::all();
-        $list_kategori = ListKategori::all();
+        $list_kanal = ListKanal::where('status', '1')->get();
+        $list_kategori = ListKategori::where('status', '1')->get();
         return view('contents.profil.store', [
             'title' => 'Tambah Profil',
             'list_kanal' => $list_kanal,
@@ -90,32 +90,33 @@ class ProfilController extends Controller
             $fileUpload->judul = $request->judul;
             $fileUpload->id_kanal = $request->id_kanal;
             $fileUpload->id_kategori = $request->id_kategori;
-            $fileUpload->konten = ''; // Will be updated later
-            $fileUpload->save();
-            foreach ($imageFile as $item => $image) {
-                $data = $image->getAttribute('src');
-                list($type, $data) = explode(';', $data);
-                list(, $data)      = explode(',', $data);
-                $imgeData = base64_decode($data);
-                $fileName = time() . $item . '.png';
-                $directory = "uploads/profil/{$fileUpload->id}"; // Use the ID of the profil as part of the directory
+            $fileUpload->konten = $request->konten;
+            // $fileUpload->konten = ''; // Will be updated later
+            // $fileUpload->save();
+            // foreach ($imageFile as $item => $image) {
+            //     $data = $image->getAttribute('src');
+            //     list($type, $data) = explode(';', $data);
+            //     list(, $data)      = explode(',', $data);
+            //     $imgeData = base64_decode($data);
+            //     $fileName = time() . $item . '.png';
+            //     $directory = "uploads/profil/{$fileUpload->id}"; // Use the ID of the profil as part of the directory
 
-                // Store the image using Laravel's Storage
-                Storage::put("public/$directory/$fileName", $imgeData);
+            //     // Store the image using Laravel's Storage
+            //     Storage::put("public/$directory/$fileName", $imgeData);
 
-                // Update the image src attribute in the HTML content
-                $newSrc = Storage::url("$directory/$fileName");
-                $image->setAttribute('src', $newSrc);
-                $fileUploadFile = new ProfilHasFile();
-                $fileUploadFile->path = $directory;
-                $fileUploadFile->file = $fileName;
-                $fileUploadFile->profil_id = $fileUpload->id;
-                $fileUploadFile->save();
-            }
+            //     // Update the image src attribute in the HTML content
+            //     $newSrc = Storage::url("$directory/$fileName");
+            //     $image->setAttribute('src', $newSrc);
+            //     $fileUploadFile = new ProfilHasFile();
+            //     $fileUploadFile->path = $directory;
+            //     $fileUploadFile->file = $fileName;
+            //     $fileUploadFile->profil_id = $fileUpload->id;
+            //     $fileUploadFile->save();
+            // }
 
-            $konten = $dom->saveHTML();
+            // $konten = $dom->saveHTML();
             // Update profil with the final content
-            $fileUpload->konten = $dom->saveHTML();
+            // $fileUpload->konten = $dom->saveHTML();
             $fileUpload->save();
 
 
@@ -173,43 +174,42 @@ class ProfilController extends Controller
             $dom->loadHtml($konten, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
             $imageFile = $dom->getElementsByTagName('img');
 
-            // Update existing Profil
             $profil = Profil::findOrFail($decrypted_id);
             $profil->judul = $request->judul;
-            // $profil->id_kanal = $request->id_kanal;
             $profil->id_kategori = $request->id_kategori;
-            $profil->konten = ''; // Will be updated later
-            $profil->save();
+            $profil->konten = $request->konten;
+            // $profil->konten = ''; // Will be updated later
+            // $profil->save();
 
             // Remove existing files related to the Profil
-            ProfilHasFile::where('profil_id', $profil->id)->delete();
+            // ProfilHasFile::where('profil_id', $profil->id)->delete();
 
-            // Process and save new files
-            foreach ($imageFile as $item => $image) {
-                $data = $image->getAttribute('src');
-                list($type, $data) = explode(';', $data);
-                list(, $data)      = explode(',', $data);
-                $imgeData = base64_decode($data);
-                $fileName = time() . $item . '.png';
-                $directory = "uploads/profil/{$profil->id}";
+            // // Process and save new files
+            // foreach ($imageFile as $item => $image) {
+            //     $data = $image->getAttribute('src');
+            //     list($type, $data) = explode(';', $data);
+            //     list(, $data)      = explode(',', $data);
+            //     $imgeData = base64_decode($data);
+            //     $fileName = time() . $item . '.png';
+            //     $directory = "uploads/profil/{$profil->id}";
 
-                // Store the image using Laravel's Storage
-                Storage::put("public/$directory/$fileName", $imgeData);
+            //     // Store the image using Laravel's Storage
+            //     Storage::put("public/$directory/$fileName", $imgeData);
 
-                // Update the image src attribute in the HTML content
-                $newSrc = Storage::url("$directory/$fileName");
-                $image->setAttribute('src', $newSrc);
+            //     // Update the image src attribute in the HTML content
+            //     $newSrc = Storage::url("$directory/$fileName");
+            //     $image->setAttribute('src', $newSrc);
 
-                $fileUploadFile = new ProfilHasFile();
-                $fileUploadFile->path = $directory;
-                $fileUploadFile->file = $fileName;
-                $fileUploadFile->profil_id = $profil->id;
-                $fileUploadFile->save();
-            }
+            //     $fileUploadFile = new ProfilHasFile();
+            //     $fileUploadFile->path = $directory;
+            //     $fileUploadFile->file = $fileName;
+            //     $fileUploadFile->profil_id = $profil->id;
+            //     $fileUploadFile->save();
+            // }
 
-            $konten = $dom->saveHTML();
-            // Update Profil with the final content
-            $profil->konten = $dom->saveHTML();
+            // $konten = $dom->saveHTML();
+            // // Update Profil with the final content
+            // $profil->konten = $dom->saveHTML();
             $profil->save();
 
             DB::commit();
