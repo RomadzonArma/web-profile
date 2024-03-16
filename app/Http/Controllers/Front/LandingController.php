@@ -301,7 +301,7 @@ class LandingController extends Controller
 
         $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
 
-        $agenda = Agenda::all();
+        // $agenda = Agenda::all();
         return view('contents.Front.menu_halaman.publikasi.agenda', [
             'title' => 'Agenda',
             'agenda' => $agenda,
