@@ -54,8 +54,16 @@ class AppServiceProvider extends ServiceProvider
         });
         view()->composer('contents.Front.menu', function ($view) {
             // $zi = ZiWbk::with('list_kategori','sub_kategori');
-            $zi = ZiWbk::all();
-            $view->with('ziwbk', $zi);
+            $zi1= ZiWbk::with('list_kategori','sub_kategori')->whereNotNull('link_kategori')->get();
+            $zi2= ZiWbk::with('list_kategori','sub_kategori')->whereNotNull('link') ->whereIn('id_kategori', function ($query) {
+                // Subquery untuk mendapatkan id_kategori yang memiliki beberapa id_subkategori
+                $query->select('id_kategori')
+                      ->from('ziwbk')
+                      ->groupBy('id_kategori')
+                      ->havingRaw('COUNT(DISTINCT id_subkategori) > 1');
+            })
+            ->get();
+            $view->with('ziwbk1', $zi1)->with('ziwbk2', $zi2);
         });
         view()->composer('contents.Front.menu_mobile', function ($view) {
             // $zi = ZiWbk::with('list_kategori','sub_kategori');

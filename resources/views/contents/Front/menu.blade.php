@@ -38,45 +38,34 @@
         <li class="menu-item sub-menu">
             <a class="menu-link has-menu" href="#">ZI/WBK <i class="icon-angle-down1"></i></a>
             <ul class="sub-menu-container">
-                @foreach ($ziwbk as $item)
-                    @if (!empty($item->link_kategori))
-                        <li class="menu-item">
-                            <a class="menu-link" href="{{ $item->link_kategori }}"
-                                target="_blank">{{$item->list_kategori->nama_kategori }}</a>
-                        </li>
-                    @else
-                        <li class="menu-item sub-menu">
-                            <a href="#" class="menu-link">
-                                <div>{{ $item->list_kategori->nama_kategori }}<i class="icon-angle-down"></i></div>
-                            </a>
-                            <ul class="sub-menu-container">
-                                <li class="menu-item">
-                                    <a href="{{ $item->link }}" class="menu-link">{{$item->sub_kategori}}</a>
-                                </li>
-                            </ul>
-                        </li>
-                    @endif
+                @foreach ($ziwbk1 as $item)
+                    <li class="menu-item">
+                        <a class="menu-link" href="{{ $item->link_kategori }}" target="_blank">{{ $item->list_kategori->nama_kategori }}</a>
+                    </li>
                 @endforeach
-
-
-                {{-- <li class="menu-item">
-                    <a class="menu-link" href="#">LKE</a>
-                </li>
-                <li class="menu-item">
-                    <a class="menu-link" href="#">APLIKASI SIAZIK</a>
-                </li>
-                <li class="menu-item">
-                    <a class="menu-link" href="#">TESTIMONIAL SIAZIK</a>
-                </li>
-                <li class="menu-item">
-                    <a class="menu-link" href="#">LHKPN</a>
-                </li>
-                <li class="menu-item">
-                    <a class="menu-link" href="#">LHKASN</a>
-                </li>
-               --}}
+        
+                <!-- Tampilkan nama kategori di luar perulangan submenu -->
+                @if ($ziwbk2->isNotEmpty())
+                {{-- Iterate through unique categories --}}
+                @foreach ($ziwbk2->unique('id_kategori') as $data)
+                    <li class="menu-item sub-menu">
+                        <a href="#" class="menu-link">
+                            <div>{{ $data->list_kategori->nama_kategori }}<i class="icon-angle-down"></i></div>
+                        </a>
+                        <ul class="sub-menu-container">
+                            {{-- Iterate through subcategories related to the current category --}}
+                            @foreach ($ziwbk2->where('id_kategori', $data->id_kategori) as $item)
+                                <li class="menu-item">
+                                    <a href="{{ $item->link }}" class="menu-link">{{ $item->sub_kategori->nama_sub_kategori }}</a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </li>
+                @endforeach
+            @endif
             </ul>
-        </li>
+        </li>       
+
         <li class="menu-item mega-menu sub-menu">
             <a class="menu-link" href="#">MENU HALAMAN
                 <i class="icon-bars ml-2 mr-0"></i>
@@ -152,3 +141,41 @@
         </li>
     </ul>
 </nav>
+
+
+
+                    {{--  @if (!empty($item->link_kategori))
+                        <li class="menu-item">
+                            <a class="menu-link" href="{{ $item->link_kategori }}"
+                                target="_blank">{{$item->list_kategori->nama_kategori }}</a>
+                        </li>
+                    @else
+                        <li class="menu-item sub-menu">
+                            <a href="#" class="menu-link">
+                                <div>{{ $item->list_kategori->nama_kategori }}<i class="icon-angle-down"></i></div>
+                            </a>
+                            <ul class="sub-menu-container">
+                                <li class="menu-item">
+                                    <a href="{{ $item->link }}" class="menu-link">{{$item->sub_kategori}}</a>
+                                </li>
+                            </ul>
+                        </li>
+                    @endif  --}}
+
+
+                {{-- <li class="menu-item">
+                    <a class="menu-link" href="#">LKE</a>
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link" href="#">APLIKASI SIAZIK</a>
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link" href="#">TESTIMONIAL SIAZIK</a>
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link" href="#">LHKPN</a>
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link" href="#">LHKASN</a>
+                </li>
+               --}}
