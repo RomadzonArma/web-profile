@@ -73,11 +73,11 @@
                             <div class="entry-meta mb-2 mt-0">
                                 <ul>
                                     <li><a href="#"><i
-                                                class="icon-calendar3"></i>{{ $carbon::parse($item->created_at)->format('d M Y') }}</a>
+                                                class="icon-calendar3"></i>{{ $carbon::parse($item->tanggal)->format('d M Y') }}</a>
                                     </li>
                                     <li><a href="#"><i class="icon-user1"></i> KSPTK</a></li>
                                     <li><a href="#"><i class="icon-line-folder"></i> Regulasi</a></li>
-                                    <li><a href="#"><i class="icon-line-eye"></i>{{ $item->jumlah_download }}
+                                    <li><a href="#"><i class="icon-line-eye"></i>{{ $item->jumlah_lihat }}
                                             Dilihat</a></li>
                                 </ul>
                             </div>
@@ -103,8 +103,8 @@
                 @endforeach
 
                 @if ($regulasi->hasMorePages())
-                    <li class="page-item"><a class="page-link" href="{{ $regulasi->nextPageUrl() }}" aria-label="Next"><span
-                                aria-hidden="true">»</span></a></li>
+                    <li class="page-item"><a class="page-link" href="{{ $regulasi->nextPageUrl() }}"
+                            aria-label="Next"><span aria-hidden="true">»</span></a></li>
                 @else
                     <li class="page-item disabled"><span class="page-link" aria-hidden="true">»</span></li>
                 @endif
