@@ -560,7 +560,8 @@ class LandingController extends Controller
         $sekolah = DB::table('program_layanan')
             ->join('ref_kategori', 'program_layanan.id_kategori', '=', 'ref_kategori.id')
             ->select('program_layanan.*', 'ref_kategori.nama_kategori')
-            ->where('program_layanan.id_kategori', '=', 19);
+            ->where('program_layanan.id_kategori', '=', 55)
+            ->whereNull('program_layanan.deleted_at');;
         $tahun = $request->tahun;
         $bulan = $request->bulan;
 
@@ -598,7 +599,7 @@ class LandingController extends Controller
         $guru = DB::table('program_layanan')
             ->join('ref_kategori', 'program_layanan.id_kategori', '=', 'ref_kategori.id')
             ->select('program_layanan.*', 'ref_kategori.nama_kategori')
-            ->where('program_layanan.id_kategori', '=', 20);
+            ->where('program_layanan.id_kategori', '=', 54);
         $tahun = $request->tahun;
         $bulan = $request->bulan;
 
