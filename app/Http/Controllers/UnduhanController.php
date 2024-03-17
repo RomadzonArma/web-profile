@@ -110,13 +110,13 @@ class UnduhanController extends Controller
         try {
             // Temukan unduhan yang akan dihapus
             $unduhan = Unduhan::findOrFail($request->id);
-            if (file_exists(public_path('cover-unduhan') . '/' . $unduhan->cover)) {
-                unlink(public_path('cover-unduhan') . '/' . $unduhan->cover);
-            }
+            // if (file_exists(public_path('cover-unduhan') . '/' . $unduhan->cover)) {
+            //     unlink(public_path('cover-unduhan') . '/' . $unduhan->cover);
+            // }
 
-            if (file_exists(public_path('file-unduhan') . '/' . $unduhan->file)) {
-                unlink(public_path('file-unduhan') . '/' . $unduhan->file);
-            }
+            // if (file_exists(public_path('file-unduhan') . '/' . $unduhan->file)) {
+            //     unlink(public_path('file-unduhan') . '/' . $unduhan->file);
+            // }
 
             // Hapus record dari database
             $unduhan->delete();
