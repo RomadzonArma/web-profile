@@ -47,10 +47,10 @@
                             <label for="file">Gambar</label>
                             <div class="custom-file mb-3">
                                 <input type="file" class="custom-file-input" id="gambar" name="gambar"
-                                    accept=".jpg,.jpeg,.png">
+                                    accept=".jpg,.jpeg,.png" onchange="preview('.cover', this.files[0])">
                                 <label class="custom-file-label" for="customFile">Choose file</label>
                             </div>
-                            <div id="imagePreview" class="mt-3"></div>
+                            <div class="cover" id="cover-preview"></div>
                         </div>
 
                         <div class="form-group">
@@ -76,6 +76,17 @@
 @endsection
 
 @push('scripts')
-    <script></script>
+<script>
+    function preview(selector, temporaryFile, width = 200) {
+        $(selector).empty();
+
+        if (temporaryFile.type.startsWith('image/')) {
+            $(selector).append(`<img src="${window.URL.createObjectURL(temporaryFile)}" width="${width}">`);
+        } else {
+            // Handle non-image file types (e.g., show a placeholder or a different preview)
+            $(selector).text('File preview not available for non-image types.');
+        }
+    }
+</script>
     <script src="{{ asset('js/page/Agenda/store.js?q=' . Str::random(5)) }}"></script>
 @endpush

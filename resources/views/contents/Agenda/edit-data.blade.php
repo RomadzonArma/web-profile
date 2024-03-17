@@ -32,12 +32,12 @@
                                 placeholder="Masukkan judul" value="{{ $data->judul }}" required>
                             <div id="error-judul"></div>
                         </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label for="slug">Slug</label>
                             <input type="text" name="slug" id="slug" class="form-control"
                                 placeholder="Masukkan judul" value="{{ $data->slug }}" disabled>
                             <div id="error-judul"></div>
-                        </div>
+                        </div> --}}
 
                         <div class="form-group">
                             <label for="kategori">Konten</label>
@@ -63,13 +63,15 @@
 
                         <div class="form-group mt-2">
                             <label for="gambar">Gambar</label><br>
-                            <img src="{{ asset('agenda/' . $data->gambar) }}" style="width:15%;"><br>
+
                             <div class="custom-file mb-3" style="margin-top: 1%">
                                 <input type="file" class="custom-file-input" id="gambar" name="gambar"
-                                    accept=".jpg,.jpeg,.png">
+                                    accept=".jpg,.jpeg,.png" onchange="preview('.cover', this.files[0])">
                                 <label class="custom-file-label" for="customFile">Choose file</label>
                             </div>
-                            <div id="imagePreview" class="mt-3"></div>
+                            <div class="cover" id="cover-preview">
+                                <img src="{{ asset('agenda/' . $data->gambar) }}" style="width:15%;"><br>S
+                            </div>
                         </div>
 
                         <div class="form-group">
@@ -99,4 +101,16 @@
 
 @push('scripts')
     <script src="{{ asset('js/page/Agenda/update.js?q=' . Str::random(5)) }}"></script>
+    <script>
+        function preview(selector, temporaryFile, width = 200) {
+            $(selector).empty();
+
+            if (temporaryFile.type.startsWith('image/')) {
+                $(selector).append(`<img src="${window.URL.createObjectURL(temporaryFile)}" width="${width}">`);
+            } else {
+                // Handle non-image file types (e.g., show a placeholder or a different preview)
+                $(selector).text('File preview not available for non-image types.');
+            }
+        }
+    </script>
 @endpush
