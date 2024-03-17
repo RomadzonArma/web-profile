@@ -27,6 +27,7 @@
         <form class="row mb-4" method="get" action="{{ url('/regulasis') }}">
             <div class="form-group pr-sm-2 col-lg-2 col-sm-4 mb-sm-0 mb-3">
                 <select class="form-control" id="tahun" name="tahun">
+                    <option value="">Semua Tahun</option>
                     <option value="2024">2024</option>
                     <option value="2023">2023</option>
                     <option value="2022">2022</option>
@@ -36,6 +37,7 @@
             </div>
             <div class="form-group px-sm-2 col-lg-2 col-sm-4 mb-sm-0 mb-3">
                 <select class="form-control" id="bulan" name="bulan">
+                    <option value="">Semua Bulan</option>
                     <option value="1">Januari</option>
                     <option value="2">Februari</option>
                     <option value="3">Maret</option>
@@ -77,7 +79,7 @@
                                     </li>
                                     <li><a href="#"><i class="icon-user1"></i> KSPTK</a></li>
                                     <li><a href="#"><i class="icon-line-folder"></i> Regulasi</a></li>
-                                    <li><a href="#"><i class="icon-line-eye"></i>{{ $item->jumlah_lihat }}
+                                    <li><a href="#"><i class="icon-line-eye"></i>{{ $item->jumlah_lihat ?? 0}}
                                             Dilihat</a></li>
                                 </ul>
                             </div>

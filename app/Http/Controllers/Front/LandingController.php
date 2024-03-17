@@ -21,6 +21,7 @@ use App\Model\ListKategori;
 use App\Model\PengunjungAgenda;
 use App\Model\PengunjungArtikel;
 use App\Model\PengunjungBerita;
+use App\Model\PengunjungPanduan;
 use App\Model\PengunjungPengumuman;
 use App\Model\PengunjungRegulasi;
 use App\Model\PengunjungUnduhan;
@@ -420,11 +421,29 @@ class LandingController extends Controller
         $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
 
         $panduan = Panduan::where('id', $id)->first();
+        $this->recordPengunjungPanduan(request(), $panduan->id);
+        $jumlah_lihat = PengunjungPanduan::hitungPengunjungPanduan($panduan->id);
+        $panduan->jumlah_lihat = $jumlah_lihat;
+        $panduan->save();
         return view('contents.Front.menu_halaman.publikasi.panduan-detail', [
             'title' => 'Panduan Detail',
             'panduan' => $panduan,
             'tautan' => $tautan,
         ]);
+    }
+
+    public function recordPengunjungPanduan(Request $request, $id_panduan)
+    {
+        $ipAddress = $request->ip();
+        $userAgent = uniqid() . '-' . $request->header('User-Agent');
+
+        PengunjungPanduan::create([
+            'id_panduan' => $id_panduan,
+            'ip_address' => $ipAddress,
+            'user_agent' => $userAgent,
+        ]);
+
+        return response()->json(['success' => true]);
     }
     //start pengumuman
     public function pengumuman(Request $request)

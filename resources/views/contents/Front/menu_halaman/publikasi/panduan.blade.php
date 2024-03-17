@@ -27,6 +27,7 @@
         <form class="row mb-4" method="get" action="{{ url('/panduan') }}">
             <div class="form-group pr-sm-2 col-lg-2 col-sm-4 mb-sm-0 mb-3">
                 <select class="form-control" id="tahun" name="tahun">
+                    <option value="">Semua Tahun</option>
                     <option value="2024">2024</option>
                     <option value="2023">2023</option>
                     <option value="2022">2022</option>
@@ -36,6 +37,7 @@
             </div>
             <div class="form-group px-sm-2 col-lg-2 col-sm-4 mb-sm-0 mb-3">
                 <select class="form-control" id="bulan" name="bulan">
+                    <option value="">Semua Bulan</option>
                     <option value="1">Januari</option>
                     <option value="2">Februari</option>
                     <option value="3">Maret</option>
@@ -60,14 +62,14 @@
                 <div class="entry mb-5">
                     <div class="grid-inner row no-gutters p-0">
                         <div class="entry-image col-md-4 mb-md-0">
-                            <a href="/panduan/detail/{{ $item->id }}">
+                            <a href="{{ route('panduan.detail', ['id' => $item->id]) }}">
                                 <img src="{{ asset('gambar-panduan/' . $item->gambar) }}" alt="thumbnail_panduan"
                                     style="width: 200px;">
                             </a>
                         </div>
                         <div class="col-md-8 pl-md-4">
                             <div class="entry-title title-xs">
-                                <h3 class="mb-1"><a href="/panduan/detail/{{ $item->id }}">{{ $item->judul }}</a>
+                                <h3 class="mb-1"><a href="{{ route('panduan.detail', ['id' => $item->id]) }}">{{ $item->judul }}</a>
                                 </h3>
                             </div>
                             <div class="entry-meta mb-2 mt-0">
@@ -77,14 +79,14 @@
                                     </li>
                                     <li><a href="#"><i class="icon-user1"></i> KSPTK</a></li>
                                     <li><a href="#"><i class="icon-line-folder"></i> Panduan</a></li>
-                                    <li><a href="#"><i class="icon-line-eye"></i>{{ $item->jumlah_lihat }}
+                                    <li><a href="#"><i class="icon-line-eye"></i>{{ $item->jumlah_lihat ?? 0 }}
                                             Dilihat</a></li>
                                 </ul>
                             </div>
                             <p class="mb-2 text-muted text-clamp-2">
                                 KSPSTK - {{ $item->konten }}
                             </p>
-                            <a class="more-link" href="/panduan/detail/{{ $item->id }}">Baca Lebih Lanjut</a>
+                            <a class="more-link" href="{{ route('panduan.detail', ['id' => $item->id]) }}">Baca Lebih Lanjut</a>
                         </div>
                     </div>
                 </div>
