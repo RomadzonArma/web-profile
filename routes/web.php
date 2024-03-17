@@ -22,7 +22,7 @@ Route::get('/kontak-kami', [LandingController::class, 'kontak_kami'])->name('kon
 
 //INFORMASI PUBLIK
 Route::get('/berita', [LandingController::class, 'berita'])->name('berita');
-Route::get('/berita/detail/{id}', [LandingController::class, 'beritaDetail'])->name('berita.detail');
+Route::get('/berita/detail/{slug}', [LandingController::class, 'beritaDetail'])->name('berita.detail');
 Route::post('/filter-berita', [LandingController::class, 'filterberita'])->name('filter-berita');
 Route::get('/artikel', [LandingController::class, 'artikel'])->name('artikel');
 Route::get('/artikel/detail/{slug}', [LandingController::class, 'artikelDetail'])->name('artikel.detail');
