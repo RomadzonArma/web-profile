@@ -104,7 +104,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title mt-0" id="edit-list-kanal">Form Edit List Kanal</h5>
+                    <h5 class="modal-title mt-0" id="edit-list-kanal">Form Edit List podcast</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
