@@ -39,7 +39,7 @@ Route::get('/unduhan/list', [LandingController::class, 'unduhan'])->name('unduha
 Route::post('/unduhan/{id}/increment', 'UnduhanController@incrementUnduhan');
 Route::get('/panduan', [LandingController::class, 'panduan'])->name('panduan');
 Route::get('/panduan/detail/{id}', [LandingController::class, 'panduanDetail'])->name('panduan.detail');
-Route::get('/pengumumans', [LandingController::class, 'pengumuman'])->name('pengumuman.list');
+Route::get('/pengumumans', [LandingController::class, 'pengumuman'])->name('pengumumans');
 Route::get('/pengumumans/detail/{id}', [LandingController::class, 'pengumumanDetail'])->name('pengumuman.list');
 Route::get('/regulasis', [LandingController::class, 'regulasi'])->name('regulasis');
 Route::get('/regulasis/detail/{slug}', [LandingController::class, 'regulasiDetail'])->name('regulasis.list');

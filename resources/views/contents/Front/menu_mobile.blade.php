@@ -167,7 +167,7 @@
                     <a class="menu-link" href="{{ route('panduan') }}">PANDUAN</a>
                 </li>
                 <li class="menu-item">
-                    <a class="menu-link" href="/pengumumans">PENGUMUMAN</a>
+                    <a class="menu-link" href="{{ route('pengumumans') }}">PENGUMUMAN</a>
                 </li>
                 <li class="menu-item">
                     <a class="menu-link" href="{{ route('regulasis') }}">REGULASI</a>
