@@ -44,10 +44,10 @@ class ZiWbkController extends Controller
             }
 
             if ($zi_wbk->wasChanged()) {
-                return response()->json(['status' => true], 200);
+                return response()->json(['status_publish' => true], 200);
             }
         } catch (\Exception $e) {
-            return response()->json(['status' => false, 'msg' => $e->getMessage()], 400);
+            return response()->json(['status_publish' => false, 'msg' => $e->getMessage()], 400);
         }
     }
 
