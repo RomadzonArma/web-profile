@@ -5,3 +5,4 @@ Route::post('/store', 'ListKanalController@store')->name('list_kanal.store')->mi
 Route::get('/edit/{id}', 'ListKanalController@edit')->name('list_kanal.edit')->middleware('rbac:list_kanal');
 Route::post('/update/{id}', 'ListKanalController@update')->name('list_kanal.update')->middleware('rbac:list_kanal');
 Route::delete('/delete/{id}', 'ListKanalController@delete')->name('list_kanal.delete')->middleware('rbac:list_kanal');
+Route::patch('/switch', 'ListKanalController@switchStatus')->name('list_kanal.switch')->middleware('rbac:list_kanal,3');
