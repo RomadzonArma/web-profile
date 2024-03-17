@@ -33,6 +33,28 @@ class ListKanalController extends Controller
             ->make();
     }
 
+
+    public function switchStatus(Request $request)
+    {
+        try {
+            $encrypted_id = $request->id;
+            $decrypted_id = decrypt($encrypted_id);
+            $list_kanal = ListKanal::findOrFail($decrypted_id);
+            // dd($list_kanal);
+
+            $list_kanal->status = $request->value;
+
+            if ($list_kanal->isDirty()) {
+                $list_kanal->save();
+            }
+
+            if ($list_kanal->wasChanged()) {
+                return response()->json(['status' => true], 200);
+            }
+        } catch (\Exception $e) {
+            return response()->json(['status' => false, 'msg' => $e->getMessage()], 400);
+        }
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -53,10 +75,8 @@ class ListKanalController extends Controller
     {
         $validasi = Validator::make($request->all(), [
             'nama_kanal' => 'required',
-            'status' => 'required ',
         ], [
             'nama_kanal.required' => 'Nama Kanal  wajib diisi',
-            'status.required' => 'Status Kanal wajib diisi',
 
 
         ]);
@@ -66,11 +86,10 @@ class ListKanalController extends Controller
         } else {
             $data = [
                 'nama_kanal' => $request->nama_kanal,
-                'status' => $request->status,
             ];
 
             ListKanal::create($data);
-            return response()->json(['success' => "Berhasil menyimpan data"]);
+            return response()->json(['status' => true], 200);
         }
     }
 
@@ -91,7 +110,7 @@ class ListKanalController extends Controller
      * @param  \App\Model\ListKanal  $listKanal
      * @return \Illuminate\Http\Response
      */
-    public function edit(ListKanal $listKanal ,$id)
+    public function edit(ListKanal $listKanal, $id)
     {
         $id = decrypt($id);
         $data = ListKanal::where('id', $id)->first();
@@ -105,31 +124,16 @@ class ListKanalController extends Controller
      * @param  \App\Model\ListKanal  $listKanal
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ListKanal $listKanal, $id)
+    public function update(Request $request, $id)
     {
         $id = decrypt($id);
-        $validasi = Validator::make($request->all(), [
-            'nama_kanal' => 'required',
-            'status' => 'required ',
-        ], [
-            'nama_kanal.required' => 'Nama Kanal  wajib diisi',
-            'status.required' => 'Status Kanal wajib diisi',
 
+        $data = [
+            'nama_kanal' => $request->nama_kanal_edit,
+        ];
 
-        ]);
-
-        if ($validasi->fails()) {
-            return response()->json(['erorrs' => $validasi->errors()]);
-        } else {
-            $data = [
-                'nama_kanal' => $request->nama_kanal,
-                'status' => $request->status,
-            ];
-
-            ListKanal::where('id',$id)->update($data);
-            return response()->json(['success' => "Berhasil menyimpan data"]);
-        }
-
+        ListKanal::where('id', $id)->update($data);
+        return response()->json(['status' => true], 200);
     }
 
     /**
