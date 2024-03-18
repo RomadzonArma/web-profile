@@ -32,43 +32,46 @@ class RegulasiController extends Controller
             ->make(true);
     }
 
-    // public function store(Request $request)
-    // {
-    //     $this->validate($request, [
-    //         'judul' => 'required',
-    //         'id_kategori' => 'required',
-    //         'cover' => 'required',
-    //         'file' => 'required',
-    //     ], [
-    //         'judul.required' => '<strong style="color: red;">Judul wajib diisi.</strong>',
-    //         'id_kategori.required' => '<strong style="color: red;">Kategori wajib dipilih.</strong>',
-    //         'cover.required' => '<strong style="color: red;">Cover wajib diisi.</strong>',
-    //         'file.required' => '<strong style="color: red;">File PDF wajib diisi.</strong>',
-    //     ]);
-    //     try {
-    //         $coverName = time() . '.' . $request->cover->extension();
-    //         $request->cover->storeAs('uploads/regulasi/cover', $coverName, 'public');
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'judul' => 'required',
+            'id_kategori' => 'required',
+            'cover' => 'required',
+            'file' => 'required',
+        ], [
+            'judul.required' => '<strong style="color: red;">Judul wajib diisi.</strong>',
+            'id_kategori.required' => '<strong style="color: red;">Kategori wajib dipilih.</strong>',
+            'cover.required' => '<strong style="color: red;">Cover wajib diisi.</strong>',
+            'file.required' => '<strong style="color: red;">File PDF wajib diisi.</strong>',
+        ]);
+        try {
+            $coverName = time() . '.' . $request->cover->extension();
+            // $request->cover->storeAs('uploads/regulasi/cover', $coverName, 'public');
+            $request->cover->move(public_path('cover-regulasi'), $coverName);
 
-    //         $filePDFName = time() . '.' . $request->file->extension();
-    //         $request->file->storeAs('uploads/regulasi/file', $filePDFName, 'public');
+            $filePDFName = time() . '.' . $request->file->extension();
+            // $request->file->storeAs('uploads/regulasi/file', $filePDFName, 'public');
+            $request->file->move(public_path('file-regulasi'), $filePDFName);
 
-    //         // dd($filePDFName);
-    //         $unduhan = Regulasi::create([
-    //             'judul'         => $request->judul,
-    //             'slug'          => Str::slug($request->judul),
-    //             'tanggal'       => Carbon::now(),
-    //             'file'          => $filePDFName,
-    //             'cover'         => $coverName,
-    //             'id_kategori'   => $request->id_kategori,
-    //             'jumlah_download'   => 0,
+            // dd($filePDFName);
+            $unduhan = Regulasi::create([
+                'judul'         => $request->judul,
+                'slug'          => Str::slug($request->judul),
+                'tanggal'       => Carbon::now(),
+                'file'          => $filePDFName,
+                'cover'         => $coverName,
+                'id_kategori'   => $request->id_kategori,
+                'jumlah_download'   => 0,
 
-    //         ]);
-    //         // $unduhan->increment('jumlah_download');
-    //         return response()->json(['status' => true, 'msg' => 'Data unduhan berhasil disimpan'], 200);
-    //     } catch (\Exception $e) {
-    //         return response()->json(['status' => false, 'msg' => $e->getMessage()], 400);
-    //     }
-    // }
+            ]);
+            // $unduhan->increment('jumlah_download');
+            return response()->json(['status' => true, 'msg' => 'Data unduhan berhasil disimpan'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['status' => false, 'msg' => $e->getMessage()], 400);
+        }
+    }
+    
     // public function store(Request $request)
     // {
     //     $this->validate($request, [
@@ -105,7 +108,6 @@ class RegulasiController extends Controller
     //         return response()->json(['status' => false, 'msg' => $e->getMessage()], 400);
     //     }
     // }
-
 
     public function update(Request $request)
     {

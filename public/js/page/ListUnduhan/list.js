@@ -226,7 +226,7 @@ $(() => {
             type: "get",
             dataType: "json",
         },
-        order: [[5, "desc"]],
+        order: [[6, "desc"]],
         columnDefs: [
             {
                 targets: [0, 4],
@@ -234,7 +234,7 @@ $(() => {
                 searchable: false,
             },
             {
-                targets: [7],
+                targets: [6],
                 visible: false,
             },
         ],
@@ -254,9 +254,9 @@ $(() => {
             {
                 data: "tanggal",
             },
-            {
-                data: "jumlah_download",
-            },
+            // {
+            //     data: "jumlah_download",
+            // },
             {
                 data: "id",
                 render: (data, type, row) => {

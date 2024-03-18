@@ -26,7 +26,7 @@
                                     <th style="width: 5%;">No</th>
                                     <th>Judul Podcast</th>
                                     <th>Tanggal Podcast</th>
-                                    <th>Jumlah lihat</th>
+                                    {{-- <th>Jumlah lihat</th> --}}
                                     <th>Status Publish</th>
                                     <th>Aksi</th>
                                     <th></th>

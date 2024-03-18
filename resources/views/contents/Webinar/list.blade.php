@@ -29,7 +29,7 @@
                                     <th>Kanal</th>
                                     <th>Kategori</th>
                                     <th>Tanggal Webinar</th>
-                                    <th>Jumlah Lihat</th>
+                                    {{-- <th>Jumlah Lihat</th> --}}
                                     <th>Status Publish</th>
                                     <th>Aksi</th>
                                     <th></th>
