@@ -59,14 +59,15 @@
                 <div class="entry mb-5">
                     <div class="grid-inner row no-gutters p-0">
                         <div class="entry-image col-md-4 mb-md-0">
-                            <a href="/guru-penggerak/detail/{{ $item->slug }}">
+                            {{-- <a href="/guru-penggerak/detail/{{ $item->slug }}"> --}}
+                            <a href="{{ route('guru-penggerak-detail', ['slug' => $item->slug]) }}">
                                 <img src="{{ asset('program-image/' . $item->image) }}" alt="thumbnail_guru_penggerak">
                             </a>
                         </div>
                         <div class="col-md-8 pl-md-4">
                             <div class="entry-title title-xs">
                                 <h3 class="mb-1"><a
-                                        href="/guru-penggerak/detail/{{ $item->slug }}">{{ $item->title }}</a></h3>
+                                        href="{{ route('guru-penggerak-detail', ['slug' => $item->slug]) }}">{{ $item->title }}</a></h3>
                             </div>
                             <div class="entry-meta mb-2 mt-0">
                                 <ul>
@@ -74,7 +75,7 @@
                                                 class="icon-calendar3"></i>{{ $carbon::parse($item->publish_date)->format('d M Y') }}</a>
                                     </li>
                                     <li><a href="#"><i class="icon-user1"></i> KSPTK</a></li>
-                                    <li><a href="#"><i class="icon-line-folder"></i> Agenda</a></li>
+                                    <li><a href="#"><i class="icon-line-folder"></i> Guru Penggerak</a></li>
                                     {{-- <li><a href="#"><i class="icon-line-eye"></i> {{ $item->jumlah_lihat}} Dilihat</a></li> --}}
                                 </ul>
                             </div>
@@ -82,7 +83,7 @@
                                 {!! \Illuminate\Support\Str::words($item->short_description, 75, '...') !!}
                             </p>
 
-                            <a class="more-link" href="/guru-penggerak/detail/{{ $item->slug }}">Link untuk melihat <i
+                            <a class="more-link" href="{{ route('guru-penggerak-detail', ['slug' => $item->slug]) }}">Link untuk melihat <i
                                     class="icon-external-link mr-0 ml-2"></i></a>
                         </div>
                     </div>
