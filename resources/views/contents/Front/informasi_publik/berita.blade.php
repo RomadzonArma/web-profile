@@ -67,8 +67,8 @@
                             </a>
                         </div>
                         <div class="col-md-8 pl-md-4">
-                            <div class="entry-title title-xs">
-                                <h3 class="mb-1"><a href="/berita/detail/{{ $item->slug }}">{{ $item->judul }}</a>
+                            <div class="entry-title title-md">
+                                <h3 class="mb-1"><a href="{{ route('berita.detail', ['slug' => $item->slug]) }}">{{ $item->judul }}</a>
                                 </h3>
                             </div>
                             <div class="entry-meta mb-2 mt-0">

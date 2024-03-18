@@ -99,6 +99,28 @@
             prevEl: '.swiper-3 .swiper-button-prev',
         },
     });
+    const swiper4 = new Swiper('.swiper-4', {
+        // Optional parameters
+        // loop: true,
+        slidesPerView: 1,
+        spaceBetween: 30,
+        speed: 1000,
+        breakpoints: {
+            768: {
+                slidesPerView: 1,
+                spaceBetween: 30,
+            },
+            1024: {
+                slidesPerView: 2,
+                spaceBetween: 30,
+            },
+        },
+        // Navigation arrows
+        navigation: {
+            nextEl: '.swiper-4 .swiper-button-next',
+            prevEl: '.swiper-4 .swiper-button-prev',
+        },
+    });
     const swiperWidget = new Swiper('.swiper-widget', {
         // Optional parameters
         // loop: true,
