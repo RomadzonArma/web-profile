@@ -27,7 +27,7 @@
                                     <th>Kategori</th>
                                     <th>Judul</th>
                                     <th>Tanggal</th>
-                                    <th>Jumlah Download</th>
+                                    {{-- <th>Jumlah Download</th> --}}
                                     <th>Aksi</th>
                                     <th></th>
                                 </tr>

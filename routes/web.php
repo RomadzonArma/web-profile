@@ -22,7 +22,7 @@ Route::get('/kontak-kami', [LandingController::class, 'kontak_kami'])->name('kon
 
 //INFORMASI PUBLIK
 Route::get('/berita', [LandingController::class, 'berita'])->name('berita');
-Route::get('/berita/detail/{id}', [LandingController::class, 'beritaDetail'])->name('berita.detail');
+Route::get('/berita/detail/{slug}', [LandingController::class, 'beritaDetail'])->name('berita.detail');
 Route::post('/filter-berita', [LandingController::class, 'filterberita'])->name('filter-berita');
 Route::get('/artikel', [LandingController::class, 'artikel'])->name('artikel');
 Route::get('/artikel/detail/{slug}', [LandingController::class, 'artikelDetail'])->name('artikel.detail');
@@ -39,7 +39,7 @@ Route::get('/unduhan/list', [LandingController::class, 'unduhan'])->name('unduha
 Route::post('/unduhan/{id}/increment', 'UnduhanController@incrementUnduhan');
 Route::get('/panduan', [LandingController::class, 'panduan'])->name('panduan');
 Route::get('/panduan/detail/{id}', [LandingController::class, 'panduanDetail'])->name('panduan.detail');
-Route::get('/pengumumans', [LandingController::class, 'pengumuman'])->name('pengumuman.list');
+Route::get('/pengumumans', [LandingController::class, 'pengumuman'])->name('pengumumans');
 Route::get('/pengumumans/detail/{id}', [LandingController::class, 'pengumumanDetail'])->name('pengumuman.list');
 Route::get('/regulasis', [LandingController::class, 'regulasi'])->name('regulasis');
 Route::get('/regulasis/detail/{slug}', [LandingController::class, 'regulasiDetail'])->name('regulasis.list');
@@ -47,7 +47,7 @@ Route::get('/regulasis/detail/{slug}', [LandingController::class, 'regulasiDetai
 
 //PROGRAM LAYANAN
 Route::get('/sekolah-penggerak', [LandingController::class, 'sekolahPenggerak'])->name('sekolah-penggerak');
-Route::get('/sekolah-penggerak/detail/{id}', [LandingController::class, 'sekolahPenggerakDetail'])->name('sekolah-penggerak-detail');
+Route::get('/sekolah-penggerak/detail/{slug}', [LandingController::class, 'sekolahPenggerakDetail'])->name('sekolah-penggerak-detail');
 Route::get('/guru-penggerak', [LandingController::class, 'guruPenggerak'])->name('guru-penggerak');
 Route::get('/guru-penggerak/detail/{slug}', [LandingController::class, 'guruPenggerakDetail'])->name('guru-penggerak-detail');
 

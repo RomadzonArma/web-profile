@@ -233,7 +233,7 @@ $(() => {
             type: "get",
             dataType: "json",
         },
-        order: [[5, "desc"]],
+        order: [[8, "desc"]],
         columnDefs: [
             {
                 targets: [0, 4],
@@ -241,7 +241,7 @@ $(() => {
                 searchable: false,
             },
             {
-                targets: [9],
+                targets: [8],
                 visible: false,
             },
         ],
@@ -258,9 +258,9 @@ $(() => {
             {
                 data: "judul",
             },
-            {
-                data: "jumlah_lihat",
-            },
+            // {
+            //     data: "jumlah_lihat",
+            // },
             {
                 data: "is_video",
                 render: (data, type, row) => {

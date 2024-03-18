@@ -113,7 +113,6 @@ $(() => {
 
         $("#modal-update-unduhan").modal("show");
     });
-
     $("#form-unduhan").on("submit", function (e) {
         e.preventDefault();
 
@@ -163,6 +162,55 @@ $(() => {
         });
     });
 
+    // $("#form-unduhan").on("submit", function (e) {
+    //     e.preventDefault();
+
+    //     var data = new FormData(this);
+
+    //     $.ajax({
+    //         url: $(this).attr("action"),
+    //         type: $(this).attr("method"),
+    //         data: data,
+    //         dataType: "json",
+    //         processData: false,
+    //         contentType: false,
+    //         beforeSend: function () {
+    //             Swal.fire({
+    //                 title: "Mohon Tunggu",
+    //                 allowOutsideClick: false,
+    //                 onBeforeOpen: () => {
+    //                     Swal.showLoading();
+    //                 },
+    //                 showConfirmButton: false,
+    //                 showCancelButton: false,
+    //             });
+    //         },
+    //         success: (res) => {
+    //             console.log(res);
+    //             Swal.fire({
+    //                 icon: "success",
+    //                 title: "Sukses",
+    //                 text: "Berhasil Menyimpan Data",
+    //                 showConfirmButton: false,
+    //                 timer: 2000,
+    //             });
+    //             window.location.href = BASE_URL + 'unduhan';
+    //         },
+    //         error: ({
+    //             status,
+    //             responseJSON
+    //         }) => {
+
+    //             if (status == 422) {
+    //                 generateErrorMessage(responseJSON);
+    //                 return false;
+    //             }
+
+    //             showErrorToastr('oops', responseJSON.msg)
+    //         }
+    //     });
+    // });
+
     $('.btn-tambah').on('click', function () {
         $('#form-unduhan')[0].reset();
         clearErrorMessage();
@@ -178,7 +226,7 @@ $(() => {
             type: "get",
             dataType: "json",
         },
-        order: [[5, "desc"]],
+        order: [[6, "desc"]],
         columnDefs: [
             {
                 targets: [0, 4],
@@ -186,7 +234,7 @@ $(() => {
                 searchable: false,
             },
             {
-                targets: [7],
+                targets: [6],
                 visible: false,
             },
         ],
@@ -206,9 +254,9 @@ $(() => {
             {
                 data: "tanggal",
             },
-            {
-                data: "jumlah_download",
-            },
+            // {
+            //     data: "jumlah_download",
+            // },
             {
                 data: "id",
                 render: (data, type, row) => {

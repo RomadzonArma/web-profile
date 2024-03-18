@@ -80,10 +80,10 @@ class ListKategoriController extends Controller
     {
 
         $validasi = Validator::make($request->all(), [
-            'nama_kanal' => 'required',
+            'id_kanal' => 'required',
             'nama_kategori' => 'required ',
         ], [
-            'nama_kanal.required' => 'Nama Kanal  wajib diisi',
+            'id_kanal.required' => 'Nama Kanal  wajib diisi',
             'nama_kategori.required' => 'Nama Kategori wajib diisi',
 
 
@@ -93,12 +93,12 @@ class ListKategoriController extends Controller
             return response()->json(['erorrs' => $validasi->errors()]);
         } else {
             $data = [
-                'id_kanal' => $request->nama_kanal,
+                'id_kanal' => $request->id_kanal,
                 'status' => '0',
                 'nama_kategori' => $request->nama_kategori,
             ];
             ListKategori::create($data);
-            return response()->json(['success' => "Berhasil menyimpan data"]);
+            return response()->json(['status' => true], 200);
         }
     }
 
@@ -119,7 +119,7 @@ class ListKategoriController extends Controller
      * @param  \App\Model\ListKategori  $listKategori
      * @return \Illuminate\Http\Response
      */
-    public function edit(ListKategori $listKategori, $id)
+    public function edit($id)
     {
         $id = decrypt($id);
         $data = ListKategori::where('id', $id)->first();
@@ -133,31 +133,18 @@ class ListKategoriController extends Controller
      * @param  \App\Model\ListKategori  $listKategori
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ListKategori $listKategori, $id)
+    public function update(Request $request, $id)
     {
         $id = decrypt($id);
-        $validasi = Validator::make($request->all(), [
-            'nama_kanal' => 'required',
-            'nama_kategori' => 'required ',
-        ], [
-            'nama_kanal.required' => 'Nama Kanal  wajib diisi',
-            'nama_kategori.required' => 'Nama Kategori wajib diisi',
 
 
+        $data = [
+            'id_kanal' => $request->id_kanal_edit,
+            'nama_kategori' => $request->nama_kategori_edit,
+        ];
 
-        ]);
-
-        if ($validasi->fails()) {
-            return response()->json(['erorrs' => $validasi->errors()]);
-        } else {
-            $data = [
-                'id_kanal' => $request->nama_kanal,
-                'nama_kategori' => $request->nama_kategori,
-            ];
-
-            ListKategori::where('id', $id)->update($data);
-            return response()->json(['success' => "Berhasil menyimpan data"]);
-        }
+        ListKategori::where('id', $id)->update($data);
+        return response()->json(['status' => true], 200);
     }
 
     /**

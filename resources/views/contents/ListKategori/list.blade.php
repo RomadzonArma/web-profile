@@ -55,25 +55,28 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group">
-                        <label for="judul">Kategori</label>
-                        <input type="text" class="form-control" id="nama_kategori" name="nama_kategori" required>
-                    </div>
-                    <div class="form-group ">
-                        <label class="col-form-label">Pilih Kanal</label>
-                        <div class="">
-                            <select class="form-control" id="nama_kanal" name="nama_kanal">
-                                <option>Pilih kanal</option>
-                                @foreach ($list_kanal as $data)
-                                    <option value="{{ $data->id }}">{{ $data->nama_kanal }}</option>
-                                @endforeach
-                            </select>
+                    <form action="{{ route('list_kategori.store') }}" method="post" name="form-store" id="form-store">
+                        <div class="form-group">
+                            <label for="judul">Kategori</label>
+                            <input type="text" class="form-control" id="nama_kategori" name="nama_kategori" required>
                         </div>
-                    </div>
+                        <div class="form-group ">
+                            <label class="col-form-label">Pilih Kanal</label>
+                            <div class="">
+                                <select class="form-control" id="id_kanal" name="id_kanal">
+                                    <option>Pilih kanal</option>
+                                    @foreach ($list_kanal as $data)
+                                        <option value="{{ $data->id }}">{{ $data->nama_kanal }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary waves-effect waves-light btn-simpan">Save </button>
+                    <button type="submit" form="form-store"
+                        class="btn btn-primary waves-effect waves-light btn-simpan">Save </button>
                 </div>
             </div>
         </div>
@@ -92,27 +95,29 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group">
-                        <label for="judul">Kategori</label>
-                        <input type="text" class="form-control" id="nama_kategori_edit" name="nama_kategori_edit"
-                            required>
-                    </div>
-                    <div class="form-group ">
-                        <label class="col-form-label">Pilih Kanal</label>
-                        <div class="">
-                            <select class="form-control" id="nama_kanal_edit" name="nama_kanal_edit">
-                                <option>Pilih kanal</option>
-                                @foreach ($list_kanal as $data)
-                                    <option value="{{ $data->id }}">{{ $data->nama_kanal }}</option>
-                                @endforeach
-                            </select>
+                    <form method="post" name="form-update" id="form-update">
+                        <div class="form-group">
+                            <label for="judul">Kategori</label>
+                            <input type="text" class="form-control" id="nama_kategori_edit" name="nama_kategori_edit"
+                                required>
                         </div>
-                    </div>
+                        <div class="form-group ">
+                            <label class="col-form-label">Pilih Kanal</label>
+                            <div class="">
+                                <select class="form-control" id="id_kanal_edit" name="id_kanal_edit">
+                                    <option>Pilih kanal</option>
+                                    @foreach ($list_kanal as $data)
+                                        <option value="{{ $data->id }}">{{ $data->nama_kanal }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </form>
 
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary waves-effect waves-light edit-data">Edit </button>
+                    <button type="submit" form="form-update" class="btn btn-primary waves-effect waves-light edit-data">Edit </button>
                 </div>
             </div>
         </div>

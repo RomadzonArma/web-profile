@@ -61,13 +61,13 @@
                 <div class="entry mb-5">
                     <div class="grid-inner row no-gutters p-0">
                         <div class="entry-image col-md-4 mb-md-0">
-                            <a href="/artikel/detail/{{ $item->slug }}">
+                            <a href="{{ route('artikel.detail', ['slug' => $item->slug]) }}">
                                 <img src="{{ asset('gambar-artikel/' . $item->gambar) }}" alt="thumbnail_artikel">
                             </a>
                         </div>
                         <div class="col-md-8 pl-md-4">
                             <div class="entry-title title-xs">
-                                <h3 class="mb-1"><a href="/artikel/detail/{{ $item->slug }}">{{ $item->judul }}</a>
+                                <h3 class="mb-1"><a href="{{ route('artikel.detail', ['slug' => $item->slug]) }}">{{ $item->judul }}</a>
                                 </h3>
                             </div>
                             <div class="entry-meta mb-2 mt-0">
@@ -86,7 +86,7 @@
                             <p class="mb-2 text-muted text-clamp-2">
                                 {!! \Illuminate\Support\Str::words(strip_tags($item->konten), 65, '...') !!}
                             </p>
-                            <a class="more-link" href="/artikel/detail/{{ $item->slug }}">Baca Lebih Lanjut</a>
+                            <a class="more-link" href="{{ route('artikel.detail', ['slug' => $item->slug]) }}">Baca Lebih Lanjut</a>
                         </div>
                     </div>
                 </div>

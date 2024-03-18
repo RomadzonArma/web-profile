@@ -74,14 +74,14 @@
                                     <div class="entry mb-4">
                                         <div class="grid-inner row no-gutters p-0">
                                             <div class="entry-image col-xl-4 mb-xl-0">
-                                                <a href="/berita/detail/{{ $item->slug }}">
+                                                <a href="{{ route('berita.detail', ['slug' => $item->slug]) }}">
                                                     <img src="{{ asset('list_berita/' . $item->gambar) }}"
                                                         alt="thumbnail_berita">
                                                 </a>
                                             </div>
                                             <div class="col-xl-8 pl-xl-4">
                                                 <div class="entry-title title-xs text-clamp-2">
-                                                    <h5 class="mb-1"><a href="/berita/detail/{{ $item->slug }}">{{ $item->judul }}</a></h5>
+                                                    <h5 class="mb-1"><a href="{{ route('berita.detail', ['slug' => $item->slug]) }}">{{ $item->judul }}</a></h5>
                                                 </div>
                                                 <div class="entry-meta mb-2 mt-0">
                                                     <ul>
@@ -107,12 +107,12 @@
 
     </div>
 
-    <a href="javascript:void(0)" id="faq">
+    {{-- <a href="javascript:void(0)" id="faq">
         <div class="position-relative">
             <i class="icon-line-phone"></i>
             <h6 class="text-white mb-0">INFO KSPS</h6>
         </div>
-    </a>
+    </a> --}}
     <div class="faq-wrapper">
         <h5 class="text-primary mb-0">FAQ!</h5>
         <img src="{{ asset('assets-front/img/ksps_faq.png') }}" alt="faq" class="img-fluid">
@@ -146,7 +146,7 @@
                                     </div>
                                     <div class="entry-meta mb-2 mt-0">
                                         <ul>
-                                            <li><a href="#"><i class="icon-users"></i> {{$podcast->jumlah_lihat ?? 0}} penonton</a>
+                                            {{-- <li><a href="#"><i class="icon-users"></i> {{$podcast->jumlah_lihat ?? 0}} penonton</a> --}}
                                             <li><a href="#"><i
                                                         class="icon-calendar3"></i>{{ $podcast->date }}</a>
                                             </li>

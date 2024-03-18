@@ -47,10 +47,12 @@ class RegulasiController extends Controller
         ]);
         try {
             $coverName = time() . '.' . $request->cover->extension();
-            $request->cover->storeAs('uploads/regulasi/cover', $coverName, 'public');
+            // $request->cover->storeAs('uploads/regulasi/cover', $coverName, 'public');
+            $request->cover->move(public_path('cover-regulasi'), $coverName);
 
             $filePDFName = time() . '.' . $request->file->extension();
-            $request->file->storeAs('uploads/regulasi/file', $filePDFName, 'public');
+            // $request->file->storeAs('uploads/regulasi/file', $filePDFName, 'public');
+            $request->file->move(public_path('file-regulasi'), $filePDFName);
 
             // dd($filePDFName);
             $unduhan = Regulasi::create([
@@ -70,6 +72,43 @@ class RegulasiController extends Controller
         }
     }
 
+    // public function store(Request $request)
+    // {
+    //     $this->validate($request, [
+    //         'judul' => 'required',
+    //         'id_kategori' => 'required',
+    //         'gambar' => 'required|image|mimes:jpeg,png,jpg',
+    //         'file' => 'required|mimes:pdf',
+    //     ], [
+    //         'judul.required' => '<strong style="color: red;">Judul wajib diisi.</strong>',
+    //         'id_kategori.required' => '<strong style="color: red;">Kategori wajib dipilih.</strong>',
+    //         'gambar.required' => '<strong style="color: red;">Gambar wajib diisi.</strong>',
+    //         'file.required' => '<strong style="color: red;">File PDF wajib diisi.</strong>',
+    //     ]);
+
+    //     try {
+    //         $coverName = time() . '.' . $request->cover->extension();
+    //         $request->cover->move(public_path('cover-regulasi'), $coverName);
+
+    //         $filePDFName = time() . '.' . $request->file->extension();
+    //         $request->file->move(public_path('file-regulasi'), $filePDFName);
+
+    //         $unduhan = Regulasi::create([
+    //             'judul' => $request->judul,
+    //             'slug' => Str::slug($request->judul),
+    //             'tanggal' => Carbon::now(),
+    //             'file' => $filePDFName,
+    //             'cover' => $coverName,
+    //             'id_kategori' => $request->id_kategori,
+    //             'jumlah_download' => 0,
+    //         ]);
+
+    //         return response()->json(['status' => true, 'msg' => 'Data unduhan berhasil disimpan'], 200);
+    //     } catch (\Exception $e) {
+    //         return response()->json(['status' => false, 'msg' => $e->getMessage()], 400);
+    //     }
+    // }
+
     public function update(Request $request)
     {
         try {
@@ -85,18 +124,22 @@ class RegulasiController extends Controller
             $regulasi->id_kategori = $request->id_kategori;
 
             if ($request->hasFile('cover')) {
-                Storage::delete("public/uploads/regulasi/cover/{$regulasi->cover}");
+                if (file_exists(public_path("cover-regulasi/{$regulasi->cover}"))) {
+                    unlink(public_path("cover-regulasi/{$regulasi->cover}"));
+                }
 
                 $coverName = time() . '.' . $request->cover->extension();
-                $request->cover->storeAs('uploads/regulasi/cover', $coverName, 'public');
+                $request->cover->move(public_path('cover-regulasi'), $coverName);
                 $regulasi->cover = $coverName;
             }
 
             if ($request->hasFile('file')) {
-                Storage::delete("public/uploads/regulasi/file/{$regulasi->file}");
+                if (file_exists(public_path("file-regulasi/{$regulasi->file}"))) {
+                    unlink(public_path("file-regulasi/{$regulasi->file}"));
+                }
 
                 $filePDFName = time() . '.' . $request->file->extension();
-                $request->file->storeAs('uploads/regulasi/file', $filePDFName, 'public');
+                $request->file->move(public_path('file-regulasi'), $filePDFName);
                 $regulasi->file = $filePDFName;
             }
 

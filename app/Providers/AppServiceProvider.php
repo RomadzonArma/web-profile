@@ -54,8 +54,8 @@ class AppServiceProvider extends ServiceProvider
         });
         view()->composer('contents.Front.menu', function ($view) {
             // $zi = ZiWbk::with('list_kategori','sub_kategori');
-            $zi1= ZiWbk::with('list_kategori','sub_kategori')->whereNotNull('link_kategori')->get();
-            $zi2= ZiWbk::with('list_kategori','sub_kategori')->whereNotNull('link') ->whereIn('id_kategori', function ($query) {
+            $zi1= ZiWbk::with('list_kategori','sub_kategori')->where('status_publish', 1)->whereNotNull('link_kategori')->get();
+            $zi2= ZiWbk::with('list_kategori','sub_kategori')->where('status_publish', 1)->whereNotNull('link') ->whereIn('id_kategori', function ($query) {
                 // Subquery untuk mendapatkan id_kategori yang memiliki beberapa id_subkategori
                 $query->select('id_kategori')
                       ->from('ziwbk')

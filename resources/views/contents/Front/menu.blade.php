@@ -40,29 +40,31 @@
             <ul class="sub-menu-container">
                 @foreach ($ziwbk1 as $item)
                     <li class="menu-item">
-                        <a class="menu-link" href="{{ $item->link_kategori }}" target="_blank">{{ $item->list_kategori->nama_kategori }}</a>
+                        <a class="menu-link" href="{{ $item->link_kategori }}"
+                            target="_blank">{{ $item->list_kategori->nama_kategori }}</a>
                     </li>
                 @endforeach
 
                 <!-- Tampilkan nama kategori di luar perulangan submenu -->
                 @if ($ziwbk2->isNotEmpty())
-                {{-- Iterate through unique categories --}}
-                @foreach ($ziwbk2->unique('id_kategori') as $data)
-                    <li class="menu-item sub-menu">
-                        <a href="#" class="menu-link">
-                            <div>{{ $data->list_kategori->nama_kategori }}<i class="icon-angle-down"></i></div>
-                        </a>
-                        <ul class="sub-menu-container">
-                            {{-- Iterate through subcategories related to the current category --}}
-                            @foreach ($ziwbk2->where('id_kategori', $data->id_kategori) as $item)
-                                <li class="menu-item">
-                                    <a href="{{ $item->link }}" class="menu-link">{{ $item->sub_kategori->sub_kategori }}</a>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </li>
-                @endforeach
-            @endif
+                    {{-- Iterate through unique categories --}}
+                    @foreach ($ziwbk2->unique('id_kategori') as $data)
+                        <li class="menu-item sub-menu">
+                            <a href="#" class="menu-link">
+                                <div>{{ $data->list_kategori->nama_kategori }}<i class="icon-angle-down"></i></div>
+                            </a>
+                            <ul class="sub-menu-container">
+                                {{-- Iterate through subcategories related to the current category --}}
+                                @foreach ($ziwbk2->where('id_kategori', $data->id_kategori) as $item)
+                                    <li class="menu-item">
+                                        <a href="{{ $item->link }}"
+                                            class="menu-link">{{ $item->sub_kategori->sub_kategori }}</a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </li>
+                    @endforeach
+                @endif
             </ul>
         </li>
 
@@ -106,8 +108,12 @@
                                 <ul class="sub-menu-container scrolled">
                                     @foreach ($tautan as $tautan)
                                         <li class="menu-item">
-                                            <a class="menu-link" href="{{ $tautan->link_tautan }}"
-                                                target="_blank">{{ $tautan->list_kategori->nama_kategori }}</a>
+                                            @if ($tautan->list_kategori)
+                                                <a class="menu-link" href="{{ $tautan->link_tautan }}"
+                                                    target="_blank">{{ $tautan->list_kategori->nama_kategori }}</a>
+                                            @else
+                                                {{-- <span class="menu-link">Kategori tidak tersedia</span> --}}
+                                            @endif
                                         </li>
                                     @endforeach
                                 </ul>
@@ -121,7 +127,7 @@
                                         <a class="menu-link" href="{{ route('panduan') }}">PANDUAN</a>
                                     </li>
                                     <li class="menu-item">
-                                        <a class="menu-link" href="/pengumumans">PENGUMUMAN</a>
+                                        <a class="menu-link" href="{{ route('pengumumans') }}">PENGUMUMAN</a>
                                     </li>
                                     <li class="menu-item">
                                         <a class="menu-link" href="{{ route('regulasis') }}">REGULASI</a>
@@ -144,7 +150,7 @@
 
 
 
-                    {{--  @if (!empty($item->link_kategori))
+{{--  @if (!empty($item->link_kategori))
                         <li class="menu-item">
                             <a class="menu-link" href="{{ $item->link_kategori }}"
                                 target="_blank">{{$item->list_kategori->nama_kategori }}</a>
@@ -163,7 +169,7 @@
                     @endif  --}}
 
 
-                {{-- <li class="menu-item">
+{{-- <li class="menu-item">
                     <a class="menu-link" href="#">LKE</a>
                 </li>
                 <li class="menu-item">
