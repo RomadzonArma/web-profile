@@ -43,9 +43,9 @@
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     Y') }}</a>
                                     </li>
                                     <li><a href="#"><i class="icon-line-folder"></i> Unduhan</a></li>
-                                    <li><a href="#"><i class="icon-line-download"></i>
+                                    {{-- <li><a href="#"><i class="icon-line-download"></i>
                                             {{ $item->jumlah_download }}Diunduh</a>
-                                    </li>
+                                    </li> --}}
                                 </ul>
                             </div>
                             <a class="button button-mini button-aqua rounded m-0 unduh-dokumen"

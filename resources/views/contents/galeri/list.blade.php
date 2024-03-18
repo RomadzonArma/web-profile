@@ -27,7 +27,7 @@
                                     <th>Kanal</th>
                                     <th>Kategori</th>
                                     <th>Judul</th>
-                                    <th>Jumlah Dilihat</th>
+                                    {{-- <th>Jumlah Dilihat</th> --}}
                                     <th>Video</th>
                                     <th>Foto</th>
                                     <th>Status Publish</th>
