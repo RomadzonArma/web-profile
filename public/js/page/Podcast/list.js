@@ -125,10 +125,10 @@ $(() => {
             dataType: 'json'
         },
         order: [
-            [4, 'desc']
+            [5, 'desc']
         ],
         columnDefs: [{
-            targets: [0, 4],
+            targets: [0, 3],
             orderable: false,
             searchable: false,
             className: 'text-center align-top'
@@ -139,7 +139,7 @@ $(() => {
             targets: [3],
             className: 'text-center align-top'
         }, {
-            targets: [6],
+            targets: [5],
             visible: false,
         }],
         columns: [{
@@ -167,9 +167,11 @@ $(() => {
                 var formattedDate = day + ' ' + monthNames[monthIndex] + ' ' + year + ' ' + (hours < 10 ? '0' : '') + hours + ':' + (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
                 return formattedDate;
             }
-        }, {
-            data: 'jumlah_lihat',
-        }, {
+        },
+        // {
+        //     data: 'jumlah_lihat',
+        // },
+        {
             data: 'status_publish',
             render: (data, type, row) => {
                 return `

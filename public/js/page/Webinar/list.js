@@ -73,7 +73,7 @@ $(() => {
             targets: [3],
             className: 'text-center align-top'
         }, {
-            targets: [8],
+            targets: [7],
             visible: false,
         }],
         columns: [{
@@ -105,9 +105,11 @@ $(() => {
                 var formattedDate = day + ' ' + monthNames[monthIndex] + ' ' + year + ' ' + (hours < 10 ? '0' : '') + hours + ':' + (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
                 return formattedDate;
             }
-        }, {
-            data: 'jumlah_lihat',
-        }, {
+        },
+        // {
+        //     data: 'jumlah_lihat',
+        // },
+        {
             data: 'status_publish',
             render: (data, type, row) => {
                 return `

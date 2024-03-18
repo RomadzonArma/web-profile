@@ -47,10 +47,12 @@ class RegulasiController extends Controller
         ]);
         try {
             $coverName = time() . '.' . $request->cover->extension();
-            $request->cover->storeAs('uploads/regulasi/cover', $coverName, 'public');
+            // $request->cover->storeAs('uploads/regulasi/cover', $coverName, 'public');
+            $request->cover->move(public_path('cover-regulasi'), $coverName);
 
             $filePDFName = time() . '.' . $request->file->extension();
-            $request->file->storeAs('uploads/regulasi/file', $filePDFName, 'public');
+            // $request->file->storeAs('uploads/regulasi/file', $filePDFName, 'public');
+            $request->file->move(public_path('file-regulasi'), $filePDFName);
 
             // dd($filePDFName);
             $unduhan = Regulasi::create([
