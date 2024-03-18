@@ -98,6 +98,8 @@ class RouteServiceProvider extends ServiceProvider
             $this->mapSubKategoriRoutes();
 
             $this->mapZiWbkRoutes();
+
+            $this->mapCerita();
         });
     }
 
@@ -301,5 +303,12 @@ class RouteServiceProvider extends ServiceProvider
         Route::prefix('zi_wbk')
         ->namespace($this->namespace)
         ->group(base_path('routes/panel/zi_wbk.php'));
+    }
+
+    protected function mapCerita()
+    {
+        Route::prefix('cerita-praktik-baik')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/panel/cerita.php'));
     }
 }
