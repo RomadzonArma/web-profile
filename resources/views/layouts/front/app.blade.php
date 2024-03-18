@@ -107,12 +107,12 @@
 
     </div>
 
-    <a href="javascript:void(0)" id="faq">
+    {{-- <a href="javascript:void(0)" id="faq">
         <div class="position-relative">
             <i class="icon-line-phone"></i>
             <h6 class="text-white mb-0">INFO KSPS</h6>
         </div>
-    </a>
+    </a> --}}
     <div class="faq-wrapper">
         <h5 class="text-primary mb-0">FAQ!</h5>
         <img src="{{ asset('assets-front/img/ksps_faq.png') }}" alt="faq" class="img-fluid">
