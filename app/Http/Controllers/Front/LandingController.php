@@ -554,17 +554,20 @@ class LandingController extends Controller
     //START MENU PROGRAM LAYANAN
     public function sekolahPenggerak(Request $request)
     {
-        $query = DB::table('program_layanan');
+        // $query = DB::table('program_layanan');
         $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
 
-        $sekolah = DB::table('program_layanan')
-            ->join('ref_kategori', 'program_layanan.id_kategori', '=', 'ref_kategori.id')
-            ->select('program_layanan.*', 'ref_kategori.nama_kategori')
-            ->where('program_layanan.id_kategori', '=', 55)
-            ->whereNull('program_layanan.deleted_at');;
+        // $sekolah = DB::table('program_layanan')
+        //     ->join('ref_kategori', 'program_layanan.id_kategori', '=', 'ref_kategori.id')
+        //     ->select('program_layanan.*', 'ref_kategori.nama_kategori')
+        //     ->where('program_layanan.id_kategori', '=', 55)
+        //     ->whereNull('program_layanan.deleted_at');;
+        $query = DB::table('program_layanan as pl')
+        ->join('ref_kategori as rk', 'pl.id_kategori', '=', 'rk.id')
+        ->select('pl.*')
+        ->where('rk.nama_kategori', 'LIKE', '%sekolah penggerak%');
         $tahun = $request->tahun;
         $bulan = $request->bulan;
-
         if ($tahun) {
             $query->whereYear('publish_date', $tahun);
         }
@@ -586,20 +589,29 @@ class LandingController extends Controller
         $sekolah = ProgramLayanan::where('slug', $slug)->first();
         // dd($sekolah);
         return view('contents.Front.menu_halaman.program_layanan.sekolah-penggerak-detail', [
-            'title' => 'Detail Pogram Pendidikan Guru Penggerak ',
+            'title' => 'Detail Pogram Pendidikan Sekolah Penggerak ',
             'sekolah' => $sekolah,
             'tautan' => $tautan,
         ]);
     }
     public function guruPenggerak(Request $request)
     {
-        $query = DB::table('program_layanan');
+        // $query = DB::table('program_layanan');
         $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
 
-        $guru = DB::table('program_layanan')
-            ->join('ref_kategori', 'program_layanan.id_kategori', '=', 'ref_kategori.id')
-            ->select('program_layanan.*', 'ref_kategori.nama_kategori')
-            ->where('program_layanan.id_kategori', '=', 54);
+        // $query = DB::table('program_layanan')
+        //     ->join('ref_kategori', 'program_layanan.id_kategori', '=', 'ref_kategori.id')
+        //     ->select('program_layanan.*', 'ref_kategori.nama_kategori')
+        // ->where('program_layanan.id_kategori', '=', 54)
+        //     ->get();
+
+        //     ->where('program_layanan.id_kategori', '=', 54);
+        $query = DB::table('program_layanan as pl')
+        ->join('ref_kategori as rk', 'pl.id_kategori', '=', 'rk.id')
+        ->select('pl.*')
+        ->where('rk.nama_kategori', 'LIKE', '%guru penggerak%');
+
+
         $tahun = $request->tahun;
         $bulan = $request->bulan;
 
