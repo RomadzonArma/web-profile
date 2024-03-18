@@ -71,7 +71,7 @@ class RegulasiController extends Controller
             return response()->json(['status' => false, 'msg' => $e->getMessage()], 400);
         }
     }
-    
+
     // public function store(Request $request)
     // {
     //     $this->validate($request, [
@@ -124,18 +124,22 @@ class RegulasiController extends Controller
             $regulasi->id_kategori = $request->id_kategori;
 
             if ($request->hasFile('cover')) {
-                Storage::delete("public/uploads/regulasi/cover/{$regulasi->cover}");
+                if (file_exists(public_path("cover-regulasi/{$regulasi->cover}"))) {
+                    unlink(public_path("cover-regulasi/{$regulasi->cover}"));
+                }
 
                 $coverName = time() . '.' . $request->cover->extension();
-                $request->cover->storeAs('uploads/regulasi/cover', $coverName, 'public');
+                $request->cover->move(public_path('cover-regulasi'), $coverName);
                 $regulasi->cover = $coverName;
             }
 
             if ($request->hasFile('file')) {
-                Storage::delete("public/uploads/regulasi/file/{$regulasi->file}");
+                if (file_exists(public_path("file-regulasi/{$regulasi->file}"))) {
+                    unlink(public_path("file-regulasi/{$regulasi->file}"));
+                }
 
                 $filePDFName = time() . '.' . $request->file->extension();
-                $request->file->storeAs('uploads/regulasi/file', $filePDFName, 'public');
+                $request->file->move(public_path('file-regulasi'), $filePDFName);
                 $regulasi->file = $filePDFName;
             }
 
