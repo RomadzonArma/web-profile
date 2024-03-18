@@ -24,38 +24,38 @@
 
 @section('content')
     <div class="col-md-9 col-12 mb-md-0 mb-4">
-        <div class="row">
-            <div class="col-xl-10">
-                <div class="entry-title">
-                    <h3 class="mb-1">{{ $artikel->judul }}</h3>
-                </div>
-                <div class="entry-meta my-4">
-                    <ul>
-                        <li><i class="icon-calendar3"></i> {{ $carbon::parse($artikel->date)->format('d M Y') }}</li>
-                        <li><i class="icon-user1"></i> KSPTK</li>
-                        <li><i class="icon-line-folder"></i> Artikel</li>
-                        <li><i class="icon-line-eye"></i> {{ $artikel->jumlah_lihat }} Dilihat</li>
-                    </ul>
-                </div>
-                <div class="entry-image">
-                    <img src="{{ asset('gambar-artikel/' . $artikel->gambar) }}" alt="img">
-                    <p class="mt-1">
-                        <small>
-                            <center>{{ $artikel->caption_gambar }}</center>
-                        </small>
-                    </p>
-                </div>
-                <div class="entry-content mt-0">
-                    <p class="mb-4">
-                        {!! $artikel->konten !!}
-                    </p>
-                </div>
-                <div class="entry-title">
-                    <h6 class="mb-1"><a href="#"># {{ $artikel->tag }}</a></h6>
-                    <h6 class="mb-1"><a href="#"># {{ $artikel->link }}</a></h6>
-                </div>
-            </div>
+        <div class="entry-title">
+            <h3 class="mb-1">{{ $artikel->judul }}</h3>
         </div>
+        <div class="entry-meta my-4">
+            <ul>
+                <li><i class="icon-calendar3"></i> {{ $carbon::parse($artikel->date)->format('d M Y') }}</li>
+                <li><i class="icon-user1"></i> KSPTK</li>
+                <li><i class="icon-line-folder"></i> Artikel</li>
+                <li><i class="icon-line-eye"></i> {{ $artikel->jumlah_lihat }} Dilihat</li>
+            </ul>
+        </div>
+        <div class="entry-image">
+            <img src="{{ asset('gambar-artikel/' . $artikel->gambar) }}" alt="img">
+            <p class="mt-1">
+                <small>
+                    <center>{{ $artikel->caption_gambar }}</center>
+                </small>
+            </p>
+        </div>
+        <div class="entry-content mt-0">
+            <p class="mb-4">
+                {!! $artikel->konten !!}
+            </p>
+        </div>
+        <div class="entry-title">
+            <h6 class="mb-1"><a href="#"># {{ $artikel->tag }}</a></h6>
+            <h6 class="mb-1"><a href="#"># {{ $artikel->link }}</a></h6>
+        </div>
+        {{-- <div class="row">
+            <div class="col-xl-10">
+            </div>
+        </div> --}}
     </div>
 @endsection
 @push('scripts')

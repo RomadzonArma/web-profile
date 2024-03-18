@@ -269,7 +269,7 @@ h6{
 	gap: 12px;
 }
 
-.tab-nav.tab-nav2 li{
+.tab-nav.tab-nav2:not(.pills) li{
 	border-radius: 8px !important;
 	overflow: hidden;
 	/* margin-bottom: 12px; */
@@ -277,7 +277,7 @@ h6{
 	border: 2px solid var(--primary) !important;
 }
 
-.tab-nav.tab-nav2 li.ui-state-active a{
+.tab-nav.tab-nav2:not(.pills) li.ui-state-active a{
 	background-color: var(--secondary) !important;
 	color: var(--primary) !important;
 }
@@ -944,6 +944,10 @@ select.form-control {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+}
+
+.tab-nav.tab-nav2.pills li.ui-state-active a{
+	background-color: var(--primary) !important;
 }
 
 .tab-nav.tab-nav2.pills li:not(.ui-state-active) a {

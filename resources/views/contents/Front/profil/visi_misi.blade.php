@@ -22,17 +22,19 @@
 @endsection
 
 @section('content')
-    <div class="col-md-9 col-12 mb-md-0 mb-4">
-        @foreach ($data_visi as $profil)
-            <div class="row">
-                <div class="col-xl-9 col-lg-7">
-                    <p class="mb-4">
-                        {!! $profil->konten !!}
-                    </p>
-
-                </div>
+    @foreach ($data_visi as $profil)
+        <div class="col-md-9 col-12 mb-md-0 mb-4">
+            <div class="mt-4">
+                {!! $profil->konten !!}
             </div>
-        @endforeach
+            {{-- <p class="mb-4">
+            </p> --}}
+                {{-- <div class="row">
+                    <div class="col-xl-9 col-lg-7">
 
-    </div>
+                    </div>
+                </div> --}}
+                
+        </div>
+    @endforeach
 @endsection

@@ -73,7 +73,7 @@
                 </div>
             </div>
 
-            <div class="tab-content clearfix" id="foto">
+            <div class="tab-container clearfix" id="foto">
                 <div class="post-grid row gutter-30" data-layout="fitRows">
                     @foreach ($foto as $item)
                         {{-- @dd($foto) --}}
@@ -102,7 +102,7 @@
                                     </div>
                                 </div>
                                 <div class="entry-title">
-                                    <h2><a href="blog-single.html">{{ $item->judul }}</a></h2>
+                                    <h2><a href="#">{{ $item->judul }}</a></h2>
                                 </div>
                                 <div class="entry-meta">
                                     <ul>

@@ -22,17 +22,19 @@
 @endsection
 
 @section('content')
-    <div class="col-md-9 col-12 mb-md-0 mb-4">
-        @foreach ($data_tugas as $data_tugas)
-            <div class="row">
+    @foreach ($data_tugas as $data_tugas)
+        <div class="col-md-9 col-12 mb-md-0 mb-4">
+            <div class="mt-4">
+                {!! $data_tugas->konten !!}
+            </div>
+            {{-- <p class="mb-4">
+            </p> --}}
+            {{-- <div class="row">
                 <div class="col-xl-9 col-lg-7">
-                    <p class="mb-4">
-                        {!! $data_tugas->konten !!}
-                    </p>
 
                 </div>
-            </div>
-        @endforeach
-
-    </div>
+            </div> --}}
+            
+        </div>
+    @endforeach
 @endsection
