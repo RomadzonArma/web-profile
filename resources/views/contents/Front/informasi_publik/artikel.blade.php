@@ -66,7 +66,7 @@
                             </a>
                         </div>
                         <div class="col-md-8 pl-md-4">
-                            <div class="entry-title title-xs">
+                            <div class="entry-title title-md">
                                 <h3 class="mb-1"><a href="{{ route('artikel.detail', ['slug' => $item->slug]) }}">{{ $item->judul }}</a>
                                 </h3>
                             </div>
