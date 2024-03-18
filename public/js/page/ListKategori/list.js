@@ -8,65 +8,62 @@ $(() => {
     })
 
     $('#tambah-list-kategori').on('shown.bs.modal', function (e) {
-        $('#status_kategori').val('');
-        $('#nama_kanal').val('');
-        $('#nama_kategori').val('');
+        $("#form-store").trigger('reset');
     });
 
-    $('.btn-simpan').click(function () {
-        var nama_kanal = $('#nama_kanal').val();
-        var status = $('#status_kategori').val();
-        var nama_kategori = $('#nama_kategori').val();
 
+    $("#form-store").submit(function (e) {
+        e.preventDefault();
+        let formData = new FormData(this);
+        let url = $(this).attr("action");
 
-        if (nama_kanal === '' || status === '' || nama_kategori === '') {
-            Swal.fire({
-                icon: "error",
-                title: "Terdapat kolom inputan yang kosong",
-                text: "Silakan coba lagi",
-                showConfirmButton: false,
-                timer: 1500
-            });
-
-            return;
-        }
-
-        //fungsi simpan
         $.ajax({
-            url: BASE_URL + 'list_kategori/store',
-            type: 'POST',
-            data: {
-                nama_kanal: nama_kanal,
-                status: status,
-                nama_kategori: nama_kategori,
+            url: url,
+            type: "POST",
+            data: formData,
+            dataType: "JSON",
+            processData: false,
+            contentType: false,
+            cache: false,
+            beforeSend: function () {
+                Swal.fire({
+                    title: "Mohon Tunggu",
+                    allowOutsideClick: false,
+                    onBeforeOpen: () => {
+                        Swal.showLoading();
+                    },
+                    showConfirmButton: false,
+                    showCancelButton: false,
+                });
             },
             success: function (response) {
-                $('#table-data').DataTable().ajax.reload();
-                $('#tambah-list-kategori').modal('hide');
-                Swal.fire({
-                    icon: "success",
-                    title: "Berhasil Menyimpan data!",
-                    text: "Data berhasil disimpan",
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-
+                Swal.close();
+                if (response.status == true) {
+                    Swal.fire({
+                        icon: "success",
+                        title: "Sukses",
+                        text: "Berhasil Menyimpan Data",
+                        showConfirmButton: false,
+                        timer: 2000,
+                    }).then(() => {
+                        window.location.href = BASE_URL + 'list_kategori';
+                    });
+                } else {
+                    toastr.error("Periksa Inputan Anda", {
+                        timeOut: 2000,
+                        fadeOut: 2000,
+                    });
+                }
             },
-            error: function (response) {
-                $('#table-data').DataTable().ajax.reload();
-                $('#tambah-list-kategori').modal('hide');
-                Swal.fire({
-                    icon: "error",
-                    title: "Gagal Menyimpan data!",
-                    text: "Terjadi kesalahan saat menyimpan data",
-                    showConfirmButton: false,
-                    timer: 1500
+            error: function (xhr, status, error) {
+                Swal.close();
+                toastr.error("Ada inputan yang belum terisi", "Gagal", {
+                    timeOut: 2000,
+                    fadeOut: 2000,
                 });
             }
-
         });
     });
-
 
 
     $('#table-data').on('click', '.btn-delete', function () {
@@ -202,6 +199,81 @@ $(() => {
     })
 })
 
+// $('body').on('click', '.btn-update', function (e) {
+//     var id = $(this).data('id');
+
+//     $.ajax({
+//         url: BASE_URL + 'list_kategori/edit/' + id,
+//         type: 'GET',
+//         success: function (response) {
+//             $('#edit-list-kategori').modal('show');
+//             $('#nama_kategori_edit').val(response.result.nama_kategori);
+//             $('#status_kategori_edit').val(response.result.status);
+//             $('#id_kanal_edit').val(response.result.id_kanal);
+
+//             $('.edit-data').click(function () {
+//                 var nama_kanal = $('#nama_kanal_edit').val();
+//                 var status = $('#status_kategori_edit').val();
+//                 var nama_kategori = $('#nama_kategori_edit').val();
+
+//                 console.log(nama_kanal);
+//                 console.log(status);
+//                 console.log(nama_kategori);
+
+//                 if (nama_kanal=== '' || status === '' || nama_kategori === '') {
+//                     Swal.fire({
+//                         icon: "error",
+//                         title: "Terdapat kolom inputan yang kosong",
+//                         text: "Silakan coba lagi",
+//                         showConfirmButton: false,
+//                         timer: 1500
+//                     });
+
+//                     return;
+//                 }
+
+
+//                 $.ajax({
+//                     url: BASE_URL + 'list_kategori/update/' + id,
+//                     type: 'POST',
+//                     data: {
+//                         nama_kanal: nama_kanal,
+//                         status: status,
+//                         nama_kategori: nama_kategori,
+
+//                     },
+//                     success: function (response) {
+//                         $('#table-data').DataTable().ajax.reload();
+//                         $('#edit-list-kategori').modal('hide');
+//                         Swal.fire({
+//                             icon: "success",
+//                             title: "Berhasil Mengedit Data!",
+//                             text: "Data berhasil diedit",
+//                             showConfirmButton: false,
+//                             timer: 1500
+//                         });
+
+
+//                     },
+//                     error: function (response) {
+//                         $('#table-data').DataTable().ajax.reload();
+//                         $('#edit-list-kategori').modal('hide');
+
+//                         Swal.fire({
+//                             icon: "error",
+//                             title: "Gagal Mengedit Data!",
+//                             text: "Terjadi kesalahan saat mengedit data",
+//                             showConfirmButton: false,
+//                             timer: 1500
+//                         });
+//                     }
+
+//                 });
+//             });
+//         }
+//     })
+// })
+
 $('body').on('click', '.btn-update', function (e) {
     var id = $(this).data('id');
 
@@ -211,71 +283,65 @@ $('body').on('click', '.btn-update', function (e) {
         success: function (response) {
             $('#edit-list-kategori').modal('show');
             $('#nama_kategori_edit').val(response.result.nama_kategori);
-            $('#status_kategori_edit').val(response.result.status);
-            $('#nama_kanal_edit').val(response.result.id_kanal);
+            $('#id_kanal_edit').val(response.result.id_kanal);
 
-            $('.edit-data').click(function () {
-                var nama_kanal = $('#nama_kanal_edit').val();
-                var status = $('#status_kategori_edit').val();
-                var nama_kategori = $('#nama_kategori_edit').val();
 
-                console.log(nama_kanal);
-                console.log(status);
-                console.log(nama_kategori);
 
-                if (nama_kanal=== '' || status === '' || nama_kategori === '') {
-                    Swal.fire({
-                        icon: "error",
-                        title: "Terdapat kolom inputan yang kosong",
-                        text: "Silakan coba lagi",
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
-
-                    return;
-                }
-
+            $("#form-update").submit(function (e) {
+                e.preventDefault();
+                let formData = new FormData(this);
 
                 $.ajax({
                     url: BASE_URL + 'list_kategori/update/' + id,
-                    type: 'POST',
-                    data: {
-                        nama_kanal: nama_kanal,
-                        status: status,
-                        nama_kategori: nama_kategori,
-
+                    type: "POST",
+                    data: formData,
+                    dataType: "JSON",
+                    processData: false,
+                    contentType: false,
+                    cache: false,
+                    beforeSend: function () {
+                        Swal.fire({
+                            title: "Mohon Tunggu",
+                            allowOutsideClick: false,
+                            onBeforeOpen: () => {
+                                Swal.showLoading();
+                            },
+                            showConfirmButton: false,
+                            showCancelButton: false,
+                        });
                     },
                     success: function (response) {
-                        $('#table-data').DataTable().ajax.reload();
-                        $('#edit-list-kategori').modal('hide');
-                        Swal.fire({
-                            icon: "success",
-                            title: "Berhasil Mengedit Data!",
-                            text: "Data berhasil diedit",
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
-
-
+                        Swal.close();
+                        if (response.status == true) {
+                            Swal.fire({
+                                icon: "success",
+                                title: "Sukses",
+                                text: "Berhasil Menyimpan Data",
+                                showConfirmButton: false,
+                                timer: 2000,
+                            }).then(() => {
+                                window.location.href = BASE_URL + 'list_kategori';
+                            });
+                        } else {
+                            toastr.error("Periksa Inputan Anda", {
+                                timeOut: 2000,
+                                fadeOut: 2000,
+                            });
+                        }
                     },
-                    error: function (response) {
-                        $('#table-data').DataTable().ajax.reload();
-                        $('#edit-list-kategori').modal('hide');
-
-                        Swal.fire({
-                            icon: "error",
-                            title: "Gagal Mengedit Data!",
-                            text: "Terjadi kesalahan saat mengedit data",
-                            showConfirmButton: false,
-                            timer: 1500
+                    error: function (xhr, status, error) {
+                        Swal.close();
+                        toastr.error("Ada inputan yang belum terisi", "Gagal", {
+                            timeOut: 2000,
+                            fadeOut: 2000,
                         });
                     }
-
                 });
             });
         }
     })
 })
+
 
 $('#table-data').on('change', '.switch-active', function () {
     var id = $(this).data('id');
@@ -290,9 +356,11 @@ $('#table-data').on('change', '.switch-active', function () {
         showSuccessToastr('sukses', value == '1' ? 'Kategori berhasil di aktifkan' : 'kategori berhasil di non aktifkan');
         table.ajax.reload();
     }).fail((res) => {
-        let { status, responseJSON } = res;
+        let {
+            status,
+            responseJSON
+        } = res;
         showErrorToastr('oops', responseJSON.message);
         console.log(res);
     })
 })
-

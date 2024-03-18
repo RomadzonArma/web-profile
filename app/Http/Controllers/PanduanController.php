@@ -37,7 +37,7 @@ class PanduanController extends Controller
             $request->validate([
                 'judul' => 'required|string',
                 'gambar' => 'required|image|mimes:jpeg,png,jpg',
-                'file_pdf' => 'required|mimes:pdf',
+                // 'file_pdf' => 'required|mimes:pdf',
                 'id_kategori' => 'required',
             ]);
 
@@ -84,7 +84,7 @@ class PanduanController extends Controller
             $request->validate([
                 'judul' => 'required|string',
                 'gambar' => 'image|mimes:jpeg,png,jpg', // Validasi cover sesuai kebutuhan Anda
-                'file_pdf'  => 'mimes:pdf', // Validasi file PDF
+                // 'file_pdf'  => 'mimes:pdf', // Validasi file PDF
             ]);
 
             // Temukan panduan yang akan diupdate

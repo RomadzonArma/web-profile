@@ -54,24 +54,17 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group">
-                        <label for="judul">Nama Kanal</label>
-                        <input type="text" class="form-control" id="nama_kanal" name="nama_kanal" required>
-                    </div>
-                    <div class="form-group ">
-                        <label class="col-form-label">Status</label>
-                        <div class="">
-                            <select class="form-control" id="status_kanal" name="status_kanal">
-                                <option>Pilih status</option>
-                                <option value="1">Active</option>
-                                <option value="0">In Active</option>
-                            </select>
+                    <form action="{{ route('list_kanal.store') }}" method="post" name="form-store" id="form-store">
+                        <div class="form-group">
+                            <label for="judul">Nama Kanal</label>
+                            <input type="text" class="form-control" id="nama_kanal" name="nama_kanal" required>
                         </div>
-                    </div>
+                    </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary waves-effect waves-light btn-simpan">Save </button>
+                    <button type="submit" form="form-store"
+                        class="btn btn-primary waves-effect waves-light btn-simpan">Save </button>
                 </div>
             </div>
         </div>
@@ -90,24 +83,16 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group">
-                        <label for="judul">Nama Kanal</label>
-                        <input type="text" class="form-control" id="nama_kanal_edit" name="nama_kanal_edit">
-                    </div>
-                    <div class="form-group ">
-                        <label class="col-form-label">Status</label>
-                        <div class="">
-                            <select class="form-control" id="status_kanal_edit" name="status_kanal_edit">
-                                <option>Pilih status</option>
-                                <option value="1">Active</option>
-                                <option value="0">In Active</option>
-                            </select>
+                    <form method="post" name="form-update" id="form-update">
+                        <div class="form-group">
+                            <label for="judul">Nama Kanal</label>
+                            <input type="text" class="form-control" id="nama_kanal_edit" name="nama_kanal_edit">
                         </div>
-                    </div>
+                    </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary waves-effect waves-light edit-data">Edit </button>
+                    <button type="submit" form="form-update" class="btn btn-primary waves-effect waves-light edit-data">Edit </button>
                 </div>
             </div>
         </div>

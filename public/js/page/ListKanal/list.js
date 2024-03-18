@@ -8,59 +8,60 @@ $(() => {
     })
 
     $('#tambah-list-kanal').on('shown.bs.modal', function (e) {
-        $('#status_kanal').val('');
-        $('#nama_kanal').val('');
+        $("#form-store").trigger('reset');
     });
 
-    $('.btn-simpan').click(function () {
-        var nama_kanal = $('#nama_kanal').val();
-        var status = $('#status_kanal').val();
+    $("#form-store").submit(function (e) {
+        e.preventDefault();
+        let formData = new FormData(this);
+        let url = $(this).attr("action");
 
-        if (nama_kanal.trim() === '' || status.trim() === '') {
-            Swal.fire({
-                icon: "error",
-                title: "Terdapat kolom inputan yang kosong",
-                text: "Silakan coba lagi",
-                showConfirmButton: false,
-                timer: 1500
-            });
-
-            return;
-        }
-
-            //fungsi simpan
-            $.ajax({
-                url: BASE_URL + 'list_kanal/store',
-                type: 'POST',
-                data: {
-                    nama_kanal: nama_kanal,
-                    status: status,
-                },
-                success: function (response) {
-                    $('#table-data').DataTable().ajax.reload();
-                    $('#tambah-list-kanal').modal('hide');
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: formData,
+            dataType: "JSON",
+            processData: false,
+            contentType: false,
+            cache: false,
+            beforeSend: function () {
+                Swal.fire({
+                    title: "Mohon Tunggu",
+                    allowOutsideClick: false,
+                    onBeforeOpen: () => {
+                        Swal.showLoading();
+                    },
+                    showConfirmButton: false,
+                    showCancelButton: false,
+                });
+            },
+            success: function (response) {
+                Swal.close();
+                if (response.status == true) {
                     Swal.fire({
                         icon: "success",
-                        title: "Berhasil Menyimpan data!",
-                        text: "Data berhasil disimpan",
+                        title: "Sukses",
+                        text: "Berhasil Menyimpan Data",
                         showConfirmButton: false,
-                        timer: 1500
+                        timer: 2000,
+                    }).then(() => {
+                        window.location.href = BASE_URL + 'list_kanal';
                     });
-
-                },
-                error: function (response) {
-                    $('#table-data').DataTable().ajax.reload();
-                    $('#tambah-list-kanal').modal('hide');
-                    Swal.fire({
-                        icon: "error",
-                        title: "Gagal Menyimpan data!",
-                        text: "Terjadi kesalahan saat menyimpan data",
-                        showConfirmButton: false,
-                        timer: 1500
+                } else {
+                    toastr.error("Periksa Inputan Anda", {
+                        timeOut: 2000,
+                        fadeOut: 2000,
                     });
                 }
-
-            });
+            },
+            error: function (xhr, status, error) {
+                Swal.close();
+                toastr.error("Ada inputan yang belum terisi", "Gagal", {
+                    timeOut: 2000,
+                    fadeOut: 2000,
+                });
+            }
+        });
     });
 
 
@@ -145,8 +146,13 @@ $(() => {
             data: 'nama_kanal',
         }, {
             data: 'status',
-            render: function (data, type, full, meta) {
-                return data === 1 ? 'Active' : 'Inactive';
+            render: (data, type, row) => {
+                return `
+                <div class="custom-control custom-switch mb-3" dir="ltr">
+                    <input type="checkbox" class="custom-control-input switch-active" id="aktif-${row.id}" data-id="${row.id}" ${data == '1' ? 'checked' : ''} value="${data == '1' ? 0 : 1}">
+                    <label class="custom-control-label" for="aktif-${row.id}">${data == '1' ? 'Active' : 'Inactive'}</label>
+                </div>
+                `;
             }
         }, {
             data: 'id',
@@ -191,6 +197,75 @@ $(() => {
     })
 })
 
+// $('body').on('click', '.btn-update', function (e) {
+//     var id = $(this).data('id');
+
+//     $.ajax({
+//         url: BASE_URL + 'list_kanal/edit/' + id,
+//         type: 'GET',
+//         success: function (response) {
+//             $('#edit-list-kanal').modal('show');
+//             $('#nama_kanal_edit').val(response.result.nama_kanal);
+//             $('#status_kanal_edit').val(response.result.status);
+
+//             $('.edit-data').click(function () {
+//                 var nama_kanal = $('#nama_kanal_edit').val();
+//                 var status = $('#status_kanal_edit').val();
+
+//                 if (nama_kanal.trim() === '' || status.trim() === '') {
+//                     Swal.fire({
+//                         icon: "error",
+//                         title: "Terdapat kolom inputan yang kosong",
+//                         text: "Silakan coba lagi",
+//                         showConfirmButton: false,
+//                         timer: 1500
+//                     });
+
+//                     return;
+//                 }
+
+
+//                 $.ajax({
+//                     url: BASE_URL + 'list_kanal/update/' + id,
+//                     // url: 'magang_data/' + id,
+//                     type: 'POST',
+//                     data: {
+//                         nama_kanal: nama_kanal,
+//                         status: status,
+
+//                     },
+//                     success: function (response) {
+//                         $('#table-data').DataTable().ajax.reload();
+//                         $('#edit-list-kanal').modal('hide');
+//                         Swal.fire({
+//                             icon: "success",
+//                             title: "Berhasil Mengedit Data!",
+//                             text: "Data berhasil diedit",
+//                             showConfirmButton: false,
+//                             timer: 1500
+//                         });
+
+
+//                     },
+//                     error: function (response) {
+//                         $('#table-data').DataTable().ajax.reload();
+//                         $('#modal-edit').modal('hide');
+
+//                         Swal.fire({
+//                             icon: "error",
+//                             title: "Gagal Mengedit Data!",
+//                             text: "Terjadi kesalahan saat mengedit data",
+//                             showConfirmButton: false,
+//                             timer: 1500
+//                         });
+//                     }
+
+//                 });
+//             });
+//         }
+//     })
+// })
+
 $('body').on('click', '.btn-update', function (e) {
     var id = $(this).data('id');
 
@@ -200,62 +275,84 @@ $('body').on('click', '.btn-update', function (e) {
         success: function (response) {
             $('#edit-list-kanal').modal('show');
             $('#nama_kanal_edit').val(response.result.nama_kanal);
-            $('#status_kanal_edit').val(response.result.status);
 
-            $('.edit-data').click(function () {
-                var nama_kanal = $('#nama_kanal_edit').val();
-                var status = $('#status_kanal_edit').val();
-
-                if (nama_kanal.trim() === '' || status.trim() === '') {
-                    Swal.fire({
-                        icon: "error",
-                        title: "Terdapat kolom inputan yang kosong",
-                        text: "Silakan coba lagi",
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
-
-                    return;
-                }
-
+            $("#form-update").submit(function (e) {
+                e.preventDefault();
+                let formData = new FormData(this);
 
                 $.ajax({
                     url: BASE_URL + 'list_kanal/update/' + id,
-                    // url: 'magang_data/' + id,
-                    type: 'POST',
-                    data: {
-                        nama_kanal: nama_kanal,
-                        status: status,
-
+                    type: "POST",
+                    data: formData,
+                    dataType: "JSON",
+                    processData: false,
+                    contentType: false,
+                    cache: false,
+                    beforeSend: function () {
+                        Swal.fire({
+                            title: "Mohon Tunggu",
+                            allowOutsideClick: false,
+                            onBeforeOpen: () => {
+                                Swal.showLoading();
+                            },
+                            showConfirmButton: false,
+                            showCancelButton: false,
+                        });
                     },
                     success: function (response) {
-                        $('#table-data').DataTable().ajax.reload();
-                        $('#edit-list-kanal').modal('hide');
-                        Swal.fire({
-                            icon: "success",
-                            title: "Berhasil Mengedit Data!",
-                            text: "Data berhasil diedit",
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
-
-
+                        Swal.close();
+                        if (response.status == true) {
+                            Swal.fire({
+                                icon: "success",
+                                title: "Sukses",
+                                text: "Berhasil Menyimpan Data",
+                                showConfirmButton: false,
+                                timer: 2000,
+                            }).then(() => {
+                                window.location.href = BASE_URL + 'list_kanal';
+                            });
+                        } else {
+                            toastr.error("Periksa Inputan Anda", {
+                                timeOut: 2000,
+                                fadeOut: 2000,
+                            });
+                        }
                     },
-                    error: function (response) {
-                        $('#table-data').DataTable().ajax.reload();
-                        $('#modal-edit').modal('hide');
-
-                        Swal.fire({
-                            icon: "error",
-                            title: "Gagal Mengedit Data!",
-                            text: "Terjadi kesalahan saat mengedit data",
-                            showConfirmButton: false,
-                            timer: 1500
+                    error: function (xhr, status, error) {
+                        Swal.close();
+                        toastr.error("Ada inputan yang belum terisi", "Gagal", {
+                            timeOut: 2000,
+                            fadeOut: 2000,
                         });
                     }
-
                 });
             });
         }
+    })
+})
+
+
+
+
+
+$('#table-data').on('change', '.switch-active', function () {
+    var id = $(this).data('id');
+    var value = $(this).prop('checked') ? 1 : 0;
+
+
+    $.post(BASE_URL + 'list_kanal/switch', {
+        id,
+        value,
+        _method: 'PATCH'
+    }).done((res) => {
+        showSuccessToastr('sukses', value == '1' ? 'Kanal berhasil diaktifkan' : 'Kanal berhasil di nonaktifkan');
+        table.ajax.reload();
+    }).fail((res) => {
+        let {
+            status,
+            responseJSON
+        } = res;
+        showErrorToastr('oops', responseJSON.message);
+        console.log(res);
     })
 })

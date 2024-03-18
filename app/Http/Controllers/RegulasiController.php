@@ -71,6 +71,43 @@ class RegulasiController extends Controller
             return response()->json(['status' => false, 'msg' => $e->getMessage()], 400);
         }
     }
+    
+    // public function store(Request $request)
+    // {
+    //     $this->validate($request, [
+    //         'judul' => 'required',
+    //         'id_kategori' => 'required',
+    //         'gambar' => 'required|image|mimes:jpeg,png,jpg',
+    //         'file' => 'required|mimes:pdf',
+    //     ], [
+    //         'judul.required' => '<strong style="color: red;">Judul wajib diisi.</strong>',
+    //         'id_kategori.required' => '<strong style="color: red;">Kategori wajib dipilih.</strong>',
+    //         'gambar.required' => '<strong style="color: red;">Gambar wajib diisi.</strong>',
+    //         'file.required' => '<strong style="color: red;">File PDF wajib diisi.</strong>',
+    //     ]);
+
+    //     try {
+    //         $coverName = time() . '.' . $request->cover->extension();
+    //         $request->cover->move(public_path('cover-regulasi'), $coverName);
+
+    //         $filePDFName = time() . '.' . $request->file->extension();
+    //         $request->file->move(public_path('file-regulasi'), $filePDFName);
+
+    //         $unduhan = Regulasi::create([
+    //             'judul' => $request->judul,
+    //             'slug' => Str::slug($request->judul),
+    //             'tanggal' => Carbon::now(),
+    //             'file' => $filePDFName,
+    //             'cover' => $coverName,
+    //             'id_kategori' => $request->id_kategori,
+    //             'jumlah_download' => 0,
+    //         ]);
+
+    //         return response()->json(['status' => true, 'msg' => 'Data unduhan berhasil disimpan'], 200);
+    //     } catch (\Exception $e) {
+    //         return response()->json(['status' => false, 'msg' => $e->getMessage()], 400);
+    //     }
+    // }
 
     public function update(Request $request)
     {
