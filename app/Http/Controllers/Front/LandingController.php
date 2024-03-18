@@ -576,7 +576,7 @@ class LandingController extends Controller
         }
         $sekolah = $query->paginate(5);
         return view('contents.Front.menu_halaman.program_layanan.sekolah-penggerak', [
-            'title' => 'Pogram Pendidikan Guru Penggerak',
+            'title' => 'Program Pendidikan Sekolah Penggerak',
             'sekolah' => $sekolah,
             'tautan' => $tautan,
         ]);
@@ -589,7 +589,7 @@ class LandingController extends Controller
         $sekolah = ProgramLayanan::where('slug', $slug)->first();
         // dd($sekolah);
         return view('contents.Front.menu_halaman.program_layanan.sekolah-penggerak-detail', [
-            'title' => 'Detail Pogram Pendidikan Sekolah Penggerak ',
+            'title' => 'Detail Program Pendidikan Sekolah Penggerak ',
             'sekolah' => $sekolah,
             'tautan' => $tautan,
         ]);
@@ -623,7 +623,7 @@ class LandingController extends Controller
         }
         $guru =  $query->paginate(5);
         return view('contents.Front.menu_halaman.program_layanan.guru-penggerak', [
-            'title' => 'Pogram Pendidikan Guru Penggerak',
+            'title' => 'Program Pendidikan Guru Penggerak',
             'guru' => $guru,
             'tautan' => $tautan,
         ]);
@@ -635,7 +635,7 @@ class LandingController extends Controller
         $guru = ProgramLayanan::where('slug', $slug)->first();
         // dd($guru);
         return view('contents.Front.menu_halaman.program_layanan.guru-penggerak-detail', [
-            'title' => 'Detail Pogram Pendidikan Guru Penggerak ',
+            'title' => 'Detail Program Pendidikan Guru Penggerak ',
             'guru' => $guru,
             'tautan' => $tautan,
         ]);
