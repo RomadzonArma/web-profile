@@ -63,7 +63,8 @@
                     <div class="grid-inner row no-gutters p-0">
                         <div class="entry-image col-md-4 mb-md-0">
                             <a href="{{ route('regulasis.list', ['slug' => $item->slug]) }}">
-                                <img src="{{ asset('storage/uploads/regulasi/cover/' . $item->cover) }}"
+                                {{-- <img src="{{ asset('storage/uploads/regulasi/cover/' . $item->cover) }}" --}}
+                                <img src="{{ asset('cover-regulasi/' . $item->cover) }}"
                                     alt="thumbnail_regulasi" style="width: 200px;">
                             </a>
                         </div>
