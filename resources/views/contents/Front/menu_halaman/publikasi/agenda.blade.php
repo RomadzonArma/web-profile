@@ -59,13 +59,14 @@
                 <div class="entry mb-5">
                     <div class="grid-inner row no-gutters p-0">
                         <div class="entry-image col-md-4 mb-md-0">
-                            <a href="/agenda/detail/{{ $item->id }}">
+                            {{-- <a href="/agenda/detail/{{ $item->id }}"> --}}
+                            <a href="{{ route('agenda.detail', ['id' => $item->id]) }}">
                                 <img src="{{ asset('agenda/' . $item->gambar) }}" alt="thumbnail_agenda">
                             </a>
                         </div>
                         <div class="col-md-8 pl-md-4">
                             <div class="entry-title title-xs">
-                                <h3 class="mb-1"><a href="/agenda/detail/{{ $item->id }}">{{ $item->judul }}</a>
+                                <h3 class="mb-1"><a href="{{ route('agenda.detail', ['id' => $item->id]) }}">{{ $item->judul }}</a>
                                 </h3>
                             </div>
                             <div class="entry-meta mb-2 mt-0">
@@ -83,7 +84,7 @@
                                 {!! \Illuminate\Support\Str::words(strip_tags($item->konten), 65, '...') !!}
                             </p>
 
-                            <a class="more-link" href="/agenda/detail/{{ $item->id }}">Link untuk melihat <i
+                            <a class="more-link" href="{{ route('agenda.detail', ['id' => $item->id]) }}">Link untuk melihat <i
                                     class="icon-external-link mr-0 ml-2"></i></a>
                         </div>
                     </div>
