@@ -1,6 +1,6 @@
 let table;
 $(() => {
-    $('input[name=jenis]').on('change', function() {
+    $('input[name=jenis]').on('change', function () {
         var val = $('input[name=jenis]:checked').val();
         if (val == 'link') {
             $('.row_link').css('display', 'block');
@@ -10,7 +10,7 @@ $(() => {
             $('.row_form').css('display', 'block');
         }
     });
-    $('input[name=jenis-edit]').on('change', function() {
+    $('input[name=jenis-edit]').on('change', function () {
         var val = $('input[name=jenis-edit]:checked').val();
         if (val == 'link') {
             $('.row_link').css('display', 'block');
@@ -20,7 +20,7 @@ $(() => {
             $('.row_form_edit').css('display', 'block');
         }
     });
-    $(document).ready(function() {
+    $(document).ready(function () {
         // Memanggil fungsi untuk menangani tampilan berdasarkan nilai radio yang terpilih
         handleRadioChange();
     });
@@ -29,35 +29,35 @@ $(() => {
     });
 
 
-    $("#table-data").on("change", ".switch-active", function () {
-        var id = $(this).data("id");
-        var value = $(this).val();
+    $('#table-data').on('change', '.switch-active', function () {
+        var id = $(this).data('id');
+        var value = $(this).prop('checked') ? 1 : 0;
 
-        $.post(BASE_URL + "zi_wbk/switch", {
+
+        $.post(BASE_URL + 'zi_wbk/switch', {
             id,
             value,
-            _method: "PATCH",
+            _method: 'PATCH'
+        }).done((res) => {
+            showSuccessToastr('sukses', value == '1' ? 'ZI/WBK berhasil di publish' : 'ZI/WBK berhasil di unpublish');
+            table.ajax.reload();
+        }).fail((res) => {
+            let {
+                status,
+                responseJSON
+            } = res;
+            showErrorToastr('oops', responseJSON.message);
+            console.log(res);
         })
-            .done((res) => {
-                showSuccessToastr(
-                    "sukses",
-                    value == "1"
-                        ? "Berhasil diaktifkan"
-                        : "Berhasil dinonaktifkan"
-                );
-                table.ajax.reload();
-            })
-            .fail((res) => {
-                let { status, responseJSON } = res;
-                showErrorToastr("oops", responseJSON.message);
-                console.log(res);
-            });
-    });
+    })
 
     $("#table-data").on("click", ".btn-delete", function () {
         let data = table.row($(this).closest("tr")).data();
 
-        let { id, sub_kategori } = data;
+        let {
+            id,
+            sub_kategori
+        } = data;
 
         Swal.fire({
             title: "Anda yakin?",
@@ -90,7 +90,10 @@ $(() => {
                         });
                     },
                     error: (res) => {
-                        let { status, responseJSON } = res;
+                        let {
+                            status,
+                            responseJSON
+                        } = res;
                         showErrorToastr("Oops", responseJSON.message);
                     },
                 });
@@ -173,7 +176,13 @@ $(() => {
         clearErrorMessage();
 
         // Extract data from the row
-        let { id, id_subkategori, link_kategori,link, id_kategori } = data;
+        let {
+            id,
+            id_subkategori,
+            link_kategori,
+            link,
+            id_kategori
+        } = data;
 
         // Populate form fields
         $("#update-id").val(id);
@@ -291,9 +300,8 @@ $(() => {
             dataType: "json",
         },
         order: [8, "desc"],
-        columnDefs: [
-            {
-                targets: [0,6,7],
+        columnDefs: [{
+                targets: [0, 6, 7],
                 orderable: false,
                 searchable: false,
             },
@@ -302,59 +310,51 @@ $(() => {
                 visible: false,
             },
         ],
-        columns: [
-            {
+        columns: [{
                 data: "DT_RowIndex",
             },
             {
                 data: "list_kategori.list_kanal.nama_kanal",
-                render: function(data, type, row, meta) {
+                render: function (data, type, row, meta) {
                     return data ? data : '-';
                 }
             },
             {
                 data: "list_kategori.nama_kategori",
-                render: function(data, type, row, meta) {
+                render: function (data, type, row, meta) {
                     return data ? data : '-';
                 }
             },
 
             {
                 data: "sub_kategori.sub_kategori",
-                render: function(data, type, row, meta) {
+                render: function (data, type, row, meta) {
                     return data ? data : '-';
                 }
             },
             {
                 data: "link_kategori",
-                render: function(data, type, row, meta) {
+                render: function (data, type, row, meta) {
                     return data ? data : '-';
                 }
 
             },
             {
                 data: "link",
-                render: function(data, type, row, meta) {
+                render: function (data, type, row, meta) {
                     return data ? data : '-';
                 }
 
-            },
-            {
-                data: "id",
+            }, {
+                data: 'status_publish',
                 render: (data, type, row) => {
                     return `
-                <div class="custom-control custom-switch mb-3" dir="ltr">
-                    <input type="checkbox" class="custom-control-input switch-active" id="aktif-${
-                        row.id
-                    }" data-id="${row.id}" ${
-                        data == "1" ? "checked" : ""
-                    } value="${data == "1" ? 0 : 1}">
-                    <label class="custom-control-label" for="aktif-${row.id}">${
-                        data == "1" ? "Publish" : "Unpublish"
-                    }</label>
-                </div>
-                `;
-                },
+                    <div class="custom-control custom-switch mb-3" dir="ltr">
+                        <input type="checkbox" class="custom-control-input switch-active" id="aktif-${row.id}" data-id="${row.id}" ${data == '1' ? 'checked' : ''} value="${data == '1' ? 0 : 1}">
+                        <label class="custom-control-label" for="aktif-${row.id}">${data == '1' ? 'Publish' : 'Unpublish'}</label>
+                    </div>
+                    `;
+                }
             },
             {
                 data: "id",
@@ -407,5 +407,3 @@ $(() => {
         $("#update-id_kategori").select2();
     });
 });
-
-

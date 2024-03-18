@@ -29,31 +29,69 @@ class UnduhanController extends Controller
             ->addIndexColumn()
             ->make(true);
     }
+    // public function store(Request $request)
+    // {
+    //     try {
+    //         $coverName = time() . '.' . $request->cover->extension();
+    //         $request->cover->move(public_path('cover-unduhan'), $coverName);
+
+    //         $filePDFName = time() . '.' . $request->file->extension();
+    //         $request->file->move(public_path('file-unduhan'), $filePDFName);
+
+    //         // dd($filePDFName);
+    //         $unduhan = Unduhan::create([
+    //             'judul'         => $request->judul,
+    //             'tanggal'       => Carbon::now(),
+    //             'file'          => $filePDFName, // Corrected line
+    //             'cover'         => $coverName,
+    //             'id_kategori'   => $request->id_kategori,
+    //             'jumlah_download'   => 0,
+
+    //         ]);
+    //         // $unduhan->increment('jumlah_download');
+    //         return response()->json(['status' => true, 'msg' => 'Data unduhan berhasil disimpan'], 200);
+    //     } catch (\Exception $e) {
+    //         return response()->json(['status' => false, 'msg' => $e->getMessage()], 400);
+    //     }
+    // }
+
     public function store(Request $request)
     {
         try {
-            $coverName = time() . '.' . $request->cover->extension();
-            $request->cover->move(public_path('cover-unduhan'), $coverName);
-
-            $filePDFName = time() . '.' . $request->file->extension();
-            $request->file->move(public_path('file-unduhan'), $filePDFName);
-
-            // dd($filePDFName);
-            $unduhan = Unduhan::create([
-                'judul'         => $request->judul,
-                'tanggal'       => Carbon::now(),
-                'file'          => $filePDFName, // Corrected line
-                'cover'         => $coverName,
-                'id_kategori'   => $request->id_kategori,
-                'jumlah_download'   => 0,
-
+            // Validate the incoming request
+            $request->validate([
+                'judul' => 'required',
+                'cover' => 'required|image|mimes:jpeg,png|max:5120', // Example validation for cover image
+                'file' => 'required|mimes:pdf|max:3072', // Example validation for PDF file
+                'id_kategori' => 'required',
             ]);
-            // $unduhan->increment('jumlah_download');
+
+            // Handle cover file upload
+            $coverName = time() . '.' . $request->file('cover')->getClientOriginalExtension();
+            $request->file('cover')->move(public_path('cover-unduhan'), $coverName);
+
+            // Handle PDF file upload
+            $filePDFName = time() . '.' . $request->file('file')->getClientOriginalExtension();
+            $request->file('file')->move(public_path('file-unduhan'), $filePDFName);
+
+            // Create a new Unduhan instance and store in the database
+            $unduhan = Unduhan::create([
+                'judul' => $request->judul,
+                'tanggal' => Carbon::now(),
+                'file' => $filePDFName,
+                'cover' => $coverName,
+                'id_kategori' => $request->id_kategori,
+                'jumlah_download' => 0,
+            ]);
+
             return response()->json(['status' => true, 'msg' => 'Data unduhan berhasil disimpan'], 200);
         } catch (\Exception $e) {
+            // Handle any exceptions and return an appropriate error response
             return response()->json(['status' => false, 'msg' => $e->getMessage()], 400);
         }
     }
+
+
     public function edit(Request $request)
     {
         $id_ubah = $request->id_ubah;
@@ -110,13 +148,13 @@ class UnduhanController extends Controller
         try {
             // Temukan unduhan yang akan dihapus
             $unduhan = Unduhan::findOrFail($request->id);
-            if (file_exists(public_path('cover-unduhan') . '/' . $unduhan->cover)) {
-                unlink(public_path('cover-unduhan') . '/' . $unduhan->cover);
-            }
+            // if (file_exists(public_path('cover-unduhan') . '/' . $unduhan->cover)) {
+            //     unlink(public_path('cover-unduhan') . '/' . $unduhan->cover);
+            // }
 
-            if (file_exists(public_path('file-unduhan') . '/' . $unduhan->file)) {
-                unlink(public_path('file-unduhan') . '/' . $unduhan->file);
-            }
+            // if (file_exists(public_path('file-unduhan') . '/' . $unduhan->file)) {
+            //     unlink(public_path('file-unduhan') . '/' . $unduhan->file);
+            // }
 
             // Hapus record dari database
             $unduhan->delete();
@@ -136,7 +174,5 @@ class UnduhanController extends Controller
         }
 
         return response()->json(['success' => false]);
-
     }
-
 }

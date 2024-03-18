@@ -60,7 +60,7 @@
                     <div class="grid-inner row no-gutters p-0">
                         <div class="entry-image col-md-4 mb-md-0">
                             <a href="/guru-penggerak/detail/{{ $item->slug }}">
-                                <img src="{{ asset('program-image/' . $item->image) }}" alt="thumbnail_agenda">
+                                <img src="{{ asset('program-image/' . $item->image) }}" alt="thumbnail_guru_penggerak">
                             </a>
                         </div>
                         <div class="col-md-8 pl-md-4">
