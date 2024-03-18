@@ -4,16 +4,16 @@ $(() => {
     konten = $('#old-konten').val();
     var encodedContent = encodeURIComponent(konten);
     $('#summernote').summernote({
-        toolbar: [
-            // [groupName, [list of button]]
-            ['style', ['bold', 'italic', 'underline', 'clear']],
-            ['font', ['strikethrough', 'superscript', 'subscript']],
-            ['fontsize', ['fontsize']],
-            ['color', ['color']],
-            ['para', ['ul', 'ol', 'paragraph']],
-            ['insert', ['picture']],
-            ['height', ['height']]
-        ],
+        // toolbar: [
+        //     // [groupName, [list of button]]
+        //     ['style', ['bold', 'italic', 'underline', 'clear']],
+        //     ['font', ['strikethrough', 'superscript', 'subscript']],
+        //     ['fontsize', ['fontsize']],
+        //     ['color', ['color']],
+        //     ['para', ['ul', 'ol', 'paragraph']],
+        //     ['insert', ['picture']],
+        //     ['height', ['height']]
+        // ],
         height: 350,
         charset: 'utf-8'
     });

@@ -25,11 +25,32 @@
     <div class="col-md-9 col-12 mb-md-0 mb-4">
         @foreach ($data_kontak as $data_kontak)
             <div class="row">
-                <div class="col-xl-9 col-lg-7">
+                <div class="col-12">
                     <p class="mb-4">
                         {!! $data_kontak->konten !!}
                     </p>
 
+                </div>
+                <div class="col-12">
+                    <h6 class="text-dark">Media Sosial :</h6>
+                    <div class="d-flex align-items-center">
+                        <a href="" class="social-icon social-icon-2xl si-facebook si-secondary mr-2" target="_blank">
+                            <i class="icon-facebook"></i>
+                            <i class="icon-facebook"></i>
+                        </a>
+                        <a href="" class="social-icon social-icon-2xl si-twitter si-secondary mr-2" target="_blank">
+                            <i class="icon-twitter"></i>
+                            <i class="icon-twitter"></i>
+                        </a>
+                        <a href="" class="social-icon social-icon-2xl si-instagram si-secondary mr-2" target="_blank">
+                            <i class="icon-instagram"></i>
+                            <i class="icon-instagram"></i>
+                        </a>
+                        <a href="" class="social-icon social-icon-2xl si-youtube si-secondary mr-2" target="_blank">
+                            <i class="icon-youtube"></i>
+                            <i class="icon-youtube"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         @endforeach
