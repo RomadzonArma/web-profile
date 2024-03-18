@@ -224,15 +224,15 @@ $(() => {
             type: "get",
             dataType: "json",
         },
-        order: [[7, "desc"]],
+        order: [[8, "desc"]],
         columnDefs: [
             {
-                targets: [0, 5, 6],
+                targets: [0, 6, 7],
                 orderable: false,
                 searchable: false,
             },
             {
-                targets: [7],
+                targets: [8],
                 visible: false,
             },
         ],
@@ -252,12 +252,12 @@ $(() => {
             {
                 data: "tanggal",
             },
-            // {
-            //     data: "jumlah_lihat",
-            //     render: function(data, type, row) {
-            //         return data ? data : '0';
-            //     }
-            // },
+            {
+                data: "jumlah_lihat",
+                render: function(data, type, row) {
+                    return data ? data : '0';
+                }
+            },
             {
                 data: 'is_active',
                 render: (data, type, row) => {

@@ -28,7 +28,7 @@
                                     <th>Kategori</th>
                                     <th>Judul</th>
                                     <th>Tanggal</th>
-                                    {{-- <th>Jumlah Lihat</th> --}}
+                                    <th>Jumlah Lihat</th>
                                     <th>Status Keaktifan</th>
                                     <th>Aksi</th>
                                     <th></th>

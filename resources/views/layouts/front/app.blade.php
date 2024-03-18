@@ -146,7 +146,7 @@
                                     </div>
                                     <div class="entry-meta mb-2 mt-0">
                                         <ul>
-                                            <li><a href="#"><i class="icon-users"></i> {{$podcast->jumlah_lihat ?? 0}} penonton</a>
+                                            {{-- <li><a href="#"><i class="icon-users"></i> {{$podcast->jumlah_lihat ?? 0}} penonton</a> --}}
                                             <li><a href="#"><i
                                                         class="icon-calendar3"></i>{{ $podcast->date }}</a>
                                             </li>

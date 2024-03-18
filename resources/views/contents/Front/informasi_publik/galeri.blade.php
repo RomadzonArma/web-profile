@@ -64,7 +64,7 @@
                                         <li><i
                                                 class="icon-calendar3"></i>{{ $carbon::parse($item->tanggal)->format('d M Y') }}
                                         </li>
-                                        <li><i class="icon-line-eye"></i>{{ $item->jumlah_lihat }}</li>
+                                        {{-- <li><i class="icon-line-eye"></i>{{ $item->jumlah_lihat }}</li> --}}
                                     </ul>
                                 </div>
                             </div>
@@ -109,7 +109,7 @@
                                         <li><i
                                                 class="icon-calendar3"></i>{{ $carbon::parse($item->tanggal)->format('D M Y') }}
                                         </li>
-                                        <li><i class="icon-line-eye"></i>{{ $item->jumlah_lihat }}</li>
+                                        {{-- <li><i class="icon-line-eye"></i>{{ $item->jumlah_lihat }}</li> --}}
                                     </ul>
                                 </div>
                             </div>
