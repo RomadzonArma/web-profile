@@ -42,7 +42,8 @@
                 <div class="mb-4">
 
                     <iframe id="pdf_preview" width="100%" height="500px"style="border: 1px solid #ddd;"
-                        src="{{ asset('/storage/uploads/regulasi/file/' . $regulasi->file) }}"></iframe>
+                        {{-- src="{{ asset('/storage/uploads/regulasi/file/' . $regulasi->file) }}"></iframe> --}}
+                        src="{{ asset('file-regulasi/' . $regulasi->file) }}"></iframe>
                 </div>
             </div>
         </div>
