@@ -123,10 +123,14 @@
                                 oninput="this.value = this.value.replace(/[^a-zA-Z0-9!%.,()\/'?\-\s]/g, '').replace(/(\..*?)\..*/g, '$1');"></textarea>
                         </div>
                         <div class="form-group">
+                            <input type="checkbox" id="updateManualCheckbox"> <label
+                                for="updateManualCheckbox">Manual</label>
+                        </div>
+                        <div class="form-group" id="updateLinkGroup">
                             <label for="update-link">Link Youtube</label>
                             <textarea class="form-control" placeholder="Link Youtube" name="link" id="update-link"></textarea>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" id="updateVideoGroup" style="display: none;">
                             <label for="video_edit">Video</label>
                             <div class="custom-file mb-3">
                                 <input type="file" class="custom-file-input" name="video" id="video_edit"
@@ -136,6 +140,8 @@
                             <small id="videoHelpBlock" class="form-text text-muted">
                                 Hanya file video yang diizinkan (.mp4, .avi, .mkv, dll.).
                             </small>
+                            {{-- <button type="button" id="btn-open-video" class="btn btn-primary mt-3"
+                                style="display: none;">Lihat Video</button> --}}
                         </div>
                         <div class="form-group">
                             <label for="updateCustomFile">Gambar</label>
@@ -160,25 +166,6 @@
 @endsection
 
 @push('scripts')
-    <script>
-        $(document).ready(function() {
-            $('#manualCheckbox').change(function() {
-                if ($(this).is(':checked')) {
-                    $('#linkGroup').hide();
-                    $('#videoGroup').show();
-                } else {
-                    $('#linkGroup').show();
-                    $('#videoGroup').hide();
-                }
-            });
-
-            $('#modal-berprestasi').on('hidden.bs.modal', function() {
-                $('#manualCheckbox').prop('checked', false);
-                $('#linkGroup').show();
-                $('#videoGroup').hide();
-            });
-        });
-    </script>
     <script>
         document.getElementById("customFile").addEventListener("change", function() {
             var file = this.files[0];
