@@ -25,7 +25,7 @@
 @section('content')
     <div class="col-md-9 col-12">
         <form class="row mb-4" method="get" action="{{ url('/panduan') }}">
-            <div class="form-group pr-sm-2 col-lg-2 col-sm-4 mb-sm-0 mb-3">
+            <div class="form-group pr-sm-2 col-lg-3 col-sm-4 mb-sm-0 mb-3">
                 <select class="form-control" id="tahun" name="tahun">
                     <option value="">Semua Tahun</option>
                     <option value="2024">2024</option>
@@ -35,7 +35,7 @@
                 </select>
                 <i class="icon-caret-down1 icon-select"></i>
             </div>
-            <div class="form-group px-sm-2 col-lg-2 col-sm-4 mb-sm-0 mb-3">
+            <div class="form-group px-sm-2 col-lg-3 col-sm-4 mb-sm-0 mb-3">
                 <select class="form-control" id="bulan" name="bulan">
                     <option value="">Semua Bulan</option>
                     <option value="1">Januari</option>
@@ -64,11 +64,11 @@
                         <div class="entry-image col-md-4 mb-md-0">
                             <a href="{{ route('panduan.detail', ['id' => $item->id]) }}">
                                 <img src="{{ asset('gambar-panduan/' . $item->gambar) }}" alt="thumbnail_panduan"
-                                    style="width: 200px;">
+                                    style="width: 100%;">
                             </a>
                         </div>
                         <div class="col-md-8 pl-md-4">
-                            <div class="entry-title title-xs">
+                            <div class="entry-title title-md">
                                 <h3 class="mb-1"><a href="{{ route('panduan.detail', ['id' => $item->id]) }}">{{ $item->judul }}</a>
                                 </h3>
                             </div>

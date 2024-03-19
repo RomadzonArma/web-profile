@@ -51,7 +51,7 @@
 <script>
     const swiper1 = new Swiper('.swiper-1', {
         // Optional parameters
-        loop: true,
+        // loop: true,
         slidesPerView: 1,
         spaceBetween: 30,
         // autoHeight: true,
@@ -77,16 +77,16 @@
         // Optional parameters
         // loop: true,
         slidesPerView: 1,
-        spaceBetween: 30,
+        spaceBetween: 24,
         speed: 1000,
         breakpoints: {
             768: {
                 slidesPerView: 1,
-                spaceBetween: 30,
+                spaceBetween: 24,
             },
             1024: {
                 slidesPerView: 3,
-                spaceBetween: 30,
+                spaceBetween: 24,
             },
         },
         pagination: {
@@ -107,11 +107,11 @@
         speed: 1000,
         breakpoints: {
             768: {
-                slidesPerView: 1,
+                slidesPerView: 2,
                 spaceBetween: 30,
             },
             1024: {
-                slidesPerView: 2,
+                slidesPerView: 3,
                 spaceBetween: 30,
             },
         },
@@ -132,12 +132,8 @@
                 slidesPerView: 2,
                 spaceBetween: 30,
             },
-            768: {
-                slidesPerView: 2,
-                spaceBetween: 30,
-            },
             1024: {
-                slidesPerView: 3,
+                slidesPerView: 2,
                 spaceBetween: 30,
             },
         },

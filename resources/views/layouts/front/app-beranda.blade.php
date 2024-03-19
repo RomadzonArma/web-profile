@@ -37,13 +37,19 @@
         </div>
     </a>
     <div class="faq-wrapper">
-        <h5 class="text-primary mb-0">FAQ!</h5>
-        <img src="{{ asset('assets-front/img/ksps_faq.png') }}" alt="faq" class="img-fluid">
-        <form class="bg-white form-banner my-0" style="min-width: 100px;">
-            <input type="text" placeholder="Cari kata kunci...">
-            <div class="rounded-icon bg-primary">
-                <i class="icon-line-send" style="transform: rotate(45deg); font-size: 12px; margin-left: -4px;"></i>
+        <h5 class="text-primary mb-2">FAQ!</h5>
+        {{-- <img src="{{ asset('assets-front/img/ksps_faq.png') }}" alt="faq" class="img-fluid"> --}}
+        <form class="mb-0" action="">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Nama">
             </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Email">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Tulis pertanyaan anda...">
+            </div>
+            <button class="btn btn-primary">Kirim</button>
         </form>
     </div>
 
