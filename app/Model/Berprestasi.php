@@ -5,11 +5,11 @@ namespace App\Model;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class PraktikBaik extends Model
+class Berprestasi extends Model
 {
     use SoftDeletes;
 
-    protected $table = 'cerita';
+    protected $table = 'kspstk_berprestasi';
     protected $primaryKey = 'id';
 
     protected $fillable = [
@@ -17,6 +17,7 @@ class PraktikBaik extends Model
         'desc',
         'link',
         'foto',
+        'video',
         'is_active',
         'urutan',
     ];

@@ -100,6 +100,8 @@ class RouteServiceProvider extends ServiceProvider
             $this->mapZiWbkRoutes();
 
             $this->mapCerita();
+
+            $this->mapBerprestasi();
         });
     }
 
@@ -310,5 +312,12 @@ class RouteServiceProvider extends ServiceProvider
         Route::prefix('cerita-praktik-baik')
             ->namespace($this->namespace)
             ->group(base_path('routes/panel/cerita.php'));
+    }
+
+    protected function mapBerprestasi()
+    {
+        Route::prefix('kspstk-berprestasi')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/panel/berprestasi.php'));
     }
 }
