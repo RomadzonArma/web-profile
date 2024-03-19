@@ -29,8 +29,7 @@
                 <li><a href="#foto">Foto</a></li>
             </ul>
             <div class="tab-container clearfix" id="video">
-
-                <div class="row">
+                <div class="post-grid row gutter-30" data-layout="fitRows">
                     @foreach ($video as $item)
                         <div class="entry col-md-4 col-sm-6 col-12">
                             <div class="grid-inner hover-custom">
@@ -56,8 +55,8 @@
                                     @endif
                                 </div>
                                 <div class="entry-title">
-                                    <h4><a href="{{ $item->link }}">{{ $item->judul }}</a>
-                                    </h4>
+                                    <h2><a href="{{ $item->link }}">{{ $item->judul }}</a>
+                                    </h2>
                                 </div>
                                 <div class="entry-meta">
                                     <ul>
@@ -82,12 +81,12 @@
                                 <div class="entry-image">
                                     <div class="fslider" data-arrows="false" data-lightbox="gallery">
                                         <div class="flexslider">
-                                            @foreach ($item->refGaleri as $item)
+                                            @foreach ($item->refGaleri as $img)
                                                 <div class="slider-wrap">
                                                     <div class="slide">
-                                                        <a href="{{ asset('file-galeri/gambar/' . $item->image) }}"
+                                                        <a href="{{ asset('file-galeri/gambar/' . $img->image) }}"
                                                             data-lightbox="gallery-item">
-                                                            <img src="{{ asset('file-galeri/gambar/' . $item->image) }}"
+                                                            <img src="{{ asset('file-galeri/gambar/' . $img->image) }}"
                                                                 alt="Standard Post with Gallery">
                                                         </a>
                                                         {{-- <a href="{{ asset('file-galeri/gambar/' . $item->refGaleri[0]->image) }}"
@@ -103,11 +102,12 @@
                                 </div>
                                 <div class="entry-title">
                                     <h2><a href="#">{{ $item->judul }}</a></h2>
+                                    {{-- <h2><a href="#">tes</a></h2> --}}
                                 </div>
                                 <div class="entry-meta">
                                     <ul>
                                         <li><i
-                                                class="icon-calendar3"></i>{{ $carbon::parse($item->tanggal)->format('D M Y') }}
+                                                class="icon-calendar3"></i>{{ $carbon::parse($item->tanggal)->format('d M Y') }}
                                         </li>
                                         {{-- <li><i class="icon-line-eye"></i>{{ $item->jumlah_lihat }}</li> --}}
                                     </ul>
