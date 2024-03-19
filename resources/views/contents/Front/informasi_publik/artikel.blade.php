@@ -24,7 +24,7 @@
 @section('content')
     <div class="col-md-9 col-12">
         <form class="row mb-4" method="get" action="{{ url('/artikel') }}">
-            <div class="form-group pr-sm-2 col-lg-2 col-sm-4 mb-sm-0 mb-3">
+            <div class="form-group pr-sm-2 col-lg-3 col-sm-4 mb-sm-0 mb-3">
                 <select class="form-control" id="tahun" name="tahun">
                     <option value="">Semua Tahun</option>
                     <option value="2024">2024</option>
@@ -34,7 +34,7 @@
                 </select>
                 <i class="icon-caret-down1 icon-select"></i>
             </div>
-            <div class="form-group px-sm-2 col-lg-2 col-sm-4 mb-sm-0 mb-3">
+            <div class="form-group px-sm-2 col-lg-3 col-sm-4 mb-sm-0 mb-3">
                 <select class="form-control" id="bulan" name="bulan">
                     <option value="">Semua Bulan</option>
                     <option value="1">Januari</option>

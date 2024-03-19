@@ -1,7 +1,7 @@
 <!-- Header Tampilan Mobile ============================================= -->
 <header class="full-header not-top d-lg-none d-block">
     <div id="header-wrap" class="py-2">
-        <div class="container-fluid px-xl-5">
+        <div class="container-fluid px-xl-3">
             <div class="header-row justify-content-between">
                 <a href="index.html" class="d-block" data-dark-logo="{{ asset('assets-front/img/logo-P3GTK.png') }}">
                     <img src="{{ asset('assets-front/img/logo-P3GTK.png') }}" class="img-fluid" width="150">

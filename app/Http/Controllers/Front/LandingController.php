@@ -41,7 +41,7 @@ class LandingController extends Controller
             ->take(4)
             ->get();
         $podcast = Podcast::where('status_publish', '1')->orderByDesc('created_at')->get();
-        $berita = ListBerita::where('status_publish', '1')->orderByDesc('date')->get();
+        $berita = ListBerita::where('status_publish', '1')->take(2)->orderByDesc('date')->get();
         $list_kanal_1 = ListKanal::where('status', '1')
             ->where(function ($query) {
                 $query->where('nama_kanal', 'LIKE', '%profil%')
@@ -151,7 +151,7 @@ class LandingController extends Controller
 
     public function berita(Request $request)
     {
-        $query = ListBerita::where('status_publish', '1')->orderByDesc('created_at');
+        $query = ListBerita::where('status_publish', '1')->orderByDesc('date');
 
         $tahun = $request->tahun;
         $bulan = $request->bulan;
@@ -163,7 +163,7 @@ class LandingController extends Controller
             $query->whereMonth('date', $bulan);
         }
 
-        $berita = $query->paginate(5);
+        $berita = $query->paginate(4);
 
         $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
 

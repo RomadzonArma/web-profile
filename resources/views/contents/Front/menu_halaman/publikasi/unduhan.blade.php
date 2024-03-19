@@ -27,13 +27,13 @@
             @foreach ($unduhan as $item)
                 <div class="entry mb-5">
                     <div class="grid-inner row no-gutters p-0">
-                        <div class="entry-image col-md-2 mb-md-0">
+                        <div class="entry-image col-xl-2 col-md-3 col-sm-4 col-12 mb-md-0">
                             <a href="#">
                                 <img src="{{ asset('cover-unduhan/' . $item->cover) }}" alt="thumbnail_unduhan">
                             </a>
                         </div>
-                        <div class="col-md-10 pl-md-4">
-                            <div class="entry-title title-xs">
+                        <div class="col-xl-10 col-md-9 col-sm-8 col-12 pl-sm-4">
+                            <div class="entry-title title-md">
                                 <h3 class="mb-1"><a href="#">{{ $item->judul }}</a></h3>
                             </div>
                             <div class="entry-meta mb-2 mt-0">

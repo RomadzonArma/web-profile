@@ -1,6 +1,6 @@
 <!-- Header ============================================= -->
 <header class="full-header not-top d-lg-block d-none">
-    <div id="header-wrap" class="px-xl-5">
+    <div id="header-wrap" class="px-xl-3">
         <div class="container-fluid">
             <div class="header-row justify-content-between">
                 <div id="primary-menu-trigger">
