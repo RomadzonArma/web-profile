@@ -24,10 +24,43 @@ class BerprestasiController extends Controller
         return DataTables::of($data)->addIndexColumn()->make(true);
     }
 
+    // public function store(Request $request)
+    // {
+    //     try {
+
+    //         if ($request->hasFile('foto')) {
+    //             $file = $request->file('foto');
+    //             $name = time() . '_' . $file->getClientOriginalName();
+    //             $path = public_path() . '/storage/uploads/prestasi';
+    //             if (!File::isDirectory($path)) {
+    //                 File::makeDirectory($path, 0775, true, true);
+    //             }
+    //             if ($file->move($path, $name)) {
+    //                 $foto = $name;
+    //             }
+    //             $fotoName = 'storage/uploads/prestasi/' . $foto;
+    //         }
+
+    //         $data = [
+    //             'judul' => $request->input('judul'),
+    //             'link' => $request->input('link'),
+    //         ];
+    //         if (!empty($fotoName)) {
+    //             $data['foto'] = $fotoName;
+    //         }
+    //         $data['created_at'] = date('Y-m-d H:i:s');
+    //         $data['created_id'] = Auth::user()->id;
+    //         Berprestasi::insert($data);
+
+    //         return response()->json(['status' => true], 200);
+    //     } catch (\Exception $e) {
+    //         return response()->json(['status' => false, 'msg' => $e->getMessage()], 400);
+    //     }
+    // }
     public function store(Request $request)
     {
         try {
-
+            $fotoName = null;
             if ($request->hasFile('foto')) {
                 $file = $request->file('foto');
                 $name = time() . '_' . $file->getClientOriginalName();
@@ -36,27 +69,35 @@ class BerprestasiController extends Controller
                     File::makeDirectory($path, 0775, true, true);
                 }
                 if ($file->move($path, $name)) {
-                    $foto = $name;
+                    $fotoName = 'storage/uploads/prestasi/' . $name;
                 }
-                $fotoName = 'storage/uploads/prestasi/' . $foto;
+            }
+
+            $videoPath = null;
+            if ($request->hasFile('video')) {
+                $video = $request->file('video');
+                $videoName = time() . '_' . $video->getClientOriginalName();
+                $videoPath = 'storage/uploads/prestasi/' . $videoName;
+                $video->move(public_path('storage/uploads/prestasi'), $videoName);
             }
 
             $data = [
                 'judul' => $request->input('judul'),
                 'link' => $request->input('link'),
+                'foto' => $fotoName,
+                'video' => $videoPath,
+                'created_at' => now(),
+                'created_id' => Auth::user()->id,
             ];
-            if (!empty($fotoName)) {
-                $data['foto'] = $fotoName;
-            }
-            $data['created_at'] = date('Y-m-d H:i:s');
-            $data['created_id'] = Auth::user()->id;
-            Berprestasi::insert($data);
+
+            Berprestasi::create($data);
 
             return response()->json(['status' => true], 200);
         } catch (\Exception $e) {
             return response()->json(['status' => false, 'msg' => $e->getMessage()], 400);
         }
     }
+
 
     public function update(Request $request)
     {

@@ -107,6 +107,38 @@ $(() => {
         })
     })
 
+    $('#manualCheckbox').change(function () {
+        if ($(this).is(':checked')) {
+            $('#linkGroup').hide();
+            $('#videoGroup').show();
+        } else {
+            $('#linkGroup').show();
+            $('#videoGroup').hide();
+        }
+    });
+
+    $('#modal-berprestasi').on('hidden.bs.modal', function () {
+        $('#manualCheckbox').prop('checked', false);
+        $('#linkGroup').show();
+        $('#videoGroup').hide();
+    });
+
+    $('#updateManualCheckbox').change(function () {
+        if ($(this).is(':checked')) {
+            $('#updateLinkGroup').hide();
+            $('#updateVideoGroup').show();
+        } else {
+            $('#updateLinkGroup').show();
+            $('#updateVideoGroup').hide();
+        }
+    });
+
+    $('#modal-berprestasi-update').on('hidden.bs.modal', function () {
+        $('#form-berprestasi-update')[0].reset();
+        $('#updateLinkGroup').show();
+        $('#updateVideoGroup').hide();
+    });
+
     $('#table-data').on('click', '.btn-update', function () {
         var tr = $(this).closest('tr');
         var data = table.row(tr).data();
@@ -119,8 +151,30 @@ $(() => {
         })
         $('#foto').html('<img src="' + '' + data.foto + '" style="height: 100px; margin-top: 10px;">');
 
+        if (data.video !== null && data.video !== '') {
+            $('#updateManualCheckbox').prop('checked', true);
+            $('#updateLinkGroup').hide();
+            $('#updateVideoGroup').show();
+
+            $('#btn-open-video').show();
+        } else {
+            $('#updateManualCheckbox').prop('checked', false);
+            $('#updateLinkGroup').show();
+            $('#updateVideoGroup').hide();
+
+            $('#btn-open-video').hide();
+        }
+
         $('#modal-berprestasi-update').modal('show');
     })
+
+    $('#modal-berprestasi-update').on('click', '#btn-open-video', function() {
+        console.log(videoPath);
+        var videoPath = $('#video_edit').val();
+        if (videoPath) {
+            window.open(videoPath, '_blank');
+        }
+    });
 
     $('#form-berprestasi').on('submit', function (e) {
         e.preventDefault();
