@@ -274,12 +274,9 @@ class LandingController extends Controller
 
     public function galeri()
     {
-        $video = Galeri::where('is_video', '=', '1')->get();
-        $foto = Galeri::where('is_image', '=', '1')->with('refGaleri')->get();
         $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
-
-        $video = Galeri::where('is_video', '=', '1')->get();
-        $foto = Galeri::where('is_image', '=', '1')->with('refGaleri')->get();
+        $video = Galeri::where('status_publish', '1')->where('is_video', '=', '1')->get();
+        $foto = Galeri::where('status_publish', '1')->where('is_image', '=', '1')->with('refGaleri')->get();
         return view('contents.Front.informasi_publik.galeri', [
             'title' => 'Galeri',
             'video' => $video,
