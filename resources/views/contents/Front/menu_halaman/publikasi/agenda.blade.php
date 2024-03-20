@@ -24,7 +24,7 @@
 @section('content')
     <div class="col-md-9 col-12">
         <form class="row mb-4" method="get" action="{{ url('/regulasis') }}">
-            <div class="form-group pr-sm-2 col-lg-2 col-sm-4 mb-sm-0 mb-3">
+            <div class="form-group pr-sm-2 col-lg-3 col-sm-4 mb-sm-0 mb-3">
                 <select class="form-control" id="tahun" name="tahun">
                     <option value="2024">2024</option>
                     <option value="2023">2023</option>
@@ -33,7 +33,7 @@
                 </select>
                 <i class="icon-caret-down1 icon-select"></i>
             </div>
-            <div class="form-group px-sm-2 col-lg-2 col-sm-4 mb-sm-0 mb-3">
+            <div class="form-group px-sm-2 col-lg-3 col-sm-4 mb-sm-0 mb-3">
                 <select class="form-control" id="bulan" name="bulan">
                     <option value="1">Januari</option>
                     <option value="2">Februari</option>
@@ -65,7 +65,7 @@
                             </a>
                         </div>
                         <div class="col-md-8 pl-md-4">
-                            <div class="entry-title title-xs">
+                            <div class="entry-title title-md">
                                 <h3 class="mb-1"><a href="{{ route('agenda.detail', ['id' => $item->id]) }}">{{ $item->judul }}</a>
                                 </h3>
                             </div>

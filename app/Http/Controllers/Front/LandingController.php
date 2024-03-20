@@ -4,31 +4,34 @@ namespace App\Http\Controllers\Front;
 
 use App\Model\Agenda;
 use App\Model\Galeri;
+use App\Model\Profil;
 use App\Model\Swiper;
+use App\Model\Tautan;
 use App\Model\Artikel;
 use App\Model\Panduan;
+use App\Model\Podcast;
 use App\Model\Unduhan;
 use App\Model\Regulasi;
+use App\Model\ListKanal;
+use App\Model\CeritaBaik;
 use App\Model\ListBerita;
 use App\Model\Pengumuman;
 use App\Model\Pengunjung;
+use App\Model\Berprestasi;
+use App\Model\PraktikBaik;
+use App\Model\ListKategori;
+use App\Model\ProgramFokus;
 use Illuminate\Http\Request;
 use App\Model\ProgramLayanan;
-use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
-use App\Model\ListKanal;
-use App\Model\ListKategori;
 use App\Model\PengunjungAgenda;
-use App\Model\PengunjungArtikel;
 use App\Model\PengunjungBerita;
+use App\Model\PengunjungArtikel;
 use App\Model\PengunjungPanduan;
-use App\Model\PengunjungPengumuman;
-use App\Model\PengunjungRegulasi;
 use App\Model\PengunjungUnduhan;
-use App\Model\Podcast;
-use App\Model\Profil;
-use App\Model\ProgramFokus;
-use App\Model\Tautan;
+use App\Model\PengunjungRegulasi;
+use Illuminate\Support\Facades\DB;
+use App\Model\PengunjungPengumuman;
+use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\Builder;
 
 class LandingController extends Controller
@@ -41,7 +44,7 @@ class LandingController extends Controller
             ->take(4)
             ->get();
         $podcast = Podcast::where('status_publish', '1')->orderByDesc('created_at')->get();
-        $berita = ListBerita::where('status_publish', '1')->orderByDesc('date')->get();
+        $berita = ListBerita::where('status_publish', '1')->take(2)->orderByDesc('date')->get();
         $list_kanal_1 = ListKanal::where('status', '1')
             ->where(function ($query) {
                 $query->where('nama_kanal', 'LIKE', '%profil%')
@@ -58,6 +61,10 @@ class LandingController extends Controller
             })
             ->get();
         $program_fokus = ProgramFokus::where('status', '1')->orderBy('publish_date')->get();
+        $praktik_baik  = PraktikBaik::where('is_active','1')->orderBy('created_at')->get();
+        $berprestasi   = Berprestasi::where('is_active','1')->orderBy('created_at')->get();
+        $cerita   = CeritaBaik::where('is_active','1')->get();
+
 
         $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
 
@@ -72,6 +79,9 @@ class LandingController extends Controller
             'list_kanal_1'      => $list_kanal_1,
             'list_kanal_2'      => $list_kanal_2,
             'pengunjung'        => $this->recordPengunjung(request()),
+            'praktik_baik'      => $praktik_baik,
+            'berprestasi'       => $berprestasi,
+            'cerita'            => $cerita,
         ]);
     }
 
@@ -151,7 +161,7 @@ class LandingController extends Controller
 
     public function berita(Request $request)
     {
-        $query = ListBerita::where('status_publish', '1')->orderByDesc('created_at');
+        $query = ListBerita::where('status_publish', '1')->orderByDesc('date');
 
         $tahun = $request->tahun;
         $bulan = $request->bulan;
@@ -163,7 +173,7 @@ class LandingController extends Controller
             $query->whereMonth('date', $bulan);
         }
 
-        $berita = $query->paginate(5);
+        $berita = $query->paginate(4);
 
         $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
 

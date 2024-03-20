@@ -54,7 +54,7 @@
                                         @endif
                                     @endif
                                 </div>
-                                <div class="entry-title">
+                                <div class="entry-title title-md">
                                     <h2><a href="{{ $item->link }}">{{ $item->judul }}</a>
                                     </h2>
                                 </div>
@@ -100,7 +100,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="entry-title">
+                                <div class="entry-title title-md">
                                     <h2><a href="#">{{ $item->judul }}</a></h2>
                                     {{-- <h2><a href="#">tes</a></h2> --}}
                                 </div>

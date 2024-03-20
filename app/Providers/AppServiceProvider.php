@@ -41,7 +41,7 @@ class AppServiceProvider extends ServiceProvider
             $view->with('podcast', $podcast);
         });
         view()->composer('layouts.front.app', function ($view) {
-            $berita = ListBerita::where('status_publish', '1')->orderByDesc('created_at')->take(5)->get();
+            $berita = ListBerita::where('status_publish', '1')->orderByDesc('date')->take(4)->get();
             $view->with('berita', $berita);
         });
         view()->composer('contents.Front.menu', function ($view) {

@@ -1,5 +1,32 @@
 let table;
 $(() => {
+
+    $('input[name=jenis]').on('change', function () {
+        var val = $('input[name=jenis]:checked').val();
+        if (val == 'link') {
+            $('.row_link').css('display', 'block');
+            $('.row_video').css('display', 'none');
+        } else if (val == 'video') {
+            $('.row_link').css('display', 'none');
+            $('.row_video').css('display', 'block');
+        }
+    });
+
+    $('input[name=jenis-edit]').on('change', function () {
+        // Get the value of the checked radio button
+        var val = $('input[name=jenis-edit]:checked').val();
+        // Show/hide divs based on the selected value
+        if (val == 'link') {
+            $('.row_link').css('display', 'block');
+            $('.row_video').css('display', 'none');
+        } else if (val == 'video') {
+            $('.row_link').css('display', 'none');
+            $('.row_video').css('display', 'block'); // Corrected class name
+        }
+    });
+
+
+
     $('#table-data').on('click', '.btn-delete', function () {
         let data = table.row($(this).closest('tr')).data();
 
@@ -7,7 +34,7 @@ $(() => {
 
         Swal.fire({
             title: 'Anda yakin?',
-            html: `Anda akan menghapus Data "<b>${judul}</b>"!`,
+            html: `Anda akan menghapus Cerita "<b>${judul}</b>"!`,
             footer: 'Data yang sudah dihapus tidak bisa dikembalikan kembali!',
             icon: 'warning',
             showCancelButton: true,
@@ -17,11 +44,11 @@ $(() => {
             cancelButtonText: 'Batal'
         }).then((result) => {
             if (result.isConfirmed) {
-                $.post(BASE_URL + 'kspstk-berprestasi/delete', {
+                $.post(BASE_URL + 'praktik_baik/delete', {
                     id,
                     _method: 'DELETE'
                 }).done((res) => {
-                    showSuccessToastr('sukses', 'data berhasil dihapus');
+                    showSuccessToastr('sukses', 'Cerita berhasil dihapus');
                     table.ajax.reload();
                 }).fail((res) => {
                     let { status, responseJSON } = res;
@@ -35,12 +62,12 @@ $(() => {
         var id = $(this).data('id');
         var value = $(this).val();
 
-        $.post(BASE_URL + 'kspstk-berprestasi/switch', {
+        $.post(BASE_URL + 'praktik_baik/switch', {
             id,
             value,
             _method: 'PATCH'
         }).done((res) => {
-            showSuccessToastr('sukses', value == '1' ? 'data berhasil diaktifkan' : 'data berhasil dinonaktifkan');
+            showSuccessToastr('sukses', value == '1' ? 'Cerita berhasil diaktifkan' : 'Cerita berhasil dinonaktifkan');
             table.ajax.reload();
         }).fail((res) => {
             let { status, responseJSON } = res;
@@ -49,7 +76,7 @@ $(() => {
         })
     })
 
-    $('#form-berprestasi-update').on('submit', function (e) {
+    $('#form-praktik-update').on('submit', function (e) {
         e.preventDefault();
 
         var data = new FormData(this);
@@ -63,18 +90,18 @@ $(() => {
             contentType: false,
             beforeSend: () => {
                 clearErrorMessage();
-                $('#modal-berprestasi-update').find('.modal-dialog').LoadingOverlay('show');
+                $('#modal-praktik-update').find('.modal-dialog').LoadingOverlay('show');
             },
             success: (res) => {
-                $('#modal-berprestasi-update').find('.modal-dialog').LoadingOverlay('hide', true);
+                $('#modal-praktik-update').find('.modal-dialog').LoadingOverlay('hide', true);
                 $(this)[0].reset();
                 clearErrorMessage();
                 table.ajax.reload();
-                $('#modal-berprestasi-update').modal('hide');
-                showSuccessToastr('sukses', 'data berhasil diubah');
+                $('#modal-praktik-update').modal('hide');
+                showSuccessToastr('sukses', 'Cerita berhasil diubah');
             },
             // error: ({ status, responseJSON }) => {
-            //     $('#modal-berprestasi-update').find('.modal-dialog').LoadingOverlay('hide', true);
+            //     $('#modal-praktik-update').find('.modal-dialog').LoadingOverlay('hide', true);
 
             //     if (status == 422) {
             //         generateErrorMessage(responseJSON, true);
@@ -84,7 +111,7 @@ $(() => {
             //     showErrorToastr('oops', responseJSON.msg);
             // }
             error: function (xhr, status, error) {
-                $('#modal-berprestasi-update').find('.modal-dialog').LoadingOverlay('hide', true);
+                $('#modal-praktik-update').find('.modal-dialog').LoadingOverlay('hide', true);
 
                 if (xhr.status == 422) {
                     var errors = xhr.responseJSON.errors;
@@ -107,76 +134,60 @@ $(() => {
         })
     })
 
-    $('#manualCheckbox').change(function () {
-        if ($(this).is(':checked')) {
-            $('#linkGroup').hide();
-            $('#videoGroup').show();
-        } else {
-            $('#linkGroup').show();
-            $('#videoGroup').hide();
-        }
-    });
+    // $('#table-data').on('click', '.btn-update', function () {
+    //     var tr = $(this).closest('tr');
+    //     var data = table.row(tr).data();
 
-    $('#modal-berprestasi').on('hidden.bs.modal', function () {
-        $('#manualCheckbox').prop('checked', false);
-        $('#linkGroup').show();
-        $('#videoGroup').hide();
-    });
+    //     clearErrorMessage();
+    //     $('#form-praktik-update')[0].reset();
 
-    $('#updateManualCheckbox').change(function () {
-        if ($(this).is(':checked')) {
-            $('#updateLinkGroup').hide();
-            $('#updateVideoGroup').show();
-        } else {
-            $('#updateLinkGroup').show();
-            $('#updateVideoGroup').hide();
-        }
-    });
+    //     $.each(data, (key, value) => {
+    //         $('#update-' + key).val(value);
+    //     })
+    //     $('#foto').html('<img src="' + '' + data.foto + '" style="height: 100px; margin-top: 10px;">');
 
-    $('#modal-berprestasi-update').on('hidden.bs.modal', function () {
-        $('#form-berprestasi-update')[0].reset();
-        $('#updateLinkGroup').show();
-        $('#updateVideoGroup').hide();
-    });
+    //     if (data.video !== null && data.video !== '') {
+    //         $('#updateManualCheckbox').prop('checked', true);
+    //         $('#updateLinkGroup').hide();
+    //         $('#updateVideoGroup').show();
 
+    //         $('#btn-open-video').show();
+    //     } else {
+    //         $('#updateManualCheckbox').prop('checked', false);
+    //         $('#updateLinkGroup').show();
+    //         $('#updateVideoGroup').hide();
+
+    //         $('#btn-open-video').hide();
+    //     }
+    //     $('#modal-praktik-update').modal('show');
+    // })
     $('#table-data').on('click', '.btn-update', function () {
         var tr = $(this).closest('tr');
         var data = table.row(tr).data();
 
         clearErrorMessage();
-        $('#form-berprestasi-update')[0].reset();
+        $('#form-praktik-update')[0].reset();
 
         $.each(data, (key, value) => {
             $('#update-' + key).val(value);
         })
-        $('#foto').html('<img src="' + '' + data.foto + '" style="height: 200px; margin-top: 5px;">');
+        $('#foto').html('<img src="' + '' + data.foto + '" style="height: 100px; margin-top: 10px;">');
 
-        if (data.video !== null && data.video !== '') {
-            $('#updateManualCheckbox').prop('checked', true);
-            $('#updateLinkGroup').hide();
-            $('#updateVideoGroup').show();
-
-            $('#btn-open-video').show();
+        // Periksa apakah data link terisi
+        if (data.link_video !== null && data.link_video !== '') {
+            $('.row_link').css('display', 'block');
+            $('.row_video').css('display', 'none');
         } else {
-            $('#updateManualCheckbox').prop('checked', false);
-            $('#updateLinkGroup').show();
-            $('#updateVideoGroup').hide();
-
-            $('#btn-open-video').hide();
+            $('.row_link').css('display', 'none');
+            $('.row_video').css('display', 'block');
         }
 
-        $('#modal-berprestasi-update').modal('show');
+        $('#modal-praktik-update').modal('show');
     })
 
-    $('#modal-berprestasi-update').on('click', '#btn-open-video', function() {
-        console.log(videoPath);
-        var videoPath = $('#video_edit').val();
-        if (videoPath) {
-            window.open(videoPath, '_blank');
-        }
-    });
 
-    $('#form-berprestasi').on('submit', function (e) {
+
+    $('#form-praktik').on('submit', function (e) {
         e.preventDefault();
 
         var data = new FormData(this);
@@ -190,18 +201,18 @@ $(() => {
             contentType: false,
             beforeSend: () => {
                 clearErrorMessage();
-                $('#modal-berprestasi').find('.modal-dialog').LoadingOverlay('show');
+                $('#modal-praktik').find('.modal-dialog').LoadingOverlay('show');
             },
             success: (res) => {
-                $('#modal-berprestasi').find('.modal-dialog').LoadingOverlay('hide', true);
+                $('#modal-praktik').find('.modal-dialog').LoadingOverlay('hide', true);
                 $(this)[0].reset();
                 clearErrorMessage();
                 table.ajax.reload();
-                $('#modal-berprestasi').modal('hide');
-                showSuccessToastr('sukses', 'data berhasil ditambahkan');
+                $('#modal-praktik').modal('hide');
+                showSuccessToastr('sukses', 'Cerita berhasil ditambahkan');
             },
             error: ({ status, responseJSON }) => {
-                $('#modal-berprestasi').find('.modal-dialog').LoadingOverlay('hide', true);
+                $('#modal-praktik').find('.modal-dialog').LoadingOverlay('hide', true);
 
                 if (status == 422) {
                     generateErrorMessage(responseJSON);
@@ -214,9 +225,9 @@ $(() => {
     })
 
     $('.btn-tambah').on('click', function () {
-        $('#form-berprestasi')[0].reset();
+        $('#form-praktik')[0].reset();
         clearErrorMessage();
-        $('#modal-berprestasi').modal('show');
+        $('#modal-praktik').modal('show');
     });
 
     table = $('#table-data').DataTable({
@@ -224,13 +235,13 @@ $(() => {
         serverSide: true,
         processing: true,
         ajax: {
-            url: BASE_URL + 'kspstk-berprestasi/data',
+            url: BASE_URL + 'praktik_baik/data',
             type: 'get',
             dataType: 'json'
         },
-        order: [[6, 'desc']],
+        order: [[5, 'desc']],
         columnDefs: [{
-            targets: [0, 5],
+            targets: [0, 4],
             orderable: false,
             searchable: false,
             className: 'text-center align-top'
@@ -241,7 +252,7 @@ $(() => {
             targets: [4],
             className: 'text-center align-top'
         }, {
-            targets: [6],
+            targets: [5],
             visible: false,
         }],
         columns: [{
@@ -251,13 +262,8 @@ $(() => {
             render: (data, type, row) => {
                 return data ?? '-';
             }
-        }, {
-            data: 'foto',
-            render: (data, type, row) => {
-                return data ? '<img src="' + data + '" style="height: 50px">' : '-';
-            }
-        }, {
-            data: 'link',
+        },{
+            data: 'link_video',
             render: (data, type, row) => {
                 return data ?? '-';
             }

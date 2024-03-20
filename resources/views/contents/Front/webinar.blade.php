@@ -1,9 +1,9 @@
 {{-- WEBINAR --}}
 <div>
-    <div class="heading-block border-bottom-0 d-flex justify-content-between flex-wrap">
+    <div class="heading-block border-bottom-0 d-flex justify-content-between">
         <h6 class="text-uppercase text-dark mb-0">WEBINAR KSPSTK</h6>
         <a href="https://app.kspstendik.kemdikbud.go.id/webinar/" class="arrow-rounded">
-            Selengkapnya
+            <span class="d-sm-inline d-none">Selengkapnya</span>
             <div>
                 <i class="icon-angle-right1"></i>
             </div>
@@ -14,8 +14,7 @@
             @foreach ($webinar as $item)
             <div class="swiper-slide">
                 <a href="{{$item->link_webinar}}" target="_blank">
-                    <img src="{{ asset('webinar/'. $item->gambar) }}" alt="webinar"
-                    width="130" class="img-fluid">
+                    <img src="{{ asset('webinar/'. $item->gambar) }}" alt="webinar">
                 </a>
 
             </div>
