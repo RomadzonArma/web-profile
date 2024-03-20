@@ -40,10 +40,24 @@ class CeritaController extends Controller
                 }
                 $fotoName = 'storage/uploads/cerita/' . $foto;
             }
+            $videoPath = null;
+            if ($request->hasFile('video')) {
+                $video = $request->file('video');
+                if ($video->isValid()) {
+                    $videoName = time() . '_' . $video->getClientOriginalName();
+                    $path = public_path('storage/uploads/cerita/video');
+                    $video->move($path, $videoName);
+                    $videoPath = 'storage/uploads/cerita/video/' . $videoName;
+                } else {
+                    throw new \Exception('Invalid video file provided');
+                }
+            }
 
             $data = [
                 'judul' => $request->input('judul'),
+                'link_video'  => $request->input('link_video'),
                 'konten' => $request->input('konten'),
+                'video'      => $videoPath,
             ];
             if (!empty($fotoName)) {
                 $data['foto'] = $fotoName;
@@ -84,9 +98,23 @@ class CeritaController extends Controller
                     $cerita->foto = $fotoName;
                 }
             }
+            $videoPath = null;
+            if ($request->hasFile('video')) {
+                $video = $request->file('video');
+                if ($video->isValid()) {
+                    $videoName = time() . '_' . $video->getClientOriginalName();
+                    $path = public_path('storage/uploads/praktik-video');
+                    $video->move($path, $videoName);
+                    $videoPath = 'storage/uploads/praktik-video/' . $videoName;
+                } else {
+                    throw new \Exception('Invalid video file provided');
+                }
+            }
 
             $cerita->judul = $request->judul;
             // $cerita->link = $request->link;
+            $cerita->video = $videoName;
+            $cerita->link_video = $request->link_video;
             $cerita->konten = $request->konten;
             $cerita->updated_at = date('Y-m-d H:i:s');
             $cerita->updated_id = Auth::user()->id;

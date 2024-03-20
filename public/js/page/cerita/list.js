@@ -1,5 +1,31 @@
 let table;
 $(() => {
+
+    $("input[name=jenis]").on("change", function () {
+        var val = $("input[name=jenis]:checked").val();
+        if (val == "link") {
+            $(".row_link").css("display", "block");
+            $(".row_video").css("display", "none");
+        } else if (val == "video") {
+            $(".row_link").css("display", "none");
+            $(".row_video").css("display", "block");
+        }
+    });
+
+    $("input[name=jenis-edit]").on("change", function () {
+        // Get the value of the checked radio button
+        var val = $("input[name=jenis-edit]:checked").val();
+        // Show/hide divs based on the selected value
+        if (val == "link") {
+            $(".row_link").css("display", "block");
+            $(".row_video").css("display", "none");
+        } else if (val == "video") {
+            $(".row_link").css("display", "none");
+            $(".row_video").css("display", "block"); // Corrected class name
+        }
+    });
+
+
     $('#table-data').on('click', '.btn-delete', function () {
         let data = table.row($(this).closest('tr')).data();
 
@@ -118,6 +144,14 @@ $(() => {
             $('#update-' + key).val(value);
         })
         $('#foto').html('<img src="' + '' + data.foto + '" style="height: 100px; margin-top: 10px;">');
+
+        if (data.link_video !== null && data.link_video !== "") {
+            $(".row_link").css("display", "block");
+            $(".row_video").css("display", "none");
+        } else {
+            $(".row_link").css("display", "none");
+            $(".row_video").css("display", "block");
+        }
 
         $('#modal-cerita-update').modal('show');
     })

@@ -45,7 +45,7 @@
         aria-hidden="true">
         <form method="POST" autocomplete="off" enctype="multipart/form-data" action="{{ route('berprestasi.store') }}"
             id="form-berprestasi">
-            <div class="modal-dialog">
+            <div class="modal-dialog  modal-lg">
                 <div class="modal-content">
                     <div class="modal-header bg-primary-bold">
                         <h4 class="modal-title mt-0" id="myModalLabel">Form KSPSTK Berprestasi</h4>
@@ -60,11 +60,48 @@
                                 oninput="this.value = this.value.replace(/[^a-zA-Z0-9!%.,()\/'?\-\s]/g, '').replace(/(\..*?)\..*/g, '$1');"></textarea>
                         </div>
                         <div class="form-group">
+                            <ul class="list-unstyled" style="margin-bottom: 0px; margin-left: 0px;">
+                                <li class="d-inline-block mr-2">
+                                    <div class="custom-control custom-radio custom-radio-primary mb-3">
+                                        <input type="radio" id="jenis_link" name="jenis" class="custom-control-input"
+                                            value="link">
+                                        <label class="custom-control-label" for="jenis_link"> Link Video </label>
+                                    </div>
+                                </li>
+                                <li class="d-inline-block mr-2">
+                                    <div class="custom-control custom-radio custom-radio-success mb-3">
+                                        <input type="radio" id="jenis_video" name="jenis" class="custom-control-input"
+                                            value="video">
+                                        <label class="custom-control-label" for="jenis_video"> Upload Video </label>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="form-group row_link"style="display: none;">
+                            <label for="update-konten">Link Video</label>
+                            <input type="text" class="form-control" placeholder="Link Youtube" name="link" id="link"></input>
+                        </div>
+                        <div class="form-group row_video" style="display: none;">
+                            <div class="form-group">
+                                <label for="video">Upload Video</label>
+                                <div class="custom-file mb-3">
+                                    <input type="file" class="custom-file-input" name="video" id="video"
+                                    accept="video/*">
+                                    <label class="custom-file-label" for="video">Pilih Video</label>
+                                </div>
+                                <small id="videoHelpBlock" class="form-text text-muted">
+                                    Hanya file video yang diizinkan (.mp4, .avi, .mkv, dll.).
+                                </small>
+                            </div>
+
+                        </div>
+                        {{-- <div class="form-group">
                             <input type="checkbox" id="manualCheckbox"> <label for="manualCheckbox">Manual</label>
                         </div>
                         <div class="form-group" id="linkGroup">
                             <label for="link">Link Youtube</label>
-                            <textarea class="form-control" placeholder="Link Youtube" name="link" id="link"></textarea>
+                            <textarea class="form-control" placeholder="Link Youtube"></textarea>
                         </div>
                         <div class="form-group" id="videoGroup" style="display: none;">
                             <label for="video">Upload Video</label>
@@ -76,7 +113,7 @@
                             <small id="videoHelpBlock" class="form-text text-muted">
                                 Hanya file video yang diizinkan (.mp4, .avi, .mkv, dll.).
                             </small>
-                        </div>
+                        </div> --}}
                         <div class="form-group">
                             <label for="form_foto">Gambar</label>
                             <div class="custom-file mb-3">
@@ -108,7 +145,7 @@
             enctype="multipart/form-data">
             @method('PATCH')
             <input type="hidden" name="id" id="update-id">
-            <div class="modal-dialog">
+            <div class="modal-dialog  modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title mt-0" id="modal-berprestasi-updateLabel">Form KSPSTK Berprestasi</h5>
@@ -123,6 +160,42 @@
                                 oninput="this.value = this.value.replace(/[^a-zA-Z0-9!%.,()\/'?\-\s]/g, '').replace(/(\..*?)\..*/g, '$1');"></textarea>
                         </div>
                         <div class="form-group">
+                            <ul class="list-unstyled" style="margin-bottom: 0px; margin-left: 0px;">
+                                <li class="d-inline-block mr-2">
+                                    <div class="custom-control custom-radio custom-radio-primary mb-3">
+                                        <input type="radio" id="jenis_link_edit" name="jenis"
+                                            class="custom-control-input" value="link">
+                                        <label class="custom-control-label" for="jenis_link"> Link </label>
+                                    </div>
+                                </li>
+                                <li class="d-inline-block mr-2">
+                                    <div class="custom-control custom-radio custom-radio-success mb-3">
+                                        <input type="radio" id="jenis_video_edit" name="jenis"
+                                            class="custom-control-input" value="video">
+                                        <label class="custom-control-label" for="jenis_video"> Upload Video </label>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="form-group row_link"style="display: none;">
+                            <label for="update-konten">Link Video</label>
+                            <input type="text" class="form-control" placeholder="Link Youtube" name="link" id="update-link"></input>
+                        </div>
+                        <div class="form-group row_video" style="display: none;">
+                            <div class="form-group">
+                                <label for="video">Upload Video</label>
+                                <div class="custom-file mb-3">
+                                    <input type="file" class="custom-file-input" name="video" id="video_edit"
+                                    accept="video/*">
+                                    <label class="custom-file-label" for="video">Pilih Video</label>
+                                </div>
+                                <small id="videoHelpBlock" class="form-text text-muted">
+                                    Hanya file video yang diizinkan (.mp4, .avi, .mkv, dll.).
+                                </small>
+                            </div>
+
+                        </div>
+                        {{-- <div class="form-group">
                             <input type="checkbox" id="updateManualCheckbox"> <label
                                 for="updateManualCheckbox">Manual</label>
                         </div>
@@ -142,7 +215,7 @@
                             </small>
                             {{-- <button type="button" id="btn-open-video" class="btn btn-primary mt-3"
                                 style="display: none;">Lihat Video</button> --}}
-                        </div>
+                        {{-- </div> --}}
                         <div class="form-group">
                             <label for="updateCustomFile">Gambar</label>
                             <div class="custom-file mb-3">

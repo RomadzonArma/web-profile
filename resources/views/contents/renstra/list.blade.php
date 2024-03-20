@@ -9,7 +9,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header rounded-lg" style="background-color: #365984; color: white;">
-                    @if (rbacCheck('akuntabilitas_list', 2))
+                    @if (rbacCheck('manajemen_renstra', 2))
                         <div class="text-sm-right">
                             <button type="button" class="btn btn-rounded waves-effect waves-light btn-tambah text-white"
                                 style="background-color: #E59537;"><i class="bx bx-plus-circle mr-1"></i>
@@ -43,14 +43,14 @@
 
 
     <!-- sample modal content -->
-    <div id="modal-akuntabilitas" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-akuntabilitasLabel"
+    <div id="modal-renstra" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-renstraLabel"
         aria-hidden="true">
-        <form action="{{ route('akuntabilitas_list.store') }}" method="post" id="form-akuntabilitas" enctype="multipart/form-data"
+        <form action="{{ route('manajemen_renstra.store') }}" method="post" id="form-renstra" enctype="multipart/form-data"
             autocomplete="off">
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title mt-0" id="modal-akuntabilitasLabel">Form Tambah Akuntabilitas</h5>
+                        <h5 class="modal-title mt-0" id="modal-renstraLabel">Form Tambah Renstra</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -87,27 +87,16 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="file">File PDF</label>
-                                    <div class="custom-file mb-3">
-                                        <input type="file" class="custom-file-input" id="file" name="file"
-                                            accept=".PDF">
-                                        <label class="custom-file-label" for="customFile">Choose file</label>
-                                        <div style="font-size: 11px; line-height: 13px; font-style: Italic; margin-top: 5px; margin-bottom: 5px; text-align: left;"
-                                            class="text-danger">
-                                            (Format PDF max 3.mb )
-                                        </div>
-
-                                    </div>
-
+                                    <label for="judul">Link</label>
+                                    <input type="text" class="form-control" id="link" name="link">
                                 </div>
-
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="file">Gambar</label>
                             <div class="custom-file mb-3">
                                 <input type="file" class="custom-file-input" id="gambar"
-                                    onchange="preview('.gambar', this.files[0])" name="foto" accept=".jpg,.png">
+                                    onchange="preview('.gambar', this.files[0])" name="gambar" accept=".jpg,.png">
                                 <label class="custom-file-label" for="customFile">Choose file</label>
                                 <div style="font-size: 11px; line-height: 13px; font-style: Italic; margin-top: 5px; margin-bottom: 5px; text-align: left;"
                                     class="text-danger">
@@ -137,16 +126,16 @@
         </form>
     </div><!-- /.modal -->
     <!-- sample modal content -->
-    <div id="modal-update-akuntabilitas" class="modal fade" tabindex="-1" role="dialog"
-        aria-labelledby="modal-update-akuntabilitasLabel" aria-hidden="true">
-        <form action="{{ route('akuntabilitas_list.update') }}" method="post" id="form-update-akuntabilitas"
+    <div id="modal-update-renstra" class="modal fade" tabindex="-1" role="dialog"
+        aria-labelledby="modal-update-renstraLabel" aria-hidden="true">
+        <form action="{{ route('manajemen_renstra.update') }}" method="post" id="form-update-renstra"
             autocomplete="off">
             <input type="hidden" name="id" id="update-id">
             @method('PATCH')
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title mt-0" id="modal-update-panduanLabel">Form Edit Akuntabilitas</h5>
+                        <h5 class="modal-title mt-0" id="modal-update-renstraLabel">Form Renstra</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -184,17 +173,8 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="file">File PDF</label>
-                                    <div class="custom-file mb-3">
-                                        <input type="file" class="custom-file-input" id="file_edit" name="file"
-                                            accept=".pdf ">
-                                        <label class="custom-file-label" for="customFile">Choose file</label>
-                                        <div style="font-size: 11px; line-height: 13px; font-style: Italic; margin-top: 5px; margin-bottom: 5px; text-align: left;"
-                                            class="text-danger">
-                                            (Format PDF max 3.mb )
-                                        </div>
-
-                                    </div>
+                                    <label for="judul">Link</label>
+                                    <input type="text" class="form-control" id="link_edit" name="link">
                                 </div>
                             </div>
                         </div>
@@ -202,7 +182,7 @@
                             <label for="file">Cover</label>
                             <div class="custom-file mb-3">
                                 <input type="file" class="custom-file-input" id="gambar_edit" name="gambar"
-                                    accept=".jpg,.png" onchange="preview('.gambar', this.files[0])">
+                                    accept=".jpg,.png" onchange="preview('.cover', this.files[0])">
                                 <label class="custom-file-label" for="customFile">Choose file</label>
                                 <div style="font-size: 11px; line-height: 13px; font-style: Italic; margin-top: 5px; margin-bottom: 5px; text-align: left;"
                                     class="text-danger">
@@ -210,9 +190,7 @@
                                 </div>
 
                             </div>
-                            <div id="image_preview">
-                                
-                            </div>
+                            <div class="cover" id="gambar-preview"></div>
 
                         </div>
 
@@ -233,8 +211,6 @@
             </div>
         </form>
     </div>
-    {{--
-    @include('contents.akuntabilitas.update') --}}
 @endsection
 
 @push('scripts')
@@ -268,5 +244,5 @@
             }
         }
     </script>
-    <script src="{{ asset('js/page/akuntabilitas/list.js?q=' . Str::random(5)) }}"></script>
+    <script src="{{ asset('js/page/renstra/list.js?q=' . Str::random(5)) }}"></script>
 @endpush

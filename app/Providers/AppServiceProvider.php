@@ -32,6 +32,10 @@ class AppServiceProvider extends ServiceProvider
             $ref_sosmed = Sosmed::first();
             $view->with('ref_sosmed', $ref_sosmed);
         });
+        view()->composer('contents.Front.profil.kontak_kami', function ($view) {
+            $ref_sosmed = Sosmed::first();
+            $view->with('ref_sosmed', $ref_sosmed);
+        });
         view()->composer('layouts.front.footer', function ($view) {
             $todayCount = Pengunjung::whereDate('created_at', today())->count();
             $view->with('pengunjungHariIni', $todayCount);

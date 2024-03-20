@@ -70,6 +70,44 @@
                                 oninput="this.value = this.value.replace(/[^a-zA-Z0-9!%.,()\/'?\-\s]/g, '').replace(/(\..*?)\..*/g, '$1');"></textarea>
                         </div>
                         <div class="form-group">
+                            <ul class="list-unstyled" style="margin-bottom: 0px; margin-left: 0px;">
+                                <li class="d-inline-block mr-2">
+                                    <div class="custom-control custom-radio custom-radio-primary mb-3">
+                                        <input type="radio" id="jenis_link" name="jenis" class="custom-control-input"
+                                            value="link">
+                                        <label class="custom-control-label" for="jenis_link"> Link Video </label>
+                                    </div>
+                                </li>
+                                <li class="d-inline-block mr-2">
+                                    <div class="custom-control custom-radio custom-radio-success mb-3">
+                                        <input type="radio" id="jenis_video" name="jenis" class="custom-control-input"
+                                            value="video">
+                                        <label class="custom-control-label" for="jenis_video"> Upload Video </label>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="form-group row_link" style="display: none;">
+                            <label for="konten">Link Video</label>
+                            <input type="text" class="form-control" name="link_video" id="link_video"
+                                placeholder="Masukan Link Youtube">
+                        </div>
+                        <div class="form-group row_video" style="display: none;">
+                            <div class="form-group">
+                                <label for="video">Upload Video</label>
+                                <div class="custom-file mb-3">
+                                    <input type="file" class="custom-file-input" name="video" id="video"
+                                        accept="video/*">
+                                    <label class="custom-file-label" for="video">Pilih Video</label>
+                                </div>
+                                <small id="videoHelpBlock" class="form-text text-muted">
+                                    Hanya file video yang diizinkan (.mp4, .avi, .mkv, dll.).
+                                </small>
+                            </div>
+
+                        </div>
+                        <div class="form-group">
                             <label for="form_foto">Gambar cerita</label>
                             <div class="custom-file mb-3">
                                 <input type="file" class="custom-file-input" name="foto" id="customFile"
@@ -118,6 +156,43 @@
                             <label for="update-judul">Judul cerita</label>
                             <textarea class="form-control" placeholder="Judul cerita" name="judul" id="update-judul"
                                 oninput="this.value = this.value.replace(/[^a-zA-Z0-9!%.,()\/'?\-\s]/g, '').replace(/(\..*?)\..*/g, '$1');"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <ul class="list-unstyled" style="margin-bottom: 0px; margin-left: 0px;">
+                                <li class="d-inline-block mr-2">
+                                    <div class="custom-control custom-radio custom-radio-primary mb-3">
+                                        <input type="radio" id="jenis_link_edit" name="jenis"
+                                            class="custom-control-input" value="link">
+                                        <label class="custom-control-label" for="jenis_link"> Link </label>
+                                    </div>
+                                </li>
+                                <li class="d-inline-block mr-2">
+                                    <div class="custom-control custom-radio custom-radio-success mb-3">
+                                        <input type="radio" id="jenis_video_edit" name="jenis"
+                                            class="custom-control-input" value="video">
+                                        <label class="custom-control-label" for="jenis_video"> Upload Video </label>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="form-group row_link"style="display: none;">
+                            <label for="update-konten">Link Video</label>
+                            <input type="text" class="form-control" placeholder="Link Video" name="link_video"
+                                id="update-link_video"></input>
+                        </div>
+                        <div class="form-group row_video" style="display: none;">
+                            <div class="form-group">
+                                <label for="video">Upload Video</label>
+                                <div class="custom-file mb-3">
+                                    <input type="file" class="custom-file-input" name="video" id="video-update"
+                                        accept="video/*">
+                                    <label class="custom-file-label" for="video">Pilih Video</label>
+                                </div>
+                                <small id="videoHelpBlock" class="form-text text-muted">
+                                    Hanya file video yang diizinkan (.mp4, .avi, .mkv, dll.).
+                                </small>
+                            </div>
+
                         </div>
                         <div class="form-group">
                             <label for="updateCustomFile">Gambar cerita</label>
@@ -191,6 +266,7 @@
         $(document).ready(function() {
             $('#konten').summernote();
         });
+      z
     </script>
     <script src="{{ asset('js/page/cerita/list.js?q=' . Str::random(5)) }}"></script>
 @endpush

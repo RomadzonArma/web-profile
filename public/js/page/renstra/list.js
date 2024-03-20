@@ -7,7 +7,7 @@ $(() => {
         var id = $(this).data("id");
         var value = $(this).prop("checked") ? 1 : 0;
 
-        $.post(BASE_URL + "akuntabilitas_list/switch", {
+        $.post(BASE_URL + "manajemen_renstra/switch", {
             id,
             value,
             _method: "PATCH",
@@ -50,7 +50,7 @@ $(() => {
             cancelButtonText: "Batal",
         }).then((result) => {
             if (result.isConfirmed) {
-                $.post(BASE_URL + "akuntabilitas_list/delete", {
+                $.post(BASE_URL + "manajemen_renstra/delete", {
                     id,
                     _method: "DELETE",
                 })
@@ -74,7 +74,7 @@ $(() => {
         });
     });
 
-    $("#form-update-akuntabilitas").on("submit", function (e) {
+    $("#form-update-renstra").on("submit", function (e) {
         e.preventDefault();
 
         var data = new FormData(this);
@@ -106,7 +106,7 @@ $(() => {
                     showConfirmButton: false,
                     timer: 2000,
                 });
-                window.location.href = BASE_URL + "akuntabilitas_list";
+                window.location.href = BASE_URL + "manajemen_renstra";
             },
             error: ({ status, responseJSON }) => {
                 if (status == 422) {
@@ -126,10 +126,10 @@ $(() => {
     $("#table-data").on("click", ".btn-update", function () {
         let data = table.row($(this).closest("tr")).data();
 
-        $("#form-update-akuntabilitas")[0].reset();
+        $("#form-update-renstra")[0].reset();
         clearErrorMessage();
 
-        let { id, judul, foto, link, id_kategori, tag, konten, file } = data;
+        let { id, judul, gambar, link, id_kategori, tag, konten } = data;
         var sanitizedContent = sanitizeHtml(konten);
 
         $("#update-id").val(id);
@@ -138,27 +138,24 @@ $(() => {
 
         $("#konten_edit").summernote({
             height: 300,
-            color: "black",
+            color: "balck",
         });
 
         $("#konten_edit").summernote("code", sanitizedContent);
 
         $("#tag_edit").val(tag);
-        // $("#link_edit").val(link);
-        // $("#file_edit").val(file);
-        $("#image_preview").html(
+        $("#link_edit").val(link);
+        $("#gambar-preview").html(
             '<img src="' +
                 asset_url +
-                "akuntabilitas/gambar-Akuntabilitas/" +
-                foto +
+                "gambar-renstra/" +
+                gambar +
                 '" alt="oto" style="width: 200px;">'
         );
-
-
-        $("#modal-update-akuntabilitas").modal("show");
+        $("#modal-update-renstra").modal("show");
     });
 
-    $("#form-akuntabilitas").on("submit", function (e) {
+    $("#form-renstra").on("submit", function (e) {
         e.preventDefault();
 
         var data = new FormData(this);
@@ -183,7 +180,7 @@ $(() => {
             },
             success: (res) => {
                 console.log(res);
-                window.location.href = BASE_URL + "akuntabilitas_list";
+                window.location.href = BASE_URL + "manajemen_renstra";
                 Swal.fire({
                     icon: "success",
                     title: "Berhasil Menyimpan data!",
@@ -204,10 +201,10 @@ $(() => {
     });
 
     $(".btn-tambah").on("click", function () {
-        $("#form-akuntabilitas")[0].reset();
+        $("#form-renstra")[0].reset();
         clearErrorMessage();
 
-        $("#modal-akuntabilitas").modal("show");
+        $("#modal-renstra").modal("show");
     });
 
     table = $("#table-data").DataTable({
@@ -215,11 +212,11 @@ $(() => {
         serverSide: true,
         processing: true,
         ajax: {
-            url: BASE_URL + "akuntabilitas_list/data",
+            url: BASE_URL + "manajemen_renstra/data",
             type: "get",
             dataType: "json",
         },
-        order: [[6, "desc"]],
+        order: [[5, "desc"]],
         columnDefs: [
             {
                 targets: [0, 4],
@@ -248,7 +245,7 @@ $(() => {
                 data: "jumlah_lihat",
             },
             {
-                data: "is_active",
+                data: "status_publish",
                 render: (data, type, row) => {
                     return `
                     <div class="custom-control custom-switch mb-3" dir="ltr">
