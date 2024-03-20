@@ -59,4 +59,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Model\Agenda');
     }
+
+    public function faq()
+    {
+        return $this->hasMany('App\Model\Faq');
+    }
 }

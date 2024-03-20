@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\PraktikBaik;
+use App\Model\CeritaBaik;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -19,7 +19,7 @@ class CeritaController extends Controller
 
     public function data()
     {
-        $data = PraktikBaik::orderBy('id', 'desc')
+        $data = CeritaBaik::orderBy('id', 'desc')
             ->get();
         return DataTables::of($data)->addIndexColumn()->make(true);
     }
@@ -50,7 +50,7 @@ class CeritaController extends Controller
             }
             $data['created_at'] = date('Y-m-d H:i:s');
             $data['created_id'] = Auth::user()->id;
-            PraktikBaik::insert($data);
+            CeritaBaik::insert($data);
 
             return response()->json(['status' => true], 200);
         } catch (\Exception $e) {
@@ -61,7 +61,7 @@ class CeritaController extends Controller
     public function update(Request $request)
     {
         try {
-            $cerita = PraktikBaik::find($request->id);
+            $cerita = CeritaBaik::find($request->id);
             if ($request->hasFile('foto')) {
                 $file = $request->file('foto');
                 $name = time() . '_' . $file->getClientOriginalName();
@@ -106,7 +106,7 @@ class CeritaController extends Controller
     public function switchStatus(Request $request)
     {
         try {
-            $cerita = PraktikBaik::find($request->id);
+            $cerita = CeritaBaik::find($request->id);
 
             $cerita->is_active = $request->value;
 
@@ -125,7 +125,7 @@ class CeritaController extends Controller
     public function delete(Request $request)
     {
         try {
-            $swiper = PraktikBaik::find($request->id);
+            $swiper = CeritaBaik::find($request->id);
 
             $swiper->delete();
 

@@ -5,22 +5,24 @@ namespace App\Model;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class PraktikBaik extends Model
+class Berprestasi extends Model
 {
     use SoftDeletes;
 
-    protected $table = 'praktik_baik';
+    protected $table = 'kspstk_berprestasi';
     protected $primaryKey = 'id';
 
     protected $fillable = [
         'judul',
-        'link_video',
-        'video',
+        'desc',
+        'link',
         'foto',
+        'video',
         'is_active',
+        'urutan',
     ];
+
     protected $casts = [
         'created_at' => 'datetime'
     ];
-
 }

@@ -100,6 +100,14 @@ class RouteServiceProvider extends ServiceProvider
             $this->mapZiWbkRoutes();
 
             $this->mapCerita();
+
+            $this->mapBerprestasi();
+
+            $this->mapFAQ();
+
+            $this->mapPraktik();
+
+            $this->mapRenstraRoutes();
         });
     }
 
@@ -310,5 +318,33 @@ class RouteServiceProvider extends ServiceProvider
         Route::prefix('cerita-praktik-baik')
             ->namespace($this->namespace)
             ->group(base_path('routes/panel/cerita.php'));
+    }
+
+    protected function mapBerprestasi()
+    {
+        Route::prefix('kspstk-berprestasi')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/panel/berprestasi.php'));
+    }
+
+    protected function mapFAQ()
+    {
+        Route::prefix('faq')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/panel/faq.php'));
+    }
+
+    protected function mapPraktik()
+    {
+        Route::prefix('praktik_baik')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/panel/praktik.php'));
+    }
+
+    protected function mapRenstraRoutes()
+    {
+        Route::prefix('manajemen_renstra')
+        ->namespace($this->namespace)
+        ->group(base_path('routes/panel/renstra.php'));
     }
 }
