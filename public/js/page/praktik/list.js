@@ -1,5 +1,32 @@
 let table;
 $(() => {
+
+    $('input[name=jenis]').on('change', function () {
+        var val = $('input[name=jenis]:checked').val();
+        if (val == 'link') {
+            $('.row_link').css('display', 'block');
+            $('.row_video').css('display', 'none');
+        } else if (val == 'video') {
+            $('.row_link').css('display', 'none');
+            $('.row_video').css('display', 'block');
+        }
+    });
+
+    $('input[name=jenis-edit]').on('change', function () {
+        // Get the value of the checked radio button
+        var val = $('input[name=jenis-edit]:checked').val();
+        // Show/hide divs based on the selected value
+        if (val == 'link') {
+            $('.row_link').css('display', 'block');
+            $('.row_video').css('display', 'none');
+        } else if (val == 'video') {
+            $('.row_link').css('display', 'none');
+            $('.row_video').css('display', 'block'); // Corrected class name
+        }
+    });
+
+
+
     $('#table-data').on('click', '.btn-delete', function () {
         let data = table.row($(this).closest('tr')).data();
 
@@ -107,6 +134,33 @@ $(() => {
         })
     })
 
+    // $('#table-data').on('click', '.btn-update', function () {
+    //     var tr = $(this).closest('tr');
+    //     var data = table.row(tr).data();
+
+    //     clearErrorMessage();
+    //     $('#form-praktik-update')[0].reset();
+
+    //     $.each(data, (key, value) => {
+    //         $('#update-' + key).val(value);
+    //     })
+    //     $('#foto').html('<img src="' + '' + data.foto + '" style="height: 100px; margin-top: 10px;">');
+
+    //     if (data.video !== null && data.video !== '') {
+    //         $('#updateManualCheckbox').prop('checked', true);
+    //         $('#updateLinkGroup').hide();
+    //         $('#updateVideoGroup').show();
+
+    //         $('#btn-open-video').show();
+    //     } else {
+    //         $('#updateManualCheckbox').prop('checked', false);
+    //         $('#updateLinkGroup').show();
+    //         $('#updateVideoGroup').hide();
+
+    //         $('#btn-open-video').hide();
+    //     }
+    //     $('#modal-praktik-update').modal('show');
+    // })
     $('#table-data').on('click', '.btn-update', function () {
         var tr = $(this).closest('tr');
         var data = table.row(tr).data();
@@ -117,9 +171,21 @@ $(() => {
         $.each(data, (key, value) => {
             $('#update-' + key).val(value);
         })
+        $('#foto').html('<img src="' + '' + data.foto + '" style="height: 100px; margin-top: 10px;">');
+
+        // Periksa apakah data link terisi
+        if (data.link_video !== null && data.link_video !== '') {
+            $('.row_link').css('display', 'block');
+            $('.row_video').css('display', 'none');
+        } else {
+            $('.row_link').css('display', 'none');
+            $('.row_video').css('display', 'block');
+        }
 
         $('#modal-praktik-update').modal('show');
     })
+
+
 
     $('#form-praktik').on('submit', function (e) {
         e.preventDefault();

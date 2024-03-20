@@ -15,6 +15,12 @@ class PraktikBaik extends Model
     protected $fillable = [
         'judul',
         'link_video',
+        'video',
+        'foto',
+        'is_active',
+    ];
+    protected $casts = [
+        'created_at' => 'datetime'
     ];
 
 }

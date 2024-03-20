@@ -50,7 +50,7 @@
         </div>
         <div class="entry-title">
             <h6 class="mb-1"><a href="#"># {{ $artikel->tag }}</a></h6>
-            <h6 class="mb-1"><a href="#"># {{ $artikel->link }}</a></h6>
+            {{-- <h6 class="mb-1"><a href="#"># {{ $artikel->link }}</a></h6> --}}
         </div>
         {{-- <div class="row">
             <div class="col-xl-10">
