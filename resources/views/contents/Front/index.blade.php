@@ -40,14 +40,14 @@
                         <div class="tabs mt-4 mb-md-0" id="tab-3">
 
                             <ul class="tab-nav tab-nav2">
-                                <li><a href="#video-praktik-baik">Video Praktik Baik</a></li>
+                                <li><a href="#praktik-baik">Praktik Baik GP</a></li>
                                 <li><a href="#ksps-berprestasi">KSPSTK Berprestasi</a></li>
-                                <li><a href="#praktik-baik">Cerita Praktik Baik</a></li>
+                                <li><a href="#karya-kspstk">Karya KSPSTK</a></li>
                             </ul>
 
                             <div class="tab-container">
 
-                                <div class="tab-content" id="video-praktik-baik">
+                                <div class="tab-content" id="praktik-baik">
                                     <div class="swiper swiper-4">
                                         <div class="swiper-wrapper">
                                             @foreach ($praktik_baik as $item)
@@ -210,12 +210,42 @@
                                     @endforeach
 
                                 </div>
-
                             </div>
-
                         </div>
-
                     </div>
+                    {{-- <div class="modal fade modal-artikel" tabindex="-1" aria-modal="true" role="dialog">
+                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                            <div class="modal-content overflow-hidden">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Pengembangan Bukti Baik Karya KSPSTK Nusantara</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <img src="{{ asset('assets-front/img/karya-kspstk-nusantara.jpg') }}" alt="">
+                                        </div>
+                                        <div class="col-md-9">
+                                            <div class="artikel-content">
+                                                <div class="entry-meta mb-2 mt-0">
+                                                    <ul>
+                                                        <li><a href="#"><i class="icon-calendar3"></i>19 Maret 2024</a>
+                                                        </li>
+                                                        <li><a href="#"><i class="icon-user1"></i> Admin KSPTK</a></li>
+                                                        <li><a href="#"><i class="icon-line-folder"></i> Karya KSPSTK</a></li>
+                                                        <li><a href="#"><i class="icon-line-eye"></i>10 Dilihat</a></li>
+                                                    </ul>
+                                                </div>
+                                                <p class="mb-0">
+                                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque quidem, velit ullam dignissimos quia unde sunt? Sapiente, quaerat illum exercitationem commodi ducimus asperiores. Veritatis, possimus ad sint natus deserunt doloremque ab repellendus corporis, culpa delectus quia quidem laboriosam laborum rem repudiandae ullam eaque itaque perferendis animi. Laboriosam beatae vel eos.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> --}}
                     <div class="col-lg-4 col-md-5 col-12 mb-lg-0 mb-4">
 
                         {{-- BERITA --}}

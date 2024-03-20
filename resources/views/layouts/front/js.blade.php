@@ -104,6 +104,7 @@
         // loop: true,
         slidesPerView: 1,
         spaceBetween: 30,
+        centeredSlides: true,
         speed: 1000,
         breakpoints: {
             768: {
