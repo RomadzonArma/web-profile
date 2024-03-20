@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Model\Faq;
 use Illuminate\Http\Request;
+use App\Mail\JawabanPertanyaanEmail;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Facades\Validator;
 
 class FaqController extends Controller
 {
@@ -54,7 +57,31 @@ class FaqController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validasi = Validator::make($request->all(), [
+            'nama' => 'required',
+            'email' => 'required ',
+            'pertanyaan' => 'required ',
+        ], [
+            'nama.required' => 'Nama wajib diisi',
+            'email.required' => 'Email tautan wajib diisi',
+            'pertanyaan.required' => 'Pertanyaan tautan wajib diisi',
+
+
+        ]);
+
+        if ($validasi->fails()) {
+            return response()->json(['erorrs' => $validasi->errors()]);
+        } else {
+
+            $data = [
+                'nama' => $request->nama,
+                'email' => $request->email,
+                'pertanyaan' => $request->pertanyaan,
+                'tgl_pertanyaan' => now(),
+            ];
+            Faq::create($data);
+            return response()->json(['status' => true], 200);
+        }
     }
 
     /**
@@ -99,6 +126,28 @@ class FaqController extends Controller
         ];
 
         Faq::where('id', $id)->update($data);
+
+
+        // Mengambil data pertanyaan
+        // $faq = Faq::find($id);
+
+        // // Memeriksa apakah pertanyaan ditemukan
+        // if ($faq) {
+        //     // Memeriksa apakah ada pengguna terkait dengan pertanyaan
+        //     $user = $faq->user;
+        //     if ($user) {
+        //         // Kirim email jawaban
+        //         $email = new JawabanPertanyaanEmail($faq, $user);
+        //         Mail::to($user->email)->send($email);
+        //     } else {
+        //         // Tindakan jika pengguna tidak ditemukan
+        //         // Misalnya, log pesan kesalahan atau tindakan lain yang sesuai
+        //     }
+        // } else {
+        //     // Tindakan jika pertanyaan tidak ditemukan
+        //     // Misalnya, log pesan kesalahan atau tindakan lain yang sesuai
+        // }
+
         return response()->json(['status' => true], 200);
     }
 

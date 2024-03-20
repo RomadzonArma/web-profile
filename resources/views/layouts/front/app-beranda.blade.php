@@ -39,17 +39,18 @@
     <div class="faq-wrapper">
         <h5 class="text-primary mb-2">FAQ!</h5>
         {{-- <img src="{{ asset('assets-front/img/ksps_faq.png') }}" alt="faq" class="img-fluid"> --}}
-        <form class="mb-0" action="">
+        <form class="mb-0" action="{{ route('faq.store') }}" method="post" name="form-store" id="form-store">
+            @csrf
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="Nama">
+                <input type="text" class="form-control" id="nama" name="nama"  placeholder="Nama ">
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="Email">
+                <input type="text" class="form-control" id="email" name="email"  placeholder="Email">
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="Tulis pertanyaan anda...">
+                <input type="text" class="form-control" id="pertanyaan" name="pertanyaan"  placeholder="Tulis pertanyaan anda...">
             </div>
-            <button class="btn btn-primary">Kirim</button>
+            <button  type="submit" class="btn btn-primary btn-simpan">Kirim</button>
         </form>
     </div>
 
