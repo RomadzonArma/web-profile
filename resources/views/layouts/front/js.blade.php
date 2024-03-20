@@ -148,4 +148,49 @@
             prevEl: '.swiper-widget .swiper-button-prev',
         },
     });
+
+    $('#faq').on('shown.bs.modal', function(e) {
+        $("#form-store").trigger('reset');
+    });
+
+    $("#form-store").submit(function(e) {
+        e.preventDefault();
+        let formData = new FormData(this);
+        let url = $(this).attr("action");
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: formData,
+            dataType: "JSON",
+            processData: false,
+            contentType: false,
+            cache: false,
+            beforeSend: function() {
+
+            },
+            success: function(response) {
+
+                if (response.status == true) {
+                    // Tutup modal
+                    $('#faq').modal('hide');
+                    // Reset formulir
+                    $("#form-store").trigger('reset');
+                    // Redirect ke halaman utama
+                    window.location.href = BASE_URL + '/';
+                } else {
+                    toastr.error("Periksa Inputan Anda", {
+                        timeOut: 2000,
+                        fadeOut: 2000,
+                    });
+                }
+            },
+            error: function(xhr, status, error) {
+
+                toastr.error("Ada inputan yang belum terisi", "Gagal", {
+                    timeOut: 2000,
+                    fadeOut: 2000,
+                });
+            }
+        });
+    });
 </script>

@@ -2,11 +2,6 @@ let table;
 $(() => {
 
 
-    // $('#jawaban').summernote({
-    //     height: 250,
-    // });
-
-
 
     $('#table-data').on('click', '.btn-delete', function () {
         let data = table.row($(this).closest('tr')).data();
