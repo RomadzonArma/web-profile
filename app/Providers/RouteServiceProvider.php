@@ -103,6 +103,8 @@ class RouteServiceProvider extends ServiceProvider
 
             $this->mapBerprestasi();
 
+            $this->mapFAQ();
+
             $this->mapPraktik();
         });
     }
@@ -322,6 +324,14 @@ class RouteServiceProvider extends ServiceProvider
             ->namespace($this->namespace)
             ->group(base_path('routes/panel/berprestasi.php'));
     }
+
+    protected function mapFAQ()
+    {
+        Route::prefix('faq')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/panel/faq.php'));
+    }
+
     protected function mapPraktik()
     {
         Route::prefix('praktik_baik')
