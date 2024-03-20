@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @php
-    $plugins = ['datatable', 'swal', 'select2'];
+    $plugins = ['datatable', 'editor', 'swal', 'select2'];
 @endphp
 @push('styles')
     <style>
@@ -70,10 +70,6 @@
                                 oninput="this.value = this.value.replace(/[^a-zA-Z0-9!%.,()\/'?\-\s]/g, '').replace(/(\..*?)\..*/g, '$1');"></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="konten">Isi</label>
-                            <textarea class="form-control" placeholder="Isi Cerita" name="konten" id="konten"></textarea>
-                        </div>
-                        <div class="form-group">
                             <label for="form_foto">Gambar cerita</label>
                             <div class="custom-file mb-3">
                                 <input type="file" class="custom-file-input" name="foto" id="customFile"
@@ -82,6 +78,11 @@
                             </div>
                             <div id="imagePreview" class="mt-3"></div>
                         </div>
+                        <div class="form-group">
+                            <label for="konten">Isi</label>
+                            <textarea class="form-control" placeholder="Isi Cerita" name="konten" id="konten"></textarea>
+                        </div>
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">
@@ -119,10 +120,6 @@
                                 oninput="this.value = this.value.replace(/[^a-zA-Z0-9!%.,()\/'?\-\s]/g, '').replace(/(\..*?)\..*/g, '$1');"></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="update-konten">Isi</label>
-                            <textarea class="form-control" placeholder="Isi" name="konten" id="update-konten"></textarea>
-                        </div>
-                        <div class="form-group">
                             <label for="updateCustomFile">Gambar cerita</label>
                             <div class="custom-file mb-3">
                                 <input type="file" class="custom-file-input" name="foto" id="updateCustomFile"
@@ -132,6 +129,11 @@
                             <div id="updateImagePreview" class="mt-3"></div>
                             <div id="foto"></div>
                         </div>
+                        <div class="form-group">
+                            <label for="update-konten">Isi</label>
+                            <textarea class="form-control" placeholder="Isi" name="konten" id="update-konten"></textarea>
+                        </div>
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Batal</button>
@@ -179,6 +181,15 @@
         $('#modal-cerita-update').on('hidden.bs.modal', function() {
             var imagePreview = document.getElementById("updateImagePreview");
             imagePreview.innerHTML = '';
+        });
+        $(document).ready(function() {
+            $('#update-konten').summernote({
+                height: 300,
+                color: 'black',
+            });
+        });
+        $(document).ready(function() {
+            $('#konten').summernote();
         });
     </script>
     <script src="{{ asset('js/page/cerita/list.js?q=' . Str::random(5)) }}"></script>

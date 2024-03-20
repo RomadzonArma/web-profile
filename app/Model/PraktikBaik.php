@@ -18,6 +18,7 @@ class PraktikBaik extends Model
         'video',
         'foto',
         'is_active',
+        'konten',
     ];
     protected $casts = [
         'created_at' => 'datetime'

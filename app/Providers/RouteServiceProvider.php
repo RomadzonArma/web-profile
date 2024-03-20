@@ -104,6 +104,8 @@ class RouteServiceProvider extends ServiceProvider
             $this->mapBerprestasi();
 
             $this->mapPraktik();
+
+            $this->mapAkuntabilitas();
         });
     }
 
@@ -327,5 +329,11 @@ class RouteServiceProvider extends ServiceProvider
         Route::prefix('praktik_baik')
             ->namespace($this->namespace)
             ->group(base_path('routes/panel/praktik.php'));
+    }
+    protected function mapAkuntabilitas()
+    {
+        Route::prefix('akuntabilitas_list')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/panel/akuntabilitas.php'));
     }
 }
