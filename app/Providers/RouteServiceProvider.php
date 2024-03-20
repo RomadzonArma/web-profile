@@ -102,6 +102,8 @@ class RouteServiceProvider extends ServiceProvider
             $this->mapCerita();
 
             $this->mapBerprestasi();
+
+            $this->mapFAQ();
         });
     }
 
@@ -319,5 +321,12 @@ class RouteServiceProvider extends ServiceProvider
         Route::prefix('kspstk-berprestasi')
             ->namespace($this->namespace)
             ->group(base_path('routes/panel/berprestasi.php'));
+    }
+
+    protected function mapFAQ()
+    {
+        Route::prefix('faq')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/panel/faq.php'));
     }
 }
