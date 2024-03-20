@@ -104,6 +104,8 @@ class RouteServiceProvider extends ServiceProvider
             $this->mapBerprestasi();
 
             $this->mapPraktik();
+
+            $this->mapRenstraRoutes();
         });
     }
 
@@ -327,5 +329,12 @@ class RouteServiceProvider extends ServiceProvider
         Route::prefix('praktik_baik')
             ->namespace($this->namespace)
             ->group(base_path('routes/panel/praktik.php'));
+    }
+
+    protected function mapRenstraRoutes()
+    {
+        Route::prefix('manajemen_renstra')
+        ->namespace($this->namespace)
+        ->group(base_path('routes/panel/renstra.php'));
     }
 }
