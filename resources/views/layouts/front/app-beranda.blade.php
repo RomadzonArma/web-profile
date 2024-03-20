@@ -62,9 +62,9 @@
                 </div>
                 <div class="modal-body py-0 my-3">
                     @foreach ($podcast as $podcast)
-                        <div class="entry mb-5">
+                        <div class="entry mb-0">
                             <div class="grid-inner row no-gutters p-0">
-                                <div class="entry-image col-3 mb-0">
+                                <div class="entry-image col-3">
                                     <a href="{{$podcast->link_podcast}}">
                                         <img src="{{ asset('podcast/' . $podcast->gambar) }}" alt="thumbnail_podcast">
                                     </a>
