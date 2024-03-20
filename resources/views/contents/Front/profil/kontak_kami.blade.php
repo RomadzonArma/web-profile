@@ -34,19 +34,19 @@
                 <div class="col-12">
                     <h6 class="text-dark">Media Sosial :</h6>
                     <div class="d-flex align-items-center">
-                        <a href="" class="social-icon social-icon-2xl si-facebook si-secondary mr-2" target="_blank">
+                        <a href="{{ $ref_sosmed->facebook }}" class="social-icon social-icon-2xl si-facebook si-secondary mr-2" target="_blank">
                             <i class="icon-facebook"></i>
                             <i class="icon-facebook"></i>
                         </a>
-                        <a href="" class="social-icon social-icon-2xl si-twitter si-secondary mr-2" target="_blank">
+                        <a href="{{ $ref_sosmed->twitter }}" class="social-icon social-icon-2xl si-twitter si-secondary mr-2" target="_blank">
                             <i class="icon-twitter"></i>
                             <i class="icon-twitter"></i>
                         </a>
-                        <a href="" class="social-icon social-icon-2xl si-instagram si-secondary mr-2" target="_blank">
+                        <a href="{{ $ref_sosmed->instagram }}" class="social-icon social-icon-2xl si-instagram si-secondary mr-2" target="_blank">
                             <i class="icon-instagram"></i>
                             <i class="icon-instagram"></i>
                         </a>
-                        <a href="" class="social-icon social-icon-2xl si-youtube si-secondary mr-2" target="_blank">
+                        <a href="{{ $ref_sosmed->youtube }}" class="social-icon social-icon-2xl si-youtube si-secondary mr-2" target="_blank">
                             <i class="icon-youtube"></i>
                             <i class="icon-youtube"></i>
                         </a>
