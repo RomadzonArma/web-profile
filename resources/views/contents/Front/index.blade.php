@@ -50,28 +50,49 @@
                                 <div class="tab-content" id="video-praktik-baik">
                                     <div class="swiper swiper-4">
                                         <div class="swiper-wrapper">
-                                            <div class="swiper-slide">
-                                                <a class="position-relative d-block lightbox-img"
-                                                    href="https://www.youtube.com/watch?v=ogwpNKOwGlE"
-                                                    data-lightbox="iframe">
-                                                    <img src="https://penggerak-simpkb.s3.ap-southeast-1.amazonaws.com/portal-gurupenggerak/THUMBNAIL-LABUANBAJO-Rev-01-1-scaled.jpg" class="img-fluid" width="380" alt="Video"
-                                                        draggable="false">
-                                                    <div class="bg-overlay">
-                                                        <div class="bg-overlay-content dark">
-                                                            <h6 class="text-white mb-0" data-hover-animate="fadeIn">Kepala Sekolah, GP Angkatan 1, Kab. Manggarai Barat, NTT</h6>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                            <div class="swiper-slide">
+                                            @foreach ($praktik_baik as $item)
+                                                <div class="swiper-slide">
+                                                    @if (!empty($item->link_video))
+                                                            <a class="position-relative d-block lightbox-img"
+                                                                href="https://www.youtube.com/watch?v={{ $item->link_video}}"
+                                                                data-lightbox="iframe">
+                                                                <img src="{{ asset($item->foto) }}" class="img-fluid"
+                                                                    width="380" alt="Video" draggable="false">
+                                                                <div class="bg-overlay">
+                                                                    <div class="bg-overlay-content dark">
+                                                                        <h6 class="text-white mb-0"
+                                                                            data-hover-animate="fadeIn">
+                                                                            {{ $item->judul }}
+                                                                        </h6>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                    @elseif (!empty($item->video))
+                                                        <a class="position-relative d-block lightbox-img"
+                                                            href="{{ asset($item->video) }}" data-lightbox="iframe">
+                                                            <img src="{{ asset($item->foto) }}" class="img-fluid"
+                                                                width="380" alt="Video" draggable="false">
+                                                            <div class="bg-overlay">
+                                                                <div class="bg-overlay-content dark">
+                                                                    <h6 class="text-white mb-0" data-hover-animate="fadeIn">
+                                                                        {{ $item->judul }}</h6>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    @endif
+                                                </div>
+                                            @endforeach
+
+                                            {{-- <div class="swiper-slide">
                                                 <a class="position-relative d-block lightbox-img"
                                                     href="https://www.youtube.com/watch?v=XaGB9hU-HnQ"
                                                     data-lightbox="iframe">
-                                                    <img src="https://penggerak-simpkb.s3.ap-southeast-1.amazonaws.com/portal-gurupenggerak/Screen-Shot-2022-12-19-at-12.57.07.jpg" class="img-fluid" width="380" alt="Video"
-                                                        draggable="false">
+                                                    <img src="https://penggerak-simpkb.s3.ap-southeast-1.amazonaws.com/portal-gurupenggerak/Screen-Shot-2022-12-19-at-12.57.07.jpg"
+                                                        class="img-fluid" width="380" alt="Video" draggable="false">
                                                     <div class="bg-overlay">
                                                         <div class="bg-overlay-content dark">
-                                                            <h6 class="text-white mb-0" data-hover-animate="fadeIn">Kepala Sekolah, GP Angkatan 1, Kab. Manggarai Barat, NTT</h6>
+                                                            <h6 class="text-white mb-0" data-hover-animate="fadeIn">Kepala
+                                                                Sekolah, GP Angkatan 1, Kab. Manggarai Barat, NTT</h6>
                                                         </div>
                                                     </div>
                                                 </a>
@@ -80,11 +101,12 @@
                                                 <a class="position-relative d-block lightbox-img"
                                                     href="https://www.youtube.com/watch?v=EQIv-2kawZ8"
                                                     data-lightbox="iframe">
-                                                    <img src="https://penggerak-simpkb.s3.ap-southeast-1.amazonaws.com/portal-gurupenggerak/Screen-Shot-2022-12-19-at-13.08.52.png" class="img-fluid" width="380" alt="Video"
-                                                        draggable="false">
+                                                    <img src="https://penggerak-simpkb.s3.ap-southeast-1.amazonaws.com/portal-gurupenggerak/Screen-Shot-2022-12-19-at-13.08.52.png"
+                                                        class="img-fluid" width="380" alt="Video" draggable="false">
                                                     <div class="bg-overlay">
                                                         <div class="bg-overlay-content dark">
-                                                            <h6 class="text-white mb-0" data-hover-animate="fadeIn">Kepala Sekolah, GP Angkatan 1, Kab. Manggarai Barat, NTT</h6>
+                                                            <h6 class="text-white mb-0" data-hover-animate="fadeIn">Kepala
+                                                                Sekolah, GP Angkatan 1, Kab. Manggarai Barat, NTT</h6>
                                                         </div>
                                                     </div>
                                                 </a>
@@ -93,46 +115,52 @@
                                                 <a class="position-relative d-block lightbox-img"
                                                     href="https://www.youtube.com/watch?v=EBu93bAq8rQ"
                                                     data-lightbox="iframe">
-                                                    <img src="https://sekolah.penggerak.kemdikbud.go.id/gurupenggerak/wp-content/uploads/2021/07/Testimoni_Taufik-Hidayat.jpg" class="img-fluid" width="380" alt="Video"
-                                                        draggable="false">
+                                                    <img src="https://sekolah.penggerak.kemdikbud.go.id/gurupenggerak/wp-content/uploads/2021/07/Testimoni_Taufik-Hidayat.jpg"
+                                                        class="img-fluid" width="380" alt="Video" draggable="false">
                                                     <div class="bg-overlay">
                                                         <div class="bg-overlay-content dark">
-                                                            <h6 class="text-white mb-0" data-hover-animate="fadeIn">Pengajar Praktik PGP Angkatan 1 Kota Binjai, Sumatera Utara</h6>
+                                                            <h6 class="text-white mb-0" data-hover-animate="fadeIn">Pengajar
+                                                                Praktik PGP Angkatan 1 Kota Binjai, Sumatera Utara</h6>
                                                         </div>
                                                     </div>
                                                 </a>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                         <div class="swiper-button-prev"></div>
                                         <div class="swiper-button-next"></div>
                                     </div>
-                                    <p class="text-muted mt-3 mb-0">120 Jumlah Video</p>
+                                    <p class="text-muted mt-3 mb-0">{{ count($praktik_baik)}} Jumlah Video</p>
                                 </div>
                                 <div class="tab-content" id="ksps-berprestasi">
                                     <div class="swiper swiper-4">
                                         <div class="swiper-wrapper">
+                                            @foreach ($berprestasi as $item)
                                             <div class="swiper-slide">
                                                 <a class="position-relative d-block lightbox-img"
-                                                    href="https://www.youtube.com/watch?v=rQzEftiRUSs"
+                                                    href="https://www.youtube.com/watch?v={{$item->link}}"
                                                     data-lightbox="iframe">
-                                                    <img src="{{ asset('assets-front/img/apresiasi-ksps-2022.jpg') }}" class="img-fluid" width="380" alt="Video"
-                                                        draggable="false">
+                                                    <img src="{{ asset($item->foto) }}"
+                                                        class="img-fluid" width="380" alt="Video" draggable="false">
                                                     <div class="bg-overlay">
                                                         <div class="bg-overlay-content dark">
-                                                            <h6 class="text-white mb-0" data-hover-animate="fadeIn">Apresiasi 10 Besar Kepala Sekolah dan Pengawas Sekolah Inspiratif 2022 HGN 2022</h6>
+                                                            <h6 class="text-white mb-0" data-hover-animate="fadeIn">
+                                                               {{$item->judul}}</h6>
                                                         </div>
                                                     </div>
                                                 </a>
                                             </div>
-                                            <div class="swiper-slide">
+                                            @endforeach
+
+                                            {{-- <div class="swiper-slide">
                                                 <a class="position-relative d-block lightbox-img"
                                                     href="https://www.youtube.com/watch?v=i0FreFwBKnw"
                                                     data-lightbox="iframe">
-                                                    <img src="{{ asset('assets-front/img/podcast-apresiasi-ksps.jpg') }}" class="img-fluid" width="380" alt="Video"
-                                                        draggable="false">
+                                                    <img src="{{ asset('assets-front/img/podcast-apresiasi-ksps.jpg') }}"
+                                                        class="img-fluid" width="380" alt="Video" draggable="false">
                                                     <div class="bg-overlay">
                                                         <div class="bg-overlay-content dark">
-                                                            <h6 class="text-white mb-0" data-hover-animate="fadeIn">Podcast Sukses Apresiasi KSPSTK 2023 bersama APSI.</h6>
+                                                            <h6 class="text-white mb-0" data-hover-animate="fadeIn">
+                                                                Podcast Sukses Apresiasi KSPSTK 2023 bersama APSI.</h6>
                                                         </div>
                                                     </div>
                                                 </a>
@@ -141,11 +169,13 @@
                                                 <a class="position-relative d-block lightbox-img"
                                                     href="https://www.youtube.com/watch?v=aGN3VBaaT0k"
                                                     data-lightbox="iframe">
-                                                    <img src="{{ asset('assets-front/img/podcast-apresiasi-ksps-2.jpg') }}" class="img-fluid" width="380" alt="Video"
-                                                        draggable="false">
+                                                    <img src="{{ asset('assets-front/img/podcast-apresiasi-ksps-2.jpg') }}"
+                                                        class="img-fluid" width="380" alt="Video" draggable="false">
                                                     <div class="bg-overlay">
                                                         <div class="bg-overlay-content dark">
-                                                            <h6 class="text-white mb-0" data-hover-animate="fadeIn">Podcast Bisa Pintar dengan tema ”Jurus Pamungkas Tembus Apresiasi KS, PS dan Tendik 2023”</h6>
+                                                            <h6 class="text-white mb-0" data-hover-animate="fadeIn">
+                                                                Podcast Bisa Pintar dengan tema ”Jurus Pamungkas Tembus
+                                                                Apresiasi KS, PS dan Tendik 2023”</h6>
                                                         </div>
                                                     </div>
                                                 </a>
@@ -154,24 +184,31 @@
                                                 <a class="position-relative d-block lightbox-img"
                                                     href="https://www.youtube.com/watch?v=D5x9A9UQhL0"
                                                     data-lightbox="iframe">
-                                                    <img src="{{ asset('assets-front/img/podcast-apresiasi-ksps.jpg') }}" class="img-fluid" width="380" alt="Video"
+                                                    <img src="{{ asset('assets-front/img/podcast-apresiasi-ksps.jpg') }}"
+                                                        class="img-fluid" width="380" alt="Video"
                                                         draggable="false">
                                                     <div class="bg-overlay">
                                                         <div class="bg-overlay-content dark">
-                                                            <h6 class="text-white mb-0" data-hover-animate="fadeIn">Podcast Bisa Pintar tema ”Apresiasi Tenaga Kependidikan 2023 bersama Tenaga Perpustakaan Sekolah”</h6>
+                                                            <h6 class="text-white mb-0" data-hover-animate="fadeIn">
+                                                                Podcast Bisa Pintar tema ”Apresiasi Tenaga Kependidikan 2023
+                                                                bersama Tenaga Perpustakaan Sekolah”</h6>
                                                         </div>
                                                     </div>
                                                 </a>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                         <div class="swiper-button-prev"></div>
                                         <div class="swiper-button-next"></div>
                                     </div>
-                                    <p class="text-muted mt-3 mb-0">120 Jumlah Artikel</p>
+                                    <p class="text-muted mt-3 mb-0">{{ count($berprestasi)}} Jumlah Video</p>
                                 </div>
                                 <div class="tab-content" id="praktik-baik">
-                                    <p>Praesent in eros vestibulum mi adipiscing adipiscing. Morbi facilisis. Curabitur ornare consequat nunc. Aenean vel metus. Ut posuere viverra nulla. Aliquam erat volutpat. Pellentesque convallis. Maecenas feugiat, tellus pellentesque pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris consectetur tortor et purus.</p>
-                                    <p class="text-muted mt-3 mb-0">120 Jumlah Video</p>
+                                    @foreach ($cerita as $item)
+                                    <p>{{ $item->konten}}</p>
+
+                                    <p class="text-muted mt-3 mb-0">{{ count($cerita) }} Jumlah Cerita</p>
+                                    @endforeach
+
                                 </div>
 
                             </div>

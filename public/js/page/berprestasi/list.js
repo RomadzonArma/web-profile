@@ -149,7 +149,7 @@ $(() => {
         $.each(data, (key, value) => {
             $('#update-' + key).val(value);
         })
-        $('#foto').html('<img src="' + '' + data.foto + '" style="height: 100px; margin-top: 10px;">');
+        $('#foto').html('<img src="' + '' + data.foto + '" style="height: 200px; margin-top: 5px;">');
 
         if (data.video !== null && data.video !== '') {
             $('#updateManualCheckbox').prop('checked', true);
