@@ -89,14 +89,14 @@
 
                         </div>
                         <div class="form-group">
-                            <label for="file">File PDF</label>
+                            <label for="file">File</label>
                             <div class="custom-file mb-3">
                                 <input type="file" class="custom-file-input" id="file" name="file"
-                                    accept=".PDF">
+                                    accept=".PDF, .pptx">
                                 <label class="custom-file-label" for="customFile">Choose file</label>
                                 <div style="font-size: 11px; line-height: 13px; font-style: Italic; margin-top: 5px; margin-bottom: 5px; text-align: left;"
                                     class="text-danger">
-                                    (Format PDF max 3.mb )
+                                    (Format PDF max 5.mb )
                                 </div>
 
                             </div>
@@ -160,14 +160,14 @@
 
                         </div>
                         <div class="form-group">
-                            <label for="file">File PDF</label>
+                            <label for="file">File</label>
                             <div class="custom-file mb-3">
                                 <input type="file" class="custom-file-input" id="file_edit" name="file"
-                                    accept=".pdf ">
+                                    accept=".pdf, .pptx">
                                 <label class="custom-file-label" for="customFile">Choose file</label>
                                 <div style="font-size: 11px; line-height: 13px; font-style: Italic; margin-top: 5px; margin-bottom: 5px; text-align: left;"
                                     class="text-danger">
-                                    (Format PDF max 3.mb )
+                                    (Format PDF, PPTX max 5.mb )
                                 </div>
 
                             </div>

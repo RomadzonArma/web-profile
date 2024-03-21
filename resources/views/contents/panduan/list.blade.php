@@ -82,7 +82,7 @@
                                 <label class="custom-file-label" for="customFile">Choose file</label>
                                 <div style="font-size: 11px; line-height: 13px; font-style: Italic; margin-top: 5px; margin-bottom: 5px; text-align: left;"
                                     class="text-danger">
-                                    (Format image .jpeg, .jpg, & .png max .5 mb )
+                                    (Format image .jpeg, .jpg, & .png max .3 mb )
                                 </div>
                             </div>
                             <div id="image_preview">
@@ -100,7 +100,7 @@
                                 <label class="custom-file-label" for="customFile">Choose file</label>
                                 <div style="font-size: 11px; line-height: 13px; font-style: Italic; margin-top: 5px; margin-bottom: 5px; text-align: left;"
                                     class="text-danger">
-                                    (Format PDF max 3.mb )
+                                    (Format PDF max 5.mb )
                                 </div>
 
                             </div>
@@ -175,7 +175,7 @@
                                 <label class="custom-file-label" for="customFile">Choose file</label>
                                 <div style="font-size: 11px; line-height: 13px; font-style: Italic; margin-top: 5px; margin-bottom: 5px; text-align: left;"
                                     class="text-danger">
-                                    (Format PDF max 3.mb )
+                                    (Format PDF max 5.mb )
                                 </div>
 
                             </div>
