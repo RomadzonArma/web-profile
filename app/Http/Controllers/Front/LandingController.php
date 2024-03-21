@@ -414,7 +414,7 @@ class LandingController extends Controller
         if ($bulan) {
             $query->whereMonth('created_at', $bulan);
         }
-        $panduan = $query->paginate(5);
+        $panduan = $query->orderByDesc('created_at')->paginate(5);
 
         $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
         return view('contents.Front.menu_halaman.publikasi.panduan', [
@@ -455,7 +455,7 @@ class LandingController extends Controller
     //start pengumuman
     public function pengumuman(Request $request)
     {
-        $query = Pengumuman::query();
+        $query = Pengumuman::where('status_publish', '1')->orderByDesc('date');
         $tahun = $request->tahun;
         $bulan = $request->bulan;
 

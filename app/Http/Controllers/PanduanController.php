@@ -33,12 +33,13 @@ class PanduanController extends Controller
     public function store(Request $request)
     {
         try {
-            // Validate the request data
             $request->validate([
                 'judul' => 'required|string',
                 'gambar' => 'required|image|mimes:jpeg,png,jpg',
-                // 'file_pdf' => 'required|mimes:pdf',
+                'file_pdf' => 'required|mimes:pdf|max:5000', // Ukuran maksimum dalam kilobyte (KB)
                 'id_kategori' => 'required',
+            ], [
+                'file_pdf.max' => '<strong style="color: red;">Ukuran file PDF tidak boleh melebihi 5MB.</strong>'
             ]);
 
             // Check if the 'gambar' file is present in the request
@@ -80,11 +81,12 @@ class PanduanController extends Controller
     public function update(Request $request)
     {
         try {
-            // Validasi data yang diterima dari form
             $request->validate([
                 'judul' => 'required|string',
-                'gambar' => 'image|mimes:jpeg,png,jpg', // Validasi cover sesuai kebutuhan Anda
-                // 'file_pdf'  => 'mimes:pdf', // Validasi file PDF
+                'gambar' => 'image|mimes:jpeg,png,jpg',
+                'file_pdf' => 'mimes:pdf|max:5000', // Ukuran maksimum dalam kilobyte (KB)
+            ], [
+                'file_pdf.max' => 'Ukuran file PDF tidak boleh melebihi 5MB.'
             ]);
 
             // Temukan panduan yang akan diupdate

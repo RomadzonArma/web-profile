@@ -14,7 +14,7 @@ class AkuntabilitasController extends Controller
     public function index()
     {
         $kategori   = ListKategori::all();
-        return view('contents.Akuntabilitas.list', [
+        return view('contents.akuntabilitas.list', [
             'title' => 'List Akuntabilitas',
             'kategori' => $kategori,
         ]);
