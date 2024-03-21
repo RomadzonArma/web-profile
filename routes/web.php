@@ -45,13 +45,17 @@ Route::get('/regulasis', [LandingController::class, 'regulasi'])->name('regulasi
 Route::get('/regulasis/detail/{slug}', [LandingController::class, 'regulasiDetail'])->name('regulasis.list');
 //END PUBLIKASI
 
-//PROGRAM LAYANAN
+
 Route::get('/sekolah-penggerak', [LandingController::class, 'sekolahPenggerak'])->name('sekolah-penggerak');
 Route::get('/sekolah-penggerak/detail/{slug}', [LandingController::class, 'sekolahPenggerakDetail'])->name('sekolah-penggerak-detail');
 Route::get('/guru-penggerak', [LandingController::class, 'guruPenggerak'])->name('guru-penggerak');
 Route::get('/guru-penggerak/detail/{slug}', [LandingController::class, 'guruPenggerakDetail'])->name('guru-penggerak-detail');
 
+//EMAIL FAQ
+Route::post('/faq/store', [LandingController::class, 'FaqStore'])->name('faq.store');
 
+//ZIWBK
+Route::get('/renstra', [LandingController::class, 'renstra'])->name('renstra');
 
 
 Route::get('/login', function () {

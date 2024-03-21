@@ -114,13 +114,20 @@
         </div>
     </a>
     <div class="faq-wrapper">
-        <h5 class="text-primary mb-0">FAQ!</h5>
-        <img src="{{ asset('assets-front/img/ksps_faq.png') }}" alt="faq" class="img-fluid">
-        <form class="bg-white form-banner my-0" style="min-width: 100px;">
-            <input type="text" placeholder="Cari kata kunci...">
-            <div class="rounded-icon bg-primary">
-                <i class="icon-line-send" style="transform: rotate(45deg); font-size: 12px; margin-left: -4px;"></i>
+        <h5 class="text-primary mb-2">FAQ!</h5>
+        {{-- <img src="{{ asset('assets-front/img/ksps_faq.png') }}" alt="faq" class="img-fluid"> --}}
+        <form class="mb-0 w-100" action="{{ route('faq.store') }}" method="post" name="form-store" id="form-store">
+            @csrf
+            <div class="form-group">
+                <input type="text" class="form-control" id="nama" name="nama"  placeholder="Nama ">
             </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="email" name="email"  placeholder="Email">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="pertanyaan" name="pertanyaan"  placeholder="Tulis pertanyaan anda...">
+            </div>
+            <button  type="submit" class="btn btn-primary btn-simpan">Kirim</button>
         </form>
     </div>
 

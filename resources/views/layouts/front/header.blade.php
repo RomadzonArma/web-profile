@@ -1,6 +1,6 @@
 <!-- Header ============================================= -->
 <header class="full-header not-top d-lg-block d-none">
-    <div id="header-wrap" class="px-xl-3">
+    <div id="header-wrap" class="px-xl-4">
         <div class="container-fluid">
             <div class="header-row justify-content-between">
                 <div id="primary-menu-trigger">
@@ -33,7 +33,7 @@
                         <i class="icon-instagram"></i>
                         <i class="icon-instagram"></i>
                     </a>
-                    <a href="{{ $ref_sosmed->youtube }}" class="social-icon si-youtube si-secondary mr-2" target="_blank">
+                    <a href="{{ $ref_sosmed->youtube }}" class="social-icon si-youtube si-secondary" target="_blank">
                         <i class="icon-youtube"></i>
                         <i class="icon-youtube"></i>
                     </a>

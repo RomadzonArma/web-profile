@@ -11,6 +11,7 @@ use App\Model\Artikel;
 use App\Model\Panduan;
 use App\Model\Podcast;
 use App\Model\Unduhan;
+use App\Model\Renstra;
 use App\Model\Regulasi;
 use App\Model\ListKanal;
 use App\Model\CeritaBaik;
@@ -29,10 +30,13 @@ use App\Model\PengunjungArtikel;
 use App\Model\PengunjungPanduan;
 use App\Model\PengunjungUnduhan;
 use App\Model\PengunjungRegulasi;
+use App\Model\Faq;
 use Illuminate\Support\Facades\DB;
 use App\Model\PengunjungPengumuman;
 use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Validator;
+
 
 class LandingController extends Controller
 {
@@ -644,6 +648,61 @@ class LandingController extends Controller
         return view('contents.Front.menu_halaman.program_layanan.guru-penggerak-detail', [
             'title' => 'Detail Program Pendidikan Guru Penggerak ',
             'guru' => $guru,
+            'tautan' => $tautan,
+        ]);
+    }
+
+    public function FaqStore(Request $request)
+    {
+        $validasi = Validator::make($request->all(), [
+            'nama' => 'required',
+            'email' => 'required ',
+            'pertanyaan' => 'required ',
+        ], [
+            'nama.required' => 'Nama wajib diisi',
+            'email.required' => 'Email tautan wajib diisi',
+            'pertanyaan.required' => 'Pertanyaan tautan wajib diisi',
+
+
+        ]);
+
+        if ($validasi->fails()) {
+            return response()->json(['erorrs' => $validasi->errors()]);
+        } else {
+
+            $data = [
+                'nama' => $request->nama,
+                'email' => $request->email,
+                'pertanyaan' => $request->pertanyaan,
+                'tgl_pertanyaan' => now(),
+            ];
+            Faq::create($data);
+            return response()->json(['status' => true], 200);
+        }
+    }
+
+    public function renstra(Request $request)
+    {
+        $query = Renstra::query();
+        $tahun = $request->tahun;
+        $bulan = $request->bulan;
+
+        if ($tahun) {
+            $query->whereYear('tanggal', $tahun);
+        }
+        if ($bulan) {
+            $query->whereMonth('tanggal', $bulan);
+        }
+        $renstra = $query->paginate(5);
+
+        $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
+
+        // foreach ($renstra as $item) {
+        //     $item->increment('jumlah_download');
+        // }
+        return view('contents.Front.ziwbk.sakip.renstra', [
+            'title' => 'Renstra',
+            'renstra' => $renstra,
             'tautan' => $tautan,
         ]);
     }

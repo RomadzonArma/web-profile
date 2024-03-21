@@ -52,6 +52,10 @@ class AppServiceProvider extends ServiceProvider
             $tautan = Tautan::all();
             $view->with('tautan', $tautan);
         });
+        view()->composer('contents.Front.menu_mobile', function ($view) {
+            $tautan = Tautan::all();
+            $view->with('tautan', $tautan);
+        });
         view()->composer('contents.Front.webinar', function ($view) {
             $webinar = Webinar::where('status_publish', '1')->orderByDesc('created_at')->get();
             $view->with('webinar', $webinar);
@@ -71,8 +75,16 @@ class AppServiceProvider extends ServiceProvider
         });
         view()->composer('contents.Front.menu_mobile', function ($view) {
             // $zi = ZiWbk::with('list_kategori','sub_kategori');
-            $zi = ZiWbk::all();
-            $view->with('ziwbk', $zi);
+            $zi1= ZiWbk::with('list_kategori','sub_kategori')->where('status_publish', 1)->whereNotNull('link_kategori')->get();
+            $zi2= ZiWbk::with('list_kategori','sub_kategori')->where('status_publish', 1)->whereNotNull('link') ->whereIn('id_kategori', function ($query) {
+                // Subquery untuk mendapatkan id_kategori yang memiliki beberapa id_subkategori
+                $query->select('id_kategori')
+                      ->from('ziwbk')
+                      ->groupBy('id_kategori')
+                      ->havingRaw('COUNT(DISTINCT id_subkategori) > 1');
+            })
+            ->get();
+            $view->with('ziwbk1', $zi1)->with('ziwbk2', $zi2);
         });
     }
 
