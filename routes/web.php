@@ -56,6 +56,7 @@ Route::post('/faq/store', [LandingController::class, 'FaqStore'])->name('faq.sto
 
 //ZIWBK
 Route::get('/renstra', [LandingController::class, 'renstra'])->name('renstra');
+Route::get('/akuntabilitas/list', [LandingController::class, 'akuntabilitas'])->name('akuntabilitas');
 
 
 Route::get('/login', function () {

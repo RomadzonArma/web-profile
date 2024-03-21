@@ -71,42 +71,57 @@ class RenstraController extends Controller
     public function update(Request $request)
     {
         try {
-
             $renstra = Renstra::findOrFail($request->id);
 
-            // $coverName = time() . '.' . $request->gambar->extension();
-            // $request->gambar->move(public_path('gambar-renstra'), $coverName);
-
+            // Cek apakah ada file gambar yang diunggah
             if ($request->hasFile('gambar')) {
-                $oldgambarPath = public_path('gambar-renstra') . '/' . $renstra->gambar;
-                if (file_exists($oldgambarPath)) {
-                    unlink($oldgambarPath);
+                // Hapus gambar lama jika ada
+                $oldGambarPath = public_path('gambar-renstra') . '/' . $renstra->gambar;
+                if (file_exists($oldGambarPath)) {
+                    unlink($oldGambarPath);
                 }
 
                 // Upload gambar baru
                 $gambarName = time() . '.' . $request->gambar->extension();
                 $request->gambar->move(public_path('gambar-renstra'), $gambarName);
 
-                // Update data program dengan gambar baru
-                $renstra->update([
-                    'gambar' => $gambarName,
-                ]);
+                // Update nama file gambar dalam database
+                $renstra->gambar = $gambarName;
             }
 
-            $renstra->update([
-                'judul'         => $request->judul,
-                'slug'          => Str::slug($request->judul),
-                'konten'        => $request->konten,
-                'tag'           => $request->tag,
-                'link'          =>  $request->link,
-                'id_kategori'   => $request->id_kategori,
-            ]);
+            // Cek apakah ada file renstra yang diunggah
+            if ($request->hasFile('file')) {
+                // Hapus file renstra lama jika ada
+                $oldFilePath = public_path('file-renstra') . '/' . $renstra->file;
+                if (file_exists($oldFilePath) && is_file($oldFilePath)) {
+                    unlink($oldFilePath);
+                }
+
+                // Upload file renstra baru
+                $filePDFName = time() . '.' . $request->file('file')->getClientOriginalExtension();
+                $request->file('file')->move(public_path('file-renstra'), $filePDFName);
+
+                // Update nama file renstra dalam database
+                $renstra->file = $filePDFName;
+            }
+
+            // Update data renstra yang lainnya
+            $renstra->judul = $request->judul;
+            $renstra->slug = Str::slug($request->judul);
+            $renstra->konten = $request->konten;
+            $renstra->tag = $request->tag;
+            $renstra->link = $request->link;
+            $renstra->id_kategori = $request->id_kategori;
+            $renstra->tanggal = Carbon::now();
+            $renstra->jumlah_download = 0;
+            $renstra->save();
 
             return response()->json(['status' => true, 'msg' => 'Data renstra berhasil diperbarui'], 200);
         } catch (\Exception $e) {
             return response()->json(['status' => false, 'msg' => $e->getMessage()], 400);
         }
     }
+
 
     public function switchStatus(Request $request)
     {

@@ -13,7 +13,8 @@
                 <h1 class="mb-2">{{ $title }}</h1>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('index') }}">Beranda</a></li>
-                    <li class="breadcrumb-item"><a href="#">Publikasi</a></li>
+                    <li class="breadcrumb-item"><a href="#">ZIWBK</a></li>
+                    <li class="breadcrumb-item"><a href="#">SAKIP</a></li>
                     <li class="breadcrumb-item active" aria="page">{{ $title }}</li>
                 </ol>
             </div>
