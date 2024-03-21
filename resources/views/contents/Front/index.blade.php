@@ -52,21 +52,43 @@
                                         <div class="swiper-wrapper">
                                             @foreach ($praktik_baik as $item)
                                                 <div class="swiper-slide">
-                                                    @if (!empty($item->link_video))
-                                                            <a class="position-relative d-block lightbox-img"
-                                                                href="https://www.youtube.com/watch?v={{ $item->link_video}}"
-                                                                data-lightbox="iframe">
-                                                                <img src="{{ asset($item->foto) }}" class="img-fluid"
-                                                                    width="380" alt="Video" draggable="false">
-                                                                <div class="bg-overlay">
-                                                                    <div class="bg-overlay-content dark">
-                                                                        <h6 class="text-white mb-0"
-                                                                            data-hover-animate="fadeIn">
-                                                                            {{ $item->judul }}
-                                                                        </h6>
-                                                                    </div>
+                                                    @if (!empty($item->link_video) && !empty($item->video))
+                                                        <a class="position-relative d-block lightbox-img"
+                                                            href="{{ asset($item->video) }}" data-lightbox="iframe">
+                                                            <img src="{{ asset($item->foto) }}" class="img-fluid"
+                                                                width="380" alt="Video" draggable="false">
+                                                            <div class="bg-overlay">
+                                                                <div class="bg-overlay-content dark">
+                                                                    <h6 class="text-white mb-0" data-hover-animate="fadeIn">
+                                                                        {{ $item->judul }}
+                                                                    </h6>
                                                                 </div>
-                                                            </a>
+                                                            </div>
+                                                        </a>
+                                                    @elseif (!empty($item->link_video))
+                                                        @php
+                                                            // Extract video ID from YouTube link
+                                                            preg_match(
+                                                                '/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/|youtube\.com\/live\/)([^"&?\/\s]{11})/',
+                                                                $item->link_video,
+                                                                $matches,
+                                                            );
+                                                            $videoId = $matches[1] ?? null;
+                                                            $thumbnailUrl = "https://img.youtube.com/vi/{$videoId}/hqdefault.jpg";
+                                                        @endphp
+                                                        <a class="position-relative d-block lightbox-img"
+                                                            href="https://www.youtube.com/watch?v={{ $videoId }}"
+                                                            data-lightbox="iframe">
+                                                            <img src="{{ asset($item->foto) }}" class="img-fluid"
+                                                                width="380" alt="Video" draggable="false">
+                                                            <div class="bg-overlay">
+                                                                <div class="bg-overlay-content dark">
+                                                                    <h6 class="text-white mb-0" data-hover-animate="fadeIn">
+                                                                        {{ $item->judul }}
+                                                                    </h6>
+                                                                </div>
+                                                            </div>
+                                                        </a>
                                                     @elseif (!empty($item->video))
                                                         <a class="position-relative d-block lightbox-img"
                                                             href="{{ asset($item->video) }}" data-lightbox="iframe">
@@ -75,7 +97,8 @@
                                                             <div class="bg-overlay">
                                                                 <div class="bg-overlay-content dark">
                                                                     <h6 class="text-white mb-0" data-hover-animate="fadeIn">
-                                                                        {{ $item->judul }}</h6>
+                                                                        {{ $item->judul }}
+                                                                    </h6>
                                                                 </div>
                                                             </div>
                                                         </a>
@@ -129,87 +152,148 @@
                                         <div class="swiper-button-prev"></div>
                                         <div class="swiper-button-next"></div>
                                     </div>
-                                    <p class="text-muted mt-3 mb-0">{{ count($praktik_baik)}} Jumlah Video</p>
+                                    <p class="text-muted mt-3 mb-0">{{ count($praktik_baik) }} Jumlah Video</p>
                                 </div>
                                 <div class="tab-content" id="ksps-berprestasi">
                                     <div class="swiper swiper-4">
                                         <div class="swiper-wrapper">
                                             @foreach ($berprestasi as $item)
-                                            <div class="swiper-slide">
-                                                <a class="position-relative d-block lightbox-img"
-                                                    href="https://www.youtube.com/watch?v={{$item->link}}"
-                                                    data-lightbox="iframe">
-                                                    <img src="{{ asset($item->foto) }}"
-                                                        class="img-fluid" width="380" alt="Video" draggable="false">
-                                                    <div class="bg-overlay">
-                                                        <div class="bg-overlay-content dark">
-                                                            <h6 class="text-white mb-0" data-hover-animate="fadeIn">
-                                                               {{$item->judul}}</h6>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </div>
+                                                <div class="swiper-slide">
+                                                    @if (!empty($item->link) && !empty($item->video))
+                                                        <a class="position-relative d-block lightbox-img"
+                                                            href="{{ asset($item->video) }}" data-lightbox="iframe">
+                                                            <img src="{{ asset($item->foto) }}" class="img-fluid"
+                                                                width="380" alt="Video" draggable="false">
+                                                            <div class="bg-overlay">
+                                                                <div class="bg-overlay-content dark">
+                                                                    <h6 class="text-white mb-0" data-hover-animate="fadeIn">
+                                                                        {{ $item->judul }}
+                                                                    </h6>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    @elseif (!empty($item->link))
+                                                        @php
+                                                            // Extract video ID from YouTube link
+                                                            preg_match(
+                                                                '/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/|youtube\.com\/live\/)([^"&?\/\s]{11})/',
+                                                                $item->link,
+                                                                $matches,
+                                                            );
+                                                            $videoId = $matches[1] ?? null;
+                                                            $thumbnailUrl = "https://img.youtube.com/vi/{$videoId}/hqdefault.jpg";
+                                                        @endphp
+                                                        <a class="position-relative d-block lightbox-img"
+                                                            href="https://www.youtube.com/watch?v={{ $videoId }}"
+                                                            data-lightbox="iframe">
+                                                            <img src="{{ asset($item->foto) }}" class="img-fluid"
+                                                                width="380" alt="Video" draggable="false">
+                                                            <div class="bg-overlay">
+                                                                <div class="bg-overlay-content dark">
+                                                                    <h6 class="text-white mb-0" data-hover-animate="fadeIn">
+                                                                        {{ $item->judul }}
+                                                                    </h6>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    @elseif (!empty($item->video))
+                                                        <a class="position-relative d-block lightbox-img"
+                                                            href="{{ asset($item->video) }}" data-lightbox="iframe">
+                                                            <img src="{{ asset($item->foto) }}" class="img-fluid"
+                                                                width="380" alt="Video" draggable="false">
+                                                            <div class="bg-overlay">
+                                                                <div class="bg-overlay-content dark">
+                                                                    <h6 class="text-white mb-0"
+                                                                        data-hover-animate="fadeIn">
+                                                                        {{ $item->judul }}
+                                                                    </h6>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    @endif
+                                                </div>
                                             @endforeach
-
-                                            {{-- <div class="swiper-slide">
-                                                <a class="position-relative d-block lightbox-img"
-                                                    href="https://www.youtube.com/watch?v=i0FreFwBKnw"
-                                                    data-lightbox="iframe">
-                                                    <img src="{{ asset('assets-front/img/podcast-apresiasi-ksps.jpg') }}"
-                                                        class="img-fluid" width="380" alt="Video" draggable="false">
-                                                    <div class="bg-overlay">
-                                                        <div class="bg-overlay-content dark">
-                                                            <h6 class="text-white mb-0" data-hover-animate="fadeIn">
-                                                                Podcast Sukses Apresiasi KSPSTK 2023 bersama APSI.</h6>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <a class="position-relative d-block lightbox-img"
-                                                    href="https://www.youtube.com/watch?v=aGN3VBaaT0k"
-                                                    data-lightbox="iframe">
-                                                    <img src="{{ asset('assets-front/img/podcast-apresiasi-ksps-2.jpg') }}"
-                                                        class="img-fluid" width="380" alt="Video" draggable="false">
-                                                    <div class="bg-overlay">
-                                                        <div class="bg-overlay-content dark">
-                                                            <h6 class="text-white mb-0" data-hover-animate="fadeIn">
-                                                                Podcast Bisa Pintar dengan tema ”Jurus Pamungkas Tembus
-                                                                Apresiasi KS, PS dan Tendik 2023”</h6>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <a class="position-relative d-block lightbox-img"
-                                                    href="https://www.youtube.com/watch?v=D5x9A9UQhL0"
-                                                    data-lightbox="iframe">
-                                                    <img src="{{ asset('assets-front/img/podcast-apresiasi-ksps.jpg') }}"
-                                                        class="img-fluid" width="380" alt="Video"
-                                                        draggable="false">
-                                                    <div class="bg-overlay">
-                                                        <div class="bg-overlay-content dark">
-                                                            <h6 class="text-white mb-0" data-hover-animate="fadeIn">
-                                                                Podcast Bisa Pintar tema ”Apresiasi Tenaga Kependidikan 2023
-                                                                bersama Tenaga Perpustakaan Sekolah”</h6>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </div> --}}
                                         </div>
                                         <div class="swiper-button-prev"></div>
                                         <div class="swiper-button-next"></div>
                                     </div>
-                                    <p class="text-muted mt-3 mb-0">{{ count($berprestasi)}} Jumlah Video</p>
+                                    <p class="text-muted mt-3 mb-0">{{ count($berprestasi) }} Jumlah Video</p>
                                 </div>
-                                <div class="tab-content" id="praktik-baik">
+                                <div class="tab-content" id="karya-kspstk">
+                                    <div class="swiper swiper-4">
+                                        <div class="swiper-wrapper">
+                                            @foreach ($berprestasi as $item)
+                                                <div class="swiper-slide">
+                                                    @if (!empty($item->link) && !empty($item->video))
+                                                        <a class="position-relative d-block lightbox-img"
+                                                            href="{{ asset($item->video) }}" data-lightbox="iframe">
+                                                            <img src="{{ asset($item->foto) }}" class="img-fluid"
+                                                                width="380" alt="Video" draggable="false">
+                                                            <div class="bg-overlay">
+                                                                <div class="bg-overlay-content dark">
+                                                                    <h6 class="text-white mb-0"
+                                                                        data-hover-animate="fadeIn">
+                                                                        {{ $item->judul }}
+                                                                    </h6>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    @elseif (!empty($item->link))
+                                                        @php
+                                                            // Extract video ID from YouTube link
+                                                            preg_match(
+                                                                '/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/|youtube\.com\/live\/)([^"&?\/\s]{11})/',
+                                                                $item->link,
+                                                                $matches,
+                                                            );
+                                                            $videoId = $matches[1] ?? null;
+                                                            $thumbnailUrl = "https://img.youtube.com/vi/{$videoId}/hqdefault.jpg";
+                                                        @endphp
+                                                        <a class="position-relative d-block lightbox-img"
+                                                            href="https://www.youtube.com/watch?v={{ $videoId }}"
+                                                            data-lightbox="iframe">
+                                                            <img src="{{ asset($item->foto) }}" class="img-fluid"
+                                                                width="380" alt="Video" draggable="false">
+                                                            <div class="bg-overlay">
+                                                                <div class="bg-overlay-content dark">
+                                                                    <h6 class="text-white mb-0"
+                                                                        data-hover-animate="fadeIn">
+                                                                        {{ $item->judul }}
+                                                                    </h6>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    @elseif (!empty($item->video))
+                                                        <a class="position-relative d-block lightbox-img"
+                                                            href="{{ asset($item->video) }}" data-lightbox="iframe">
+                                                            <img src="{{ asset($item->foto) }}" class="img-fluid"
+                                                                width="380" alt="Video" draggable="false">
+                                                            <div class="bg-overlay">
+                                                                <div class="bg-overlay-content dark">
+                                                                    <h6 class="text-white mb-0"
+                                                                        data-hover-animate="fadeIn">
+                                                                        {{ $item->judul }}
+                                                                    </h6>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    @endif
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                        <div class="swiper-button-prev"></div>
+                                        <div class="swiper-button-next"></div>
+                                    </div>
+                                    <p class="text-muted mt-3 mb-0">{{ count($berprestasi) }} Jumlah Video</p>
+                                </div>
+                                {{-- <div class="tab-content" id="karya-kspstk">
                                     @foreach ($cerita as $item)
                                     <p>{{ $item->konten}}</p>
 
                                     <p class="text-muted mt-3 mb-0">{{ count($cerita) }} Jumlah Cerita</p>
                                     @endforeach
 
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>

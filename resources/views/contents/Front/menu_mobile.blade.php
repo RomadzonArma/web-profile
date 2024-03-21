@@ -10,13 +10,13 @@
                     <a class="menu-link" href="{{ route('visi-misi') }}">VISI & MISI</a>
                 </li>
                 <li class="menu-item">
-                    <a class="menu-link" href="#">STRUKTUR ORGANISASI</a>
+                    <a class="menu-link" href="{{ route('struktur-organisasi') }}">STRUKTUR ORGANISASI</a>
                 </li>
                 <li class="menu-item">
-                    <a class="menu-link" href="#">TUGAS & FUNGSI</a>
+                    <a class="menu-link" href="{{ route('tugas-fungsi') }}">TUGAS & FUNGSI</a>
                 </li>
                 <li class="menu-item">
-                    <a class="menu-link" href="#">KONTAK KAMI</a>
+                    <a class="menu-link" href="{{ route('kontak-kami') }}">KONTAK KAMI</a>
                 </li>
             </ul>
         </li>
@@ -31,56 +31,33 @@
         <li class="menu-item sub-menu">
             <a class="menu-link" href="#">ZI/WBK</a>
             <ul class="sub-menu-container">
-                @foreach ($ziwbk as $item)
-                    @if (!empty($item->link_kategori))
-                        <li class="menu-item">
-                            <a class="menu-link" href="{{ $item->link_kategori }}"
-                                target="_blank">{{$item->list_kategori->nama_kategori }}</a>
-                        </li>
-                    @else
+                @foreach ($ziwbk1 as $item)
+                    <li class="menu-item">
+                        <a class="menu-link" href="{{ $item->link_kategori }}"
+                            target="_blank">{{ $item->list_kategori->nama_kategori }}</a>
+                    </li>
+                @endforeach
+
+                <!-- Tampilkan nama kategori di luar perulangan submenu -->
+                @if ($ziwbk2->isNotEmpty())
+                    {{-- Iterate through unique categories --}}
+                    @foreach ($ziwbk2->unique('id_kategori') as $data)
                         <li class="menu-item sub-menu">
                             <a href="#" class="menu-link">
-                                <div>{{ $item->list_kategori->nama_kategori }}<i class="icon-angle-down"></i></div>
+                                <div>{{ $data->list_kategori->nama_kategori }}<i class="icon-angle-down"></i></div>
                             </a>
                             <ul class="sub-menu-container">
-                                <li class="menu-item">
-                                    <a href="{{ $item->link }}" class="menu-link">{{$item->sub_kategori}}</a>
-                                </li>
+                                {{-- Iterate through subcategories related to the current category --}}
+                                @foreach ($ziwbk2->where('id_kategori', $data->id_kategori) as $item)
+                                    <li class="menu-item">
+                                        <a href="{{ $item->link }}"
+                                            class="menu-link">{{ $item->sub_kategori->sub_kategori }}</a>
+                                    </li>
+                                @endforeach
                             </ul>
                         </li>
-                    @endif
-                @endforeach
-                {{-- <li class="menu-item">
-                    <a class="menu-link" href="#">LKE</a>
-                </li>
-                <li class="menu-item">
-                    <a class="menu-link" href="#">APLIKASI SIAZIK </a>
-                </li>
-                <li class="menu-item">
-                    <a class="menu-link" href="#">TESTIMONIAL SIAZIK </a>
-                </li>
-                <li class="menu-item">
-                    <a class="menu-link" href="https://elhkpn.kpk.go.id/portal/user/login">LHKPN</a>
-                </li>
-                <li class="menu-item">
-                    <a class="menu-link" href="#">LHKASN</a>
-                </li>
-                <li class="menu-item sub-menu">
-                    <a class="menu-link" href="#">
-                        <div>
-                            SAKIP
-                            <i class="icon-angle-down"></i>
-                        </div>
-                    </a>
-                    <ul class="sub-menu-container">
-                        <li class="menu-item">
-                            <a class="menu-link" href="visi-misi.html">AKUNTABILITAS</a>
-                        </li>
-                        <li class="menu-item">
-                            <a class="menu-link" href="#">RENSTRA 2020-2024 </a>
-                        </li>
-                    </ul>
-                </li> --}}
+                    @endforeach
+                @endif
             </ul>
         </li>
         <li class="menu-item sub-menu">
@@ -105,7 +82,7 @@
                                     MERDEKA</a>
                             </li>
                             <li class="menu-item">
-                                <a class="menu-link" href="#">PLATFORM MERDEKA
+                                <a class="menu-link" href="https://guru.kemdikbud.go.id/">PLATFORM MERDEKA
                                     MENGAJAR</a>
                             </li>
                         </ul>
@@ -115,47 +92,16 @@
         <li class="menu-item mega-menu-title sub-menu">
             <a class="menu-link" href="#">TAUTAN</a>
             <ul class="sub-menu-container scrolled">
-                <li class="menu-item">
-                    <a class="menu-link" href="#">KEMDIKBUD</a>
-                </li>
-                <li class="menu-item">
-                    <a class="menu-link" href="#">DITJEN GTK</a>
-                </li>
-                <li class="menu-item">
-                    <a class="menu-link" href="#">PROGRAM PENDIDIKAN
-                        GURU
-                        PENGGERAK</a>
-                </li>
-                <li class="menu-item">
-                    <a class="menu-link" href="#">PROGRAM SEKOLAH
-                        PENGGERAK</a>
-                </li>
-                <li class="menu-item">
-                    <a class="menu-link" href="#">ORGANISASI
-                        PENGGERAK</a>
-                </li>
-                <li class="menu-item">
-                    <a class="menu-link" href="#">DIT. GURU PAUD
-                        DIKMAS</a>
-                </li>
-                <li class="menu-item">
-                    <a class="menu-link" href="#">DIT. GURU
-                        DIKDAS</a>
-                </li>
-                <li class="menu-item">
-                    <a class="menu-link" href="#">DIT. GURU
-                        DIKMENDIKSUS</a>
-                </li>
-                <li class="menu-item">
-                    <a class="menu-link" href="#">DIT. PPG</a>
-                </li>
-                <li class="menu-item">
-                    <a class="menu-link" href="#">PENGADUAN</a>
-                </li>
-                <li class="menu-item">
-                    <a class="menu-link" href="#">PLATFORM MERDEKA
-                        MENGAJAR</a>
-                </li>
+                @foreach ($tautan as $tautan)
+                    <li class="menu-item">
+                        @if ($tautan->list_kategori)
+                            <a class="menu-link" href="{{ $tautan->link_tautan }}"
+                                target="_blank">{{ $tautan->list_kategori->nama_kategori }}</a>
+                        @else
+                            {{-- <span class="menu-link">Kategori tidak tersedia</span> --}}
+                        @endif
+                    </li>
+                @endforeach
             </ul>
         </li>
     </ul>

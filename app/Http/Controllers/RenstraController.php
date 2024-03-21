@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Carbon\Carbon;
 use App\Model\ListKategori;
 use Illuminate\Support\Str;
 use App\Model\Renstra;
@@ -34,7 +34,7 @@ class RenstraController extends Controller
             $request->validate([
                 'judul'         => 'required|string|max:255',
                 'gambar'        => 'required|file|mimes:jpg,jpeg,png|max:2048',
-                'konten'        => 'required|string',
+                // 'konten'        => 'required|string',
                 'tag'           => 'required|string|max:255',
                 'id_kategori'   => 'integer',
             ]);
@@ -42,6 +42,9 @@ class RenstraController extends Controller
             // Move and save the 'gambar' file
             $coverName = time() . '.' . $request->gambar->extension();
             $request->gambar->move(public_path('gambar-renstra'), $coverName);
+
+            $filePDFName = time() . '.' . $request->file('file')->getClientOriginalExtension();
+            $request->file('file')->move(public_path('file-renstra'), $filePDFName);
 
             Renstra::create([
                 'judul'             => $request->judul,
@@ -53,6 +56,9 @@ class RenstraController extends Controller
                 'status_publish'    => 0,
                 'jumlah_lihat'      => 0,
                 'id_kategori'       => $request->id_kategori,
+                'tanggal' => Carbon::now(),
+                'file' => $filePDFName,
+                'jumlah_download' => 0,
             ]);
 
 

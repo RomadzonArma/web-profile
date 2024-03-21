@@ -39,7 +39,7 @@
     <div class="faq-wrapper">
         <h5 class="text-primary mb-2">FAQ!</h5>
         {{-- <img src="{{ asset('assets-front/img/ksps_faq.png') }}" alt="faq" class="img-fluid"> --}}
-        <form class="mb-0" action="{{ route('faq.store') }}" method="post" name="form-store" id="form-store">
+        <form class="mb-0 w-100" action="{{ route('faq.store') }}" method="post" name="form-store" id="form-store">
             @csrf
             <div class="form-group">
                 <input type="text" class="form-control" id="nama" name="nama"  placeholder="Nama ">
@@ -50,7 +50,7 @@
             <div class="form-group">
                 <input type="text" class="form-control" id="pertanyaan" name="pertanyaan"  placeholder="Tulis pertanyaan anda...">
             </div>
-            <button  type="submit" class="btn btn-primary btn-simpan">Kirim</button>
+            <button  type="submit" class="btn btn-primary btn-simpan w-100">Kirim</button>
         </form>
     </div>
 
