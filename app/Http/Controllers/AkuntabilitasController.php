@@ -14,7 +14,7 @@ class AkuntabilitasController extends Controller
     public function index()
     {
         $kategori   = ListKategori::all();
-        return view('contents.Akuntabilitas.list', [
+        return view('contents.akuntabilitas.list', [
             'title' => 'List Akuntabilitas',
             'kategori' => $kategori,
         ]);
@@ -69,52 +69,52 @@ class AkuntabilitasController extends Controller
 
 
     public function update(Request $request)
-{
-    try {
-        $request->validate([
-            'judul'         => 'required|string|max:255',
-            'konten'        => 'required|string',
-            'tag'           => 'required|string|max:255',
-            'id_kategori'   => 'integer',
-        ]);
+    {
+        try {
+            $request->validate([
+                'judul'         => 'required|string|max:255',
+                'konten'        => 'required|string',
+                'tag'           => 'required|string|max:255',
+                'id_kategori'   => 'integer',
+            ]);
 
-        $akuntabilitas = Akuntabilitas::findOrFail($request->id);
+            $akuntabilitas = Akuntabilitas::findOrFail($request->id);
 
-        // Move and save the 'foto' file if it exists
-        if ($request->hasFile('foto')) {
-            $fotoName = time() . '.' . $request->foto->extension();
-            $request->foto->move(public_path('akuntabilitas/gambar-Akuntabilitas'), $fotoName);
-            // Delete old foto if it exists
-            if ($akuntabilitas->foto && file_exists(public_path($akuntabilitas->foto))) {
-                unlink(public_path($akuntabilitas->foto));
+            // Move and save the 'foto' file if it exists
+            if ($request->hasFile('foto')) {
+                $fotoName = time() . '.' . $request->foto->extension();
+                $request->foto->move(public_path('akuntabilitas/gambar-Akuntabilitas'), $fotoName);
+                // Delete old foto if it exists
+                if ($akuntabilitas->foto) {
+                    unlink(public_path($akuntabilitas->foto));
+                }
+                $akuntabilitas->foto = $fotoName;
             }
-            $akuntabilitas->foto = $fotoName;
-        }
 
-        // Move and save the 'file' if it exists
-        if ($request->hasFile('file')) {
-            $fileName = time() . '.' . $request->file->extension();
-            $request->file->move(public_path('akuntabilitas/file-Akuntabilitas'), $fileName);
-            // Delete old file if it exists
-            if ($akuntabilitas->file && file_exists(public_path($akuntabilitas->file))) {
-                unlink(public_path($akuntabilitas->file));
+            // Move and save the 'file' if it exists
+            if ($request->hasFile('file')) {
+                $fileName = time() . '.' . $request->file->extension();
+                $request->file->move(public_path('akuntabilitas/file-Akuntabilitas'), $fileName);
+                // Delete old file if it exists
+                if ($akuntabilitas->file && file_exists(public_path($akuntabilitas->file))) {
+                    unlink(public_path($akuntabilitas->file));
+                }
+                $akuntabilitas->file = $fileName;
             }
-            $akuntabilitas->file = $fileName;
+
+            $akuntabilitas->judul = $request->judul;
+            $akuntabilitas->slug = Str::slug($request->judul);
+            $akuntabilitas->konten = $request->konten;
+            $akuntabilitas->tag = $request->tag;
+            $akuntabilitas->id_kategori = $request->id_kategori;
+
+            $akuntabilitas->save();
+
+            return response()->json(['status' => true, 'msg' => 'Data Akuntabilitas berhasil diperbarui'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['status' => false, 'msg' => $e->getMessage()], 400);
         }
-
-        $akuntabilitas->judul = $request->judul;
-        $akuntabilitas->slug = Str::slug($request->judul);
-        $akuntabilitas->konten = $request->konten;
-        $akuntabilitas->tag = $request->tag;
-        $akuntabilitas->id_kategori = $request->id_kategori;
-
-        $akuntabilitas->save();
-
-        return response()->json(['status' => true, 'msg' => 'Data Akuntabilitas berhasil diperbarui'], 200);
-    } catch (\Exception $e) {
-        return response()->json(['status' => false, 'msg' => $e->getMessage()], 400);
     }
-}
 
 
     public function switchStatus(Request $request)

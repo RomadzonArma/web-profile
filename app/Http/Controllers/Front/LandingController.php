@@ -12,6 +12,7 @@ use App\Model\Panduan;
 use App\Model\Podcast;
 use App\Model\Unduhan;
 use App\Model\Renstra;
+use App\Model\Akuntabilitas;
 use App\Model\Regulasi;
 use App\Model\ListKanal;
 use App\Model\CeritaBaik;
@@ -700,9 +701,40 @@ class LandingController extends Controller
         // foreach ($renstra as $item) {
         //     $item->increment('jumlah_download');
         // }
+
+        // dd($renstra);
         return view('contents.Front.ziwbk.sakip.renstra', [
             'title' => 'Renstra',
             'renstra' => $renstra,
+            'tautan' => $tautan,
+        ]);
+    }
+
+    public function akuntabilitas(Request $request)
+    {
+        $query = Akuntabilitas::query();
+        $tahun = $request->tahun;
+        $bulan = $request->bulan;
+
+        if ($tahun) {
+            $query->whereYear('created_at', $tahun);
+        }
+        if ($bulan) {
+            $query->whereMonth('created_at', $bulan);
+        }
+        $akuntabilitas = $query->paginate(5);
+
+        $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
+
+        // foreach ($akuntabilitas as $item) {
+        //     $item->increment('jumlah_download');
+        // }
+
+
+        // dd($akuntabilitas);
+        return view('contents.Front.ziwbk.sakip.akuntabilitas', [
+            'title' => 'Akuntabilitas',
+            'akuntabilitas' => $akuntabilitas,
             'tautan' => $tautan,
         ]);
     }
