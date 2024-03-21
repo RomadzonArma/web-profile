@@ -107,6 +107,8 @@ class RouteServiceProvider extends ServiceProvider
 
             $this->mapPraktik();
 
+            $this->mapAkuntabilitas();
+
             $this->mapRenstraRoutes();
         });
     }
@@ -340,7 +342,12 @@ class RouteServiceProvider extends ServiceProvider
             ->namespace($this->namespace)
             ->group(base_path('routes/panel/praktik.php'));
     }
-
+    protected function mapAkuntabilitas()
+    {
+        Route::prefix('akuntabilitas_list')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/panel/akuntabilitas.php'));
+    }
     protected function mapRenstraRoutes()
     {
         Route::prefix('manajemen_renstra')

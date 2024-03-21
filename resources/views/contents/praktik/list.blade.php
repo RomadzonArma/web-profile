@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @php
-    $plugins = ['datatable', 'swal', 'select2'];
+    $plugins = ['datatable', 'editor', 'swal', 'select2'];
 @endphp
 @push('styles')
     <style>
@@ -115,6 +115,10 @@
                             </div>
                             <div id="imagePreview" class="mt-3"></div>
                         </div>
+                        <div class="form-group">
+                            <label for="judul">Konten</label>
+                            <textarea class="form-control" id="konten" name="konten" required></textarea>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">
@@ -198,6 +202,10 @@
                             <div id="updateImagePreview" class="mt-3"></div>
                             <div id="foto"></div>
                         </div>
+                        <div class="form-group">
+                            <label for="judul">Konten</label>
+                            <textarea class="form-control" id="konten_edit" name="konten"></textarea>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Batal</button>
@@ -245,6 +253,24 @@
         $('#modal-praktik-update').on('hidden.bs.modal', function() {
             var imagePreview = document.getElementById("updateImagePreview");
             imagePreview.innerHTML = '';
+        });
+        $(document).ready(function() {
+            $('#konten').summernote();
+        });
+
+        $(document).ready(function() {
+            $('#id_kategori').select2();
+        });
+
+        $(document).ready(function() {
+            $('#update-id_kategori').select2();
+        });
+
+        $(document).ready(function() {
+            $('#konten_edit').summernote({
+                height: 300,
+                color: 'black',
+            });
         });
     </script>
     <script src="{{ asset('js/page/praktik/list.js?q=' . Str::random(5)) }}"></script>
