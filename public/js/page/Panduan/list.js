@@ -138,17 +138,27 @@ $(() => {
                     timer: 1500
                 });
             },
-            error: ({
-                status,
-                responseJSON
-            }) => {
+            error:function (xhr, status, error) {
+                $('#modal-panduan').find('.modal-dialog').LoadingOverlay('hide', true);
+                if (xhr.status == 422) {
+                    var errors = xhr.responseJSON.errors;
+                    var errorMessage = 'Terjadi Kesalahan:<br>';
 
-                if (status == 422) {
-                    generateErrorMessage(responseJSON);
-                    return false;
+                    $.each(errors, function (key, value) {
+                        errorMessage += value + '<br>';
+                    });
+
+                    // Tampilkan pesan error menggunakan SweetAlert
+                    Swal.fire({
+                        title: 'Error',
+                        html: errorMessage,
+                        icon: 'error'
+                    });
+                } else {
+                    console.error('Error:', error);
+                    // Tampilkan pesan kesalahan umum
+                    Swal.fire('Error', 'Terjadi kesalahan. Silakan coba lagi nanti.', 'error');
                 }
-
-                showErrorToastr('oops', responseJSON.msg)
             }
         });
     });

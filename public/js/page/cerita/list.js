@@ -1,29 +1,55 @@
 let table;
 $(() => {
-
-    $("input[name=jenis]").on("change", function () {
-        var val = $("input[name=jenis]:checked").val();
+    $("#jenis_inputan").on("change", function () {
+        var val = $(this).val();
+        $(".row_link, .row_video, .row_foto, .row_pdf").css("display", "none");
         if (val == "link") {
             $(".row_link").css("display", "block");
-            $(".row_video").css("display", "none");
         } else if (val == "video") {
-            $(".row_link").css("display", "none");
             $(".row_video").css("display", "block");
+        } else if (val == "foto") {
+            $(".row_foto").css("display", "block");
+        } else if (val == "pdf") {
+            $(".row_pdf").css("display", "block");
+        }
+    });
+    $("#jenis_inputan-edit").on("change", function () {
+        var val = $(this).val();
+        $(".row_link, .row_video, .row_foto, .row_pdf").css("display", "none");
+        if (val == "link") {
+            $(".row_link").css("display", "block");
+        } else if (val == "video") {
+            $(".row_video").css("display", "block");
+        } else if (val == "foto") {
+            $(".row_foto").css("display", "block");
+        } else if (val == "pdf") {
+            $(".row_pdf").css("display", "block");
         }
     });
 
-    $("input[name=jenis-edit]").on("change", function () {
-        // Get the value of the checked radio button
-        var val = $("input[name=jenis-edit]:checked").val();
-        // Show/hide divs based on the selected value
-        if (val == "link") {
-            $(".row_link").css("display", "block");
-            $(".row_video").css("display", "none");
-        } else if (val == "video") {
-            $(".row_link").css("display", "none");
-            $(".row_video").css("display", "block"); // Corrected class name
-        }
-    });
+    // $("input[name=jenis]").on("change", function () {
+    //     var val = $("input[name=jenis]:checked").val();
+    //     if (val == "link") {
+    //         $(".row_link").css("display", "block");
+    //         $(".row_video").css("display", "none");
+    //     } else if (val == "video") {
+    //         $(".row_link").css("display", "none");
+    //         $(".row_video").css("display", "block");
+    //     }
+    // });
+
+    // $("input[name=jenis-edit]").on("change", function () {
+    //     // Get the value of the checked radio button
+    //     var val = $("input[name=jenis-edit]:checked").val();
+    //     // Show/hide divs based on the selected value
+    //     if (val == "link") {
+    //         $(".row_link").css("display", "block");
+    //         $(".row_video").css("display", "none");
+    //     } else if (val == "video") {
+    //         $(".row_link").css("display", "none");
+    //         $(".row_video").css("display", "block"); // Corrected class name
+    //     }
+    // });
 
 
     $('#table-data').on('click', '.btn-delete', function () {
@@ -133,28 +159,92 @@ $(() => {
         })
     })
 
-    $('#table-data').on('click', '.btn-update', function () {
-        var tr = $(this).closest('tr');
+    $("#table-data").on("click", ".btn-update", function () {
+        var tr = $(this).closest("tr");
         var data = table.row(tr).data();
 
         clearErrorMessage();
-        $('#form-cerita-update')[0].reset();
+        $("#form-cerita-update")[0].reset();
 
-        $.each(data, (key, value) => {
-            $('#update-' + key).val(value);
-        })
-        $('#foto').html('<img src="' + '' + data.foto + '" style="height: 100px; margin-top: 10px;">');
+        if (data) {
+            $.each(data, (key, value) => {
+                if (key === 'foto') {
+                    // Show image preview for 'foto' field
+                    if (value) {
+                        $("#foto").html(
+                            '<img src="' +
+                            value + // Menggunakan value langsung dari loop
+                            '" style="height: 100px; margin-top: 10px;">'
+                        );
+                    }
+                } else if (key === 'foto_praktik') {
+                    // Show image preview for 'foto_praktik' field
+                    if (value) {
+                        $("#praktik-preview").html( // Menggunakan id yang sesuai
+                            '<img src="' +
+                            value + // Menggunakan value langsung dari loop
+                            '" style="height: 100px; margin-top: 10px;">'
+                        );
+                    }
+                } else if (key === 'file_pdf') {
+                    // Show PDF preview for 'file_pdf' field
+                    if (value) {
+                        $('#pdf_preview').attr('src', value);
+                    } else {
+                        // Handle the case when file_pdf is not available or empty
+                        // For instance, you might want to hide the pdf preview element
+                        $('#pdf_preview').hide();
+                    }
+                } else {
+                    // Set other input fields normally
+                    $("#update-" + key).val(value);
+                }
+            });
 
-        if (data.link_video !== null && data.link_video !== "") {
-            $(".row_link").css("display", "block");
-            $(".row_video").css("display", "none");
+            // Handle showing/hiding input sections based on the selected 'jenis' value
+            var jenisInputan = data['jenis'];
+            if (jenisInputan) {
+                $(".row_link, .row_video, .row_foto, .row_pdf").hide();
+                if (jenisInputan === 'link') {
+                    $(".row_link").show();
+                } else if (jenisInputan === 'video') {
+                    $(".row_video").show();
+                } else if (jenisInputan === 'foto') {
+                    $(".row_foto").show();
+                } else if (jenisInputan === 'pdf') {
+                    $(".row_pdf").show();
+                }
+            }
+
+            $("#modal-cerita-update").modal("show"); // Menggunakan id modal yang sesuai
         } else {
-            $(".row_link").css("display", "none");
-            $(".row_video").css("display", "block");
+            // Handle the case when data is not available
+            console.error("Data is not available.");
         }
+    });
 
-        $('#modal-cerita-update').modal('show');
-    })
+    // $('#table-data').on('click', '.btn-update', function () {
+    //     var tr = $(this).closest('tr');
+    //     var data = table.row(tr).data();
+
+    //     clearErrorMessage();
+    //     $('#form-cerita-update')[0].reset();
+
+    //     $.each(data, (key, value) => {
+    //         $('#update-' + key).val(value);
+    //     })
+    //     $('#foto').html('<img src="' + '' + data.foto + '" style="height: 100px; margin-top: 10px;">');
+
+    //     if (data.link_video !== null && data.link_video !== "") {
+    //         $(".row_link").css("display", "block");
+    //         $(".row_video").css("display", "none");
+    //     } else {
+    //         $(".row_link").css("display", "none");
+    //         $(".row_video").css("display", "block");
+    //     }
+
+    //     $('#modal-cerita-update').modal('show');
+    // })
 
     $('#form-cerita').on('submit', function (e) {
         e.preventDefault();

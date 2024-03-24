@@ -54,28 +54,39 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div class="form-group">
-                            <label for="judul">Judul</label>
-                            <textarea class="form-control" placeholder="Judul" name="judul" id="judul"
-                                oninput="this.value = this.value.replace(/[^a-zA-Z0-9!%.,()\/'?\-\s]/g, '').replace(/(\..*?)\..*/g, '$1');"></textarea>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="judul">Judul</label>
+                                    <textarea class="form-control" placeholder="Judul" name="judul" id="judul"
+                                        oninput="this.value = this.value.replace(/[^a-zA-Z0-9!%.,()\/'?\-\s]/g, '').replace(/(\..*?)\..*/g, '$1');"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="jenis_inputan">Jenis Inputan</label>
+                                    <select id="jenis_inputan" name="jenis" class="form-control">
+                                        <option value="#">Pilih Jenis Inputan</option>
+                                        <option value="link">Link Video</option>
+                                        <option value="video">Upload Video</option>
+                                        <option value="foto">Upload Foto</option>
+                                        <option value="pdf">Upload PDF</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <ul class="list-unstyled" style="margin-bottom: 0px; margin-left: 0px;">
-                                <li class="d-inline-block mr-2">
-                                    <div class="custom-control custom-radio custom-radio-primary mb-3">
-                                        <input type="radio" id="jenis_link" name="jenis" class="custom-control-input"
-                                            value="link">
-                                        <label class="custom-control-label" for="jenis_link"> Link Video </label>
-                                    </div>
-                                </li>
-                                <li class="d-inline-block mr-2">
-                                    <div class="custom-control custom-radio custom-radio-success mb-3">
-                                        <input type="radio" id="jenis_video" name="jenis" class="custom-control-input"
-                                            value="video">
-                                        <label class="custom-control-label" for="jenis_video"> Upload Video </label>
-                                    </div>
-                                </li>
-                            </ul>
+
+                        <div class="form-group row_foto" style="display: none;">
+                            <label for="foto_praktik">Foto Praktik</label>
+                            <div class="custom-file mb-3">
+                                <input type="file" class="custom-file-input" name="foto_praktik" id="foto_praktik"
+                                    accept=".jpg,.jpeg,.png">
+                                <label class="custom-file-label" for="updateCustomFile">Cari Gambar</label>
+                            </div>
+                            <small id="videoHelpBlock" class="form-text text-muted">
+                                Hanya file video yang diizinkan (.jpg, .jpeg, .png) <b class="text-danger">Max 2.mb</b>
+                            </small>
+                            <div id="updatepraktikPreview" class="mt-3"></div>
                         </div>
 
                         <div class="form-group row_link"style="display: none;">
@@ -91,36 +102,31 @@
                                     <label class="custom-file-label" for="video">Pilih Video</label>
                                 </div>
                                 <small id="videoHelpBlock" class="form-text text-muted">
-                                    Hanya file video yang diizinkan (.mp4, .avi, .mkv, dll.).
+                                    Hanya file video yang diizinkan (.mp4, .avi, .mkv, dll.)  <b class="text-danger">Max 10.mb</b>
                                 </small>
                             </div>
-
                         </div>
-                        {{-- <div class="form-group">
-                            <input type="checkbox" id="manualCheckbox"> <label for="manualCheckbox">Manual</label>
-                        </div>
-                        <div class="form-group" id="linkGroup">
-                            <label for="link">Link Youtube</label>
-                            <textarea class="form-control" placeholder="Link Youtube"></textarea>
-                        </div>
-                        <div class="form-group" id="videoGroup" style="display: none;">
-                            <label for="video">Upload Video</label>
+                        <div class="form-group row_pdf"  style="display: none;">
+                            <label for="video">Upload PDF</label>
                             <div class="custom-file mb-3">
-                                <input type="file" class="custom-file-input" name="video" id="video"
-                                    accept="video/*">
-                                <label class="custom-file-label" for="video">Pilih Video</label>
+                                <input type="file" class="custom-file-input" name="file_pdf" id="file_pdf"
+                                    accept=".pdf*">
+                                <label class="custom-file-label" for="video">Pilih PDF</label>
                             </div>
                             <small id="videoHelpBlock" class="form-text text-muted">
-                                Hanya file video yang diizinkan (.mp4, .avi, .mkv, dll.).
+                                Hanya file yang diizinkan .PDF <b class="text-danger">Max 5.mb</b>
                             </small>
-                        </div> --}}
+                        </div>
                         <div class="form-group">
-                            <label for="form_foto">Gambar</label>
+                            <label for="form_foto">Thumbanil</label>
                             <div class="custom-file mb-3">
                                 <input type="file" class="custom-file-input" name="foto" id="customFile"
                                     accept=".jpg,.jpeg,.png">
                                 <label class="custom-file-label" for="customFile">Cari Gambar</label>
                             </div>
+                            <small id="videoHelpBlock" class="form-text text-muted">
+                                Hanya file video yang diizinkan (.jpg, .jpeg, .png) <b class="text-danger">Max 2.mb</b>
+                            </small>
                             <div id="imagePreview" class="mt-3"></div>
                         </div>
                     </div>
@@ -154,12 +160,29 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div class="form-group">
-                            <label for="update-judul">Judul</label>
-                            <textarea class="form-control" placeholder="Judul" name="judul" id="update-judul"
-                                oninput="this.value = this.value.replace(/[^a-zA-Z0-9!%.,()\/'?\-\s]/g, '').replace(/(\..*?)\..*/g, '$1');"></textarea>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="update-judul">Judul</label>
+                                    <textarea class="form-control" placeholder="Judul" name="judul" id="update-judul"
+                                        oninput="this.value = this.value.replace(/[^a-zA-Z0-9!%.,()\/'?\-\s]/g, '').replace(/(\..*?)\..*/g, '$1');"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="jenis_inputan">Jenis Inputan</label>
+                                    <select id="jenis_inputan-edit" name="jenis" class="form-control">
+                                        <option value="#">Pilih Jenis Inputan</option>
+                                        <option value="link">Link Video</option>
+                                        <option value="video">Upload Video</option>
+                                        <option value="foto">Upload Foto</option>
+                                        <option value="pdf">Upload PDF</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
+
+                        {{-- <div class="form-group">
                             <ul class="list-unstyled" style="margin-bottom: 0px; margin-left: 0px;">
                                 <li class="d-inline-block mr-2">
                                     <div class="custom-control custom-radio custom-radio-primary mb-3">
@@ -176,7 +199,7 @@
                                     </div>
                                 </li>
                             </ul>
-                        </div>
+                        </div> --}}
                         <div class="form-group row_link"style="display: none;">
                             <label for="update-konten">Link Video</label>
                             <input type="text" class="form-control" placeholder="Link Youtube" name="link" id="update-link"></input>
@@ -195,29 +218,31 @@
                             </div>
 
                         </div>
-                        {{-- <div class="form-group">
-                            <input type="checkbox" id="updateManualCheckbox"> <label
-                                for="updateManualCheckbox">Manual</label>
-                        </div>
-                        <div class="form-group" id="updateLinkGroup">
-                            <label for="update-link">Link Youtube</label>
-                            <textarea class="form-control" placeholder="Link Youtube" name="link" id="update-link"></textarea>
-                        </div>
-                        <div class="form-group" id="updateVideoGroup" style="display: none;">
-                            <label for="video_edit">Video</label>
+                        <div class="form-group  row_pdf" style="display: none;">
+                            <label for="video">Upload PDF</label>
                             <div class="custom-file mb-3">
-                                <input type="file" class="custom-file-input" name="video" id="video_edit"
-                                    accept="video/*">
-                                <label class="custom-file-label" for="video">Pilih Video</label>
+                                <input type="file" class="custom-file-input" name="file_pdf" id="update-file_pdf"
+                                    accept=".pdf">
+                                <label class="custom-file-label" for="video">Pilih PDF</label>
                             </div>
                             <small id="videoHelpBlock" class="form-text text-muted">
-                                Hanya file video yang diizinkan (.mp4, .avi, .mkv, dll.).
+                                Hanya file video yang diizinkan PDF <b class="text-danger">Max 5.mb</b>
                             </small>
-                            {{-- <button type="button" id="btn-open-video" class="btn btn-primary mt-3"
-                                style="display: none;">Lihat Video</button> --}}
-                        {{-- </div> --}}
+                        </div>
+                        <div class="form-group row_foto" style="display: none;">
+                            <label for="updateCustomFile">Foto Cerita Praktik Baik</label>
+                            <div class="custom-file mb-3">
+                                <input type="file" class="custom-file-input" name="foto" id="update-foto_praktik"
+                                    accept=".jpg,.jpeg,.png">
+                                <label class="custom-file-label" for="updateCustomFile">Cari Gambar</label>
+                            </div>
+                            <small id="videoHelpBlock" class="form-text text-muted">
+                                Hanya file video yang diizinkan (.jpg, .jpeg, .png) <b class="text-danger">Max 2.mb</b>
+                            </small>
+                            <div id="praktik-preview" class="mt-3"></div>
+                        </div>
                         <div class="form-group">
-                            <label for="updateCustomFile">Gambar</label>
+                            <label for="updateCustomFile">Thumbnail</label>
                             <div class="custom-file mb-3">
                                 <input type="file" class="custom-file-input" name="foto" id="updateCustomFile"
                                     accept=".jpg,.jpeg,.png">
