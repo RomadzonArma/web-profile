@@ -58,7 +58,7 @@ class PraktikBaikController extends Controller
                 'link_video' => $request->input('link_video'),
                 'foto'       => $fotoName,
                 'video'      => $videoPath,
-                'konten'    => $request->input('konten'),
+                // 'konten'    => $request->input('konten'),
                 // 'is_active'  => 0,
             ];
             PraktikBaik::create($data);
@@ -116,7 +116,7 @@ class PraktikBaikController extends Controller
 
             $praktikBaik->update([
                 'judul'      => $request->input('judul'),
-                'konten'      => $request->input('konten'),
+                // 'konten'      => $request->input('konten'),
                 'link_video' => $request->input('link_video'),
                 'foto'       => $fotoName ?: $praktikBaik->foto,
                 'video'      => $videoPath ?: $praktikBaik->video,

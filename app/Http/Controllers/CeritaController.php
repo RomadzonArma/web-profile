@@ -113,7 +113,7 @@ class CeritaController extends Controller
 
             $cerita->judul = $request->judul;
             // $cerita->link = $request->link;
-            $cerita->video = $videoName;
+            $cerita->video = $videoPath;
             $cerita->link_video = $request->link_video;
             $cerita->konten = $request->konten;
             $cerita->updated_at = date('Y-m-d H:i:s');

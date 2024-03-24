@@ -115,10 +115,10 @@
                             </div>
                             <div id="imagePreview" class="mt-3"></div>
                         </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label for="judul">Konten</label>
                             <textarea class="form-control" id="konten" name="konten" required></textarea>
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">
@@ -202,10 +202,10 @@
                             <div id="updateImagePreview" class="mt-3"></div>
                             <div id="foto"></div>
                         </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label for="judul">Konten</label>
                             <textarea class="form-control" id="konten_edit" name="konten"></textarea>
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Batal</button>

@@ -11,15 +11,16 @@ class CeritaBaik extends Model
 
     protected $table = 'cerita';
     protected $primaryKey = 'id';
+    protected $guarded = ["id"];
 
-    protected $fillable = [
-        'judul',
-        'desc',
-        'link',
-        'foto',
-        'is_active',
-        'urutan',
-    ];
+    // protected $fillable = [
+    //     'judul',
+    //     'desc',
+    //     'link',
+    //     'foto',
+    //     'is_active',
+    //     'urutan',
+    // ];
 
     protected $casts = [
         'created_at' => 'datetime'
