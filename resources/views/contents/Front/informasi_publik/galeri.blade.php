@@ -81,8 +81,8 @@
                                 <div class="entry-image">
                                     <div class="fslider" data-arrows="false" data-lightbox="gallery">
                                         <div class="flexslider">
-                                            @foreach ($item->refGaleri as $img)
-                                                <div class="slider-wrap">
+                                            <div class="slider-wrap">
+                                                @foreach ($item->refGaleri as $img)
                                                     <div class="slide">
                                                         <a href="{{ asset('file-galeri/gambar/' . $img->image) }}"
                                                             data-lightbox="gallery-item">
@@ -95,8 +95,8 @@
                                                                         alt="Standard Post with Gallery">
                                                                 </a> --}}
                                                     </div>
+                                                    @endforeach
                                                 </div>
-                                            @endforeach
                                         </div>
                                     </div>
                                 </div>

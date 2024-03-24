@@ -1,30 +1,69 @@
 let table;
 $(() => {
-   
-
-    $("input[name=jenis]").on("change", function () {
-        var val = $("input[name=jenis]:checked").val();
+    $("#jenis_inputan").on("change", function () {
+        var val = $(this).val();
+        $(".row_link, .row_video, .row_foto, .row_pdf").css("display", "none");
         if (val == "link") {
             $(".row_link").css("display", "block");
-            $(".row_video").css("display", "none");
         } else if (val == "video") {
-            $(".row_link").css("display", "none");
             $(".row_video").css("display", "block");
+        } else if (val == "foto") {
+            $(".row_foto").css("display", "block");
+        } else if (val == "pdf") {
+            $(".row_pdf").css("display", "block");
+        }
+    });
+    $("#jenis_inputan-edit").on("change", function () {
+        var val = $(this).val();
+        $(".row_link, .row_video, .row_foto, .row_pdf").css("display", "none");
+        if (val == "link") {
+            $(".row_link").css("display", "block");
+        } else if (val == "video") {
+            $(".row_video").css("display", "block");
+        } else if (val == "foto") {
+            $(".row_foto").css("display", "block");
+        } else if (val == "pdf") {
+            $(".row_pdf").css("display", "block");
         }
     });
 
-    $("input[name=jenis-edit]").on("change", function () {
-        // Get the value of the checked radio button
-        var val = $("input[name=jenis-edit]:checked").val();
-        // Show/hide divs based on the selected value
-        if (val == "link") {
-            $(".row_link").css("display", "block");
-            $(".row_video").css("display", "none");
-        } else if (val == "video") {
-            $(".row_link").css("display", "none");
-            $(".row_video").css("display", "block"); // Corrected class name
-        }
-    });
+    // $("input[name=jenis]").on("change", function () {
+    //     var val = $("input[name=jenis]:checked").val();
+    //     if (val == "link") {
+    //         $(".row_link").css("display", "block");
+    //         $(".row_video").css("display", "none");
+    //         $(".row_foto").css("display", "none");
+    //         $(".row_pdf").css("display", "none");
+    //     } else if (val == "video") {
+    //         $(".row_link").css("display", "none");
+    //         $(".row_video").css("display", "block");
+    //         $(".row_foto").css("display", "none");
+    //         $(".row_pdf").css("display", "none");
+    //     } else if (val == "foto") {
+    //         $(".row_link").css("display", "none");
+    //         $(".row_video").css("display", "none");
+    //         $(".row_foto").css("display", "block");
+    //         $(".row_pdf").css("display", "none");
+    //     } else if(val == "pdf") {
+    //         $(".row_link").css("display", "none");
+    //         $(".row_video").css("display", "none");
+    //         $(".row_foto").css("display", "none");
+    //         $(".row_pdf").css("display", "block");
+    //     }
+    // });
+
+    // $("input[name=jenis]").on("change", function () {
+    //     // Get the value of the checked radio button
+    //     var val = $("input[name=jenis]:checked").val();
+    //     // Show/hide divs based on the selected value
+    //     if (val == "link") {
+    //         $(".row_link").css("display", "block");
+    //         $(".row_video").css("display", "none");
+    //     } else if (val == "video") {
+    //         $(".row_link").css("display", "none");
+    //         $(".row_video").css("display", "block"); // Corrected class name
+    //     }
+    // });
 
     $("#table-data").on("click", ".btn-delete", function () {
         let data = table.row($(this).closest("tr")).data();
@@ -152,33 +191,6 @@ $(() => {
         });
     });
 
-    // $('#table-data').on('click', '.btn-update', function () {
-    //     var tr = $(this).closest('tr');
-    //     var data = table.row(tr).data();
-
-    //     clearErrorMessage();
-    //     $('#form-praktik-update')[0].reset();
-
-    //     $.each(data, (key, value) => {
-    //         $('#update-' + key).val(value);
-    //     })
-    //     $('#foto').html('<img src="' + '' + data.foto + '" style="height: 100px; margin-top: 10px;">');
-
-    //     if (data.video !== null && data.video !== '') {
-    //         $('#updateManualCheckbox').prop('checked', true);
-    //         $('#updateLinkGroup').hide();
-    //         $('#updateVideoGroup').show();
-
-    //         $('#btn-open-video').show();
-    //     } else {
-    //         $('#updateManualCheckbox').prop('checked', false);
-    //         $('#updateLinkGroup').show();
-    //         $('#updateVideoGroup').hide();
-
-    //         $('#btn-open-video').hide();
-    //     }
-    //     $('#modal-praktik-update').modal('show');
-    // })
     $("#table-data").on("click", ".btn-update", function () {
         var tr = $(this).closest("tr");
         var data = table.row(tr).data();
@@ -186,27 +198,114 @@ $(() => {
         clearErrorMessage();
         $("#form-praktik-update")[0].reset();
 
-        $.each(data, (key, value) => {
-            $("#update-" + key).val(value);
-        });
-        $("#foto").html(
-            '<img src="' +
-                "" +
-                data.foto +
-                '" style="height: 100px; margin-top: 10px;">'
-        );
+        if (data) {
+            $.each(data, (key, value) => {
+                if (key === 'foto') {
+                    // Show image preview for 'foto' field
+                    if (value) {
+                        $("#foto").html(
+                            '<img src="' +
+                            data.foto +
+                            '" style="height: 100px; margin-top: 10px;">'
+                        );
+                    }
+                } else if (key === 'foto_praktik') {
+                    // Show image preview for 'foto_praktik' field
+                    if (value) {
+                        $("#updatepraktikPreview").html(
+                            '<img src="' +
+                            data.foto_praktik +
+                            '" style="height: 100px; margin-top: 10px;">'
+                        );
+                    }
+                } else if (key === 'file_pdf') {
+                    // Show PDF preview for 'file_pdf' field
+                    if (value) {
+                        $('#pdf_preview').attr('src', value);
+                    } else {
+                        // Handle the case when file_pdf is not available or empty
+                        // For instance, you might want to hide the pdf preview element
+                        $('#pdf_preview').hide();
+                    }
+                } else {
+                    // Set other input fields normally
+                    $("#update-" + key).val(value);
+                }
+            });
 
-        // Periksa apakah data link terisi
-        if (data.link_video !== null && data.link_video !== "") {
-            $(".row_link").css("display", "block");
-            $(".row_video").css("display", "none");
+            // Handle showing/hiding input sections based on the selected 'jenis' value
+            var jenisInputan = data['jenis'];
+            if (jenisInputan) {
+                $(".row_link, .row_video, .row_foto, .row_pdf").hide();
+                if (jenisInputan === 'link') {
+                    $(".row_link").show();
+                } else if (jenisInputan === 'video') {
+                    $(".row_video").show();
+                } else if (jenisInputan === 'foto') {
+                    $(".row_foto").show();
+                } else if (jenisInputan === 'pdf') {
+                    $(".row_pdf").show();
+                }
+            }
+
+            $("#modal-praktik-update").modal("show");
         } else {
-            $(".row_link").css("display", "none");
-            $(".row_video").css("display", "block");
+            // Handle the case when data is not available
+            console.error("Data is not available.");
         }
-
-        $("#modal-praktik-update").modal("show");
     });
+
+    // $("#table-data").on("click", ".btn-update", function () {
+    //     var tr = $(this).closest("tr");
+    //     var data = table.row(tr).data();
+
+    //     clearErrorMessage();
+    //     $("#form-praktik-update")[0].reset();
+
+    //     if (data) {
+    //         $.each(data, (key, value) => {
+    //             $("#update-" + key).val(value);
+    //         });
+
+    //         if (data.foto) {
+    //             $("#foto").html(
+    //                 '<img src="' +
+    //                     data.foto +
+    //                     '" style="height: 100px; margin-top: 10px;">'
+    //             );
+    //         }
+    //         if (data.foto_praktik) {
+    //             $("#updatepraktikPreview").html(
+    //                 '<img src="' +
+    //                     data.foto +
+    //                     '" style="height: 100px; margin-top: 10px;">'
+    //             );
+    //         }
+
+    //         if (data.file_pdf) {
+    //             $("#pdf_preview").attr("src", data.file_pdf);
+    //         } else {
+    //             // Handle the case when file_pdf is not available or empty
+    //             // For instance, you might want to hide the pdf preview element
+    //             $("#pdf_preview").hide();
+    //         }
+
+    //         // Periksa apakah data link terisi
+    //         if (data.link_video !== null && data.link_video !== "") {
+    //             $(".row_link").css("display", "block");
+    //             $(".row_video").css("display", "none");
+    //         } else {
+    //             $(".row_link").css("display", "none");
+    //             $(".row_video").css("display", "block");
+    //         }
+
+    //         $("#modal-praktik-update").modal("show");
+    //     } else {
+    //         // Handle the case when data is not available
+    //         console.error("Data is not available.");
+    //     }
+    // });
+
 
     $("#form-praktik").on("submit", function (e) {
         e.preventDefault();

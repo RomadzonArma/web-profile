@@ -20,6 +20,8 @@ class Berprestasi extends Model
         'video',
         'is_active',
         'urutan',
+        'file_pdf',
+        'foto_praktik'
     ];
 
     protected $casts = [

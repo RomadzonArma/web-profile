@@ -60,6 +60,12 @@ class BerprestasiController extends Controller
     public function store(Request $request)
     {
         try {
+            $request->validate([
+                'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+                'foto_praktik' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+                'file_pdf' => 'nullable|mimes:pdf|max:5120',
+                'video' => 'nullable|mimes:mp4,mov|max:10240',
+            ]);
             $fotoName = null;
             if ($request->hasFile('foto')) {
                 $file = $request->file('foto');
@@ -80,12 +86,39 @@ class BerprestasiController extends Controller
                 $videoPath = 'storage/uploads/prestasi/' . $videoName;
                 $video->move(public_path('storage/uploads/prestasi'), $videoName);
             }
+            $filePath = null;
+            if ($request->hasFile('file_pdf')) {
+                $file = $request->file('file_pdf');
+                if ($file->isValid()) {
+                    $fileName = time() . '_' . $file->getClientOriginalName();
+                    $path = public_path('storage/uploads/prestasi/pdf');
+                    $file->move($path, $fileName);
+                    $filePath = 'storage/uploads/prestasi/pdf' . $fileName;
+                } else {
+                    throw new \Exception('Invalid video file provided');
+                }
+            }
+            $imagePath = null;
+            if ($request->hasFile('foto_praktik')) {
+                $image = $request->file('foto_praktik');
+                if ($image->isValid()) {
+                    $imageName = time() . '_' . $image->getClientOriginalName(); // Fix variable name here
+                    $path = public_path('storage/uploads/prestasi/foto-praktik');
+                    $image->move($path, $imageName);
+                    $imagePath = 'storage/uploads/prestasi/foto-praktik' . $imageName;
+                } else {
+                    throw new \Exception('Invalid image file provided');
+                }
+            }
+
 
             $data = [
                 'judul' => $request->input('judul'),
                 'link' => $request->input('link'),
                 'foto' => $fotoName,
                 'video' => $videoPath,
+                'file_pdf' => $filePath,
+                'foto_praktik' => $imagePath,
                 'created_at' => now(),
                 'created_id' => Auth::user()->id,
             ];
@@ -102,7 +135,15 @@ class BerprestasiController extends Controller
     public function update(Request $request)
     {
         try {
+            $request->validate([
+                'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+                'foto_praktik' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+                'file_pdf' => 'nullable|mimes:pdf|max:5120',
+                'video' => 'nullable|mimes:mp4,mov|max:10240',
+            ]);
+
             $prestasi = Berprestasi::find($request->id);
+
             if ($request->hasFile('foto')) {
                 $file = $request->file('foto');
                 $name = time() . '_' . $file->getClientOriginalName();
@@ -146,6 +187,36 @@ class BerprestasiController extends Controller
                 if (!empty($videoName)) {
                     $prestasi->video = $videoName;
                 }
+            }
+            if ($request->hasFile('file_pdf')) {
+                // Handling file_pdf update
+                // Code remains the same as your implementation
+                if ($prestasi->file_pdf) {
+                    $oldPdfPath = public_path($prestasi->file_pdf);
+                    if (file_exists($oldPdfPath)) {
+                        unlink($oldPdfPath);
+                    }
+                }
+
+                $filePdf = $request->file('file_pdf');
+                $pdfName = time() . '_' . $filePdf->getClientOriginalName();
+                $filePdf->move(public_path('storage/uploads/prestasi/pdf'), $pdfName);
+                $prestasi->file_pdf = 'storage/uploads/prestasi/pdf' . $pdfName;
+            }
+            if ($request->hasFile('foto_praktik')) {
+                // Handling file_pdf update
+                // Code remains the same as your implementation
+                if ($prestasi->foto_praktik) {
+                    $oldImagePath = public_path($prestasi->foto_praktik);
+                    if (file_exists($oldImagePath)) {
+                        unlink($oldImagePath);
+                    }
+                }
+
+                $filePdf = $request->file('file_pdf');
+                $imgName = time() . '_' . $filePdf->getClientOriginalName();
+                $filePdf->move(public_path('storage/uploads/prestasi/foto-praktik'), $imgName);
+                $prestasi->foto_praktik = 'storage/uploads/prestasi/foto-praktik' . $imgName;
             }
 
             $prestasi->judul = $request->judul;
