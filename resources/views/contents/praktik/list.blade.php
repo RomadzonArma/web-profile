@@ -153,10 +153,10 @@
                                 </div>
                             </div>
                         </div>
-                        {{-- <div class="form-group">
+                        <div class="form-group">
                             <label for="judul">Konten</label>
                             <textarea class="form-control" id="konten" name="konten" required></textarea>
-                        </div> --}}
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">
