@@ -263,7 +263,7 @@ class PraktikBaikController extends Controller
 
             $praktikBaik->update([
                 'judul'      => $request->input('judul'),
-                'konten'      => $request->input('konten'),
+                // 'konten'      => $request->input('konten'),
                 'link_video' => $request->input('link_video'),
                 'foto'       => $fotoName ?: $praktikBaik->foto,
                 'video'      => $videoPath ?: $praktikBaik->video,

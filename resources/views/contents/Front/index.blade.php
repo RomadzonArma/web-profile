@@ -14,6 +14,18 @@
                             <i class="icon-line-search"></i>
                         </button>
                     </form>
+                    {{-- <div class="d-flex align-items-center">
+                        <div class="d-flex flex-column gap-2 mr-4">
+                            <p class="mb-0">Data Kepala Sekolah : 12000</p>
+                            <p class="mb-0">Data Pengawas Sekolah : 12000</p>
+                        </div>
+                        <form class="bg-white form-banner my-0" style="min-width: 280px;">
+                            <input type="text" placeholder="Cari kata kunci...">
+                            <button class="rounded-icon btn btn-primary">
+                                <i class="icon-line-search"></i>
+                            </button>
+                        </form>
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -42,7 +54,7 @@
                             <ul class="tab-nav tab-nav2">
                                 <li><a href="#praktik-baik">Praktik Baik GP</a></li>
                                 <li><a href="#ksps-berprestasi">KSPSTK Berprestasi</a></li>
-                                <li><a href="#karya-kspstk">Karya KSPSTK</a></li>
+                                <li><a href="#karya-kspstk">Karya Baik KSPSTK</a></li>
                             </ul>
 
                             <div class="tab-container">
@@ -222,28 +234,27 @@
                                 <div class="tab-content" id="karya-kspstk">
                                     <div class="swiper swiper-4">
                                         <div class="swiper-wrapper">
-                                            @foreach ($berprestasi as $item)
+                                            @foreach ($cerita as $item)
                                                 <div class="swiper-slide">
-                                                    @if (!empty($item->link) && !empty($item->video))
+                                                    @if (!empty($item->link_video) && !empty($item->video))
                                                         <a class="position-relative d-block lightbox-img"
                                                             href="{{ asset($item->video) }}" data-lightbox="iframe">
                                                             <img src="{{ asset($item->foto) }}" class="img-fluid"
                                                                 width="380" alt="Video" draggable="false">
                                                             <div class="bg-overlay">
                                                                 <div class="bg-overlay-content dark">
-                                                                    <h6 class="text-white mb-0"
-                                                                        data-hover-animate="fadeIn">
+                                                                    <h6 class="text-white mb-0" data-hover-animate="fadeIn">
                                                                         {{ $item->judul }}
                                                                     </h6>
                                                                 </div>
                                                             </div>
                                                         </a>
-                                                    @elseif (!empty($item->link))
+                                                    @elseif (!empty($item->link_video))
                                                         @php
                                                             // Extract video ID from YouTube link
                                                             preg_match(
                                                                 '/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/|youtube\.com\/live\/)([^"&?\/\s]{11})/',
-                                                                $item->link,
+                                                                $item->link_video,
                                                                 $matches,
                                                             );
                                                             $videoId = $matches[1] ?? null;
@@ -256,8 +267,7 @@
                                                                 width="380" alt="Video" draggable="false">
                                                             <div class="bg-overlay">
                                                                 <div class="bg-overlay-content dark">
-                                                                    <h6 class="text-white mb-0"
-                                                                        data-hover-animate="fadeIn">
+                                                                    <h6 class="text-white mb-0" data-hover-animate="fadeIn">
                                                                         {{ $item->judul }}
                                                                     </h6>
                                                                 </div>
@@ -270,8 +280,7 @@
                                                                 width="380" alt="Video" draggable="false">
                                                             <div class="bg-overlay">
                                                                 <div class="bg-overlay-content dark">
-                                                                    <h6 class="text-white mb-0"
-                                                                        data-hover-animate="fadeIn">
+                                                                    <h6 class="text-white mb-0" data-hover-animate="fadeIn">
                                                                         {{ $item->judul }}
                                                                     </h6>
                                                                 </div>

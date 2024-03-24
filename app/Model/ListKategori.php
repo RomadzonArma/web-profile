@@ -24,6 +24,11 @@ class ListKategori extends Model
         return $this->hasMany('App\Model\ListBerita');
     }
 
+    public function berita_ziwbk()
+    {
+        return $this->hasMany('App\Model\BeritaZIWBK');
+    }
+
     public function list_agenda()
     {
         return $this->hasMany('App\Model\Agenda');

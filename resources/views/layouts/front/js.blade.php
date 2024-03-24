@@ -57,10 +57,10 @@
         // autoHeight: true,
         centeredSlides: true,
         autoplay: {
-            delay: 4500,
+            delay: 7500,
             disableOnInteraction: false,
         },
-        speed: 1000,
+        speed: 1500,
         // Pagination
         pagination: {
             el: ".swiper-pagination",

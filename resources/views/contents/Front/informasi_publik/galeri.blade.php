@@ -95,8 +95,8 @@
                                                                         alt="Standard Post with Gallery">
                                                                 </a> --}}
                                                     </div>
-                                                    @endforeach
-                                                </div>
+                                                @endforeach
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
