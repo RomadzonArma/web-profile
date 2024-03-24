@@ -49,7 +49,6 @@
         </div>
     </div>
 
-
     <!-- sample modal content -->
     <div id="modal-cerita" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-ceritaLabel"
         aria-hidden="true">
@@ -64,12 +63,30 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div class="form-group">
-                            <label for="judul">Judul cerita</label>
-                            <textarea class="form-control" placeholder="Judul cerita" name="judul" id="judul"
-                                oninput="this.value = this.value.replace(/[^a-zA-Z0-9!%.,()\/'?\-\s]/g, '').replace(/(\..*?)\..*/g, '$1');"></textarea>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="judul">Judul cerita</label>
+                                    <textarea class="form-control" placeholder="Judul cerita" name="judul" id="judul"
+                                        oninput="this.value = this.value.replace(/[^a-zA-Z0-9!%.,()\/'?\-\s]/g, '').replace(/(\..*?)\..*/g, '$1');"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="jenis_inputan">Jenis Inputan</label>
+                                    <select id="jenis_inputan" name="jenis" class="form-control">
+                                        <option value="#">Pilih Jenis Inputan</option>
+                                        <option value="link">Link Video</option>
+                                        <option value="video">Upload Video</option>
+                                        <option value="foto">Upload Foto</option>
+                                        <option value="pdf">Upload PDF</option>
+                                    </select>
+                                </div>
+
+                            </div>
                         </div>
-                        <div class="form-group">
+
+                        {{-- <div class="form-group">
                             <ul class="list-unstyled" style="margin-bottom: 0px; margin-left: 0px;">
                                 <li class="d-inline-block mr-2">
                                     <div class="custom-control custom-radio custom-radio-primary mb-3">
@@ -86,7 +103,7 @@
                                     </div>
                                 </li>
                             </ul>
-                        </div>
+                        </div> --}}
 
                         <div class="form-group row_link" style="display: none;">
                             <label for="konten">Link Video</label>
@@ -102,24 +119,50 @@
                                     <label class="custom-file-label" for="video">Pilih Video</label>
                                 </div>
                                 <small id="videoHelpBlock" class="form-text text-muted">
-                                    Hanya file video yang diizinkan (.mp4, .avi, .mkv, dll.).
+                                    Hanya file video yang diizinkan (.mp4, .avi, .mkv, dll.)  <b class="text-danger">Max 10.mb</b>
                                 </small>
                             </div>
-
+                        </div>
+                        <div class="form-group row_foto" style="display: none;">
+                            <label for="foto_praktik">Foto Praktik</label>
+                            <div class="custom-file mb-3">
+                                <input type="file" class="custom-file-input" name="foto_praktik" id="foto_praktik"
+                                    accept=".jpg,.jpeg,.png">
+                                <label class="custom-file-label" for="updateCustomFile">Cari Gambar</label>
+                            </div>
+                            <small id="videoHelpBlock" class="form-text text-muted">
+                                Hanya file video yang diizinkan (.jpg, .jpeg, .png) <b class="text-danger">Max 2.mb</b>
+                            </small>
+                            <div id="updatepraktikPreview" class="mt-3"></div>
+                        </div>
+                        <div class="form-group row_pdf"  style="display: none;">
+                            <label for="video">Upload PDF</label>
+                            <div class="custom-file mb-3">
+                                <input type="file" class="custom-file-input" name="file_pdf" id="file_pdf"
+                                    accept=".pdf*">
+                                <label class="custom-file-label" for="video">Pilih PDF</label>
+                            </div>
+                            <small id="videoHelpBlock" class="form-text text-muted">
+                                Hanya file yang diizinkan .PDF <b class="text-danger">Max 5.mb</b>
+                            </small>
                         </div>
                         <div class="form-group">
-                            <label for="form_foto">Gambar cerita</label>
+                            <label for="form_foto">Thumbnail cerita</label>
                             <div class="custom-file mb-3">
                                 <input type="file" class="custom-file-input" name="foto" id="customFile"
                                     accept=".jpg,.jpeg,.png">
                                 <label class="custom-file-label" for="customFile">Cari Gambar</label>
                             </div>
+                            <small id="videoHelpBlock" class="form-text text-muted">
+                                Hanya file video yang diizinkan (.jpg, .jpeg, .png) <b class="text-danger">Max 2.mb</b>
+                            </small>
                             <div id="imagePreview" class="mt-3"></div>
                         </div>
-                        <div class="form-group">
+
+                        {{-- <div class="form-group">
                             <label for="konten">Isi</label>
                             <textarea class="form-control" placeholder="Isi Cerita" name="konten" id="konten"></textarea>
-                        </div>
+                        </div> --}}
 
                     </div>
                     <div class="modal-footer">
@@ -146,18 +189,35 @@
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title mt-0" id="modal-cerita-updateLabel">Form Cerita Praktik Baik</h5>
+                        <h5 class="modal-title mt-0" id="modal-cerita-updateLabel">Form Edit Cerita Praktik Baik</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div class="form-group">
-                            <label for="update-judul">Judul cerita</label>
-                            <textarea class="form-control" placeholder="Judul cerita" name="judul" id="update-judul"
-                                oninput="this.value = this.value.replace(/[^a-zA-Z0-9!%.,()\/'?\-\s]/g, '').replace(/(\..*?)\..*/g, '$1');"></textarea>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="update-judul">Judul cerita</label>
+                                    <textarea class="form-control" placeholder="Judul cerita" name="judul" id="update-judul"
+                                        oninput="this.value = this.value.replace(/[^a-zA-Z0-9!%.,()\/'?\-\s]/g, '').replace(/(\..*?)\..*/g, '$1');"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="jenis_inputan">Jenis Inputan</label>
+                                    <select id="jenis_inputan-edit" name="jenis" class="form-control">
+                                        <option value="#">Pilih Jenis Inputan</option>
+                                        <option value="link">Link Video</option>
+                                        <option value="video">Upload Video</option>
+                                        <option value="foto">Upload Foto</option>
+                                        <option value="pdf">Upload PDF</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
+
+                        {{-- <div class="form-group">
                             <ul class="list-unstyled" style="margin-bottom: 0px; margin-left: 0px;">
                                 <li class="d-inline-block mr-2">
                                     <div class="custom-control custom-radio custom-radio-primary mb-3">
@@ -174,7 +234,7 @@
                                     </div>
                                 </li>
                             </ul>
-                        </div>
+                        </div> --}}
                         <div class="form-group row_link"style="display: none;">
                             <label for="update-konten">Link Video</label>
                             <input type="text" class="form-control" placeholder="Link Video" name="link_video"
@@ -189,25 +249,51 @@
                                     <label class="custom-file-label" for="video">Pilih Video</label>
                                 </div>
                                 <small id="videoHelpBlock" class="form-text text-muted">
-                                    Hanya file video yang diizinkan (.mp4, .avi, .mkv, dll.).
+                                    Hanya file yang diizinkan (.mp4, .avi, .mkv, dll.). <b class="text-danger">Max 10.mb</b>
                                 </small>
                             </div>
 
                         </div>
+                        <div class="form-group  row_pdf" style="display: none;">
+                            <label for="video">Upload PDF</label>
+                            <div class="custom-file mb-3">
+                                <input type="file" class="custom-file-input" name="file_pdf" id="update-file_pdf"
+                                    accept=".pdf">
+                                <label class="custom-file-label" for="video">Pilih PDF</label>
+                            </div>
+                            <small id="videoHelpBlock" class="form-text text-muted">
+                                Hanya file video yang diizinkan PDF <b class="text-danger">Max 5.mb</b>
+                            </small>
+                        </div>
+                        <div class="form-group row_foto" style="display: none;">
+                            <label for="updateCustomFile">Foto Cerita Praktik Baik</label>
+                            <div class="custom-file mb-3">
+                                <input type="file" class="custom-file-input" name="foto" id="update-foto_praktik"
+                                    accept=".jpg,.jpeg,.png">
+                                <label class="custom-file-label" for="updateCustomFile">Cari Gambar</label>
+                            </div>
+                            <small id="videoHelpBlock" class="form-text text-muted">
+                                Hanya file video yang diizinkan (.jpg, .jpeg, .png) <b class="text-danger">Max 2.mb</b>
+                            </small>
+                            <div id="praktik-preview" class="mt-3"></div>
+                        </div>
                         <div class="form-group">
-                            <label for="updateCustomFile">Gambar cerita</label>
+                            <label for="updateCustomFile">Thumbnail cerita</label>
                             <div class="custom-file mb-3">
                                 <input type="file" class="custom-file-input" name="foto" id="updateCustomFile"
                                     accept=".jpg,.jpeg,.png">
                                 <label class="custom-file-label" for="updateCustomFile">Cari Gambar</label>
                             </div>
-                            <div id="updateImagePreview" class="mt-3"></div>
+                            <small id="videoHelpBlock" class="form-text text-muted">
+                                Hanya file video yang diizinkan (.jpg, .jpeg, .png) <b class="text-danger">Max 2.mb</b>
+                            </small>
                             <div id="foto"></div>
                         </div>
-                        <div class="form-group">
+
+                        {{-- <div class="form-group">
                             <label for="update-konten">Isi</label>
                             <textarea class="form-control" placeholder="Isi" name="konten" id="update-konten"></textarea>
-                        </div>
+                        </div> --}}
 
                     </div>
                     <div class="modal-footer">
@@ -266,7 +352,7 @@
         $(document).ready(function() {
             $('#konten').summernote();
         });
-      z
+
     </script>
     <script src="{{ asset('js/page/cerita/list.js?q=' . Str::random(5)) }}"></script>
 @endpush

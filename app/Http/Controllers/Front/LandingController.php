@@ -173,7 +173,7 @@ class LandingController extends Controller
             $query->whereMonth('date', $bulan);
         }
 
-        $berita = $query->paginate(4);
+        $berita = $query->paginate(8);
 
         $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
 
@@ -228,7 +228,7 @@ class LandingController extends Controller
         if ($bulan) {
             $query->whereMonth('created_at', $bulan);
         }
-        $artikel = $query->paginate(5);
+        $artikel = $query->paginate(8);
         $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
 
 
@@ -310,7 +310,7 @@ class LandingController extends Controller
         }
 
         $query->where('status_publish', '1');
-        $agenda = $query->paginate(5);
+        $agenda = $query->paginate(8);
 
         $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
         return view('contents.Front.menu_halaman.publikasi.agenda', [
@@ -360,7 +360,7 @@ class LandingController extends Controller
         if ($bulan) {
             $query->whereMonth('tanggal', $bulan);
         }
-        $unduhan = $query->paginate(5);
+        $unduhan = $query->paginate(8);
 
         $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
 
@@ -465,7 +465,7 @@ class LandingController extends Controller
         if ($bulan) {
             $query->whereMonth('date', $bulan);
         }
-        $pengumuman = $query->paginate(5);
+        $pengumuman = $query->paginate(8);
 
         $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
         return view('contents.Front.menu_halaman.publikasi.pengumuman', [
@@ -628,7 +628,7 @@ class LandingController extends Controller
         if ($bulan) {
             $query->whereMonth('publish_date', $bulan);
         }
-        $guru =  $query->paginate(5);
+        $guru =  $query->paginate(8);
         return view('contents.Front.menu_halaman.program_layanan.guru-penggerak', [
             'title' => 'Program Pendidikan Guru Penggerak',
             'guru' => $guru,
