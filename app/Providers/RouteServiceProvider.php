@@ -110,6 +110,8 @@ class RouteServiceProvider extends ServiceProvider
             $this->mapAkuntabilitas();
 
             $this->mapRenstraRoutes();
+
+            $this->mapBeritaZIWBKRoutes();
         });
     }
 
@@ -348,10 +350,18 @@ class RouteServiceProvider extends ServiceProvider
             ->namespace($this->namespace)
             ->group(base_path('routes/panel/akuntabilitas.php'));
     }
+
     protected function mapRenstraRoutes()
     {
         Route::prefix('manajemen_renstra')
         ->namespace($this->namespace)
         ->group(base_path('routes/panel/renstra.php'));
+    }
+
+    protected function mapBeritaZIWBKRoutes()
+    {
+        Route::prefix('berita_zi_wbk')
+        ->namespace($this->namespace)
+        ->group(base_path('routes/panel/berita_zi_wbk.php'));
     }
 }

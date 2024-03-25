@@ -11,6 +11,8 @@ use App\Model\Artikel;
 use App\Model\Panduan;
 use App\Model\Podcast;
 use App\Model\Unduhan;
+use App\Model\Renstra;
+use App\Model\Akuntabilitas;
 use App\Model\Regulasi;
 use App\Model\ListKanal;
 use App\Model\CeritaBaik;
@@ -29,10 +31,13 @@ use App\Model\PengunjungArtikel;
 use App\Model\PengunjungPanduan;
 use App\Model\PengunjungUnduhan;
 use App\Model\PengunjungRegulasi;
+use App\Model\Faq;
 use Illuminate\Support\Facades\DB;
 use App\Model\PengunjungPengumuman;
 use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Validator;
+
 
 class LandingController extends Controller
 {
@@ -41,7 +46,7 @@ class LandingController extends Controller
 
         $swiper = Swiper::where('is_active', '1')
             ->orderByDesc('created_at')
-            ->take(4)
+            ->take(5)
             ->get();
         $podcast = Podcast::where('status_publish', '1')->orderByDesc('created_at')->get();
         $berita = ListBerita::where('status_publish', '1')->take(2)->orderByDesc('date')->get();
@@ -63,7 +68,7 @@ class LandingController extends Controller
         $program_fokus = ProgramFokus::where('status', '1')->orderBy('publish_date')->get();
         $praktik_baik  = PraktikBaik::where('is_active','1')->orderBy('created_at')->get();
         $berprestasi   = Berprestasi::where('is_active','1')->orderBy('created_at')->get();
-        $cerita   = CeritaBaik::where('is_active','1')->get();
+        $cerita   = CeritaBaik::where('is_active','1')->orderBy('created_at')->get();
 
 
         $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
@@ -646,5 +651,148 @@ class LandingController extends Controller
             'guru' => $guru,
             'tautan' => $tautan,
         ]);
+    }
+
+    public function FaqStore(Request $request)
+    {
+        $validasi = Validator::make($request->all(), [
+            'nama' => 'required',
+            'email' => 'required ',
+            'pertanyaan' => 'required ',
+        ], [
+            'nama.required' => 'Nama wajib diisi',
+            'email.required' => 'Email tautan wajib diisi',
+            'pertanyaan.required' => 'Pertanyaan tautan wajib diisi',
+
+
+        ]);
+
+        if ($validasi->fails()) {
+            return response()->json(['erorrs' => $validasi->errors()]);
+        } else {
+
+            $data = [
+                'nama' => $request->nama,
+                'email' => $request->email,
+                'pertanyaan' => $request->pertanyaan,
+                'tgl_pertanyaan' => now(),
+            ];
+            Faq::create($data);
+            return response()->json(['status' => true], 200);
+        }
+    }
+
+    public function renstra(Request $request)
+    {
+        $query = Renstra::query();
+        $tahun = $request->tahun;
+        $bulan = $request->bulan;
+
+        if ($tahun) {
+            $query->whereYear('tanggal', $tahun);
+        }
+        if ($bulan) {
+            $query->whereMonth('tanggal', $bulan);
+        }
+        $renstra = $query->paginate(5);
+
+        $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
+
+        // foreach ($renstra as $item) {
+        //     $item->increment('jumlah_download');
+        // }
+
+        // dd($renstra);
+        return view('contents.Front.ziwbk.sakip.renstra', [
+            'title' => 'Renstra',
+            'renstra' => $renstra,
+            'tautan' => $tautan,
+        ]);
+    }
+
+    public function akuntabilitas(Request $request)
+    {
+        $query = Akuntabilitas::query();
+        $tahun = $request->tahun;
+        $bulan = $request->bulan;
+
+        if ($tahun) {
+            $query->whereYear('created_at', $tahun);
+        }
+        if ($bulan) {
+            $query->whereMonth('created_at', $bulan);
+        }
+        $akuntabilitas = $query->paginate(5);
+
+        $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
+
+        // foreach ($akuntabilitas as $item) {
+        //     $item->increment('jumlah_download');
+        // }
+
+
+        // dd($akuntabilitas);
+        return view('contents.Front.ziwbk.sakip.akuntabilitas', [
+            'title' => 'Akuntabilitas',
+            'akuntabilitas' => $akuntabilitas,
+            'tautan' => $tautan,
+        ]);
+    }
+
+    public function beritaZiwbk(Request $request)
+    {
+        $query = ListBerita::where('status_publish', '1')->orderByDesc('date');
+
+        $tahun = $request->tahun;
+        $bulan = $request->bulan;
+
+        if ($tahun) {
+            $query->whereYear('date', $tahun);
+        }
+        if ($bulan) {
+            $query->whereMonth('date', $bulan);
+        }
+
+        $berita_ziwbk = $query->paginate(4);
+
+        $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
+
+        return view('contents.Front.ziwbk.berita_ziwbk', [
+            'title' => 'Berita ZI/WBK',
+            'berita_ziwbk' => $berita_ziwbk,
+            'tautan' => $tautan,
+        ]);
+    }
+
+    public function beritaZiwbkDetail($slug)
+    {
+        $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
+
+        $berita = ListBerita::where('slug', $slug)->first();
+        $this->recordPengunjungBerita(request(), $berita->id);
+
+        $jumlah_lihat = PengunjungBerita::hitungPengunjungBerita($berita->id);
+        $berita->jumlah_lihat = $jumlah_lihat;
+        $berita->save();
+
+        return view('contents.Front.informasi_publik.berita-detail', [
+            'title' => 'Berita',
+            'berita' => $berita,
+            'tautan' => $tautan,
+        ]);
+    }
+
+    public function recordPengunjungBeritaZiwbk(Request $request, $id_berita)
+    {
+        $ipAddress = $request->ip();
+        $userAgent = uniqid() . '-' . $request->header('User-Agent');
+
+        PengunjungBerita::create([
+            'id_berita' => $id_berita,
+            'ip_address' => $ipAddress,
+            'user_agent' => $userAgent,
+        ]);
+
+        return response()->json(['success' => true]);
     }
 }

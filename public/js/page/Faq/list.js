@@ -160,14 +160,12 @@ $('body').on('click', '.btn-update', function (e) {
             $('#edit-list-faq').modal('show');
             console.log(response.result.jawaban);
             $('#jawaban').val(response.result.jawaban);
-
-
-
+          
 
             $("#form-update").submit(function (e) {
                 e.preventDefault();
                 let formData = new FormData(this);
-
+            
                 $.ajax({
                     url: BASE_URL + 'faq/update/' + id,
                     type: "POST",
@@ -215,6 +213,7 @@ $('body').on('click', '.btn-update', function (e) {
                     }
                 });
             });
+            
         }
     })
 })

@@ -13,6 +13,7 @@ class CeritaBaik extends Model
     protected $primaryKey = 'id';
     protected $guarded = ['id'];
 
+
     // protected $fillable = [
     //     'judul',
     //     'desc',
