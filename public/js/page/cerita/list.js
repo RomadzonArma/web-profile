@@ -173,29 +173,33 @@ $(() => {
                     if (value) {
                         $("#foto").html(
                             '<img src="' +
-                            value + // Menggunakan value langsung dari loop
+                            value +
                             '" style="height: 100px; margin-top: 10px;">'
                         );
                     }
                 } else if (key === 'foto_praktik') {
                     // Show image preview for 'foto_praktik' field
                     if (value) {
-                        $("#praktik-preview").html( // Menggunakan id yang sesuai
+                        $("#updatepraktikPreview").html(
                             '<img src="' +
-                            value + // Menggunakan value langsung dari loop
+                            value +
                             '" style="height: 100px; margin-top: 10px;">'
                         );
                     }
-                } else if (key === 'file_pdf') {
-                    // Show PDF preview for 'file_pdf' field
-                    if (value) {
-                        $('#pdf_preview').attr('src', value);
-                    } else {
-                        // Handle the case when file_pdf is not available or empty
-                        // For instance, you might want to hide the pdf preview element
-                        $('#pdf_preview').hide();
+                }else if (key === 'file_pdf') {
+                    // Check if value exists and it is a PDF file
+                    if (value && value.endsWith('.pdf')) {
+                        $(".row_pdf").show();
+                        // console.log(value);
                     }
-                } else {
+                } else if (key === 'video') {
+                    // Check if value exists and it is a PDF file
+                    if (value) {
+                        $(".row_video").show();
+                        // console.log(value);
+                    }
+                }
+                 else {
                     // Set other input fields normally
                     $("#update-" + key).val(value);
                 }
@@ -214,14 +218,31 @@ $(() => {
                 } else if (jenisInputan === 'pdf') {
                     $(".row_pdf").show();
                 }
+            } else {
+                // If jenisInputan is not available, show the appropriate input section based on the existing data
+                if (data['link_video']) {
+                    $(".row_link").show();
+                } else if (data['video']) {
+                    $(".row_video").show();
+                } else if (data['file_pdf']) {
+                    $(".row_pdf").show();
+                } else if (data['foto_praktik']) {
+                    $(".row_foto").show();
+                }
             }
 
-            $("#modal-cerita-update").modal("show"); // Menggunakan id modal yang sesuai
+            // Show file PDF input if file PDF is available
+            if (data['file_pdf']) {
+                $(".row_pdf").show();
+            }
+
+            $("#modal-cerita-update").modal("show");
         } else {
             // Handle the case when data is not available
             console.error("Data is not available.");
         }
     });
+
 
     // $('#table-data').on('click', '.btn-update', function () {
     //     var tr = $(this).closest('tr');

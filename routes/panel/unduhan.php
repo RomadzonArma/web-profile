@@ -7,3 +7,4 @@ Route::post('/store','UnduhanController@store')->name('manajemen_unduhan.store')
 Route::patch('/update','UnduhanController@update')->name('manajemen_unduhan.update')->middleware('rbac:unduhan,3');
 Route::delete('/delete','UnduhanController@destroy')->name('manajemen_unduhan.delete')->middleware('rbac:unduhan,4');
 Route::get('/unduhan/download/{id}', 'UnduhanController@download')->name('unduhan.download');
+Route::patch('/switch','UnduhanController@switchStatus')->name('unduhan.switch')->middleware('rbac:unduhan,3');

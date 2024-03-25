@@ -190,41 +190,6 @@ $(() => {
         $('#updateVideoGroup').hide();
     });
 
-    // $('#table-data').on('click', '.btn-update', function () {
-    //     var tr = $(this).closest('tr');
-    //     var data = table.row(tr).data();
-
-    //     clearErrorMessage();
-    //     $('#form-berprestasi-update')[0].reset();
-
-    //     $.each(data, (key, value) => {
-    //         $('#update-' + key).val(value);
-    //     })
-    //     $('#foto').html('<img src="' + '' + data.foto + '" style="height: 200px; margin-top: 5px;">');
-
-    //     if (data.video !== null && data.video !== '') {
-    //         $('#updateManualCheckbox').prop('checked', true);
-    //         $('#updateLinkGroup').hide();
-    //         $('#updateVideoGroup').show();
-
-    //         $('#btn-open-video').show();
-    //     } else {
-    //         $('#updateManualCheckbox').prop('checked', false);
-    //         $('#updateLinkGroup').show();
-    //         $('#updateVideoGroup').hide();
-
-    //         $('#btn-open-video').hide();
-    //     }
-    //     if (data.link !== null && data.link !== "") {
-    //         $(".row_link").css("display", "block");
-    //         $(".row_video").css("display", "none");
-    //     } else {
-    //         $(".row_link").css("display", "none");
-    //         $(".row_video").css("display", "block");
-    //     }
-
-    //     $('#modal-berprestasi-update').modal('show');
-    // })
     $("#table-data").on("click", ".btn-update", function () {
         var tr = $(this).closest("tr");
         var data = table.row(tr).data();
@@ -239,29 +204,33 @@ $(() => {
                     if (value) {
                         $("#foto").html(
                             '<img src="' +
-                            data.foto +
+                            value +
                             '" style="height: 100px; margin-top: 10px;">'
                         );
                     }
                 } else if (key === 'foto_praktik') {
                     // Show image preview for 'foto_praktik' field
                     if (value) {
-                        $("#praktik-preview").html(
+                        $("#updatepraktikPreview").html(
                             '<img src="' +
-                            data.foto_praktik +
+                            value +
                             '" style="height: 100px; margin-top: 10px;">'
                         );
                     }
-                } else if (key === 'file_pdf') {
-                    // Show PDF preview for 'file_pdf' field
-                    if (value) {
-                        $('#pdf_preview').attr('src', value);
-                    } else {
-                        // Handle the case when file_pdf is not available or empty
-                        // For instance, you might want to hide the pdf preview element
-                        $('#pdf_preview').hide();
+                }else if (key === 'file_pdf') {
+                    // Check if value exists and it is a PDF file
+                    if (value && value.endsWith('.pdf')) {
+                        $(".row_pdf").show();
+                        // console.log(value);
                     }
-                } else {
+                } else if (key === 'video') {
+                    // Check if value exists and it is a PDF file
+                    if (value) {
+                        $(".row_video").show();
+                        // console.log(value);
+                    }
+                }
+                 else {
                     // Set other input fields normally
                     $("#update-" + key).val(value);
                 }
@@ -280,6 +249,22 @@ $(() => {
                 } else if (jenisInputan === 'pdf') {
                     $(".row_pdf").show();
                 }
+            } else {
+                // If jenisInputan is not available, show the appropriate input section based on the existing data
+                if (data['link_video']) {
+                    $(".row_link").show();
+                } else if (data['video']) {
+                    $(".row_video").show();
+                } else if (data['file_pdf']) {
+                    $(".row_pdf").show();
+                } else if (data['foto_praktik']) {
+                    $(".row_foto").show();
+                }
+            }
+
+            // Show file PDF input if file PDF is available
+            if (data['file_pdf']) {
+                $(".row_pdf").show();
             }
 
             $("#modal-berprestasi-update").modal("show");
@@ -288,6 +273,71 @@ $(() => {
             console.error("Data is not available.");
         }
     });
+
+
+    // $("#table-data").on("click", ".btn-update", function () {
+    //     var tr = $(this).closest("tr");
+    //     var data = table.row(tr).data();
+
+    //     clearErrorMessage();
+    //     $("#form-berprestasi-update")[0].reset();
+
+    //     if (data) {
+    //         $.each(data, (key, value) => {
+    //             if (key === 'foto') {
+    //                 // Show image preview for 'foto' field
+    //                 if (value) {
+    //                     $("#foto").html(
+    //                         '<img src="' +
+    //                         data.foto +
+    //                         '" style="height: 100px; margin-top: 10px;">'
+    //                     );
+    //                 }
+    //             } else if (key === 'foto_praktik') {
+    //                 // Show image preview for 'foto_praktik' field
+    //                 if (value) {
+    //                     $("#praktik-preview").html(
+    //                         '<img src="' +
+    //                         data.foto_praktik +
+    //                         '" style="height: 100px; margin-top: 10px;">'
+    //                     );
+    //                 }
+    //             } else if (key === 'file_pdf') {
+    //                 // Show PDF preview for 'file_pdf' field
+    //                 if (value) {
+    //                     $('#pdf_preview').attr('src', value);
+    //                 } else {
+    //                     // Handle the case when file_pdf is not available or empty
+    //                     // For instance, you might want to hide the pdf preview element
+    //                     $('#pdf_preview').hide();
+    //                 }
+    //             } else {
+    //                 // Set other input fields normally
+    //                 $("#update-" + key).val(value);
+    //             }
+    //         });
+
+    //         // Handle showing/hiding input sections based on the selected 'jenis' value
+    //         var jenisInputan = data['jenis'];
+    //         if (jenisInputan) {
+    //             $(".row_link, .row_video, .row_foto, .row_pdf").hide();
+    //             if (jenisInputan === 'link') {
+    //                 $(".row_link").show();
+    //             } else if (jenisInputan === 'video') {
+    //                 $(".row_video").show();
+    //             } else if (jenisInputan === 'foto') {
+    //                 $(".row_foto").show();
+    //             } else if (jenisInputan === 'pdf') {
+    //                 $(".row_pdf").show();
+    //             }
+    //         }
+
+    //         $("#modal-berprestasi-update").modal("show");
+    //     } else {
+    //         // Handle the case when data is not available
+    //         console.error("Data is not available.");
+    //     }
+    // });
 
     $('#modal-berprestasi-update').on('click', '#btn-open-video', function() {
         console.log(videoPath);

@@ -350,7 +350,7 @@ class LandingController extends Controller
 
     public function unduhan(Request $request)
     {
-        $query = Unduhan::query();
+        $query = Unduhan::where('status_publish', '1')->orderByDesc('created_at');
         $tahun = $request->tahun;
         $bulan = $request->bulan;
 
@@ -414,7 +414,7 @@ class LandingController extends Controller
         if ($bulan) {
             $query->whereMonth('created_at', $bulan);
         }
-        $panduan = $query->orderByDesc('created_at')->paginate(5);
+        $panduan = $query->orderByDesc('created_at')->paginate(8);
 
         $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
         return view('contents.Front.menu_halaman.publikasi.panduan', [
@@ -518,7 +518,7 @@ class LandingController extends Controller
         if ($bulan) {
             $query->whereMonth('created_at', $bulan);
         }
-        $regulasi = $query->paginate(5);
+        $regulasi = $query->paginate(8);
         $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
         return view('contents.Front.menu_halaman.publikasi.regulasi', [
             'title' => 'Regulasi',
@@ -581,7 +581,7 @@ class LandingController extends Controller
         if ($bulan) {
             $query->whereMonth('publish_date', $bulan);
         }
-        $sekolah = $query->paginate(5);
+        $sekolah = $query->paginate(8);
         return view('contents.Front.menu_halaman.program_layanan.sekolah-penggerak', [
             'title' => 'Program Pendidikan Sekolah Penggerak',
             'sekolah' => $sekolah,

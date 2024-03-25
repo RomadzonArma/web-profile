@@ -103,7 +103,6 @@ class CeritaController extends Controller
             return response()->json(['status' => false, 'msg' => $e->getMessage()], 400);
         }
     }
-
     public function update(Request $request)
     {
         try {
@@ -113,76 +112,93 @@ class CeritaController extends Controller
                 'file_pdf' => 'nullable|mimes:pdf|max:5120',
                 'video' => 'nullable|mimes:mp4,mov|max:10240',
             ]);
-            $cerita = CeritaBaik::find($request->id);
 
-            if (!$cerita) {
-                return response()->json(['status' => false, 'msg' => 'Cerita not found.'], 404);
+            $ceritaBaik = CeritaBaik::findOrFail($request->id);
+            if ($request->hasFile('foto') && $ceritaBaik->foto) {
+                if (file_exists(public_path($ceritaBaik->foto))) {
+                    unlink(public_path($ceritaBaik->foto));
+                }
             }
 
+            if ($request->hasFile('video') && $ceritaBaik->video) {
+                if (file_exists(public_path($ceritaBaik->video))) {
+                    unlink(public_path($ceritaBaik->video));
+                }
+            }
+
+            if ($request->hasFile('file_pdf') && $ceritaBaik->file_pdf) {
+                if (file_exists(public_path($ceritaBaik->file_pdf))) {
+                    unlink(public_path($ceritaBaik->file_pdf));
+                }
+            }
+
+            $fotoName = null;
             if ($request->hasFile('foto')) {
-                // Handling foto update
-                // Code remains the same as your implementation
-
-                if (!empty($cerita->foto)) {
-                    if (File::exists(public_path($cerita->foto))) {
-                        File::delete(public_path($cerita->foto));
-                    }
+                $file = $request->file('foto');
+                if ($file->isValid()) {
+                    $name = time() . '_' . $file->getClientOriginalName();
+                    $path = public_path('storage/uploads/cerita');
+                    $file->move($path, $name);
+                    $fotoName = 'storage/uploads/cerita/' . $name;
+                } else {
+                    throw new \Exception('Invalid file provided');
                 }
-                $cerita->foto = $fotoName;
             }
 
+            $videoPath = null;
             if ($request->hasFile('video')) {
-                // Handling video update
-                // Code remains the same as your implementation
-                $cerita->video = $videoPath;
+                $video = $request->file('video');
+                if ($video->isValid()) {
+                    $videoName = time() . '_' . $video->getClientOriginalName();
+                    $path = public_path('storage/uploads/cerita/video');
+                    $video->move($path, $videoName);
+                    $videoPath = 'storage/uploads/cerita/video/' . $videoName;
+                } else {
+                    throw new \Exception('Invalid video file provided');
+                }
             }
-
+            $filePath = null;
             if ($request->hasFile('file_pdf')) {
-                // Handling file_pdf update
-                // Code remains the same as your implementation
-                if ($cerita->file_pdf) {
-                    $oldPdfPath = public_path($cerita->file_pdf);
-                    if (file_exists($oldPdfPath)) {
-                        unlink($oldPdfPath);
-                    }
+                $file = $request->file('file_pdf');
+                if ($file->isValid()) {
+                    $fileName = time() . '_' . $file->getClientOriginalName();
+                    $path = public_path('storage/uploads/cerita/pdf');
+                    $file->move($path, $fileName);
+                    $filePath = 'storage/uploads/cerita/pdf/' . $fileName;
+                } else {
+                    throw new \Exception('Invalid video file provided');
                 }
-
-                $filePdf = $request->file('file_pdf');
-                $pdfName = time() . '_' . $filePdf->getClientOriginalName();
-                $filePdf->move(public_path('storage/uploads/cerita/pdf'), $pdfName);
-                $cerita->file_pdf = 'storage/uploads/cerita/pdf/' . $pdfName;
             }
+            $imagePath = null;
             if ($request->hasFile('foto_praktik')) {
-                // Handling file_pdf update
-                // Code remains the same as your implementation
-                if ($cerita->foto_praktik) {
-                    $oldImagePath = public_path($cerita->foto_praktik);
-                    if (file_exists($oldImagePath)) {
-                        unlink($oldImagePath);
-                    }
+                $image = $request->file('foto_praktik');
+                if ($image->isValid()) {
+                    $imageName = time() . '_' . $image->getClientOriginalName(); // Fix variable name here
+                    $path = public_path('storage/uploads/cerita/foto-praktik');
+                    $image->move($path, $imageName);
+                    $imagePath = 'storage/uploads/cerita/foto-praktik' . $imageName;
+                } else {
+                    throw new \Exception('Invalid image file provided');
                 }
-
-                $filePdf = $request->file('file_pdf');
-                $imgName = time() . '_' . $filePdf->getClientOriginalName();
-                $filePdf->move(public_path('storage/uploads/cerita/pdf'), $imgName);
-                $cerita->foto_praktik = 'storage/uploads/cerita/pdf/' . $imgName;
             }
 
-            // Update other fields
-            $cerita->judul = $request->judul;
-            $cerita->link_video = $request->link_video;
-            $cerita->konten = $request->konten;
-            $cerita->updated_at = now();
-            $cerita->updated_id = Auth::user()->id;
-
-            // Save changes if any
-            $cerita->save();
+            $ceritaBaik->update([
+                'judul'      => $request->input('judul'),
+                'konten'      => $request->input('konten'),
+                'link' => $request->input('link'),
+                'foto'       => $fotoName ?: $ceritaBaik->foto,
+                'video'      => $videoPath ?: $ceritaBaik->video,
+                'file_pdf'  => $filePath ?: $ceritaBaik->file_pdf,
+                'foto_praktik' => $imagePath,
+            ]);
 
             return response()->json(['status' => true], 200);
         } catch (\Exception $e) {
             return response()->json(['status' => false, 'msg' => $e->getMessage()], 400);
         }
     }
+
+
 
     // public function update(Request $request)
     // {
@@ -215,9 +231,9 @@ class CeritaController extends Controller
     //             $video = $request->file('video');
     //             if ($video->isValid()) {
     //                 $videoName = time() . '_' . $video->getClientOriginalName();
-    //                 $path = public_path('storage/uploads/praktik-video');
+    //                 $path = public_path('storage/uploads/cerita/video');
     //                 $video->move($path, $videoName);
-    //                 $videoPath = 'storage/uploads/praktik-video/' . $videoName;
+    //                 $videoPath = 'storage/uploads/cerita/video/' . $videoName;
     //             } else {
     //                 throw new \Exception('Invalid video file provided');
     //             }

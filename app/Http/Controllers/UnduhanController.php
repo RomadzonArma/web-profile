@@ -175,4 +175,20 @@ class UnduhanController extends Controller
 
         return response()->json(['success' => false]);
     }
+    public function switchStatus(Request $request)
+    {
+        try{
+            $program = Unduhan::find($request->id);
+            $program->status_publish = $request->value;
+            $program->save();
+            // if($program->isDirty()){
+            //     $program->save();
+            // }
+            if($program->wasChanged()){
+                return response()->json(['status'=> true], 200);
+            }
+        }catch(\Exception $e){
+            return response()->json(['status' => false, 'msg'=> $e->getMessage()], 400);
+        }
+    }
 }

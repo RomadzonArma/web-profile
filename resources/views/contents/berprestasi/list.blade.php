@@ -58,7 +58,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="judul">Judul</label>
-                                    <textarea class="form-control" placeholder="Judul" name="judul" id="judul"
+                                    <textarea class="form-control" placeholder="Judul" name="judul" id="judul" required
                                         oninput="this.value = this.value.replace(/[^a-zA-Z0-9!%.,()\/'?\-\s]/g, '').replace(/(\..*?)\..*/g, '$1');"></textarea>
                                 </div>
                             </div>
@@ -81,32 +81,34 @@
                             <div class="custom-file mb-3">
                                 <input type="file" class="custom-file-input" name="foto_praktik" id="foto_praktik"
                                     accept=".jpg,.jpeg,.png">
-                                <label class="custom-file-label" for="updateCustomFile">Cari Gambar</label>
+                                <label class="custom-file-label" for="foto_praktik">Cari Gambar</label>
                             </div>
                             <small id="videoHelpBlock" class="form-text text-muted">
                                 Hanya file video yang diizinkan (.jpg, .jpeg, .png) <b class="text-danger">Max 2.mb</b>
                             </small>
-                            <div id="updatepraktikPreview" class="mt-3"></div>
+                            <div id="foto_praktik-preview" class="mt-3"></div>
                         </div>
 
                         <div class="form-group row_link"style="display: none;">
                             <label for="update-konten">Link Video</label>
-                            <input type="text" class="form-control" placeholder="Link Youtube" name="link" id="link"></input>
+                            <input type="text" class="form-control" placeholder="Link Youtube" name="link"
+                                id="link"></input>
                         </div>
                         <div class="form-group row_video" style="display: none;">
                             <div class="form-group">
                                 <label for="video">Upload Video</label>
                                 <div class="custom-file mb-3">
                                     <input type="file" class="custom-file-input" name="video" id="video"
-                                    accept="video/*">
+                                        accept="video/*">
                                     <label class="custom-file-label" for="video">Pilih Video</label>
                                 </div>
                                 <small id="videoHelpBlock" class="form-text text-muted">
-                                    Hanya file video yang diizinkan (.mp4, .avi, .mkv, dll.)  <b class="text-danger">Max 10.mb</b>
+                                    Hanya file video yang diizinkan (.mp4, .avi, .mkv, dll.) <b class="text-danger">Max
+                                        10.mb</b>
                                 </small>
                             </div>
                         </div>
-                        <div class="form-group row_pdf"  style="display: none;">
+                        <div class="form-group row_pdf" style="display: none;">
                             <label for="video">Upload PDF</label>
                             <div class="custom-file mb-3">
                                 <input type="file" class="custom-file-input" name="file_pdf" id="file_pdf"
@@ -129,6 +131,7 @@
                             </small>
                             <div id="imagePreview" class="mt-3"></div>
                         </div>
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">
@@ -202,14 +205,15 @@
                         </div> --}}
                         <div class="form-group row_link"style="display: none;">
                             <label for="update-konten">Link Video</label>
-                            <input type="text" class="form-control" placeholder="Link Youtube" name="link" id="update-link"></input>
+                            <input type="text" class="form-control" placeholder="Link Youtube" name="link"
+                                id="update-link"></input>
                         </div>
                         <div class="form-group row_video" style="display: none;">
                             <div class="form-group">
                                 <label for="video">Upload Video</label>
                                 <div class="custom-file mb-3">
                                     <input type="file" class="custom-file-input" name="video" id="video_edit"
-                                    accept="video/*">
+                                        accept="video/*">
                                     <label class="custom-file-label" for="video">Pilih Video</label>
                                 </div>
                                 <small id="videoHelpBlock" class="form-text text-muted">
@@ -230,16 +234,16 @@
                             </small>
                         </div>
                         <div class="form-group row_foto" style="display: none;">
-                            <label for="updateCustomFile">Foto Cerita Praktik Baik</label>
+                            <label for="foto_praktik-update">Foto Praktik</label>
                             <div class="custom-file mb-3">
-                                <input type="file" class="custom-file-input" name="foto" id="update-foto_praktik"
-                                    accept=".jpg,.jpeg,.png">
+                                <input type="file" class="custom-file-input" name="foto_praktik"
+                                    id="update-foto_praktik" accept=".jpg,.jpeg,.png">
                                 <label class="custom-file-label" for="updateCustomFile">Cari Gambar</label>
                             </div>
                             <small id="videoHelpBlock" class="form-text text-muted">
                                 Hanya file video yang diizinkan (.jpg, .jpeg, .png) <b class="text-danger">Max 2.mb</b>
                             </small>
-                            <div id="praktik-preview" class="mt-3"></div>
+                            <div id="updatepraktikPreview" class="mt-3"></div>
                         </div>
                         <div class="form-group">
                             <label for="updateCustomFile">Thumbnail</label>
@@ -250,6 +254,13 @@
                             </div>
                             <div id="updateImagePreview" class="mt-3"></div>
                             <div id="foto"></div>
+                        </div>
+                        <div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div id="imagePreview" class="mt-2"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -291,6 +302,21 @@
             };
             reader.readAsDataURL(file);
         });
+        document.getElementById("foto_praktik").addEventListener("change", function() {
+            var file = this.files[0];
+            var fileLabel = document.querySelector('label[for="foto_praktik"]');
+            fileLabel.innerHTML = file.name;
+
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                var imagePreview = document.getElementById("foto_praktik-preview");
+                imagePreview.innerHTML = '<img src="' + e.target.result +
+                    '" class="img-fluid" style="height:200px;width:auto" alt="Selected Image">';
+            };
+            reader.readAsDataURL(file);
+        });
+
+
         $('#modal-berprestasi').on('hidden.bs.modal', function() {
             document.getElementById("ImagePreview");
             imagePreview.innerHTML = '';
