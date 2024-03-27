@@ -107,6 +107,7 @@ class CeritaController extends Controller
     {
         try {
             $request->validate([
+                'judul' => 'required',
                 'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
                 'foto_praktik' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
                 'file_pdf' => 'nullable|mimes:pdf|max:5120',

@@ -2,9 +2,14 @@ let table;
 $(() => {
     $("#jenis_inputan").on("change", function () {
         var val = $(this).val();
-        $(".row_link, .row_video, .row_foto, .row_pdf").css("display", "none");
+        $(".row_link, .row_link_video, .row_video, .row_foto, .row_pdf").css(
+            "display",
+            "none"
+        );
         if (val == "link") {
             $(".row_link").css("display", "block");
+        } else if (val == "link_video") {
+            $(".row_link_video").css("display", "block");
         } else if (val == "video") {
             $(".row_video").css("display", "block");
         } else if (val == "foto") {
@@ -72,7 +77,7 @@ $(() => {
 
         Swal.fire({
             title: "Anda yakin?",
-            html: `Anda akan menghapus praktik baik "<b>${judul}</b>"!`,
+            html: `Anda akan menghapus tendik baik "<b>${nama_sub_program}</b>"!`,
             footer: "Data yang sudah dihapus tidak bisa dikembalikan kembali!",
             icon: "warning",
             showCancelButton: true,
@@ -82,12 +87,15 @@ $(() => {
             cancelButtonText: "Batal",
         }).then((result) => {
             if (result.isConfirmed) {
-                $.post(BASE_URL + "praktik_baik/delete", {
+                $.post(BASE_URL + "tendik/delete", {
                     id,
                     _method: "DELETE",
                 })
                     .done((res) => {
-                        showSuccessToastr("sukses", "praktik baik berhasil dihapus");
+                        showSuccessToastr(
+                            "sukses",
+                            "tendik baik berhasil dihapus"
+                        );
                         table.ajax.reload();
                     })
                     .fail((res) => {
@@ -102,7 +110,7 @@ $(() => {
         var id = $(this).data("id");
         var value = $(this).val();
 
-        $.post(BASE_URL + "praktik_baik/switch", {
+        $.post(BASE_URL + "tendik/switch", {
             id,
             value,
             _method: "PATCH",
@@ -111,8 +119,8 @@ $(() => {
                 showSuccessToastr(
                     "sukses",
                     value == "1"
-                        ? "praktik baik berhasil diaktifkan"
-                        : "praktik baik berhasil dinonaktifkan"
+                        ? "tendik baik berhasil diaktifkan"
+                        : "tendik baik berhasil dinonaktifkan"
                 );
                 table.ajax.reload();
             })
@@ -123,7 +131,7 @@ $(() => {
             });
     });
 
-    $("#form-praktik-update").on("submit", function (e) {
+    $("#form-tendik-update").on("submit", function (e) {
         e.preventDefault();
 
         var data = new FormData(this);
@@ -137,32 +145,22 @@ $(() => {
             contentType: false,
             beforeSend: () => {
                 clearErrorMessage();
-                $("#modal-praktik-update")
+                $("#modal-tendik-update")
                     .find(".modal-dialog")
                     .LoadingOverlay("show");
             },
             success: (res) => {
-                $("#modal-praktik-update")
+                $("#modal-tendik-update")
                     .find(".modal-dialog")
                     .LoadingOverlay("hide", true);
                 $(this)[0].reset();
                 clearErrorMessage();
                 table.ajax.reload();
-                $("#modal-praktik-update").modal("hide");
-                showSuccessToastr("sukses", "praktik baik berhasil diubah");
+                $("#modal-tendik-update").modal("hide");
+                showSuccessToastr("sukses", "tendik baik berhasil diubah");
             },
-            // error: ({ status, responseJSON }) => {
-            //     $('#modal-praktik-update').find('.modal-dialog').LoadingOverlay('hide', true);
-
-            //     if (status == 422) {
-            //         generateErrorMessage(responseJSON, true);
-            //         return false;
-            //     }
-
-            //     showErrorToastr('oops', responseJSON.msg);
-            // }
             error: function (xhr, status, error) {
-                $("#modal-praktik-update")
+                $("#modal-tendik-update")
                     .find(".modal-dialog")
                     .LoadingOverlay("hide", true);
 
@@ -191,9 +189,9 @@ $(() => {
         });
     });
     // Mengatur ulang modal saat ditutup
-    $("#modal-praktik-update").on("hidden.bs.modal", function () {
+    $("#modal-tendik-update").on("hidden.bs.modal", function () {
         // Mengatur ulang form
-        $("#form-praktik-update")[0].reset();
+        $("#form-tendik-update")[0].reset();
         // Menyembunyikan input PDF
         $(".row_pdf").hide();
         $(".row_link").hide();
@@ -203,12 +201,12 @@ $(() => {
     });
 
     // Event handler untuk tombol batal
-    $("#modal-praktik-update").on(
+    $("#modal-tendik-update").on(
         "click",
         '[data-dismiss="modal"]',
         function () {
             // Mengatur ulang form
-            $("#form-praktik-update")[0].reset();
+            $("#form-tendik-update")[0].reset();
             // Menyembunyikan input PDF
             $(".row_pdf").hide();
             $(".row_link").hide();
@@ -218,142 +216,106 @@ $(() => {
         }
     );
 
-   $("#table-data").on("click", ".btn-update", function () {
+    $("#table-data").on("click", ".btn-update", function () {
         var tr = $(this).closest("tr");
         var data = table.row(tr).data();
 
         clearErrorMessage();
-        $("#form-praktik-update")[0].reset();
+        $("#form-tendik-update")[0].reset();
 
         if (data) {
             $.each(data, (key, value) => {
-                if (key === 'foto') {
+                if (key === "gambar") {
                     // Show image preview for 'foto' field
                     if (value) {
-                        $("#foto").html(
+                        $("#updateImagePreview").html(
                             '<img src="' +
-                            value +
-                            '" style="height: 100px; margin-top: 10px;">'
+                                value +
+                                '" style="height: 200px; margin-top: 10px;">'
                         );
                     }
-                } else if (key === 'foto_praktik') {
-                    // Show image preview for 'foto_praktik' field
+                } else if (key === "foto_tendik") {
+                    // Show image preview for 'foto_tendik' field
                     if (value) {
-                        $("#updatepraktikPreview").html(
+                        $("#updateTendikPreview").html(
                             '<img src="' +
-                            value +
-                            '" style="height: 100px; margin-top: 10px;">'
+                                value +
+                                '" style="height: 200px; margin-top: 10px;">'
                         );
                     }
-                }else if (key === 'file_pdf') {
-                    // Check if value exists and it is a PDF file
-                    if (value && value.endsWith('.pdf')) {
-                        $(".row_pdf").show();
-                        // console.log(value);
+                } else if (key === "file_pdf") {
+                    // Check if jenis inputan yang dipilih adalah PDF
+                    if (jenisInputan === "pdf") {
+                        // Check if value exists and it is a PDF file
+                        if (value && value.endsWith(".pdf")) {
+                            $(".row_pdf").show();
+                            // console.log(value);
+                        }
                     }
-                } else if (key === 'video') {
+                } else if (key === "video") {
                     // Check if value exists and it is a PDF file
                     if (value) {
                         $(".row_video").show();
                         // console.log(value);
                     }
-                }
-                 else {
+                } else {
                     // Set other input fields normally
                     $("#update-" + key).val(value);
                 }
             });
 
             // Handle showing/hiding input sections based on the selected 'jenis' value
-            var jenisInputan = data['jenis'];
+            var jenisInputan = data["jenis"];
             if (jenisInputan) {
-                $(".row_link, .row_video, .row_foto, .row_pdf").hide();
-                if (jenisInputan === 'link') {
+                $(
+                    ".row_link, .row_link_video, .row_video, .row_foto, .row_pdf"
+                ).hide();
+                if (jenisInputan === "link") {
                     $(".row_link").show();
-                } else if (jenisInputan === 'video') {
+                } else if (jenisInputan === "link_video") {
+                    $(".row_link_video").show();
+                } else if (jenisInputan === "video") {
                     $(".row_video").show();
-                } else if (jenisInputan === 'foto') {
+                } else if (jenisInputan === "foto") {
                     $(".row_foto").show();
-                } else if (jenisInputan === 'pdf') {
+                } else if (jenisInputan === "pdf") {
                     $(".row_pdf").show();
                 }
             } else {
                 // If jenisInputan is not available, show the appropriate input section based on the existing data
-                if (data['link_video']) {
+                if (data["link"]) {
                     $(".row_link").show();
-                } else if (data['video']) {
+                } else if (data["link_video"]) {
+                    $(".row_link_video").show();
+                } else if (data["video"]) {
                     $(".row_video").show();
-                } else if (data['file_pdf']) {
+                } else if (data["file_pdf"]) {
                     $(".row_pdf").show();
-                } else if (data['foto_praktik']) {
+                } else if (data["foto_tendik"]) {
                     $(".row_foto").show();
                 }
             }
 
             // Show file PDF input if file PDF is available
-            if (data['file_pdf']) {
+            if (data["file_pdf"]) {
                 $(".row_pdf").show();
+
+                // Menetapkan URL file PDF ke atribut src iframe
+                var pdfUrl = data["file_pdf"];
+                $("#pdf_preview").attr("src", pdfUrl);
+            } else {
+                // Sembunyikan iframe jika tidak ada file PDF yang tersedia
+                $("#pdf_preview").attr("src", "");
+                $(".row_pdf").hide();
             }
 
-            $("#modal-praktik-update").modal("show");
+            $("#modal-tendik-update").modal("show");
         } else {
             // Handle the case when data is not available
             console.error("Data is not available.");
         }
     });
-    // $("#table-data").on("click", ".btn-update", function () {
-    //     var tr = $(this).closest("tr");
-    //     var data = table.row(tr).data();
-
-    //     clearErrorMessage();
-    //     $("#form-praktik-update")[0].reset();
-
-    //     if (data) {
-    //         $.each(data, (key, value) => {
-    //             $("#update-" + key).val(value);
-    //         });
-
-    //         if (data.foto) {
-    //             $("#foto").html(
-    //                 '<img src="' +
-    //                     data.foto +
-    //                     '" style="height: 100px; margin-top: 10px;">'
-    //             );
-    //         }
-    //         if (data.foto_praktik) {
-    //             $("#updatepraktikPreview").html(
-    //                 '<img src="' +
-    //                     data.foto +
-    //                     '" style="height: 100px; margin-top: 10px;">'
-    //             );
-    //         }
-
-    //         if (data.file_pdf) {
-    //             $("#pdf_preview").attr("src", data.file_pdf);
-    //         } else {
-    //             // Handle the case when file_pdf is not available or empty
-    //             // For instance, you might want to hide the pdf preview element
-    //             $("#pdf_preview").hide();
-    //         }
-
-    //         // Periksa apakah data link terisi
-    //         if (data.link_video !== null && data.link_video !== "") {
-    //             $(".row_link").css("display", "block");
-    //             $(".row_video").css("display", "none");
-    //         } else {
-    //             $(".row_link").css("display", "none");
-    //             $(".row_video").css("display", "block");
-    //         }
-
-    //         $("#modal-praktik-update").modal("show");
-    //     } else {
-    //         // Handle the case when data is not available
-    //         console.error("Data is not available.");
-    //     }
-    // });
-
-
-    $("#form-praktik").on("submit", function (e) {
+    $("#form-tendik").on("submit", function (e) {
         e.preventDefault();
 
         var data = new FormData(this);
@@ -367,22 +329,20 @@ $(() => {
             contentType: false,
             beforeSend: () => {
                 clearErrorMessage();
-                $("#modal-praktik")
-                    .find(".modal-dialog")
-                    .LoadingOverlay("show");
+                $("#modal-tendik").find(".modal-dialog").LoadingOverlay("show");
             },
             success: (res) => {
-                $("#modal-praktik")
+                $("#modal-tendik")
                     .find(".modal-dialog")
                     .LoadingOverlay("hide", true);
                 $(this)[0].reset();
                 clearErrorMessage();
                 table.ajax.reload();
-                $("#modal-praktik").modal("hide");
-                showSuccessToastr("sukses", "praktik baik berhasil ditambahkan");
+                $("#modal-tendik").modal("hide");
+                showSuccessToastr("sukses", "tendik baik berhasil ditambahkan");
             },
             error: ({ status, responseJSON }) => {
-                $("#modal-praktik")
+                $("#modal-tendik")
                     .find(".modal-dialog")
                     .LoadingOverlay("hide", true);
 
@@ -397,9 +357,9 @@ $(() => {
     });
 
     $(".btn-tambah").on("click", function () {
-        $("#form-praktik")[0].reset();
+        $("#form-tendik")[0].reset();
         clearErrorMessage();
-        $("#modal-praktik").modal("show");
+        $("#modal-tendik").modal("show");
     });
 
     table = $("#table-data").DataTable({
@@ -407,7 +367,7 @@ $(() => {
         serverSide: true,
         processing: true,
         ajax: {
-            url: BASE_URL + "praktik_baik/data",
+            url: BASE_URL + "tendik/data",
             type: "get",
             dataType: "json",
         },
@@ -437,7 +397,7 @@ $(() => {
                 data: "DT_RowIndex",
             },
             {
-                data: "judul",
+                data: "nama_sub_program",
                 render: (data, type, row) => {
                     return data ?? "-";
                 },
@@ -449,7 +409,7 @@ $(() => {
                 },
             },
             {
-                data: "is_active",
+                data: "status_publish",
                 render: (data, type, row) => {
                     return `
                 <div class="custom-control custom-switch mb-3" dir="ltr">

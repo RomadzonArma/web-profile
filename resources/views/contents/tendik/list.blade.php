@@ -19,7 +19,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header rounded-lg" style="background-color: #365984; color: white;">
-                    @if (rbacCheck('cerita', 2))
+                    @if (rbacCheck('tendik', 2))
                         <div class="text-sm-right">
                             <button type="button" class="btn btn-rounded waves-effect waves-light btn-tambah text-white"
                                 style="background-color: #E59537;"><i class="bx bx-plus-circle mr-1"></i> Tambah
@@ -34,8 +34,7 @@
                                 <tr>
                                     <th style="width: 5%;">#</th>
                                     <th>Judul</th>
-                                    <th>Gambar</th>
-                                    <th>Isi cerita</th>
+                                    <th>Link Video</th>
                                     <th>Status Keaktifan</th>
                                     <th>Aksi</th>
                                     <th></th>
@@ -49,15 +48,14 @@
         </div>
     </div>
 
-    <!-- sample modal content -->
-    <div id="modal-cerita" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-ceritaLabel"
+    <div id="modal-tendik" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-tendikLabel"
         aria-hidden="true">
-        <form method="POST" autocomplete="off" enctype="multipart/form-data" action="{{ route('cerita.store') }}"
-            id="form-cerita">
+        <form method="POST" autocomplete="off" enctype="multipart/form-data" action="{{ route('tendik.store') }}"
+            id="form-tendik">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header bg-primary-bold">
-                        <h4 class="modal-title mt-0" id="myModalLabel">Form Tambah Cerita Praktik Baik</h4>
+                        <h4 class="modal-title mt-0" id="myModalLabel">Form Tambah Tendik</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -66,17 +64,19 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="judul">Judul cerita</label>
-                                    <textarea class="form-control" placeholder="Judul cerita" required name="judul" id="judul"
-                                        oninput="this.value = this.value.replace(/[^a-zA-Z0-9!%.,()\/'?\-\s]/g, '').replace(/(\..*?)\..*/g, '$1');"></textarea>
+                                    <label for="nama_sub_program">Judul tendik</label>
+                                    <input type="text" class="form-control" name="nama_sub_program" id="nama_sub_program"
+                                        placeholder="Masukan Judul" Required>
                                 </div>
                             </div>
                             <div class="col-md-6">
+
                                 <div class="form-group">
                                     <label for="jenis_inputan">Jenis Inputan</label>
                                     <select id="jenis_inputan" name="jenis" class="form-control">
                                         <option value="#">Pilih Jenis Inputan</option>
-                                        <option value="link">Link Video</option>
+                                        <option value="link_video">Link Video</option>
+                                        <option value="link">Link Web</option>
                                         <option value="video">Upload Video</option>
                                         <option value="foto">Upload Foto</option>
                                         <option value="pdf">Upload PDF</option>
@@ -86,29 +86,15 @@
                             </div>
                         </div>
 
-                        {{-- <div class="form-group">
-                            <ul class="list-unstyled" style="margin-bottom: 0px; margin-left: 0px;">
-                                <li class="d-inline-block mr-2">
-                                    <div class="custom-control custom-radio custom-radio-primary mb-3">
-                                        <input type="radio" id="jenis_link" name="jenis" class="custom-control-input"
-                                            value="link">
-                                        <label class="custom-control-label" for="jenis_link"> Link Video </label>
-                                    </div>
-                                </li>
-                                <li class="d-inline-block mr-2">
-                                    <div class="custom-control custom-radio custom-radio-success mb-3">
-                                        <input type="radio" id="jenis_video" name="jenis" class="custom-control-input"
-                                            value="video">
-                                        <label class="custom-control-label" for="jenis_video"> Upload Video </label>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div> --}}
-
                         <div class="form-group row_link" style="display: none;">
+                            <label for="konten">Link Web</label>
+                            <input type="text" class="form-control" name="link" id="link"
+                                placeholder="Masukan Link Youtube">
+                        </div>
+                        <div class="form-group row_link_video" style="display: none;">
                             <label for="konten">Link Video</label>
                             <input type="text" class="form-control" name="link_video" id="link_video"
-                                placeholder="Masukan Link Youtube" required>
+                                placeholder="Masukan Link Youtube">
                         </div>
                         <div class="form-group row_video" style="display: none;">
                             <div class="form-group">
@@ -122,21 +108,23 @@
                                     Hanya file video yang diizinkan (.mp4, .avi, .mkv, dll.)  <b class="text-danger">Max 10.mb</b>
                                 </small>
                             </div>
+
                         </div>
                         <div class="form-group row_foto" style="display: none;">
-                            <label for="foto_praktik">Foto Praktik</label>
+                            <label for="foto_tendik">Foto Tendik</label>
                             <div class="custom-file mb-3">
-                                <input type="file" class="custom-file-input" name="foto_praktik" id="foto_praktik"
+                                <input type="file" class="custom-file-input" name="foto_tendik" id="foto_tendik"
                                     accept=".jpg,.jpeg,.png">
-                                <label class="custom-file-label" for="updateCustomFile">Cari Gambar</label>
+                                <label class="custom-file-label" for="customFile">Cari Gambar</label>
                             </div>
                             <small id="videoHelpBlock" class="form-text text-muted">
                                 Hanya file video yang diizinkan (.jpg, .jpeg, .png) <b class="text-danger">Max 2.mb</b>
                             </small>
-                            <div id="updatepraktikPreview" class="mt-3"></div>
+                            <div id="foto_tendik-preview" class="mt-3"></div>
                         </div>
-                        <div class="form-group row_pdf"  style="display: none;">
-                            <label for="video">Upload PDF</label>
+
+                        <div class="form-group row_pdf" style="display: none;">
+                            <label for="video">Upload Artikel PDF</label>
                             <div class="custom-file mb-3">
                                 <input type="file" class="custom-file-input" name="file_pdf" id="file_pdf"
                                     accept=".pdf*">
@@ -147,9 +135,9 @@
                             </small>
                         </div>
                         <div class="form-group">
-                            <label for="form_foto">Thumbnail cerita</label>
+                            <label for="form_foto">Thumbnail Tendik</label>
                             <div class="custom-file mb-3">
-                                <input type="file" class="custom-file-input" name="foto" id="customFile"
+                                <input type="file" class="custom-file-input" name="gambar" id="customFile"
                                     accept=".jpg,.jpeg,.png">
                                 <label class="custom-file-label" for="customFile">Cari Gambar</label>
                             </div>
@@ -158,12 +146,10 @@
                             </small>
                             <div id="imagePreview" class="mt-3"></div>
                         </div>
-
-                        {{-- <div class="form-group">
-                            <label for="konten">Isi</label>
-                            <textarea class="form-control" placeholder="Isi Cerita" name="konten" id="konten"></textarea>
-                        </div> --}}
-
+                        <div class="form-group">
+                            <label for="judul">Konten</label>
+                            <textarea class="form-control" id="konten" name="konten" required></textarea>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">
@@ -180,16 +166,16 @@
     <!-- /.modal -->
 
     <!-- sample modal content -->
-    <div id="modal-cerita-update" class="modal fade" tabindex="-1" role="dialog"
-        aria-labelledby="modal-cerita-updateLabel" aria-hidden="true">
-        <form action="{{ route('cerita.update') }}" method="post" id="form-cerita-update" autocomplete="off"
+    <div id="modal-tendik-update" class="modal fade" tabindex="-1" role="dialog"
+        aria-labelledby="modal-tendik-updateLabel" aria-hidden="true">
+        <form action="{{ route('tendik.update') }}" method="post" id="form-tendik-update" autocomplete="off"
             enctype="multipart/form-data">
             @method('PATCH')
             <input type="hidden" name="id" id="update-id">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title mt-0" id="modal-cerita-updateLabel">Form Edit Cerita Praktik Baik</h5>
+                        <h5 class="modal-title mt-0" id="modal-tendik-updateLabel">Form Edit Tendik</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -198,9 +184,9 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="update-judul">Judul cerita</label>
-                                    <textarea class="form-control" placeholder="Judul cerita" name="judul" id="update-judul"
-                                        oninput="this.value = this.value.replace(/[^a-zA-Z0-9!%.,()\/'?\-\s]/g, '').replace(/(\..*?)\..*/g, '$1');"></textarea>
+                                    <label for="judul">Judul Tendik</label>
+                                    <input type="text" class="form-control" name="nama_sub_program" id="update-nama_sub_program"
+                                        placeholder="Masukan Judul" Required>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -208,35 +194,22 @@
                                     <label for="jenis_inputan">Jenis Inputan</label>
                                     <select id="jenis_inputan-edit" name="jenis" class="form-control">
                                         <option value="#">Pilih Jenis Inputan</option>
+                                        <option value="link">Link Web</option>
                                         <option value="link">Link Video</option>
                                         <option value="video">Upload Video</option>
                                         <option value="foto">Upload Foto</option>
                                         <option value="pdf">Upload PDF</option>
                                     </select>
                                 </div>
+
                             </div>
-
                         </div>
-
-                        {{-- <div class="form-group">
-                            <ul class="list-unstyled" style="margin-bottom: 0px; margin-left: 0px;">
-                                <li class="d-inline-block mr-2">
-                                    <div class="custom-control custom-radio custom-radio-primary mb-3">
-                                        <input type="radio" id="jenis_link_edit" name="jenis"
-                                            class="custom-control-input" value="link">
-                                        <label class="custom-control-label" for="jenis_link"> Link </label>
-                                    </div>
-                                </li>
-                                <li class="d-inline-block mr-2">
-                                    <div class="custom-control custom-radio custom-radio-success mb-3">
-                                        <input type="radio" id="jenis_video_edit" name="jenis"
-                                            class="custom-control-input" value="video">
-                                        <label class="custom-control-label" for="jenis_video"> Upload Video </label>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div> --}}
                         <div class="form-group row_link"style="display: none;">
+                            <label for="update-link">Link Web</label>
+                            <input type="text" class="form-control" placeholder="Link Web" name="link"
+                                id="update-link"></input>
+                        </div>
+                        <div class="form-group row_link_video"style="display: none;">
                             <label for="update-konten">Link Video</label>
                             <input type="text" class="form-control" placeholder="Link Video" name="link_video"
                                 id="update-link_video"></input>
@@ -245,17 +218,16 @@
                             <div class="form-group">
                                 <label for="video">Upload Video</label>
                                 <div class="custom-file mb-3">
-                                    <input type="file" class="custom-file-input" name="video" id="video-update"
+                                    <input type="file" class="custom-file-input" name="video" id="update-video"
                                         accept="video/*">
                                     <label class="custom-file-label" for="video">Pilih Video</label>
                                 </div>
                                 <small id="videoHelpBlock" class="form-text text-muted">
-                                    Hanya file yang diizinkan (.mp4, .avi, .mkv, dll.). <b class="text-danger">Max 10.mb</b>
+                                    Hanya file video yang diizinkan (.mp4, .avi, .mkv, dll.)  <b class="text-danger">Max 10.mb</b>
                                 </small>
                             </div>
-
                         </div>
-                        <div class="form-group  row_pdf" style="display: none;">
+                        <div class="form-group row_pdf" style="display: none;">
                             <label for="video">Upload PDF</label>
                             <div class="custom-file mb-3">
                                 <input type="file" class="custom-file-input" name="file_pdf" id="update-file_pdf"
@@ -263,39 +235,63 @@
                                 <label class="custom-file-label" for="video">Pilih PDF</label>
                             </div>
                             <small id="videoHelpBlock" class="form-text text-muted">
-                                Hanya file video yang diizinkan PDF <b class="text-danger">Max 5.mb</b>
+                                Hanya file yang diizinkan .PDF <b class="text-danger">Max 5.mb</b>
                             </small>
+
                         </div>
                         <div class="form-group row_foto" style="display: none;">
-                            <label for="foto_praktik-update">Foto Praktik</label>
+                            <label for="foto-tendiks">Foto tendik</label>
                             <div class="custom-file mb-3">
-                                <input type="file" class="custom-file-input" name="foto_praktik"
-                                    id="update-foto_praktik" accept=".jpg,.jpeg,.png">
-                                <label class="custom-file-label" for="updateCustomFile">Cari Gambar</label>
+                                <input type="file" class="custom-file-input" name="foto_tendik"
+                                    id="update-foto_tendik" accept=".jpg,.jpeg,.png">
+                                <label class="custom-file-label" for="UpdateFotoTendik">Cari Gambar</label>
                             </div>
                             <small id="videoHelpBlock" class="form-text text-muted">
                                 Hanya file video yang diizinkan (.jpg, .jpeg, .png) <b class="text-danger">Max 2.mb</b>
                             </small>
-                            <div id="updatepraktikPreview" class="mt-3"></div>
+
                         </div>
                         <div class="form-group">
-                            <label for="updateCustomFile">Thumbnail cerita</label>
+                            <label for="tumb">Thumbnail tendik</label>
                             <div class="custom-file mb-3">
-                                <input type="file" class="custom-file-input" name="foto" id="updateCustomFile"
+                                <input type="file" class="custom-file-input" name="gambar" id="update-CustomFile"
                                     accept=".jpg,.jpeg,.png">
-                                <label class="custom-file-label" for="updateCustomFile">Cari Gambar</label>
+                                <label class="custom-file-label" for="UpdatecustomFile">Cari Gambar</label>
                             </div>
                             <small id="videoHelpBlock" class="form-text text-muted">
                                 Hanya file video yang diizinkan (.jpg, .jpeg, .png) <b class="text-danger">Max 2.mb</b>
                             </small>
-                            <div id="foto"></div>
+
                         </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="pdf_preview">Thumbnail Preview</label>
+                                        <div id="updateImagePreview" class="mt-3"></div>
+                                    </div>
 
-                        {{-- <div class="form-group">
-                            <label for="update-konten">Isi</label>
-                            <textarea class="form-control" placeholder="Isi" name="konten" id="update-konten"></textarea>
-                        </div> --}}
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group row_foto">
+                                        <label for="pdf_preview">Foto Tendik Preview</label>
+                                        <div id="updateTendikPreview" class="mt-3"></div>
+                                    </div>
 
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group row_pdf">
+                                        <label for="pdf_preview">File PDF Preview</label>
+                                        <iframe id="pdf_preview" width="100%" height="300px"
+                                            style="border: 1px solid #ddd;"></iframe>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="judul">Konten</label>
+                            <textarea class="form-control" id="update-konten" name="konten"></textarea>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Batal</button>
@@ -323,37 +319,72 @@
             };
             reader.readAsDataURL(file);
         });
-        document.getElementById("updateCustomFile").addEventListener("change", function() {
+        document.getElementById("foto_tendik").addEventListener("change", function() {
             var file = this.files[0];
-            var fileLabel = document.querySelector('label[for="updatecustomFile"]');
+            var fileLabel = document.querySelector('label[for="foto_tendik"]');
             fileLabel.innerHTML = file.name;
 
             var reader = new FileReader();
             reader.onload = function(e) {
-                var imagePreview = document.getElementById("foto");
+                var imagePreview = document.getElementById("foto_tendik-preview");
                 imagePreview.innerHTML = '<img src="' + e.target.result +
                     '" class="img-fluid" style="height:200px;width:auto" alt="Selected Image">';
             };
             reader.readAsDataURL(file);
         });
-        $('#modal-cerita').on('hidden.bs.modal', function() {
+        document.getElementById("update-CustomFile").addEventListener("change", function() {
+            var file = this.files[0];
+            var fileLabel = document.querySelector('label[for="UpdatecustomFile"]');
+            fileLabel.innerHTML = file.name;
+
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                var imagePreview = document.getElementById("updateImagePreview");
+                imagePreview.innerHTML = '<img src="' + e.target.result +
+                    '" class="img-fluid" style="height:200px;width:auto" alt="Selected Image">';
+            };
+            reader.readAsDataURL(file);
+        });
+        document.getElementById("update-foto_tendik").addEventListener("change", function() {
+            var file = this.files[0];
+            var fileLabel = document.querySelector('label[for="UpdateFotoTendik"]');
+            fileLabel.innerHTML = file.name;
+
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                var imagePreview = document.getElementById("updateTendikPreview");
+                imagePreview.innerHTML = '<img src="' + e.target.result +
+                    '" class="img-fluid" style="height:200px;width:auto" alt="Selected Image">';
+            };
+            reader.readAsDataURL(file);
+        });
+
+        $('#modal-tendik').on('hidden.bs.modal', function() {
             document.getElementById("ImagePreview");
             imagePreview.innerHTML = '';
         });
-        $('#modal-cerita-update').on('hidden.bs.modal', function() {
-            var imagePreview = document.getElementById("updateImagePreview");
+        $('#modal-tendik-update').on('hidden.bs.modal', function() {
+            var imagePreview = document.getElementById("updateTendikPreview");
             imagePreview.innerHTML = '';
         });
+        $(document).ready(function() {
+            $('#konten').summernote();
+        });
+
+        $(document).ready(function() {
+            $('#id_kategori').select2();
+        });
+
+        $(document).ready(function() {
+            $('#update-id_kategori').select2();
+        });
+
         $(document).ready(function() {
             $('#update-konten').summernote({
                 height: 300,
                 color: 'black',
             });
         });
-        $(document).ready(function() {
-            $('#konten').summernote();
-        });
-
     </script>
-    <script src="{{ asset('js/page/cerita/list.js?q=' . Str::random(5)) }}"></script>
+    <script src="{{ asset('js/page/tendik/list.js?q=' . Str::random(5)) }}"></script>
 @endpush

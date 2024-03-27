@@ -111,6 +111,8 @@ class RouteServiceProvider extends ServiceProvider
 
             $this->mapRenstraRoutes();
 
+            $this->mapTendikRoutes();
+
             $this->mapBeritaZIWBKRoutes();
             
             $this->mapPengaduan();
@@ -345,6 +347,12 @@ class RouteServiceProvider extends ServiceProvider
         Route::prefix('praktik_baik')
             ->namespace($this->namespace)
             ->group(base_path('routes/panel/praktik.php'));
+    }
+    protected function mapTendikRoutes()
+    {
+        Route::prefix('tendik')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/panel/tendik.php'));
     }
     protected function mapAkuntabilitas()
     {
