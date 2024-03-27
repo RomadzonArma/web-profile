@@ -375,7 +375,7 @@ a.arrow-rounded div i{
 	background: var(--primary);
 	top: auto;
 	bottom: 50px;
-	right: 24px;
+	right: 39px;
 	z-index: 1000;
 }
 
@@ -405,7 +405,7 @@ a.arrow-rounded div i{
 	flex-direction: column;
 	gap: 8px;
 	/* align-items: center; */
-	max-width: 400px;
+	max-width: 600px;
 	width: 100%;
 	box-shadow: 2px 2px 10px #9393931a;
 	z-index: 9998;
@@ -413,13 +413,43 @@ a.arrow-rounded div i{
 
 .faq-wrapper img.faq{
 	position: absolute;
-	right: -50px;
+	right: -40px;
 	bottom: -30px;
 }
 
 .faq-wrapper .form-group,
 .faq-wrapper .form-group .form-control{
 	width: 100%;
+}
+
+.select2-dropdown{
+	z-index: 9999;
+	box-shadow: 0 4px 10px #acacac36;
+	border: 1px solid transparent;
+}
+
+.select2-container .select2-selection--single{
+	min-height: 28px !important;
+	height: 100%;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow{
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered{
+	line-height: normal;
+	padding: 0;
+}
+
+.select2-container--default .select2-selection--single{
+	padding: 12px 16px;
+	border: 1px solid transparent !important;
+}
+
+select.form-control{
+	appearance: unset !important;
 }
 
 .faq-wrapper .form-group .form-control{
@@ -1238,7 +1268,8 @@ select.form-control {
 
 	.faq-wrapper{
 		min-width: 100px;
-		width: 250px !important;
+		width: 100% !important;
+		max-width: 350px !important;
 		bottom: 80px;
 		right: 15px !important;
 	}

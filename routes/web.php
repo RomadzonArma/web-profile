@@ -58,6 +58,13 @@ Route::post('/faq/store', [LandingController::class, 'FaqStore'])->name('faq.sto
 Route::get('/renstra', [LandingController::class, 'renstra'])->name('renstra');
 Route::get('/akuntabilitas/list', [LandingController::class, 'akuntabilitas'])->name('akuntabilitas');
 Route::get('/berita-ziwbk', [LandingController::class, 'beritaZiwbk'])->name('berita_ziwbk');
+Route::get('/berita-ziwbk/detail/{slug}', [LandingController::class, 'beritaZiwbkDetail'])->name('berita_ziwbk.detail');
+
+
+//Program fokus 
+Route::get('/program_fokus_tendik', [LandingController::class, 'program_fokus_tendik'])->name('program_fokus_tendik');
+Route::get('/program_fokus_harlindung', [LandingController::class, 'program_fokus_harlindung'])->name('program_fokus_harlindung');
+
 
 
 Route::get('/login', function () {

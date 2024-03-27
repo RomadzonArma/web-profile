@@ -67,6 +67,31 @@
                 @endif
             </ul>
         </li>
+        <li class="menu-item sub-menu">
+            <a class="menu-link has-menu" href="#">PENGADUAN <i class="icon-angle-down1"></i></a>
+            <ul class="sub-menu-container">
+                <li class="menu-item">
+                    <a class="menu-link" href="#">LAYANAN INFORMASI DAN PENGADUAN</a>
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link" href="#">SIPPN</a>
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link" href="#">WHISTLEBLOWING SYSTEM</a>
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link" href="#">SP4N LAPOR</a>
+                </li>
+                {{--  @foreach ($pengaduan as $data)
+                    <li class="menu-item">
+                        @if ($data->list_kategori)
+                            <a class="menu-link" href="{{ $data->link_pengaduan }}"
+                                target="_blank">{{ $data->list_kategori->nama_kategori }}</a>
+                        @endif
+                    </li>
+                @endforeach  --}}
+            </ul>
+        </li>
 
         <li class="menu-item mega-menu sub-menu">
             <a class="menu-link" href="#">MENU HALAMAN
