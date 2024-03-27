@@ -123,7 +123,7 @@
                                     </div>
                                 </div>
                             </div> --}}
-            <ul class="pagination pagination-circle justify-content-center">
+            {{-- <ul class="pagination pagination-circle justify-content-center">
                 @if ($guru->onFirstPage())
                     <li class="page-item disabled"><span class="page-link" aria-hidden="true">«</span></li>
                 @else
@@ -143,7 +143,46 @@
                 @else
                     <li class="page-item disabled"><span class="page-link" aria-hidden="true">»</span></li>
                 @endif
+            </ul> --}}
+            <ul class="pagination pagination-circle justify-content-center">
+                @if ($guru->onFirstPage())
+                    <li class="page-item disabled"><span class="page-link" aria-hidden="true">«</span></li>
+                @else
+                    <li class="page-item"><a class="page-link" href="{{ $guru->previousPageUrl() }}" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+                @endif
+
+                @php
+                    $limit = 5;
+                    $halfLimit = floor($limit / 2);
+                    $start = $guru->currentPage() - $halfLimit;
+                    $end = $guru->currentPage() + $halfLimit;
+
+                    if ($start < 1) {
+                        $end += 1 - $start;
+                        $start = 1;
+                    }
+                    if ($end > $guru->lastPage()) {
+                        $start -= $end - $guru->lastPage();
+                        $end = $guru->lastPage();
+                    }
+                    if ($start < 1) {
+                        $start = 1;
+                    }
+                @endphp
+
+                @for ($page = $start; $page <= min($end, $guru->lastPage()); $page++)
+                    <li class="page-item{{ $page == $guru->currentPage() ? ' active' : '' }}">
+                        <a class="page-link" href="{{ $guru->url($page) }}">{{ $page }}</a>
+                    </li>
+                @endfor
+
+                @if ($guru->hasMorePages())
+                    <li class="page-item"><a class="page-link" href="{{ $guru->nextPageUrl() }}" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+                @else
+                    <li class="page-item disabled"><span class="page-link" aria-hidden="true">»</span></li>
+                @endif
             </ul>
+
         </div>
     </div>
 @endsection

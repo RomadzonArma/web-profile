@@ -49,8 +49,10 @@
             </p>
         </div>
         <div class="entry-title">
-            <h6 class="mb-1"><a href="#"># {{ $berita->tag_dinamis }}</a></h6>
-            <h6 class="mb-1"><a href="#"># {{ $berita->url_video }}</a></h6>
+            {{-- <h6 class="mb-1"><a href="#"># {{ $berita->tag_dinamis }}</a></h6> --}}
+            <h6 class="mb-1"><a href="#"># {{ str_replace(',', ' #', $berita->tag_dinamis) }}</a></h6>
+
+            {{-- <h6 class="mb-1"><a href="#"> {{ $berita->url_video }}</a></h6> --}}
         </div>
     </div>
 @endsection

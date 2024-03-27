@@ -56,7 +56,7 @@
                     </div>
                 </div>
             @endforeach
-            <ul class="pagination pagination-circle justify-content-center">
+            {{-- <ul class="pagination pagination-circle justify-content-center">
                 @if ($renstra->onFirstPage())
                     <li class="page-item disabled"><span class="page-link" aria-hidden="true">«</span></li>
                 @else
@@ -76,7 +76,41 @@
                 @else
                     <li class="page-item disabled"><span class="page-link" aria-hidden="true">»</span></li>
                 @endif
+            </ul> --}}
+            <ul class="pagination pagination-circle justify-content-center">
+                @if ($renstra->onFirstPage())
+                    <li class="page-item disabled"><span class="page-link" aria-hidden="true">«</span></li>
+                @else
+                    <li class="page-item"><a class="page-link" href="{{ $renstra->previousPageUrl() }}" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+                @endif
+
+                @php
+                    $limit = 5;
+                    $halfLimit = floor($limit / 2);
+                    $start = max(1, $renstra->currentPage() - $halfLimit);
+                    $end = min($renstra->lastPage(), $renstra->currentPage() + $halfLimit);
+
+                    if ($start > 1) {
+                        $end = min($renstra->lastPage(), $end + $limit - ($end - $start + 1));
+                    }
+                    if ($end < $renstra->lastPage()) {
+                        $start = max(1, $start - ($limit - ($end - $start + 1)));
+                    }
+                @endphp
+
+                @for ($page = $start; $page <= $end; $page++)
+                    <li class="page-item{{ $page == $renstra->currentPage() ? ' active' : '' }}">
+                        <a class="page-link" href="{{ $renstra->url($page) }}">{{ $page }}</a>
+                    </li>
+                @endfor
+
+                @if ($renstra->hasMorePages())
+                    <li class="page-item"><a class="page-link" href="{{ $renstra->nextPageUrl() }}" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+                @else
+                    <li class="page-item disabled"><span class="page-link" aria-hidden="true">»</span></li>
+                @endif
             </ul>
+
         </div>
     </div>
 @endsection
