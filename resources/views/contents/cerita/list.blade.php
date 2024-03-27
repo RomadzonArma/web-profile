@@ -57,7 +57,7 @@
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header bg-primary-bold">
-                        <h4 class="modal-title mt-0" id="myModalLabel">Form Cerita Praktik Baik</h4>
+                        <h4 class="modal-title mt-0" id="myModalLabel">Form Tambah Cerita Praktik Baik</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -67,7 +67,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="judul">Judul cerita</label>
-                                    <textarea class="form-control" placeholder="Judul cerita" name="judul" id="judul"
+                                    <textarea class="form-control" placeholder="Judul cerita" required name="judul" id="judul"
                                         oninput="this.value = this.value.replace(/[^a-zA-Z0-9!%.,()\/'?\-\s]/g, '').replace(/(\..*?)\..*/g, '$1');"></textarea>
                                 </div>
                             </div>
@@ -215,6 +215,7 @@
                                     </select>
                                 </div>
                             </div>
+
                         </div>
 
                         {{-- <div class="form-group">
@@ -266,16 +267,16 @@
                             </small>
                         </div>
                         <div class="form-group row_foto" style="display: none;">
-                            <label for="updateCustomFile">Foto Cerita Praktik Baik</label>
+                            <label for="foto_praktik-update">Foto Praktik</label>
                             <div class="custom-file mb-3">
-                                <input type="file" class="custom-file-input" name="foto" id="update-foto_praktik"
-                                    accept=".jpg,.jpeg,.png">
+                                <input type="file" class="custom-file-input" name="foto_praktik"
+                                    id="update-foto_praktik" accept=".jpg,.jpeg,.png">
                                 <label class="custom-file-label" for="updateCustomFile">Cari Gambar</label>
                             </div>
                             <small id="videoHelpBlock" class="form-text text-muted">
                                 Hanya file video yang diizinkan (.jpg, .jpeg, .png) <b class="text-danger">Max 2.mb</b>
                             </small>
-                            <div id="praktik-preview" class="mt-3"></div>
+                            <div id="updatepraktikPreview" class="mt-3"></div>
                         </div>
                         <div class="form-group">
                             <label for="updateCustomFile">Thumbnail cerita</label>
@@ -324,12 +325,12 @@
         });
         document.getElementById("updateCustomFile").addEventListener("change", function() {
             var file = this.files[0];
-            var fileLabel = document.querySelector('label[for="customFile"]');
+            var fileLabel = document.querySelector('label[for="updatecustomFile"]');
             fileLabel.innerHTML = file.name;
 
             var reader = new FileReader();
             reader.onload = function(e) {
-                var imagePreview = document.getElementById("updateImagePreview");
+                var imagePreview = document.getElementById("foto");
                 imagePreview.innerHTML = '<img src="' + e.target.result +
                     '" class="img-fluid" style="height:200px;width:auto" alt="Selected Image">';
             };

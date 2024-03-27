@@ -11,7 +11,8 @@ class CeritaBaik extends Model
 
     protected $table = 'cerita';
     protected $primaryKey = 'id';
-    protected $guarded = ["id"];
+    protected $guarded = ['id'];
+
 
     // protected $fillable = [
     //     'judul',

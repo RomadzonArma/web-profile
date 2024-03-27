@@ -72,7 +72,7 @@ $(() => {
 
         Swal.fire({
             title: "Anda yakin?",
-            html: `Anda akan menghapus Cerita "<b>${judul}</b>"!`,
+            html: `Anda akan menghapus praktik baik "<b>${judul}</b>"!`,
             footer: "Data yang sudah dihapus tidak bisa dikembalikan kembali!",
             icon: "warning",
             showCancelButton: true,
@@ -87,7 +87,7 @@ $(() => {
                     _method: "DELETE",
                 })
                     .done((res) => {
-                        showSuccessToastr("sukses", "Cerita berhasil dihapus");
+                        showSuccessToastr("sukses", "praktik baik berhasil dihapus");
                         table.ajax.reload();
                     })
                     .fail((res) => {
@@ -111,8 +111,8 @@ $(() => {
                 showSuccessToastr(
                     "sukses",
                     value == "1"
-                        ? "Cerita berhasil diaktifkan"
-                        : "Cerita berhasil dinonaktifkan"
+                        ? "praktik baik berhasil diaktifkan"
+                        : "praktik baik berhasil dinonaktifkan"
                 );
                 table.ajax.reload();
             })
@@ -149,7 +149,7 @@ $(() => {
                 clearErrorMessage();
                 table.ajax.reload();
                 $("#modal-praktik-update").modal("hide");
-                showSuccessToastr("sukses", "Cerita berhasil diubah");
+                showSuccessToastr("sukses", "praktik baik berhasil diubah");
             },
             // error: ({ status, responseJSON }) => {
             //     $('#modal-praktik-update').find('.modal-dialog').LoadingOverlay('hide', true);
@@ -191,7 +191,7 @@ $(() => {
         });
     });
 
-    $("#table-data").on("click", ".btn-update", function () {
+   $("#table-data").on("click", ".btn-update", function () {
         var tr = $(this).closest("tr");
         var data = table.row(tr).data();
 
@@ -205,7 +205,7 @@ $(() => {
                     if (value) {
                         $("#foto").html(
                             '<img src="' +
-                            data.foto +
+                            value +
                             '" style="height: 100px; margin-top: 10px;">'
                         );
                     }
@@ -214,20 +214,24 @@ $(() => {
                     if (value) {
                         $("#updatepraktikPreview").html(
                             '<img src="' +
-                            data.foto_praktik +
+                            value +
                             '" style="height: 100px; margin-top: 10px;">'
                         );
                     }
-                } else if (key === 'file_pdf') {
-                    // Show PDF preview for 'file_pdf' field
-                    if (value) {
-                        $('#pdf_preview').attr('src', value);
-                    } else {
-                        // Handle the case when file_pdf is not available or empty
-                        // For instance, you might want to hide the pdf preview element
-                        $('#pdf_preview').hide();
+                }else if (key === 'file_pdf') {
+                    // Check if value exists and it is a PDF file
+                    if (value && value.endsWith('.pdf')) {
+                        $(".row_pdf").show();
+                        // console.log(value);
                     }
-                } else {
+                } else if (key === 'video') {
+                    // Check if value exists and it is a PDF file
+                    if (value) {
+                        $(".row_video").show();
+                        // console.log(value);
+                    }
+                }
+                 else {
                     // Set other input fields normally
                     $("#update-" + key).val(value);
                 }
@@ -246,6 +250,22 @@ $(() => {
                 } else if (jenisInputan === 'pdf') {
                     $(".row_pdf").show();
                 }
+            } else {
+                // If jenisInputan is not available, show the appropriate input section based on the existing data
+                if (data['link_video']) {
+                    $(".row_link").show();
+                } else if (data['video']) {
+                    $(".row_video").show();
+                } else if (data['file_pdf']) {
+                    $(".row_pdf").show();
+                } else if (data['foto_praktik']) {
+                    $(".row_foto").show();
+                }
+            }
+
+            // Show file PDF input if file PDF is available
+            if (data['file_pdf']) {
+                $(".row_pdf").show();
             }
 
             $("#modal-praktik-update").modal("show");
@@ -254,7 +274,6 @@ $(() => {
             console.error("Data is not available.");
         }
     });
-
     // $("#table-data").on("click", ".btn-update", function () {
     //     var tr = $(this).closest("tr");
     //     var data = table.row(tr).data();
@@ -333,7 +352,7 @@ $(() => {
                 clearErrorMessage();
                 table.ajax.reload();
                 $("#modal-praktik").modal("hide");
-                showSuccessToastr("sukses", "Cerita berhasil ditambahkan");
+                showSuccessToastr("sukses", "praktik baik berhasil ditambahkan");
             },
             error: ({ status, responseJSON }) => {
                 $("#modal-praktik")
