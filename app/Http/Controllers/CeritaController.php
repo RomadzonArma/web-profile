@@ -183,7 +183,6 @@ class CeritaController extends Controller
                 }
             }
 
-
             $ceritaBaik->update([
                 'judul'      => $request->input('judul'),
                 'konten'      => $request->input('konten'),

@@ -11,9 +11,7 @@ class CeritaBaik extends Model
 
     protected $table = 'cerita';
     protected $primaryKey = 'id';
-
     protected $guarded = ['id'];
-
     protected $casts = [
         'created_at' => 'datetime'
     ];
