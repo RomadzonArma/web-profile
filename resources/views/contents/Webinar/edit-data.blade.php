@@ -10,7 +10,7 @@
             <div class="card">
                 <div class="card-body">
                     <form action="{{ route('webinar.update', ['id' => encrypt($data->id)]) }}" method="post" name="form-update" id="form-update">
-                        <div class="form-group ">
+                        {{--  <div class="form-group ">
                             <label class="col-form-label">Pilih Kategori</label>
                             <div class="">
                                 <select class="form-control"  style="width: 100%" id="id_kategori" name="id_kategori">
@@ -23,7 +23,7 @@
                                     @endforeach
                                 </select>
                             </div>
-                        </div>
+                        </div>  --}}
 
                         <div class="form-group">
                             <label for="judul">Judul</label>

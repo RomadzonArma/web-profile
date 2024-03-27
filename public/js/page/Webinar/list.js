@@ -73,17 +73,13 @@ $(() => {
             targets: [3],
             className: 'text-center align-top'
         }, {
-            targets: [7],
+            targets: [5],
             visible: false,
         }],
         columns: [{
             data: 'DT_RowIndex'
         }, {
             data: 'judul',
-        }, {
-            data: 'list_kategori.list_kanal.nama_kanal',
-        }, {
-            data: 'list_kategori.nama_kategori',
         }, {
             data: 'tanggal_webinar',
             render: function(data) {

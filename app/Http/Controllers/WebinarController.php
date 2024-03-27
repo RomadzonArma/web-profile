@@ -86,13 +86,13 @@ class WebinarController extends Controller
     {
         // Validasi data yang diterima dari form
         $validasi = Validator::make($request->all(), [
-            'id_kategori' => 'required',
+            // 'id_kategori' => 'required',
             'judul' => 'required',
             'deskripsi' => 'required',
             'tanggal_webinar' => 'required',
             'gambar' => 'required|image|mimes:jpeg,png,jpg|max:2048', // Validasi untuk file gambar
         ], [
-            'id_kategori.required' => 'Pilih Kategori wajib diisi',
+            // 'id_kategori.required' => 'Pilih Kategori wajib diisi',
             'judul.required' => 'Judul wajib diisi',
             'deskripsi.required' => 'Konten wajib diisi',
             'tanggal_webinar.required' => 'Tanggal agenda wajib diisi',
@@ -111,7 +111,7 @@ class WebinarController extends Controller
 
             // Data yang akan disimpan
             $data = [
-                'id_kategori' => $request->id_kategori,
+                // 'id_kategori' => $request->id_kategori,
                 'judul' => $request->judul,
                 'slug' => Str::slug($request->judul),
                 'deskripsi' => $request->deskripsi,
@@ -183,7 +183,7 @@ class WebinarController extends Controller
         } else {
 
             $data = [
-                'id_kategori' => $request->id_kategori,
+                // 'id_kategori' => $request->id_kategori,
                 'judul' => $request->judul,
                 'slug' => Str::slug($request->judul),
                 'deskripsi' => $request->deskripsi,

@@ -38,11 +38,11 @@
     </a>
     <div class="faq-wrapper">
         <div class="position-relative d-flex justify-content-between">
-            <h5 class="text-primary mb-2">FAQ!</h5>
-            <img src="{{ asset('assets-front/img/faqq.png') }}" width="220" class="faq img-fluid">
+            <h5 class="text-primary mb-2">QnA!</h5>
+            <img src="{{ asset('assets-front/img/faqq.png') }}" width="140" class="faq img-fluid">
         </div>
         {{-- <img src="{{ asset('assets-front/img/ksps_faq.png') }}" alt="faq" class="img-fluid"> --}}
-        <form class="mb-0 w-100" action="{{ route('faq.store') }}" method="post" name="form-store" id="form-store">
+        {{-- <form class="mb-0 w-100" action="{{ route('faq.store') }}" method="post" name="form-store" id="form-store">
             @csrf
             <div class="form-group">
                 <input type="text" class="form-control" id="nama" name="nama"  placeholder="Nama ">
@@ -54,6 +54,51 @@
                 <input type="text" class="form-control" id="pertanyaan" name="pertanyaan"  placeholder="Tulis pertanyaan anda...">
             </div>
             <button  type="submit" class="btn btn-primary btn-simpan w-100">Kirim</button>
+        </form> --}}
+        <form action="{{ route('faq.store') }}"  method="post" name="form-store" id="form-store"  class="w-100 mb-0">
+            @csrf
+            <div class="row">
+                <div class="form-group col-6">
+                    <select class="form-control select2" id="id_kategori_faq" name="id_kategori_faq" data-placeholder="Pilih Kategori">
+                        <option></option>
+                        <option disabled>Kategori</option>
+                        @foreach ( $kategori_faq as $data )
+                            <option value="{{$data->id}}">{{$data->nama_kategori}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group col-6">
+                    <select class="form-control select2"  id="id_keperluan_faq" name="id_keperluan_faq" data-placeholder="Pilih Keperluan">
+                        <option></option>
+                        <option disabled>Keperluan</option>
+                        @foreach ( $keperluan_faq as $item )
+                            <option value="{{$item->id}}">{{$item->nama_keperluan}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group col-12">
+                    <input type="text" class="form-control" id="nama" name="nama"  placeholder="Nama Lengkap">
+                </div>
+                <div class="form-group col-12">
+                    <input type="email" class="form-control" id="email" name="email"  placeholder="Email anda">
+                </div>
+                <div class="form-group col-6">
+                    <input type="text" class="form-control" id="nip" name="nip"  placeholder="NIP/NIK">
+                </div>
+                <div class="form-group col-6">
+                    <input type="text" class="form-control" id="instansi" name="instansi"  placeholder="Instansi">
+                </div>
+                <div class="form-group col-6">
+                    <input type="text" class="form-control" id="jabatan" name="jabatan"  placeholder="Jabatan">
+                </div>
+                <div class="form-group col-6">
+                    <input type="text" class="form-control" id="nomor_hp" name="nomor_hp"  placeholder="Nomor HP">
+                </div>
+                <div class="form-group col-12">
+                    <textarea class="form-control" id="pertanyaan" name="pertanyaan" rows="3" style="height: 86px;" placeholder="Isi pertanyaan anda"></textarea>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-simpan w-100">Kirim</button>
         </form>
     </div>
 

@@ -56,34 +56,57 @@ class FaqController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        $validasi = Validator::make($request->all(), [
-            'nama' => 'required',
-            'email' => 'required ',
-            'pertanyaan' => 'required ',
-        ], [
-            'nama.required' => 'Nama wajib diisi',
-            'email.required' => 'Email tautan wajib diisi',
-            'pertanyaan.required' => 'Pertanyaan tautan wajib diisi',
+    // public function store(Request $request)
+    // {
+    //     $validasi = Validator::make($request->all(), [
+    //         'nama' => 'required',
+    //         'email' => 'required ',
+    //         'pertanyaan' => 'required ',
+    //         'kategori' => 'required ',
+    //         'keperluan' => 'required ',
+    //         'nip' => 'required ',
+    //         'instansi' => 'required ',
+    //         'jabatan' => 'required ',
+    //         'nomor_hp' => 'required ',
+    //     ], [
+    //         'nama.required' => 'Nama wajib diisi',
+    //         'email.required' => 'Email  wajib diisi',
+    //         'pertanyaan.required' => 'Pertanyaan  wajib diisi',
+    //         'kategori.required' => 'Kategori  wajib diisi',
+    //         'keperluan.required' => 'Keperluan  wajib diisi',
+    //         'nip.required' => 'NIP  wajib diisi',
+    //         'instansi.required' => 'Instansi  wajib diisi',
+    //         'jabatan.required' => 'Jabatan  wajib diisi',
+    //         'nomor_hp.required' => 'Nomor HP  wajib diisi',
 
 
-        ]);
+    //     ]);
 
-        if ($validasi->fails()) {
-            return response()->json(['erorrs' => $validasi->errors()]);
-        } else {
 
-            $data = [
-                'nama' => $request->nama,
-                'email' => $request->email,
-                'pertanyaan' => $request->pertanyaan,
-                'tgl_pertanyaan' => now(),
-            ];
-            Faq::create($data);
-            return response()->json(['status' => true], 200);
-        }
-    }
+    //     if ($validasi->fails()) {
+    //         return response()->json(['erorrs' => $validasi->errors()]);
+    //     } else {
+
+    //         $data = [
+    //             'nama' => $request->nama,
+    //             'email' => $request->email,
+    //             'pertanyaan' => $request->pertanyaan,
+    //             'kategori' => $request->kategori,
+    //             'keperluan' => $request->keperluan,
+    //             'nip' => $request->nip,
+    //             'instansi' => $request->instansi,
+    //             'jabatan' => $request->jabatan,
+    //             'nomor_hp' => $request->nomor_hp,
+    //             'tgl_pertanyaan' => now(),
+    //         ];
+
+
+    //         return $data;
+    //         // dd($data);
+    //         Faq::create($data);
+    //         return response()->json(['status' => true], 200);
+    //     }
+    // }
 
     /**
      * Display the specified resource.
@@ -159,4 +182,6 @@ class FaqController extends Controller
             return response()->json(['status' => false, 'msg' => $e->getMessage()], 400);
         }
     }
+
+    
 }
