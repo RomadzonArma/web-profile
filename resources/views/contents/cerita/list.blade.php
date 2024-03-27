@@ -108,7 +108,7 @@
                         <div class="form-group row_link" style="display: none;">
                             <label for="konten">Link Video</label>
                             <input type="text" class="form-control" name="link_video" id="link_video"
-                                placeholder="Masukan Link Youtube">
+                                placeholder="Masukan Link Youtube" required>
                         </div>
                         <div class="form-group row_video" style="display: none;">
                             <div class="form-group">

@@ -190,6 +190,33 @@ $(() => {
             },
         });
     });
+    // Mengatur ulang modal saat ditutup
+    $("#modal-praktik-update").on("hidden.bs.modal", function () {
+        // Mengatur ulang form
+        $("#form-praktik-update")[0].reset();
+        // Menyembunyikan input PDF
+        $(".row_pdf").hide();
+        $(".row_link").hide();
+        $(".row_link_video").hide();
+        $(".row_video").hide();
+        $(".row_foto").hide();
+    });
+
+    // Event handler untuk tombol batal
+    $("#modal-praktik-update").on(
+        "click",
+        '[data-dismiss="modal"]',
+        function () {
+            // Mengatur ulang form
+            $("#form-praktik-update")[0].reset();
+            // Menyembunyikan input PDF
+            $(".row_pdf").hide();
+            $(".row_link").hide();
+            $(".row_link_video").hide();
+            $(".row_video").hide();
+            $(".row_foto").hide();
+        }
+    );
 
    $("#table-data").on("click", ".btn-update", function () {
         var tr = $(this).closest("tr");

@@ -114,13 +114,23 @@
         </div>
     </a>
     <div class="faq-wrapper">
-        <h5 class="text-primary mb-0">FAQ!</h5>
-        <img src="{{ asset('assets-front/img/ksps_faq.png') }}" alt="faq" class="img-fluid">
-        <form class="bg-white form-banner my-0" style="min-width: 100px;">
-            <input type="text" placeholder="Cari kata kunci...">
-            <div class="rounded-icon bg-primary">
-                <i class="icon-line-send" style="transform: rotate(45deg); font-size: 12px; margin-left: -4px;"></i>
+        <div class="position-relative d-flex justify-content-between">
+            <h5 class="text-primary mb-2">FAQ!</h5>
+            <img src="{{ asset('assets-front/img/faqq.png') }}" width="220" class="faq img-fluid">
+        </div>
+        {{-- <img src="{{ asset('assets-front/img/ksps_faq.png') }}" alt="faq" class="img-fluid"> --}}
+        <form class="mb-0 w-100" action="{{ route('faq.store') }}" method="post" name="form-store" id="form-store">
+            @csrf
+            <div class="form-group">
+                <input type="text" class="form-control" id="nama" name="nama"  placeholder="Nama ">
             </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="email" name="email"  placeholder="Email">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="pertanyaan" name="pertanyaan"  placeholder="Tulis pertanyaan anda...">
+            </div>
+            <button  type="submit" class="btn btn-primary btn-simpan">Kirim</button>
         </form>
     </div>
 
@@ -133,7 +143,7 @@
                 </div>
                 <div class="modal-body py-0 my-3">
                     @foreach ($podcast as $podcast)
-                        <div class="entry mb-5">
+                        <div class="entry mb-4">
                             <div class="grid-inner row no-gutters p-0">
                                 <div class="entry-image col-3 mb-0">
                                     <a href="{{$podcast->link_podcast}}">
@@ -141,18 +151,19 @@
                                     </a>
                                 </div>
                                 <div class="col-9 pl-3">
-                                    <div class="entry-title title-xs text-clamp-2">
+                                    <div class="entry-title title-md text-clamp-2">
                                         <h6 class="mb-1"><a href="{{$podcast->link_podcast}}">{{ $podcast->judul }}</a></h6>
                                     </div>
                                     <div class="entry-meta mb-2 mt-0">
                                         <ul>
                                             {{-- <li><a href="#"><i class="icon-users"></i> {{$podcast->jumlah_lihat ?? 0}} penonton</a> --}}
-                                            <li><a href="#"><i
+                                            <li>
+                                                <a href="#"><i
                                                         class="icon-calendar3"></i>{{ $podcast->date }}</a>
                                             </li>
                                         </ul>
                                     </div>
-                                    <p class="text-muted fs-6 text-clamp-1 mb-0">{{ $podcast->deskripsi }}</p>
+                                    <p class="text-muted fs-6 text-clamp-3 mb-0">{{ $podcast->deskripsi }}</p>
                                 </div>
                             </div>
                         </div>

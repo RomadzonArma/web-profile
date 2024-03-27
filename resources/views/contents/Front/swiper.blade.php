@@ -41,7 +41,7 @@
                     @else
                         <div style="overflow: hidden;" class="d-flex align-items-center justify-content-center">
                             <img src="{{ asset($data->foto) }}" alt="foto"
-                                style="width: 100%; height: 380px; max-width: 100%; object-fit: cover; aspect-ratio: 16/9; object-position: 32% 68%; border-radius: 12px;">
+                                style="width: 100%; height: 420px; max-width: 100%; object-fit: cover; object-position: 50% 50%; border-radius: 12px;">
                         </div>
                     @endif
                 </div>

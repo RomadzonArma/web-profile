@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Mail\JawabanPertanyaanEmail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use App\Mail\AnswerFAQMail;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Validator;
 
@@ -125,28 +126,11 @@ class FaqController extends Controller
             'id_user' => Auth::id(),
         ];
 
-        Faq::where('id', $id)->update($data);
+        $faq = Faq::where('id', $id)->first();
+        $faq->update($data);
 
-
-        // Mengambil data pertanyaan
-        // $faq = Faq::find($id);
-
-        // // Memeriksa apakah pertanyaan ditemukan
-        // if ($faq) {
-        //     // Memeriksa apakah ada pengguna terkait dengan pertanyaan
-        //     $user = $faq->user;
-        //     if ($user) {
-        //         // Kirim email jawaban
-        //         $email = new JawabanPertanyaanEmail($faq, $user);
-        //         Mail::to($user->email)->send($email);
-        //     } else {
-        //         // Tindakan jika pengguna tidak ditemukan
-        //         // Misalnya, log pesan kesalahan atau tindakan lain yang sesuai
-        //     }
-        // } else {
-        //     // Tindakan jika pertanyaan tidak ditemukan
-        //     // Misalnya, log pesan kesalahan atau tindakan lain yang sesuai
-        // }
+        $userEmail = $faq->email; 
+        Mail::to($userEmail)->send(new AnswerFAQMail($faq));
 
         return response()->json(['status' => true], 200);
     }
