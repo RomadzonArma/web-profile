@@ -18,4 +18,14 @@ class Faq extends Model
         return $this->belongsTo('App\User','id_user','id');
     }
 
+    public function keperluan_faq()
+    {
+        return $this->belongsTo('App\Model\KeperluanFaq','id_keperluan_faq','id');
+    }
+
+    public function kategori_faq()
+    {
+        return $this->belongsTo('App\Model\KategoriFaq','id_kategori_faq','id');
+    }
+
 }

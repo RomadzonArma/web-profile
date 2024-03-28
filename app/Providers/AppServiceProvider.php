@@ -10,6 +10,8 @@ use App\Model\Pengunjung;
 use App\Model\SubKategori;
 use App\Model\Webinar;
 use App\Model\ZiWbk;
+use App\Model\KeperluanFaq;
+use App\Model\KategoriFaq;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Blade;
@@ -62,29 +64,34 @@ class AppServiceProvider extends ServiceProvider
         });
         view()->composer('contents.Front.menu', function ($view) {
             // $zi = ZiWbk::with('list_kategori','sub_kategori');
-            $zi1= ZiWbk::with('list_kategori','sub_kategori')->where('status_publish', 1)->whereNotNull('link_kategori')->get();
-            $zi2= ZiWbk::with('list_kategori','sub_kategori')->where('status_publish', 1)->whereNotNull('link') ->whereIn('id_kategori', function ($query) {
+            $zi1 = ZiWbk::with('list_kategori', 'sub_kategori')->where('status_publish', 1)->whereNotNull('link_kategori')->get();
+            $zi2 = ZiWbk::with('list_kategori', 'sub_kategori')->where('status_publish', 1)->whereNotNull('link')->whereIn('id_kategori', function ($query) {
                 // Subquery untuk mendapatkan id_kategori yang memiliki beberapa id_subkategori
                 $query->select('id_kategori')
-                      ->from('ziwbk')
-                      ->groupBy('id_kategori')
-                      ->havingRaw('COUNT(DISTINCT id_subkategori) > 1');
+                    ->from('ziwbk')
+                    ->groupBy('id_kategori')
+                    ->havingRaw('COUNT(DISTINCT id_subkategori) > 1');
             })
-            ->get();
+                ->get();
             $view->with('ziwbk1', $zi1)->with('ziwbk2', $zi2);
         });
         view()->composer('contents.Front.menu_mobile', function ($view) {
             // $zi = ZiWbk::with('list_kategori','sub_kategori');
-            $zi1= ZiWbk::with('list_kategori','sub_kategori')->where('status_publish', 1)->whereNotNull('link_kategori')->get();
-            $zi2= ZiWbk::with('list_kategori','sub_kategori')->where('status_publish', 1)->whereNotNull('link') ->whereIn('id_kategori', function ($query) {
+            $zi1 = ZiWbk::with('list_kategori', 'sub_kategori')->where('status_publish', 1)->whereNotNull('link_kategori')->get();
+            $zi2 = ZiWbk::with('list_kategori', 'sub_kategori')->where('status_publish', 1)->whereNotNull('link')->whereIn('id_kategori', function ($query) {
                 // Subquery untuk mendapatkan id_kategori yang memiliki beberapa id_subkategori
                 $query->select('id_kategori')
-                      ->from('ziwbk')
-                      ->groupBy('id_kategori')
-                      ->havingRaw('COUNT(DISTINCT id_subkategori) > 1');
+                    ->from('ziwbk')
+                    ->groupBy('id_kategori')
+                    ->havingRaw('COUNT(DISTINCT id_subkategori) > 1');
             })
-            ->get();
+                ->get();
             $view->with('ziwbk1', $zi1)->with('ziwbk2', $zi2);
+        });
+        view()->composer('layouts.front.app-beranda', function ($view) {
+            $keperluan_faq = KeperluanFaq::all();
+            $kategori_faq = KategoriFaq::all();
+            $view->with('keperluan_faq',  $keperluan_faq)->with('kategori_faq',  $kategori_faq);
         });
     }
 

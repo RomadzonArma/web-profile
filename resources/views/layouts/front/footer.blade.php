@@ -1,4 +1,4 @@
-<footer class="py-2 bg-primary px-xl-3 px-0">
+<footer class="py-2 bg-primary px-xl-4 px-0">
     <div class="container-fluid">
         <div class="d-flex flex-wrap align-items-center justify-content-sm-between justify-content-center"
             style="gap: 12px;">

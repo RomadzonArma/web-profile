@@ -28,7 +28,7 @@
 
 
         {{-- @dd($podcast) --}}
-        <section class="px-md-5">
+        <section class="px-xl-4">
             <div class="content-wrap">
                 <div class="container-fluid">
                     <div class="row">
@@ -81,7 +81,9 @@
                                             </div>
                                             <div class="col-xl-8 pl-xl-4">
                                                 <div class="entry-title title-xs text-clamp-2">
-                                                    <h5 class="mb-1"><a href="{{ route('berita.detail', ['slug' => $item->slug]) }}">{{ $item->judul }}</a></h5>
+                                                    <h5 class="mb-1"><a
+                                                            href="{{ route('berita.detail', ['slug' => $item->slug]) }}">{{ $item->judul }}</a>
+                                                    </h5>
                                                 </div>
                                                 <div class="entry-meta mb-2 mt-0">
                                                     <ul>
@@ -98,9 +100,9 @@
                             </div>
                         </div>
 
+                    </div>
+                    {{--  </div>  --}}
                 </div>
-            {{--  </div>  --}}
-            </div>
         </section>
 
         @include('layouts.front.footer')
@@ -115,11 +117,11 @@
     </a>
     <div class="faq-wrapper">
         <div class="position-relative d-flex justify-content-between">
-            <h5 class="text-primary mb-2">FAQ!</h5>
-            <img src="{{ asset('assets-front/img/faqq.png') }}" width="220" class="faq img-fluid">
+            <h5 class="text-primary mb-2">QnA!</h5>
+            <img src="{{ asset('assets-front/img/faqq.png') }}" width="140" class="faq img-fluid">
         </div>
         {{-- <img src="{{ asset('assets-front/img/ksps_faq.png') }}" alt="faq" class="img-fluid"> --}}
-        <form class="mb-0 w-100" action="{{ route('faq.store') }}" method="post" name="form-store" id="form-store">
+        {{-- <form class="mb-0 w-100" action="{{ route('faq.store') }}" method="post" name="form-store" id="form-store">
             @csrf
             <div class="form-group">
                 <input type="text" class="form-control" id="nama" name="nama"  placeholder="Nama ">
@@ -131,10 +133,109 @@
                 <input type="text" class="form-control" id="pertanyaan" name="pertanyaan"  placeholder="Tulis pertanyaan anda...">
             </div>
             <button  type="submit" class="btn btn-primary btn-simpan">Kirim</button>
+        </form> --}}
+        <form action="{{ route('faq.store') }}"  method="post" name="form-store" id="form-store"  class="w-100 mb-0" >
+            <div class="row">
+                <div class="form-group col-6">
+                    <select class="form-control select2" data-placeholder="Pilih Kategori">
+                        <option></option>
+                        <option disabled>Kategori</option>
+                        <option value="Kepala Sekolah">Kepala Sekolah</option>
+                        <option value="Dinas Pendidikan">Dinas Pendidikan</option>
+                        <option value="LPTK">LPTK</option>
+                        <option value="Guru">Guru</option>
+                        <option value="Yayasan">Yayasan</option>
+                        <option value="Mahasiswa">Mahasiswa</option>
+                        <option value="Pengawas">Pengawas</option>
+                        <option value="Tenaga Pendidik">Tenaga Pendidik</option>
+                        <option value="Umum">Umum</option>
+                        <option value="Siswa/Mahasiswa/Magang">Siswa/Mahasiswa/Magang</option>
+                    </select>
+                </div>
+                <div class="form-group col-6">
+                    <select class="form-control select2" data-placeholder="Pilih Keperluan">
+                        <option></option>
+                        <option disabled>Keperluan</option>
+                        <option value="Program Sekolah Penggerak">Program Sekolah Penggerak</option>
+                        <option value="Komunitas Belajar">Komunitas Belajar
+                        </option>
+                        <option value="Implementasi Kurikulum Merdeka">Implementasi Kurikulum Merdeka
+                        </option>
+                        <option value="Platform Merdeka Mengajar">Platform Merdeka Mengajar
+                        </option>
+                        <option value="Rekrutmen">Rekrutmen</option>
+                        <option value="Implementasi">Implementasi</option>
+                        <option value="Pelatihan">Pelatihan</option>
+                        <option value="Peningkatan Kompetensi Kepala Sekolah">Peningkatan Kompetensi Kepala Sekolah
+                        </option>
+                        <option value="Pengembangan Kompetensi Pengawas Sekolah">Pengembangan Kompetensi Pengawas
+                            Sekolah
+                        </option>
+                        <option value="PJOK bagi Guru Penggerak"> PJOK bagi Guru Penggerak
+                        </option>
+                        <option value="Data Kepala Sekolah, Pengawas Sekolah, dan Tenaga"> Data Kepala Sekolah, Pengawas
+                            Sekolah, dan Tenaga
+                        </option>
+                        <option value="Regulasi dan peraturan"> Regulasi dan peraturan
+                        </option>
+                        <option value="Tata Kelola Asesor">Tata Kelola Asesor
+                        </option>
+                        <option value="Tenaga Kependidikan"> Tenaga Kependidikan
+                        </option>
+                        <option value="UKKJ Pengawas">UKKJ Pengawas
+                        </option>
+                        <option value="Ujikom Pengawas"> Ujikom Pengawas
+                        </option>
+                        <option value="SIM Tendik Pengawas"> SIM Tendik Pengawas
+                        </option>
+                        <option value="Publikasi"> Publikasi
+                        </option>
+                        <option value="Kemitraan KSPSTK"> Kemitraan KSPSTK
+                        </option>
+                        <option value="Penghargaan"> Penghargaan
+                        </option>
+                        <option value="Perlindungan KSPSTK"> Perlindungan KSPSTK
+                        </option>
+                        <option value="Praktik Kerja Lapangan/KKN/Magang"> Praktik Kerja Lapangan/KKN/Magang
+                        </option>
+                        <option value="Layanan Tata Usaha"> Layanan Tata Usaha
+                        </option>
+                        <option value="Layanan Lain-lain"> Layanan Lain-lain
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group col-12">
+                    <input type="text" class="form-control" id="nama" name="nama"
+                        placeholder="Nama Lengkap">
+                </div>
+                <div class="form-group col-12">
+                    <input type="email" class="form-control" id="email" name="email"  placeholder="Email anda">
+                </div>
+                <div class="form-group col-6">
+                    <input type="text" class="form-control" id="nip" name="nip" placeholder="NIP/NIK">
+                </div>
+                <div class="form-group col-6">
+                    <input type="text" class="form-control" id="instansi" name="instansi"
+                        placeholder="Instansi">
+                </div>
+                <div class="form-group col-6">
+                    <input type="text" class="form-control" id="jabatan" name="jabatan" placeholder="Jabatan">
+                </div>
+                <div class="form-group col-6">
+                    <input type="text" class="form-control" id="nomor_hp" name="nomor_hp"
+                        placeholder="Nomor HP">
+                </div>
+                <div class="form-group col-12">
+                    <textarea class="form-control" id="pertanyaan" name="pertanyaan" rows="3" style="height: 86px;"
+                        placeholder="Isi pertanyaan anda"></textarea>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-simpan w-100">Kirim</button>
         </form>
     </div>
 
-    <div class="modal fade" id="podcast" tabindex="-1" role="dialog" aria-labelledby="Podcast" aria-hidden="true">
+    <div class="modal fade" id="podcast" tabindex="-1" role="dialog" aria-labelledby="Podcast"
+        aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
@@ -146,13 +247,15 @@
                         <div class="entry mb-4">
                             <div class="grid-inner row no-gutters p-0">
                                 <div class="entry-image col-3 mb-0">
-                                    <a href="{{$podcast->link_podcast}}">
-                                        <img src="{{ asset('podcast/' . $podcast->gambar) }}" alt="thumbnail_podcast">
+                                    <a href="{{ $podcast->link_podcast }}">
+                                        <img src="{{ asset('podcast/' . $podcast->gambar) }}"
+                                            alt="thumbnail_podcast">
                                     </a>
                                 </div>
                                 <div class="col-9 pl-3">
                                     <div class="entry-title title-md text-clamp-2">
-                                        <h6 class="mb-1"><a href="{{$podcast->link_podcast}}">{{ $podcast->judul }}</a></h6>
+                                        <h6 class="mb-1"><a
+                                                href="{{ $podcast->link_podcast }}">{{ $podcast->judul }}</a></h6>
                                     </div>
                                     <div class="entry-meta mb-2 mt-0">
                                         <ul>

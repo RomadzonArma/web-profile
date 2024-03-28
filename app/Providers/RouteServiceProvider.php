@@ -118,6 +118,8 @@ class RouteServiceProvider extends ServiceProvider
             $this->mapBeritaZIWBKRoutes();
 
             $this->mapMaklumatRoutes();
+            
+            $this->mapPengaduan();
         });
     }
 
@@ -388,5 +390,12 @@ class RouteServiceProvider extends ServiceProvider
         Route::prefix('berita_zi_wbk')
         ->namespace($this->namespace)
         ->group(base_path('routes/panel/berita_zi_wbk.php'));
+    }
+
+    protected function mapPengaduan()
+    {
+        Route::prefix('pengaduan')
+        ->namespace($this->namespace)
+        ->group(base_path('routes/panel/pengaduan.php'));
     }
 }
