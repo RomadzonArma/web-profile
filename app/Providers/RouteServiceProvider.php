@@ -116,6 +116,8 @@ class RouteServiceProvider extends ServiceProvider
             $this->mapHarlindungRoutes();
 
             $this->mapBeritaZIWBKRoutes();
+
+            $this->mapMaklumatRoutes();
         });
     }
 
@@ -359,6 +361,12 @@ class RouteServiceProvider extends ServiceProvider
         Route::prefix('harlindung')
             ->namespace($this->namespace)
             ->group(base_path('routes/panel/harlindung.php'));
+    }
+    protected function mapMaklumatRoutes()
+    {
+        Route::prefix('maklumat')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/panel/maklumat.php'));
     }
 
     protected function mapAkuntabilitas()
