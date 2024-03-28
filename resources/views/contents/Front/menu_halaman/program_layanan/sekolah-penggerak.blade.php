@@ -122,7 +122,7 @@
                                     </div>
                                 </div>
                             </div> --}}
-            <ul class="pagination pagination-circle justify-content-center">
+            {{-- <ul class="pagination pagination-circle justify-content-center">
                 @if ($sekolah->onFirstPage())
                     <li class="page-item disabled"><span class="page-link" aria-hidden="true">«</span></li>
                 @else
@@ -142,7 +142,46 @@
                 @else
                     <li class="page-item disabled"><span class="page-link" aria-hidden="true">»</span></li>
                 @endif
+            </ul> --}}
+            <ul class="pagination pagination-circle justify-content-center">
+                @if ($sekolah->onFirstPage())
+                    <li class="page-item disabled"><span class="page-link" aria-hidden="true">«</span></li>
+                @else
+                    <li class="page-item"><a class="page-link" href="{{ $sekolah->previousPageUrl() }}" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+                @endif
+
+                @php
+                    $limit = 5;
+                    $halfLimit = floor($limit / 2);
+                    $start = $sekolah->currentPage() - $halfLimit;
+                    $end = $sekolah->currentPage() + $halfLimit;
+
+                    if ($start < 1) {
+                        $end += 1 - $start;
+                        $start = 1;
+                    }
+                    if ($end > $sekolah->lastPage()) {
+                        $start -= $end - $sekolah->lastPage();
+                        $end = $sekolah->lastPage();
+                    }
+                    if ($start < 1) {
+                        $start = 1;
+                    }
+                @endphp
+
+                @for ($page = $start; $page <= min($end, $sekolah->lastPage()); $page++)
+                    <li class="page-item{{ $page == $sekolah->currentPage() ? ' active' : '' }}">
+                        <a class="page-link" href="{{ $sekolah->url($page) }}">{{ $page }}</a>
+                    </li>
+                @endfor
+
+                @if ($sekolah->hasMorePages())
+                    <li class="page-item"><a class="page-link" href="{{ $sekolah->nextPageUrl() }}" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+                @else
+                    <li class="page-item disabled"><span class="page-link" aria-hidden="true">»</span></li>
+                @endif
             </ul>
+
         </div>
     </div>
 @endsection

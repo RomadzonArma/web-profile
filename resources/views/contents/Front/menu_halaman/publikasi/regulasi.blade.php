@@ -91,7 +91,7 @@
                 </div>
             @endforeach
 
-            <ul class="pagination pagination-circle justify-content-center">
+            {{-- <ul class="pagination pagination-circle justify-content-center">
                 @if ($regulasi->onFirstPage())
                     <li class="page-item disabled"><span class="page-link" aria-hidden="true">«</span></li>
                 @else
@@ -111,7 +111,46 @@
                 @else
                     <li class="page-item disabled"><span class="page-link" aria-hidden="true">»</span></li>
                 @endif
+            </ul> --}}
+            <ul class="pagination pagination-circle justify-content-center">
+                @if ($regulasi->onFirstPage())
+                    <li class="page-item disabled"><span class="page-link" aria-hidden="true">«</span></li>
+                @else
+                    <li class="page-item"><a class="page-link" href="{{ $regulasi->previousPageUrl() }}" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+                @endif
+
+                @php
+                    $limit = 5;
+                    $halfLimit = floor($limit / 2);
+                    $start = $regulasi->currentPage() - $halfLimit;
+                    $end = $regulasi->currentPage() + $halfLimit;
+
+                    if ($start < 1) {
+                        $end += 1 - $start;
+                        $start = 1;
+                    }
+                    if ($end > $regulasi->lastPage()) {
+                        $start -= $end - $regulasi->lastPage();
+                        $end = $regulasi->lastPage();
+                    }
+                    if ($start < 1) {
+                        $start = 1;
+                    }
+                @endphp
+
+                @for ($page = $start; $page <= min($end, $regulasi->lastPage()); $page++)
+                    <li class="page-item{{ $page == $regulasi->currentPage() ? ' active' : '' }}">
+                        <a class="page-link" href="{{ $regulasi->url($page) }}">{{ $page }}</a>
+                    </li>
+                @endfor
+
+                @if ($regulasi->hasMorePages())
+                    <li class="page-item"><a class="page-link" href="{{ $regulasi->nextPageUrl() }}" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+                @else
+                    <li class="page-item disabled"><span class="page-link" aria-hidden="true">»</span></li>
+                @endif
             </ul>
+
         </div>
     </div>
 @endsection

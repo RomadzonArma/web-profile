@@ -113,7 +113,11 @@ class RouteServiceProvider extends ServiceProvider
 
             $this->mapTendikRoutes();
 
+            $this->mapHarlindungRoutes();
+
             $this->mapBeritaZIWBKRoutes();
+
+            $this->mapMaklumatRoutes();
             
             $this->mapPengaduan();
         });
@@ -354,6 +358,19 @@ class RouteServiceProvider extends ServiceProvider
             ->namespace($this->namespace)
             ->group(base_path('routes/panel/tendik.php'));
     }
+    protected function mapHarlindungRoutes()
+    {
+        Route::prefix('harlindung')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/panel/harlindung.php'));
+    }
+    protected function mapMaklumatRoutes()
+    {
+        Route::prefix('maklumat')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/panel/maklumat.php'));
+    }
+
     protected function mapAkuntabilitas()
     {
         Route::prefix('akuntabilitas_list')

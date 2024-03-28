@@ -822,7 +822,7 @@ class LandingController extends Controller
         if ($bulan) {
             $query->whereMonth('tanggal', $bulan);
         }
-        $renstra = $query->paginate(5);
+        $renstra = $query->paginate(8);
 
         $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
 
@@ -850,7 +850,7 @@ class LandingController extends Controller
         if ($bulan) {
             $query->whereMonth('created_at', $bulan);
         }
-        $akuntabilitas = $query->paginate(5);
+        $akuntabilitas = $query->paginate(8);
 
         $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
 
@@ -881,7 +881,7 @@ class LandingController extends Controller
             $query->whereMonth('date', $bulan);
         }
 
-        $berita_ziwbk = $query->paginate(4);
+        $berita_ziwbk = $query->paginate(8);
 
         $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
 

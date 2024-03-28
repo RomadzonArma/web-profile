@@ -96,7 +96,7 @@
                 </div>
             @endforeach
 
-            <ul class="pagination pagination-circle justify-content-center">
+            {{-- <ul class="pagination pagination-circle justify-content-center">
                 @if ($berita->onFirstPage())
                     <li class="page-item disabled"><span class="page-link" aria-hidden="true">«</span></li>
                 @else
@@ -116,7 +116,46 @@
                 @else
                     <li class="page-item disabled"><span class="page-link" aria-hidden="true">»</span></li>
                 @endif
+            </ul> --}}
+            <ul class="pagination pagination-circle justify-content-center">
+                @if ($berita->onFirstPage())
+                    <li class="page-item disabled"><span class="page-link" aria-hidden="true">«</span></li>
+                @else
+                    <li class="page-item"><a class="page-link" href="{{ $berita->previousPageUrl() }}" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+                @endif
+
+                @php
+                    $limit = 5;
+                    $halfLimit = floor($limit / 2);
+                    $start = $berita->currentPage() - $halfLimit;
+                    $end = $berita->currentPage() + $halfLimit;
+
+                    if ($start < 1) {
+                        $end += 1 - $start;
+                        $start = 1;
+                    }
+                    if ($end > $berita->lastPage()) {
+                        $start -= $end - $berita->lastPage();
+                        $end = $berita->lastPage();
+                    }
+                    if ($start < 1) {
+                        $start = 1;
+                    }
+                @endphp
+
+                @for ($page = $start; $page <= min($end, $berita->lastPage()); $page++)
+                    <li class="page-item{{ $page == $berita->currentPage() ? ' active' : '' }}">
+                        <a class="page-link" href="{{ $berita->url($page) }}">{{ $page }}</a>
+                    </li>
+                @endfor
+
+                @if ($berita->hasMorePages())
+                    <li class="page-item"><a class="page-link" href="{{ $berita->nextPageUrl() }}" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+                @else
+                    <li class="page-item disabled"><span class="page-link" aria-hidden="true">»</span></li>
+                @endif
             </ul>
+
         </div>
     </div>
 @endsection
