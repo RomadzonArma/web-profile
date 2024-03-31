@@ -29,7 +29,7 @@
                     <div class="grid-inner row no-gutters p-0">
                         <div class="entry-image col-xl-2 col-md-3 col-sm-4 col-12 mb-md-0">
                             <a href="#">
-                                <img src="{{ asset('cover-unduhan/' . $item->cover) }}" alt="thumbnail_unduhan">
+                                <img src="{{ asset('/storage/uploads/cover-unduhan/' . $item->cover) }}" alt="thumbnail_unduhan">
                             </a>
                         </div>
                         <div class="col-xl-10 col-md-9 col-sm-8 col-12 pl-sm-4">
@@ -49,7 +49,7 @@
                                 </ul>
                             </div>
                             <a class="button button-mini button-aqua rounded m-0 unduh-dokumen"
-                                href="{{ asset('file-unduhan/' . $item->file) }}" target="_blank"
+                                href="{{ asset('/storage/uploads/file-unduhan/' . $item->file) }}" target="_blank"
                                 data-id="{{ $item->id }}">Unduh Dokumen <i class="icon-line-download"></i></a>
                         </div>
                     </div>

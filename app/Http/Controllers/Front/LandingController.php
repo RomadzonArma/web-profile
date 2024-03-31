@@ -36,9 +36,16 @@ use Illuminate\Support\Facades\DB;
 use App\Model\PengunjungPengumuman;
 use App\Http\Controllers\Controller;
 use App\Model\BeritaZIWBK;
+use App\Model\DokumentasiLayanan;
 use App\Model\KategoriFaq;
 use App\Model\KeperluanFaq;
+use App\Model\Lhkpn;
+use App\Model\Maklumat;
 use App\Model\PengunjungBeritaZiwbk;
+use App\Model\PengunjungMaklumat;
+use App\Model\PosLayanan;
+use App\Model\SptPph21;
+use App\Model\Tendik;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Validator;
 
@@ -77,8 +84,8 @@ class LandingController extends Controller
 
         $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
 
-     
- 
+
+
 
 
         return view('contents.Front.index', [
@@ -763,7 +770,7 @@ class LandingController extends Controller
                 'tempat' => $request->instansi,
                 'job' => $request->jabatan,
                 'nohp' => $request->nomor_hp,
-                'idksps' => ''.$FAQ->id,
+                'idksps' => '' . $FAQ->id,
             ];
 
             // dd($DataApi);
@@ -773,7 +780,7 @@ class LandingController extends Controller
             $garam2 = "kspspichos";
             $garam3 = "20240326";
 
-            $encodedData = base64_encode($garam3 . base64_encode(json_encode([ $DataApi])));
+            $encodedData = base64_encode($garam3 . base64_encode(json_encode([$DataApi])));
             $tokenparam = hash("sha256", $garam1 . $encodedData . $garam2);
             // dd($tokenparam);
             $headers = [
@@ -822,7 +829,7 @@ class LandingController extends Controller
         if ($bulan) {
             $query->whereMonth('tanggal', $bulan);
         }
-        $renstra = $query->paginate(8);
+        $renstra = $query->paginate(5);
 
         $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
 
@@ -850,7 +857,7 @@ class LandingController extends Controller
         if ($bulan) {
             $query->whereMonth('created_at', $bulan);
         }
-        $akuntabilitas = $query->paginate(8);
+        $akuntabilitas = $query->paginate(5);
 
         $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
 
@@ -881,7 +888,7 @@ class LandingController extends Controller
             $query->whereMonth('date', $bulan);
         }
 
-        $berita_ziwbk = $query->paginate(8);
+        $berita_ziwbk = $query->paginate(4);
 
         $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
 
@@ -926,11 +933,222 @@ class LandingController extends Controller
 
     public function program_fokus_tendik()
     {
-        return view("contents.Front.portal_program_fokus.portal-program-fokus-tendik");
+        $tendik = Tendik::where('status_publish', '1')->orderByDesc('created_at')->get();
+
+        return view('contents.Front.portal_program_fokus.portal-program-fokus-tendik', [
+            'tendik' => $tendik,
+        ]);
     }
 
     public function program_fokus_harlindung()
     {
         return view("contents.Front.portal_program_fokus.portal-program-fokus-harlindung");
+    }
+
+
+    public function pos_layanan(Request $request)
+    {
+        $query = PosLayanan::where('status_publish', '1')->orderByDesc('created_at');
+        $tahun = $request->tahun;
+        $bulan = $request->bulan;
+
+        if ($tahun) {
+            $query->whereYear('tanggal', $tahun);
+        }
+        if ($bulan) {
+            $query->whereMonth('tanggal', $bulan);
+        }
+        $pos_layanan = $query->paginate(8);
+
+        $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
+
+        // foreach ($unduhan as $item) {
+        //     $item->increment('jumlah_download');
+        // }
+
+        return view('contents.Front.menu_halaman.pos_layanan.pos_layanan', [
+            'title' => 'Pos Layanan',
+            'pos_layanan' => $pos_layanan,
+            'tautan' => $tautan,
+        ]);
+    }
+
+
+    public function lke()
+    {
+        return view('contents.Front.lke');
+    }
+    public function lke_new()
+    {
+        return view('contents.Front.LKE');
+    }
+
+    public function maklumat(Request $request)
+    {
+        $query = Maklumat::where('status_publish', '1')->orderByDesc('created_at');
+        $tahun = $request->tahun;
+        $bulan = $request->bulan;
+
+        if ($tahun) {
+            $query->whereYear('created_at', $tahun);
+        }
+        if ($bulan) {
+            $query->whereMonth('created_at', $bulan);
+        }
+
+        $maklumat = $query->paginate(4);
+
+        $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
+
+        return view('contents.Front.ziwbk.maklumat', [
+            'title' => 'Maklumat',
+            'maklumat' => $maklumat,
+            'tautan' => $tautan,
+        ]);
+    }
+
+    public function maklumatDetail($id)
+    {
+        $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
+
+        $maklumat = Maklumat::where('id', $id)->first();
+        // $this->recordPengunjungMaklumat(request(), $maklumat->id);
+
+        // $jumlah_lihat = PengunjungMaklumat::hitungPengunjungMaklumat($maklumat->id);
+        // $maklumat->jumlah_lihat = $jumlah_lihat;
+        // $maklumat->save();
+
+        return view('contents.Front.ziwbk.maklumat-detail', [
+            'title' => 'Detail Maklumat',
+            'maklumat' => $maklumat,
+            'tautan' => $tautan,
+        ]);
+    }
+
+    public function recordPengunjungMaklumat(Request $request, $id_maklumat)
+    {
+        $ipAddress = $request->ip();
+        $userAgent = uniqid() . '-' . $request->header('User-Agent');
+
+        PengunjungMaklumat::create([
+            'id_maklumat' => $id_maklumat,
+            'ip_address' => $ipAddress,
+            'user_agent' => $userAgent,
+        ]);
+
+        return response()->json(['success' => true]);
+    }
+
+    public function dokumentasiLayanan()
+    {
+        $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
+        // $video = Galeri::where('status_publish', '1')->where('is_video', '=', '1')->get();
+        $foto = DokumentasiLayanan::where('status_publish', '1')->where('is_image', '=', '1')->with('refDokumentasiLayanan')->get();
+        return view('contents.Front.ziwbk.dokumentasi_layanan', [
+            'title' => 'Dokumentasi Layanan',
+            // 'video' => $video,
+            'foto' => $foto,
+            'tautan' => $tautan,
+        ]);
+    }
+
+    public function SptPph21(Request $request)
+    {
+        $query = SptPph21::orderByDesc('created_at');
+        $tahun = $request->tahun;
+        $bulan = $request->bulan;
+
+        if ($tahun) {
+            $query->whereYear('created_at', $tahun);
+        }
+        if ($bulan) {
+            $query->whereMonth('created_at', $bulan);
+        }
+
+        $data = $query->paginate(4);
+
+        $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
+
+        return view('contents.Front.ziwbk.sptpph21', [
+            'title' => 'SPT PPH 21',
+            'data' => $data,
+            'tautan' => $tautan,
+        ]);
+    }
+
+    public function SptPph21Detail($id)
+    {
+        
+        $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
+
+        $data = SptPph21::where('id', $id)->first();
+        foreach ($data->dokumen as $key => $value) {
+            $value->encrypted_id = encrypt($value->id);
+            $explode = explode('/', $value->file);
+            $explode2 = explode('.', end($explode));
+            $extension = end($explode2);
+            $value->extension = $extension;
+        }
+        // $this->recordPengunjungMaklumat(request(), $maklumat->id);
+
+        // $jumlah_lihat = PengunjungMaklumat::hitungPengunjungMaklumat($maklumat->id);
+        // $maklumat->jumlah_lihat = $jumlah_lihat;
+        // $maklumat->save();
+
+        return view('contents.Front.ziwbk.sptpph21-detail', [
+            'title' => 'Detail SPT PPH 21',
+            'data' => $data,
+            'tautan' => $tautan,
+        ]);
+    }
+
+    public function lhkpn(Request $request)
+    {
+        $query = Lhkpn::orderByDesc('created_at');
+        $tahun = $request->tahun;
+        $bulan = $request->bulan;
+
+        if ($tahun) {
+            $query->whereYear('created_at', $tahun);
+        }
+        if ($bulan) {
+            $query->whereMonth('created_at', $bulan);
+        }
+
+        $data = $query->paginate(4);
+
+        $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
+
+        return view('contents.Front.ziwbk.lhkpn', [
+            'title' => 'LHKPN',
+            'data' => $data,
+            'tautan' => $tautan,
+        ]);
+    }
+
+    public function lhkpnDetail($id)
+    {
+        
+        $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
+
+        $data = Lhkpn::where('id', $id)->first();
+        foreach ($data->dokumen as $key => $value) {
+            $value->encrypted_id = encrypt($value->id);
+            $explode = explode('/', $value->file);
+            $explode2 = explode('.', end($explode));
+            $extension = end($explode2);
+            $value->extension = $extension;
+        }
+        // $this->recordPengunjungMaklumat(request(), $maklumat->id);
+
+        // $jumlah_lihat = PengunjungMaklumat::hitungPengunjungMaklumat($maklumat->id);
+        // $maklumat->jumlah_lihat = $jumlah_lihat;
+        // $maklumat->save();
+
+        return view('contents.Front.ziwbk.lhkpn-detail', [
+            'title' => 'Detail LHKPN',
+            'data' => $data,
+            'tautan' => $tautan,
+        ]);
     }
 }

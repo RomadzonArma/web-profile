@@ -30,7 +30,7 @@
                     <div class="grid-inner row no-gutters p-0">
                         <div class="entry-image col-xl-2 col-md-3 col-sm-4 col-12 mb-md-0">
                             <a href="#">
-                                <img src="{{ asset('akuntabilitas/gambar-Akuntabilitas/' . $item->foto) }}" alt="thumbnail">
+                                <img src="{{ asset('/storage/uploads/akuntabilitas/gambar-Akuntabilitas/' . $item->foto) }}" alt="thumbnail">
                             </a>
                         </div>
                         <div class="col-xl-10 col-md-9 col-sm-8 col-12 pl-sm-4">
@@ -50,7 +50,7 @@
                                 </ul>
                             </div>
                             <a class="button button-mini button-aqua rounded m-0 unduh-dokumen"
-                                href="{{ asset('akuntabilitas/file-Akuntabilitas/' . $item->file) }}" target="_blank"
+                                href="{{ asset('/storage/uploads/akuntabilitas/file-Akuntabilitas/' . $item->file) }}" target="_blank"
                                 data-id="{{ $item->id }}">Unduh Dokumen <i class="icon-line-download"></i></a>
                         </div>
                     </div>

@@ -54,11 +54,11 @@ class PanduanController extends Controller
 
             // Move and save the 'gambar' file
             $coverName = time() . '.' . $request->gambar->extension();
-            $request->gambar->move(public_path('gambar-panduan'), $coverName);
+            $request->gambar->move(public_path('/storage/uploads/gambar-panduan'), $coverName);
 
             // Move and save the 'file_pdf' file
             $filePDFName = time() . '.' . $request->file_pdf->extension();
-            $request->file_pdf->move(public_path('file-panduan'), $filePDFName);
+            $request->file_pdf->move(public_path('/storage/uploads/file-panduan'), $filePDFName);
 
             // Create a new Panduan record
             $panduan = Panduan::create([
@@ -95,24 +95,24 @@ class PanduanController extends Controller
             // Hapus file lama jika ada perubahan file cover
             if ($request->hasFile('gambar')) {
                 // unlink file lama jika ada
-                if (file_exists(public_path('gambar-panduan') . '/' . $panduan->gambar)) {
-                    unlink(public_path('gambar-panduan') . '/' . $panduan->gambar);
+                if (file_exists(public_path('/storage/uploads/gambar-panduan') . '/' . $panduan->gambar)) {
+                    unlink(public_path('/storage/uploads/gambar-panduan') . '/' . $panduan->gambar);
                 }
 
                 $coverName = time() . '.' . $request->gambar->extension();
-                $request->gambar->move(public_path('gambar-panduan'), $coverName);
+                $request->gambar->move(public_path('/storage/uploads/gambar-panduan'), $coverName);
                 $panduan->gambar = $coverName;
             }
 
             // Hapus file lama jika ada perubahan file PDF
             if ($request->hasFile('file_pdf')) {
                 // unlink file lama jika ada
-                if (file_exists(public_path('file-panduan') . '/' . $panduan->file_pdf)) {
-                    unlink(public_path('file-panduan') . '/' . $panduan->file_pdf);
+                if (file_exists(public_path('/storage/uploads/file-panduan') . '/' . $panduan->file_pdf)) {
+                    unlink(public_path('/storage/uploads/file-panduan') . '/' . $panduan->file_pdf);
                 }
 
                 $filePDFName = time() . '.' . $request->file_pdf->extension();
-                $request->file_pdf->move(public_path('file-panduan'), $filePDFName);
+                $request->file_pdf->move(public_path('/storage/uploads/file-panduan'), $filePDFName);
                 $panduan->file_pdf = $filePDFName;
             }
 
@@ -134,10 +134,10 @@ class PanduanController extends Controller
             // Temukan panduan yang akan dihapus
             $panduan = Panduan::findOrFail($request->id);
             // Hapus file cover (jika ada) menggunakan metode delete
-            Storage::delete('gambar-panduan/' . $panduan->gambar);
+            Storage::delete('/storage/uploads/gambar-panduan/' . $panduan->gambar);
 
             // Hapus file PDF (jika ada) menggunakan metode delete
-            Storage::delete('file-punduan/' . $panduan->file_pdf);
+            Storage::delete('/storage/uploads/file-punduan/' . $panduan->file_pdf);
             $panduan->delete();
 
             return response()->json(['status' => true, 'msg' => 'Data panduan berhasil dihapus'], 200);
@@ -153,7 +153,7 @@ class PanduanController extends Controller
             // Increment the download count if needed
             $panduan->increment('jumlah_download');
 
-            $filePath = public_path('file-panduan') . '/' . $panduan->file;
+            $filePath = public_path('/storage/uploads/file-panduan') . '/' . $panduan->file;
 
             return response()->download($filePath, $panduan->judul . '.pdf');
         } catch (\Exception $e) {

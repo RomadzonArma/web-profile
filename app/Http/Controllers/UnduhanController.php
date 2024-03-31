@@ -68,11 +68,11 @@ class UnduhanController extends Controller
 
             // Handle cover file upload
             $coverName = time() . '.' . $request->file('cover')->getClientOriginalExtension();
-            $request->file('cover')->move(public_path('cover-unduhan'), $coverName);
+            $request->file('cover')->move(public_path('/storage/uploads/cover-unduhan'), $coverName);
 
             // Handle PDF file upload
             $filePDFName = time() . '.' . $request->file('file')->getClientOriginalExtension();
-            $request->file('file')->move(public_path('file-unduhan'), $filePDFName);
+            $request->file('file')->move(public_path('/storage/uploads/file-unduhan'), $filePDFName);
 
             // Create a new Unduhan instance and store in the database
             $unduhan = Unduhan::create([
@@ -117,19 +117,19 @@ class UnduhanController extends Controller
 
             // Hapus file lama jika ada perubahan file cover
             if ($request->hasFile('cover')) {
-                unlink(public_path('cover-unduhan') . '/' . $unduhan->cover);
+                unlink(public_path('/storage/uploads/cover-unduhan') . '/' . $unduhan->cover);
 
                 $coverName = time() . '.' . $request->cover->extension();
-                $request->cover->move(public_path('cover-unduhan'), $coverName);
+                $request->cover->move(public_path('/storage/uploads/cover-unduhan'), $coverName);
                 $unduhan->cover = $coverName;
             }
 
             // Hapus file lama jika ada perubahan file PDF
             if ($request->hasFile('file')) {
-                unlink(public_path('file-unduhan') . '/' . $unduhan->file);
+                unlink(public_path('/storage/uploads/file-unduhan') . '/' . $unduhan->file);
 
                 $filePDFName = time() . '.' . $request->file->extension();
-                $request->file->move(public_path('file-unduhan'), $filePDFName);
+                $request->file->move(public_path('/storage/uploads/file-unduhan'), $filePDFName);
                 $unduhan->file = $filePDFName;
             }
 

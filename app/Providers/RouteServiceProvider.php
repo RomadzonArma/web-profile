@@ -113,13 +113,21 @@ class RouteServiceProvider extends ServiceProvider
 
             $this->mapTendikRoutes();
 
-            $this->mapHarlindungRoutes();
-
             $this->mapBeritaZIWBKRoutes();
 
-            $this->mapMaklumatRoutes();
-            
             $this->mapPengaduan();
+
+            $this->mapSptPph21Routes();
+
+            $this->mapLhkpnRoutes();
+
+            $this->mapPosLayanan();
+
+            $this->mapMaklumatRoutes();
+
+            $this->mapHarlindungRoutes();
+
+            $this->mapDokumentasiLayanan();
         });
     }
 
@@ -261,27 +269,26 @@ class RouteServiceProvider extends ServiceProvider
         Route::prefix('pengumuman')
             ->namespace($this->namespace)
             ->group(base_path('routes/panel/pengumuman.php'));
-
     }
     protected function mapPanduanRoutes()
     {
         Route::prefix('manajemen_panduan')
-        ->namespace($this->namespace)
-        ->group(base_path('routes/panel/panduan.php'));
+            ->namespace($this->namespace)
+            ->group(base_path('routes/panel/panduan.php'));
     }
 
     protected function mapPodcastRoutes()
     {
         Route::prefix('podcast')
-        ->namespace($this->namespace)
-        ->group(base_path('routes/panel/podcast.php'));
+            ->namespace($this->namespace)
+            ->group(base_path('routes/panel/podcast.php'));
     }
 
     protected function mapRegulasiRoutes()
     {
         Route::prefix('regulasi')
-        ->namespace($this->namespace)
-        ->group(base_path('routes/panel/regulasi.php'));
+            ->namespace($this->namespace)
+            ->group(base_path('routes/panel/regulasi.php'));
     }
 
     protected function mapListProgramFokus()
@@ -294,35 +301,35 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapArtikelRoutes()
     {
         Route::prefix('manajemen_artikel')
-        ->namespace($this->namespace)
-        ->group(base_path('routes/panel/artikel.php'));
+            ->namespace($this->namespace)
+            ->group(base_path('routes/panel/artikel.php'));
     }
     protected function mapGaleriRoutes()
     {
         Route::prefix('manajemen_galeri')
-        ->namespace($this->namespace)
-        ->group(base_path('routes/panel/galeri.php'));
+            ->namespace($this->namespace)
+            ->group(base_path('routes/panel/galeri.php'));
     }
 
     protected function mapTautanRoutes()
     {
         Route::prefix('tautan')
-        ->namespace($this->namespace)
-        ->group(base_path('routes/panel/tautan.php'));
+            ->namespace($this->namespace)
+            ->group(base_path('routes/panel/tautan.php'));
     }
 
     protected function mapSubKategoriRoutes()
     {
         Route::prefix('sub_kategori')
-        ->namespace($this->namespace)
-        ->group(base_path('routes/panel/sub_kategori.php'));
+            ->namespace($this->namespace)
+            ->group(base_path('routes/panel/sub_kategori.php'));
     }
 
     protected function mapZiWbkRoutes()
     {
         Route::prefix('zi_wbk')
-        ->namespace($this->namespace)
-        ->group(base_path('routes/panel/zi_wbk.php'));
+            ->namespace($this->namespace)
+            ->group(base_path('routes/panel/zi_wbk.php'));
     }
 
     protected function mapCerita()
@@ -358,19 +365,6 @@ class RouteServiceProvider extends ServiceProvider
             ->namespace($this->namespace)
             ->group(base_path('routes/panel/tendik.php'));
     }
-    protected function mapHarlindungRoutes()
-    {
-        Route::prefix('harlindung')
-            ->namespace($this->namespace)
-            ->group(base_path('routes/panel/harlindung.php'));
-    }
-    protected function mapMaklumatRoutes()
-    {
-        Route::prefix('maklumat')
-            ->namespace($this->namespace)
-            ->group(base_path('routes/panel/maklumat.php'));
-    }
-
     protected function mapAkuntabilitas()
     {
         Route::prefix('akuntabilitas_list')
@@ -381,21 +375,63 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapRenstraRoutes()
     {
         Route::prefix('manajemen_renstra')
-        ->namespace($this->namespace)
-        ->group(base_path('routes/panel/renstra.php'));
+            ->namespace($this->namespace)
+            ->group(base_path('routes/panel/renstra.php'));
     }
 
     protected function mapBeritaZIWBKRoutes()
     {
         Route::prefix('berita_zi_wbk')
-        ->namespace($this->namespace)
-        ->group(base_path('routes/panel/berita_zi_wbk.php'));
+            ->namespace($this->namespace)
+            ->group(base_path('routes/panel/berita_zi_wbk.php'));
     }
 
     protected function mapPengaduan()
     {
         Route::prefix('pengaduan')
-        ->namespace($this->namespace)
-        ->group(base_path('routes/panel/pengaduan.php'));
+            ->namespace($this->namespace)
+            ->group(base_path('routes/panel/pengaduan.php'));
+    }
+
+    protected function mapPosLayanan()
+    {
+        Route::prefix('pos_layanan')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/panel/pos_layanan.php'));
+    }
+
+    protected function mapMaklumatRoutes()
+    {
+        Route::prefix('maklumat')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/panel/maklumat.php'));
+    }
+
+    protected function mapSptPph21Routes()
+    {
+        Route::prefix('sptpph21')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/panel/spt_pph_21.php'));
+    }
+
+    protected function mapLhkpnRoutes()
+    {
+        Route::prefix('lhkpn')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/panel/lhkpn.php'));
+    }
+
+    protected function mapHarlindungRoutes()
+    {
+        Route::prefix('harlindung')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/panel/harlindung.php'));
+    }
+
+    protected function mapDokumentasiLayanan()
+    {
+        Route::prefix('dokumentasi-layanan')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/panel/dokumentasi_layanan.php'));
     }
 }

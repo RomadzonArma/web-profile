@@ -131,6 +131,32 @@
     </div>
     </div>
     </li>
+    <li class="menu-item sub-menu">
+        {{-- <a style="background-color: #007042; border-radius: 50%; color: #fff" class="menu-link has-menu rounded-pill border-0" href="#">PENGADUAN <i class="icon-angle-down1"></i></a> --}}
+        <a class="menu-link" href="#">PENGADUAN</a>
+        <ul class="sub-menu-container">
+            {{-- <li class="menu-item">
+                <a class="menu-link" href="#">LAYANAN INFORMASI DAN PENGADUAN</a>
+            </li>
+            <li class="menu-item">
+                <a class="menu-link" href="#">SIPPN</a>
+            </li>
+            <li class="menu-item">
+                <a class="menu-link" href="#">WHISTLEBLOWING SYSTEM</a>
+            </li>
+            <li class="menu-item">
+                <a class="menu-link" href="#">SP4N LAPOR</a>
+            </li> --}}
+             @foreach ($pengaduan as $data)
+                <li class="menu-item">
+                    @if ($data->list_kategori)
+                        <a class="menu-link" href="{{ $data->link_pengaduan }}"
+                            target="_blank">{{ $data->list_kategori->nama_kategori }}</a>
+                    @endif
+                </li>
+            @endforeach 
+        </ul>
+    </li>
     </ul>
 
 </nav><!-- #primary-menu end -->

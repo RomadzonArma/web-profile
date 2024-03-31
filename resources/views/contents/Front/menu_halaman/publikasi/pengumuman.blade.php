@@ -63,7 +63,7 @@
                     <div class="grid-inner row no-gutters p-0">
                         <div class="entry-image col-md-4 mb-md-0">
                             <a href="{{ route('pengumuman.list', ['id' => $item->id]) }}">
-                                <img src="{{ asset('pengumuman/' . $item->gambar) }}" alt="thumbnail_pengumuman">
+                                <img src="{{ asset('/storage/uploads/pengumuman/' . $item->gambar) }}" alt="thumbnail_pengumuman">
                             </a>
                         </div>
                         <div class="col-md-8 pl-md-4">

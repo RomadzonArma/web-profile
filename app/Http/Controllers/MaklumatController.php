@@ -48,7 +48,7 @@ class MaklumatController extends Controller
                 }
             }
 
-            $filename = null; // Inisialisasi variabel
+            $filePath = null; // Inisialisasi variabel
             if ($request->hasFile('dokumen')) {
                 $file = $request->file('dokumen');
                 if ($file->isValid()) {
@@ -88,7 +88,7 @@ class MaklumatController extends Controller
         }
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         try {
             $request->validate([
@@ -98,7 +98,7 @@ class MaklumatController extends Controller
                 'video' => 'nullable|mimes:mp4,mov|max:10240',
             ]);
 
-            $maklumat = Maklumat::findOrFail($id);
+            $maklumat = Maklumat::findOrFail($request->id);
 
             // Proses file gambar jika ada
             $fotoName = null;
@@ -142,7 +142,7 @@ class MaklumatController extends Controller
                 'link' => $request->input('link'),
                 'gambar' => $fotoName ? $fotoName : $maklumat->gambar,
                 'dokumen' => $filePath ? $filePath : $maklumat->dokumen,
-                'status_publish' => 0, // Pastikan Anda ingin mengatur ulang status publish saat mengupdate
+                // 'status_publish' => 0, // Pastikan Anda ingin mengatur ulang status publish saat mengupdate
             ]);
 
             if ($request->file('image')) {

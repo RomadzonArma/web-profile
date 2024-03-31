@@ -61,7 +61,7 @@
                         <div class="entry-image col-md-4 mb-md-0">
                             {{-- <a href="/agenda/detail/{{ $item->id }}"> --}}
                             <a href="{{ route('agenda.detail', ['id' => $item->id]) }}">
-                                <img src="{{ asset('agenda/' . $item->gambar) }}" alt="thumbnail_agenda">
+                                <img src="{{ asset('/storage/uploads/agenda/' . $item->gambar) }}" alt="thumbnail_agenda">
                             </a>
                         </div>
                         <div class="col-md-8 pl-md-4">

@@ -96,6 +96,7 @@
                             <input type="text" class="form-control" name="link_video" id="link_video"
                                 placeholder="Masukan Link Youtube">
                         </div>
+                       
                         <div class="form-group row_video" style="display: none;">
                             <div class="form-group">
                                 <label for="video">Upload Video</label>
@@ -145,6 +146,11 @@
                                 Hanya file video yang diizinkan (.jpg, .jpeg, .png) <b class="text-danger">Max 2.mb</b>
                             </small>
                             <div id="imagePreview" class="mt-3"></div>
+                        </div>
+                        <div class="form-group" >
+                            <label for="konten">Icon</label>
+                            <input type="text" class="form-control" name="icon" id="icon"
+                                placeholder="Masukan icon">
                         </div>
                         <div class="form-group">
                             <label for="judul">Konten</label>
@@ -261,7 +267,11 @@
                             <small id="videoHelpBlock" class="form-text text-muted">
                                 Hanya file video yang diizinkan (.jpg, .jpeg, .png) <b class="text-danger">Max 2.mb</b>
                             </small>
-
+                            <div class="form-group" >
+                                <label for="konten">Icon</label>
+                                <input type="text" class="form-control" name="icon" id="update-icon"
+                                    placeholder="Masukan icon">
+                            </div>
                         </div>
                         <div class="form-group">
                             <div class="row">

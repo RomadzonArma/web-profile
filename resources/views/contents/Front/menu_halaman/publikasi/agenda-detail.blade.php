@@ -39,7 +39,7 @@
                     </ul>
                 </div>
                 <div class="entry-image">
-                    <img src="{{ asset('agenda/' . $agenda->gambar) }}" alt="img">
+                    <img src="{{ asset('/storage/uploads/agenda/' . $agenda->gambar) }}" alt="img">
                 </div>
                 <div class="entry-content mt-0">
                     <p class="mb-4">

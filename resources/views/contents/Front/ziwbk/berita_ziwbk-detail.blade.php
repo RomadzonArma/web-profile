@@ -37,7 +37,7 @@
             </ul>
         </div>
         <div class="entry-image">
-            <img src="{{ asset('berita_ziwbk/' . $berita_ziwbk->gambar) }}" alt="thumbnail_berita">
+            <img src="{{ asset('/storage/uploads/berita_ziwbk/' . $berita_ziwbk->gambar) }}" alt="thumbnail_berita">
             <p class="mt-1">
                 <small>
                     <center>{{ $berita_ziwbk->caption_gambar }}</center>

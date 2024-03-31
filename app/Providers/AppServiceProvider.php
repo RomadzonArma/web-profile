@@ -12,6 +12,7 @@ use App\Model\Webinar;
 use App\Model\ZiWbk;
 use App\Model\KeperluanFaq;
 use App\Model\KategoriFaq;
+use App\Model\Pengaduan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Blade;
@@ -54,6 +55,14 @@ class AppServiceProvider extends ServiceProvider
             $tautan = Tautan::all();
             $view->with('tautan', $tautan);
         });
+        view()->composer('contents.Front.menu', function ($view) {
+            $pengaduan = Pengaduan::where('status_publish', 1)->get();
+            $view->with('pengaduan', $pengaduan);
+        });
+        view()->composer('contents.Front.menu_mobile', function ($view) {
+            $pengaduan = Pengaduan::where('status_publish', 1)->get();
+            $view->with('pengaduan', $pengaduan);
+        });
         view()->composer('contents.Front.menu_mobile', function ($view) {
             $tautan = Tautan::all();
             $view->with('tautan', $tautan);
@@ -64,7 +73,7 @@ class AppServiceProvider extends ServiceProvider
         });
         view()->composer('contents.Front.menu', function ($view) {
             // $zi = ZiWbk::with('list_kategori','sub_kategori');
-            $zi1 = ZiWbk::with('list_kategori', 'sub_kategori')->where('status_publish', 1)->whereNotNull('link_kategori')->get();
+            $zi1 = ZiWbk::with('list_kategori', 'sub_kategori')->where('status_publish', 1)->whereNotNull('link_kategori')->orderBy('created_at')->get();
             $zi2 = ZiWbk::with('list_kategori', 'sub_kategori')->where('status_publish', 1)->whereNotNull('link')->whereIn('id_kategori', function ($query) {
                 // Subquery untuk mendapatkan id_kategori yang memiliki beberapa id_subkategori
                 $query->select('id_kategori')

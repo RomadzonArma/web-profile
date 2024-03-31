@@ -117,7 +117,7 @@ class AgendaController extends Controller
         } else {
             // Proses upload gambar
             $gambarName = time() . '.' . $request->gambar->extension();
-            $request->gambar->move(public_path('agenda'), $gambarName);
+            $request->gambar->move(public_path('/storage/uploads/agenda'), $gambarName);
 
             // Data yang akan disimpan
             $data = [
@@ -207,7 +207,7 @@ class AgendaController extends Controller
 
             if ($request->hasFile('gambar')) {
                 $gambarName = time() . '.' . $request->file('gambar')->extension();
-                $request->gambar->move(public_path('agenda'), $gambarName);
+                $request->gambar->move(public_path('/storage/uploads/agenda'), $gambarName);
                 $data['gambar'] = $gambarName;
             }
 

@@ -119,7 +119,7 @@ class BeritaZIWBKController extends Controller
         } else {
             // Proses upload gambar
             $gambarName = time() . '.' . $request->gambar->extension();
-            $request->gambar->move(public_path('berita_ziwbk'), $gambarName);
+            $request->gambar->move(public_path('/storage/uploads/berita_ziwbk'), $gambarName);
 
             // Data yang akan disimpan
             $data = [
@@ -194,7 +194,7 @@ class BeritaZIWBKController extends Controller
 
             if ($request->hasFile('gambar')) {
                 $gambarName = time() . '.' . $request->file('gambar')->extension();
-                $request->gambar->move(public_path('berita_ziwbk'), $gambarName);
+                $request->gambar->move(public_path('/storage/uploads/berita_ziwbk'), $gambarName);
                 $data['gambar'] = $gambarName;
             }
 

@@ -56,7 +56,7 @@ class ProgramLayananController extends Controller
     {
         try {
             $imageName = time() . '.' . $request->image->extension();
-            $request->image->move(public_path('program-image'), $imageName);
+            $request->image->move(public_path('/storage/uploads/program-image'), $imageName);
 
             $program = ProgramLayanan::create([
                 'title'             => $request->title,
@@ -118,14 +118,14 @@ class ProgramLayananController extends Controller
 
 
             if ($request->hasFile('image')) {
-                $oldImagePath = public_path('program-image') . '/' . $program->image;
+                $oldImagePath = public_path('/storage/uploads/program-image') . '/' . $program->image;
                 if (file_exists($oldImagePath)) {
                     unlink($oldImagePath);
                 }
 
                 // Upload gambar baru
                 $imageName = time() . '.' . $request->image->extension();
-                $request->image->move(public_path('program-image'), $imageName);
+                $request->image->move(public_path('/storage/uploads/program-image'), $imageName);
 
                 // Update data program dengan gambar baru
                 $program->update([
@@ -164,7 +164,7 @@ class ProgramLayananController extends Controller
             $program = ProgramLayanan::findOrFail($request->id);
 
             // Hapus gambar terkait jika ada
-            $imagePath = public_path('program-image') . '/' . $program->image;
+            $imagePath = public_path('/storage/uploads/program-image') . '/' . $program->image;
             if (file_exists($imagePath)) {
                 unlink($imagePath);
             }

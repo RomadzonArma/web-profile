@@ -64,7 +64,7 @@
                         <div class="entry-image col-md-4 mb-md-0">
                             {{-- <a href="/berita/detail/{{ $item->slug }}"> --}}
                             <a href="{{ route('berita.detail', ['slug' => $item->slug]) }}">
-                                <img src="{{ asset('list_berita/' . $item->gambar) }}" alt="thumbnail_berita">
+                                <img src="{{ asset('/storage/uploads/list_berita/' . $item->gambar) }}" alt="thumbnail_berita">
                             </a>
                         </div>
                         <div class="col-md-8 pl-md-4">
