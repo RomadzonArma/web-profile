@@ -66,7 +66,7 @@ class GaleriController extends Controller
                     $extension = $file->getClientOriginalExtension();
                     $random = substr(str_shuffle($alphanumeric), 0, 4);
                     $filename = $galeri->judul . '-' . $random . now()->timestamp . '.' . $extension;
-                    $file->move(public_path('file-galeri/gambar'), $filename);
+                    $file->move(public_path('/storage/uploads/file-galeri/gambar'), $filename);
 
                     RefGaleri::create([
                         'id_galeri' => $galeri->id,
@@ -105,7 +105,7 @@ class GaleriController extends Controller
 
                 if (!empty($existingImages)) {
                     foreach ($existingImages as $existingImage) {
-                        $imagePath = public_path('file-galeri/gambar') . '/' . $existingImage;
+                        $imagePath = public_path('/storage/uploads/file-galeri/gambar') . '/' . $existingImage;
                         if (file_exists($imagePath)) {
                             unlink($imagePath);
                         }
@@ -120,7 +120,7 @@ class GaleriController extends Controller
                     $extension = $file->getClientOriginalExtension();
                     $random = substr(str_shuffle($alphanumeric), 0, 4);
                     $filename = $galeri->judul . '-' . $random . now()->timestamp . '.' . $extension;
-                    $file->move(public_path('file-galeri/gambar'), $filename);
+                    $file->move(public_path('/storage/uploads/file-galeri/gambar'), $filename);
 
                     RefGaleri::create([
                         'id_galeri' => $galeri->id,
@@ -142,7 +142,7 @@ class GaleriController extends Controller
             $galeri = Galeri::findOrFail($request->id);
 
             if ($galeri->video) {
-                Storage::delete('file-galeri/' . $galeri->video);
+                Storage::delete('/storage/uploads/file-galeri/' . $galeri->video);
             }
             $galeri->delete();
             return response()->json(['status' => true, 'msg' => 'Data artikel berhasil dihapus'], 200);

@@ -24,7 +24,7 @@
 
 @section('content')
     <div class="col-md-9 col-12 mb-md-0 mb-4">
-        <img src="{{ asset('gambar-panduan/' . $panduan->gambar) }}" class="img-fluid rounded">
+        <img src="{{ asset('/storage/uploads/gambar-panduan/' . $panduan->gambar) }}" class="img-fluid rounded">
         <div class="entry-title">
             <h3 class="mb-1"><a href="#">{{ $panduan->judul }}</a>
             </h3>
@@ -35,7 +35,7 @@
         </p>
         <div class="mb-4">
             <iframe id="pdf_preview" width="100%" height="1000px"style="border: 1px solid #ddd;"
-                src="{{ asset('file-panduan/' . $panduan->file_pdf) }}"></iframe>
+                src="{{ asset('/storage/uploads/file-panduan/' . $panduan->file_pdf) }}"></iframe>
         </div>
     </div>
 @endsection

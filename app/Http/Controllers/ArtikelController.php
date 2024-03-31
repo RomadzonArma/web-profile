@@ -43,7 +43,7 @@ class ArtikelController extends Controller
 
             // Move and save the 'gambar' file
             $coverName = time() . '.' . $request->gambar->extension();
-            $request->gambar->move(public_path('gambar-artikel'), $coverName);
+            $request->gambar->move(public_path('/storage/uploads/gambar-artikel'), $coverName);
 
             $artikel = Artikel::create([
                 'judul'             => $request->judul,
@@ -75,14 +75,14 @@ class ArtikelController extends Controller
             // $request->gambar->move(public_path('gambar-artikel'), $coverName);
 
             if ($request->hasFile('gambar')) {
-                $oldgambarPath = public_path('gambar-artikel') . '/' . $artikel->gambar;
+                $oldgambarPath = public_path('/storage/uploads/gambar-artikel') . '/' . $artikel->gambar;
                 if (file_exists($oldgambarPath)) {
                     unlink($oldgambarPath);
                 }
 
                 // Upload gambar baru
                 $gambarName = time() . '.' . $request->gambar->extension();
-                $request->gambar->move(public_path('gambar-artikel'), $gambarName);
+                $request->gambar->move(public_path('/storage/uploads/gambar-artikel'), $gambarName);
 
                 // Update data program dengan gambar baru
                 $artikel->update([
@@ -114,7 +114,7 @@ class ArtikelController extends Controller
 
             // Hapus file gambar jika ada
             if ($artikel->gambar) {
-                Storage::delete('gambar-artikel/' . $artikel->gambar);
+                Storage::delete('/storage/uploads/gambar-artikel/' . $artikel->gambar);
             }
 
             // Hapus artikel dari database

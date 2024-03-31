@@ -41,10 +41,10 @@ class RenstraController extends Controller
 
             // Move and save the 'gambar' file
             $coverName = time() . '.' . $request->gambar->extension();
-            $request->gambar->move(public_path('gambar-renstra'), $coverName);
+            $request->gambar->move(public_path('/storage/uploads/gambar-renstra'), $coverName);
 
             $filePDFName = time() . '.' . $request->file('file')->getClientOriginalExtension();
-            $request->file('file')->move(public_path('file-renstra'), $filePDFName);
+            $request->file('file')->move(public_path('/storage/uploads/file-renstra'), $filePDFName);
 
             Renstra::create([
                 'judul'             => $request->judul,
@@ -76,14 +76,14 @@ class RenstraController extends Controller
             // Cek apakah ada file gambar yang diunggah
             if ($request->hasFile('gambar')) {
                 // Hapus gambar lama jika ada
-                $oldGambarPath = public_path('gambar-renstra') . '/' . $renstra->gambar;
+                $oldGambarPath = public_path('/storage/uploads/gambar-renstra') . '/' . $renstra->gambar;
                 if (file_exists($oldGambarPath)) {
                     unlink($oldGambarPath);
                 }
 
                 // Upload gambar baru
                 $gambarName = time() . '.' . $request->gambar->extension();
-                $request->gambar->move(public_path('gambar-renstra'), $gambarName);
+                $request->gambar->move(public_path('/storage/uploads/gambar-renstra'), $gambarName);
 
                 // Update nama file gambar dalam database
                 $renstra->gambar = $gambarName;
@@ -99,7 +99,7 @@ class RenstraController extends Controller
 
                 // Upload file renstra baru
                 $filePDFName = time() . '.' . $request->file('file')->getClientOriginalExtension();
-                $request->file('file')->move(public_path('file-renstra'), $filePDFName);
+                $request->file('file')->move(public_path('/storage/uploads/file-renstra'), $filePDFName);
 
                 // Update nama file renstra dalam database
                 $renstra->file = $filePDFName;
@@ -147,7 +147,7 @@ class RenstraController extends Controller
             $renstra = Renstra::findOrFail($request->id);
 
             if ($renstra->gambar) {
-                Storage::delete('gambar-renstra/' . $renstra->gambar);
+                Storage::delete('/storage/uploads/gambar-renstra/' . $renstra->gambar);
             }
 
             $renstra->delete();

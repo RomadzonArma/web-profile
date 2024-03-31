@@ -60,7 +60,7 @@
                     <div class="grid-inner row no-gutters p-0">
                         <div class="entry-image col-md-4 mb-md-0">
                             <a href="{{ route('sekolah-penggerak-detail', ['slug' => $item->slug]) }}">
-                                <img src="{{ asset('program-image/' . $item->image) }}" alt="thumbnail_sekolah_penggerak">
+                                <img src="{{ asset('/storage/uploads/program-image/' . $item->image) }}" alt="thumbnail_sekolah_penggerak">
                             </a>
                         </div>
                         <div class="col-md-8 pl-md-4">

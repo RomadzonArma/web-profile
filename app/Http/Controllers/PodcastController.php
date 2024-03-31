@@ -98,7 +98,7 @@ class PodcastController extends Controller
 
             // Proses upload gambar
             $gambarName = time() . '.' . $request->gambar->extension();
-            $request->gambar->move(public_path('podcast'), $gambarName);
+            $request->gambar->move(public_path('/storage/uploads/podcast'), $gambarName);
 
             $data = [
                 'judul' => $request->judul,
@@ -168,8 +168,8 @@ class PodcastController extends Controller
 
 
             if ($request->hasFile('gambar_edit')) {
-                $gambarName = time() . '.' . $request->file('gambar_edit')->extension();
-                $request->gambar_edit->move(public_path('podcast'), $gambarName);
+                $gambarName = time() . '.' . $request->file('/storage/uploads/gambar_edit')->extension();
+                $request->gambar_edit->move(public_path('/storage/uploads/podcast'), $gambarName);
                 $data['gambar'] = $gambarName;
             }
 

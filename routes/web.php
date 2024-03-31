@@ -59,14 +59,23 @@ Route::get('/renstra', [LandingController::class, 'renstra'])->name('renstra');
 Route::get('/akuntabilitas/list', [LandingController::class, 'akuntabilitas'])->name('akuntabilitas');
 Route::get('/berita-ziwbk', [LandingController::class, 'beritaZiwbk'])->name('berita_ziwbk');
 Route::get('/berita-ziwbk/detail/{slug}', [LandingController::class, 'beritaZiwbkDetail'])->name('berita_ziwbk.detail');
-
+Route::get('/maklumat/list', [LandingController::class, 'maklumat'])->name('maklumat');
+Route::get('/maklumat/detail/{id}', [LandingController::class, 'maklumatDetail'])->name('maklumat.detail');
+Route::get('/dokumentasi-layanan-list', [LandingController::class, 'dokumentasiLayanan'])->name('dokumentasi_layanan');
+Route::get('/sptpph21-list', [LandingController::class, 'SptPph21'])->name('sptpph21');
+Route::get('/sptpph21-detail/{id}', [LandingController::class, 'SptPph21Detail'])->name('sptpph21.detail');
+Route::get('/lhkpn-list', [LandingController::class, 'lhkpn'])->name('lhkpn.list');
+Route::get('/lhkpn-detail/{id}', [LandingController::class, 'lhkpnDetail'])->name('lhkpn.detail');
 
 //Program fokus 
 Route::get('/program_fokus_tendik', [LandingController::class, 'program_fokus_tendik'])->name('program_fokus_tendik');
 Route::get('/program_fokus_harlindung', [LandingController::class, 'program_fokus_harlindung'])->name('program_fokus_harlindung');
 
+//pos layanan
+Route::get('/pos_layanan/list', [LandingController::class, 'pos_layanan'])->name('pos_layanan');
 
-
+Route::get('/lke', [LandingController::class, 'lke'])->name('lke');
+Route::get('/lke_new', [LandingController::class, 'lke_new'])->name('lke_new');
 Route::get('/login', function () {
     return redirect()->route('login');
 });

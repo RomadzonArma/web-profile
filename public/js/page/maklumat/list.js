@@ -466,14 +466,23 @@ $(() => {
             },
             {
                 data: "gambar",
+                // render: (data, type, row) => {
+                //     return data ?? "-";
+                // },
                 render: (data, type, row) => {
-                    return data ?? "-";
-                },
+                    return data ? '<img src="' + data + '" style="height: 50px">' : '-';
+                }
             },
             {
                 data: "dokumen",
                 render: (data, type, row) => {
-                    return data ?? "-";
+                    if (data) {
+                        return `
+                            <a href="${data}" class="btn btn-info btn-sm" target="_blank">Lihat Dokumen</a>
+                        `;
+                    } else {
+                        return "-";
+                    }
                 },
             },
             {

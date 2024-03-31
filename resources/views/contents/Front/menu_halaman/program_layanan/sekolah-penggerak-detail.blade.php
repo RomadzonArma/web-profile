@@ -26,7 +26,7 @@
     <div class="col-md-9 col-12 mb-md-0 mb-4">
         <div class="row">
             <div class="col-lg-10  mb-4">
-                <img src="{{ asset('program-image/' . $sekolah->image) }}" alt="thumbnail_program">
+                <img src="{{ asset('/storage/uploads/program-image/' . $sekolah->image) }}" alt="thumbnail_program">
             </div>
             <div class=" col-lg-10">
                 <div class="entry-title">

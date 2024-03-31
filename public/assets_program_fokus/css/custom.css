@@ -312,7 +312,7 @@ a.arrow-rounded div i{
 
 .faq-wrapper.show{
 	opacity: 1;
-	transform: scale(100%);
+	transform: scale(80%);
 }
 
 .modal{
