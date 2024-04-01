@@ -212,7 +212,7 @@
                     <input type="email" class="form-control" id="email" name="email"  placeholder="Email anda">
                 </div>
                 <div class="form-group col-6">
-                    <input type="text" class="form-control" id="nip" name="nip" placeholder="NIP/NIK">
+                    <input type="text" class="form-control" id="nip" name="nip" placeholder="NIP/NIK" pattern="[0-9]*">
                 </div>
                 <div class="form-group col-6">
                     <input type="text" class="form-control" id="instansi" name="instansi"
@@ -222,7 +222,7 @@
                     <input type="text" class="form-control" id="jabatan" name="jabatan" placeholder="Jabatan">
                 </div>
                 <div class="form-group col-6">
-                    <input type="text" class="form-control" id="nomor_hp" name="nomor_hp"
+                    <input type="text" pattern="[0-9]*" class="form-control" id="nomor_hp" name="nomor_hp"
                         placeholder="Nomor HP">
                 </div>
                 <div class="form-group col-12">
