@@ -716,45 +716,55 @@ class LandingController extends Controller
     public function FaqStore(Request $request)
     {
         $validasi = Validator::make($request->all(), [
+            'nama' => 'required|regex:/^[a-zA-Z .]+$/',
             'email' => 'required|email',
             'nomor_hp' => 'required|numeric',
-            // 'pertanyaan' => 'required ',
+            'pertanyaan' => 'required|regex:/^[a-zA-Z .]+$/',
+            'nip' => 'required|numeric ',
+            'instansi' => 'required|regex:/^[a-zA-Z .]+$/',
+            'jabatan' => 'required|regex:/^[a-zA-Z .]+$/',
+            'nomor_hp' => 'required ',
             // 'id_kategori_faq' => 'required ',
             // 'id_keperluan_faq' => 'required ',
-            // 'nip' => 'required ',
-            // 'instansi' => 'required ',
-            // 'jabatan' => 'required ',
-            // 'nomor_hp' => 'required ',
         ], [
+            'nama.regex' => 'Nama hanya boleh terdiri dari huruf alfabet, spasi, dan tanda titik',
+            'nama.required' => 'Nama wajib diisi',
+            'pertanyaan.regex' => 'Pertanyaan hanya boleh terdiri dari huruf alfabet, spasi, dan tanda titik',
+            'pertanyaan.required' => 'Pertanyaan wajib diisi',
+            'instansi.regex' => 'Instansi hanya boleh terdiri dari huruf alfabet, spasi, dan tanda titik',
+            'instansi.required' => 'Instansi wajib diisi',
+            'jabatan.regex' => 'Jabatan hanya boleh terdiri dari huruf alfabet, spasi, dan tanda titik',
+            'jabatan.required' => 'Jabatan wajib diisi',
+            'nama.regex' => 'Nama hanya boleh terdiri dari huruf alfabet, spasi, dan tanda titik',
+            'nama.required' => 'Nama wajib diisi',
+            'nama.regex' => 'Nama hanya boleh terdiri dari huruf alfabet, spasi, dan tanda titik',
+            'nama.required' => 'Nama wajib diisi',
             'email.required' => 'Email wajib diisi',
             'email.email' => 'Email tidak valid',
             'nomor_hp.required' => 'Nomor HP wajib diisi',
             'nomor_hp.numeric' => 'Nomor HP harus berupa angka',
-            // 'email.required' => 'Email  wajib diisi',
-            // 'pertanyaan.required' => 'Pertanyaan  wajib diisi',
-            // 'id_kategori_faq.required' => 'Kategori  wajib diisi',
-            // 'id_keperluan_faq.required' => 'Keperluan  wajib diisi',
-            // 'nip.required' => 'NIP  wajib diisi',
-            // 'instansi.required' => 'Instansi  wajib diisi',
-            // 'jabatan.required' => 'Jabatan  wajib diisi',
-            // 'nomor_hp.required' => 'Nomor HP  wajib diisi',
+            'nip.required' => 'NIP wajib diisi',
+            'nip.numeric' => 'NIP harus berupa angka',
+           
 
 
         ]);
 
         if ($validasi->fails()) {
-            return response()->json(['erorrs' => $validasi->errors()]);
+            return redirect()->back()
+                ->withErrors($validasi)
+                ->withInput();
         } else {
             //Data Model FAQ
             $data = [
-                'nama' => $request->nama,
-                'email' => $request->email,
-                'pertanyaan' => $request->pertanyaan,
+                'nama' => strip_tags($request->nama),
+                'email' => strip_tags($request->email),
+                'pertanyaan' => strip_tags($request->pertanyaan),
                 'id_kategori_faq' => $request->id_kategori_faq,
                 'id_keperluan_faq' => $request->id_keperluan_faq,
                 'nip' => $request->nip,
-                'instansi' => $request->instansi,
-                'jabatan' => $request->jabatan,
+                'instansi' => strip_tags($request->instansi),
+                'jabatan' => strip_tags($request->jabatan),
                 'nomor_hp' => $request->nomor_hp,
                 'tgl_pertanyaan' => now(),
             ];

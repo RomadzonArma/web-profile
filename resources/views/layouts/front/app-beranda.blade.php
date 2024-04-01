@@ -85,27 +85,27 @@
                     </select>
                 </div>
                 <div class="form-group col-12">
-                    <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Lengkap" required>
+                    <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Lengkap" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..?)\../g, '$1');" required>
                 </div>
                 <div class="form-group col-12">
-                    <input type="email" class="form-control" id="email" name="email" placeholder="Email anda" required>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Email anda"  required>
                 </div>
                 <div class="form-group col-6">
                     <input type="number" class="form-control" id="nip" name="nip" placeholder="NIP/NIK"
                         pattern="[0-9]*" required>
                 </div>
                 <div class="form-group col-6">
-                    <input type="text" class="form-control" id="instansi" name="instansi" placeholder="Instansi" required>
+                    <input type="text" class="form-control" id="instansi" name="instansi" placeholder="Instansi" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..?)\../g, '$1');" required>
                 </div>
                 <div class="form-group col-6">
-                    <input type="text" class="form-control" id="jabatan" name="jabatan" placeholder="Jabatan" required>
+                    <input type="text" class="form-control" id="jabatan" name="jabatan" placeholder="Jabatan" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..?)\../g, '$1');" required>
                 </div>
                 <div class="form-group col-6">
                     <input type="number" class="form-control" id="nomor_hp" name="nomor_hp" placeholder="Nomor HP"
                         pattern="[0-9]*" required>
                 </div>
                 <div class="form-group col-12">
-                    <textarea class="form-control" id="pertanyaan" name="pertanyaan" rows="3" style="height: 86px;"
+                    <textarea class="form-control" id="pertanyaan" name="pertanyaan" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..?)\../g, '$1');" rows="3" style="height: 86px;"
                         placeholder="Isi pertanyaan anda" required></textarea>
                 </div>
             </div>
