@@ -49,7 +49,7 @@
                             <label for="tag">Tag Dinamis</label>
                             <input type="text" name="tag_dinamis" id="tag_dinamis" class="form-control"
                                 placeholder="Masukkan tag, contoh: kemendikbud, jakarta, salingberbagi"
-                                value="{{ $data->tag_dinamis }}"required>
+                                value="{{ $data->tag_dinamis }}">
                             <div id="error-tag"></div>
                         </div>
                         <div class="form-group ">

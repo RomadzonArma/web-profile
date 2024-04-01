@@ -124,6 +124,8 @@ class RouteServiceProvider extends ServiceProvider
             $this->mapTasRoutes();
 
             $this->mapLaboranRoutes();
+
+            $this->mapPengaduan();
         });
     }
 
@@ -395,6 +397,7 @@ class RouteServiceProvider extends ServiceProvider
         ->namespace($this->namespace)
         ->group(base_path('routes/panel/berita_zi_wbk.php'));
     }
+
     protected function mapPustakawanRoutes()
     {
         Route::prefix('pustakawan')
@@ -412,5 +415,11 @@ class RouteServiceProvider extends ServiceProvider
         Route::prefix('laboran')
         ->namespace($this->namespace)
         ->group(base_path('routes/panel/laboran.php'));
+
+    protected function mapPengaduan()
+    {
+        Route::prefix('pengaduan')
+        ->namespace($this->namespace)
+        ->group(base_path('routes/panel/pengaduan.php'));
     }
 }

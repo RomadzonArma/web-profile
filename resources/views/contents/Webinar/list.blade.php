@@ -26,8 +26,6 @@
                                 <tr>
                                     <th style="width: 5%;">No</th>
                                     <th>Judul Webinar</th>
-                                    <th>Kanal</th>
-                                    <th>Kategori</th>
                                     <th>Tanggal Webinar</th>
                                     {{-- <th>Jumlah Lihat</th> --}}
                                     <th>Status Publish</th>

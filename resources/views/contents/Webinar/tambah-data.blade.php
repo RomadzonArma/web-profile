@@ -10,7 +10,7 @@ $plugins = ['editor', 'swal', 'select2'];
         <div class="card">
             <div class="card-body">
                 <form action="{{ route('webinar.store') }}" method="post" name="form-store" id="form-store">
-                    <div class="form-group ">
+                    {{--  <div class="form-group ">
                         <label class="col-form-label">Pilih Kategori</label>
                         <div class="">
                             <select class="form-control" style="width: 100%" id="id_kategori" name="id_kategori">
@@ -20,7 +20,7 @@ $plugins = ['editor', 'swal', 'select2'];
                                 @endforeach
                             </select>
                         </div>
-                    </div>
+                    </div>  --}}
                     <div class="form-group">
                         <label for="judul">Judul</label>
                         <input type="text" name="judul" id="judul" class="form-control" placeholder="Masukkan judul" required>

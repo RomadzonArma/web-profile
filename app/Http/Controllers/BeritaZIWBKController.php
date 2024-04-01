@@ -198,7 +198,7 @@ class BeritaZIWBKController extends Controller
                 $data['gambar'] = $gambarName;
             }
 
-            ListBerita::where('id', $id)->update($data);
+            BeritaZIWBK::where('id', $id)->update($data);
             return response()->json(['status' => true], 200);
         }
     }

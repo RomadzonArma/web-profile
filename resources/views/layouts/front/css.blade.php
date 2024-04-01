@@ -3,6 +3,7 @@
  <link
  rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="{{ asset('/assets-front/css/bootstrap.css') }}" type="text/css" />
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="{{ asset('/assets-front/css/style.css') }}" type="text/css" />
 <link rel="stylesheet" href="{{ asset('/assets-front/css/swiper.css') }}" type="text/css" />
 <link rel="stylesheet" href="{{ asset('/assets-front/css/dark.css') }}" type="text/css" />

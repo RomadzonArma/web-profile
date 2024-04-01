@@ -35,6 +35,10 @@ use App\Model\Faq;
 use Illuminate\Support\Facades\DB;
 use App\Model\PengunjungPengumuman;
 use App\Http\Controllers\Controller;
+use App\Model\BeritaZIWBK;
+use App\Model\KategoriFaq;
+use App\Model\KeperluanFaq;
+use App\Model\PengunjungBeritaZiwbk;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Validator;
 
@@ -66,13 +70,15 @@ class LandingController extends Controller
             })
             ->get();
         $program_fokus = ProgramFokus::where('status', '1')->orderBy('publish_date')->get();
-        $praktik_baik  = PraktikBaik::where('is_active','1')->orderBy('created_at')->get();
-        $berprestasi   = Berprestasi::where('is_active','1')->orderBy('created_at')->get();
-        $cerita   = CeritaBaik::where('is_active','1')->orderBy('created_at')->get();
+        $praktik_baik  = PraktikBaik::where('is_active', '1')->orderBy('created_at')->get();
+        $berprestasi   = Berprestasi::where('is_active', '1')->orderBy('created_at')->get();
+        $cerita   = CeritaBaik::where('is_active', '1')->orderBy('created_at')->get();
 
 
         $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
 
+     
+ 
 
 
         return view('contents.Front.index', [
@@ -575,9 +581,9 @@ class LandingController extends Controller
         //     ->where('program_layanan.id_kategori', '=', 55)
         //     ->whereNull('program_layanan.deleted_at');;
         $query = DB::table('program_layanan as pl')
-        ->join('ref_kategori as rk', 'pl.id_kategori', '=', 'rk.id')
-        ->select('pl.*')
-        ->where('rk.nama_kategori', 'LIKE', '%sekolah penggerak%');
+            ->join('ref_kategori as rk', 'pl.id_kategori', '=', 'rk.id')
+            ->select('pl.*')
+            ->where('rk.nama_kategori', 'LIKE', '%sekolah penggerak%');
         $tahun = $request->tahun;
         $bulan = $request->bulan;
         if ($tahun) {
@@ -619,9 +625,9 @@ class LandingController extends Controller
 
         //     ->where('program_layanan.id_kategori', '=', 54);
         $query = DB::table('program_layanan as pl')
-        ->join('ref_kategori as rk', 'pl.id_kategori', '=', 'rk.id')
-        ->select('pl.*')
-        ->where('rk.nama_kategori', 'LIKE', '%guru penggerak%');
+            ->join('ref_kategori as rk', 'pl.id_kategori', '=', 'rk.id')
+            ->select('pl.*')
+            ->where('rk.nama_kategori', 'LIKE', '%guru penggerak%');
 
 
         $tahun = $request->tahun;
@@ -653,16 +659,75 @@ class LandingController extends Controller
         ]);
     }
 
+    // public function FaqStore(Request $request)
+    // {
+    //     $validasi = Validator::make($request->all(), [
+    //         'nama' => 'required',
+    //         'email' => 'required ',
+    //         'pertanyaan' => 'required ',
+    //         'kategori' => 'required ',
+    //         'keperluan' => 'required ',
+    //         'nip' => 'required ',
+    //         'instansi' => 'required ',
+    //         'jabatan' => 'required ',
+    //         'nomor_hp' => 'required ',
+    //     ], [
+    //         'nama.required' => 'Nama wajib diisi',
+    //         'email.required' => 'Email  wajib diisi',
+    //         'pertanyaan.required' => 'Pertanyaan  wajib diisi',
+    //         'kategori.required' => 'Kategori  wajib diisi',
+    //         'keperluan.required' => 'Keperluan  wajib diisi',
+    //         'nip.required' => 'NIP  wajib diisi',
+    //         'instansi.required' => 'Instansi  wajib diisi',
+    //         'jabatan.required' => 'Jabatan  wajib diisi',
+    //         'nomor_hp.required' => 'Nomor HP  wajib diisi',
+
+
+    //     ]);
+
+    //     if ($validasi->fails()) {
+    //         return response()->json(['erorrs' => $validasi->errors()]);
+    //     } else {
+
+    //         $data = [
+    //             'nama' => $request->nama,
+    //             'email' => $request->email,
+    //             'pertanyaan' => $request->pertanyaan,
+    //             'kategori' => $request->kategori,
+    //             'keperluan' => $request->keperluan,
+    //             'nip' => $request->nip,
+    //             'instansi' => $request->instansi,
+    //             'jabatan' => $request->jabatan,
+    //             'nomor_hp' => $request->nomor_hp,
+    //             'tgl_pertanyaan' => now(),
+    //         ];
+    //         Faq::create($data);
+    //         return response()->json(['status' => true], 200);
+    //     }
+    // }
+
     public function FaqStore(Request $request)
     {
         $validasi = Validator::make($request->all(), [
-            'nama' => 'required',
-            'email' => 'required ',
-            'pertanyaan' => 'required ',
+            // 'nama' => 'required',
+            // 'email' => 'required ',
+            // 'pertanyaan' => 'required ',
+            // 'id_kategori_faq' => 'required ',
+            // 'id_keperluan_faq' => 'required ',
+            // 'nip' => 'required ',
+            // 'instansi' => 'required ',
+            // 'jabatan' => 'required ',
+            // 'nomor_hp' => 'required ',
         ], [
-            'nama.required' => 'Nama wajib diisi',
-            'email.required' => 'Email tautan wajib diisi',
-            'pertanyaan.required' => 'Pertanyaan tautan wajib diisi',
+            // 'nama.required' => 'Nama wajib diisi',
+            // 'email.required' => 'Email  wajib diisi',
+            // 'pertanyaan.required' => 'Pertanyaan  wajib diisi',
+            // 'id_kategori_faq.required' => 'Kategori  wajib diisi',
+            // 'id_keperluan_faq.required' => 'Keperluan  wajib diisi',
+            // 'nip.required' => 'NIP  wajib diisi',
+            // 'instansi.required' => 'Instansi  wajib diisi',
+            // 'jabatan.required' => 'Jabatan  wajib diisi',
+            // 'nomor_hp.required' => 'Nomor HP  wajib diisi',
 
 
         ]);
@@ -670,17 +735,80 @@ class LandingController extends Controller
         if ($validasi->fails()) {
             return response()->json(['erorrs' => $validasi->errors()]);
         } else {
-
+            //Data Model FAQ
             $data = [
                 'nama' => $request->nama,
                 'email' => $request->email,
                 'pertanyaan' => $request->pertanyaan,
+                'id_kategori_faq' => $request->id_kategori_faq,
+                'id_keperluan_faq' => $request->id_keperluan_faq,
+                'nip' => $request->nip,
+                'instansi' => $request->instansi,
+                'jabatan' => $request->jabatan,
+                'nomor_hp' => $request->nomor_hp,
                 'tgl_pertanyaan' => now(),
             ];
-            Faq::create($data);
+
+            // dd($data);
+            $FAQ = Faq::create($data);
+
+            // Data API
+            $DataApi = [
+                'nama' => $request->nama,
+                'imil' => $request->email,
+                'pronote' => $request->pertanyaan,
+                'ktg' => $request->id_kategori_faq,
+                'idprob' =>  $request->id_keperluan_faq,
+                'nip' => $request->nip,
+                'tempat' => $request->instansi,
+                'job' => $request->jabatan,
+                'nohp' => $request->nomor_hp,
+                'idksps' => ''.$FAQ->id,
+            ];
+
+            // dd($DataApi);
+            // Mengirim data ke API
+            $apiUrl = 'http://app.kspstendik.kemdikbud.go.id/front-office/modul/ksps/entriksps.php?token=';
+            $garam1 = "layanantamu";
+            $garam2 = "kspspichos";
+            $garam3 = "20240326";
+
+            $encodedData = base64_encode($garam3 . base64_encode(json_encode([ $DataApi])));
+            $tokenparam = hash("sha256", $garam1 . $encodedData . $garam2);
+            // dd($tokenparam);
+            $headers = [
+                'Accept: application/json',
+                'Content-Type: application/x-www-form-urlencoded',
+            ];
+            $postdata = http_build_query(['payload' => $encodedData], '', '&');
+            $ch = curl_init($apiUrl . $tokenparam);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $postdata);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+            $result = curl_exec($ch);
+            curl_close($ch);
+
+            if ($result) {
+                $resultDecoded = json_decode($result, true);
+                if ($resultDecoded['result']) {
+                    return response()->json(['status' => true], 200);
+                } else {
+                    return response()->json(['status' => false, 'data' => [
+                        'reponse' => $result,
+                        'payload' => $DataApi
+                    ]], 200);
+                }
+            } else {
+                return 'error';
+            }
+
             return response()->json(['status' => true], 200);
         }
     }
+
+
 
     public function renstra(Request $request)
     {
@@ -741,7 +869,7 @@ class LandingController extends Controller
 
     public function beritaZiwbk(Request $request)
     {
-        $query = ListBerita::where('status_publish', '1')->orderByDesc('date');
+        $query = BeritaZIWBK::where('status_publish', '1')->orderByDesc('date');
 
         $tahun = $request->tahun;
         $bulan = $request->bulan;
@@ -768,31 +896,41 @@ class LandingController extends Controller
     {
         $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
 
-        $berita = ListBerita::where('slug', $slug)->first();
-        $this->recordPengunjungBerita(request(), $berita->id);
+        $berita_ziwbk = BeritaZIWBK::where('slug', $slug)->first();
+        $this->recordPengunjungBeritaZiwbk(request(), $berita_ziwbk->id);
 
-        $jumlah_lihat = PengunjungBerita::hitungPengunjungBerita($berita->id);
-        $berita->jumlah_lihat = $jumlah_lihat;
-        $berita->save();
+        $jumlah_lihat = PengunjungBeritaZiwbk::hitungPengunjungBeritaZiwbk($berita_ziwbk->id);
+        $berita_ziwbk->jumlah_lihat = $jumlah_lihat;
+        $berita_ziwbk->save();
 
-        return view('contents.Front.informasi_publik.berita-detail', [
-            'title' => 'Berita',
-            'berita' => $berita,
+        return view('contents.Front.ziwbk.berita_ziwbk-detail', [
+            'title' => 'Berita ZI/WBK',
+            'berita_ziwbk' => $berita_ziwbk,
             'tautan' => $tautan,
         ]);
     }
 
-    public function recordPengunjungBeritaZiwbk(Request $request, $id_berita)
+    public function recordPengunjungBeritaZiwbk(Request $request, $id_berita_ziwbk)
     {
         $ipAddress = $request->ip();
         $userAgent = uniqid() . '-' . $request->header('User-Agent');
 
-        PengunjungBerita::create([
-            'id_berita' => $id_berita,
+        PengunjungBeritaZiwbk::create([
+            'id_berita_ziwbk' => $id_berita_ziwbk,
             'ip_address' => $ipAddress,
             'user_agent' => $userAgent,
         ]);
 
         return response()->json(['success' => true]);
+    }
+
+    public function program_fokus_tendik()
+    {
+        return view("contents.Front.portal_program_fokus.portal-program-fokus-tendik");
+    }
+
+    public function program_fokus_harlindung()
+    {
+        return view("contents.Front.portal_program_fokus.portal-program-fokus-harlindung");
     }
 }
