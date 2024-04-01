@@ -11,7 +11,8 @@ class Faq extends Model
     protected $table = 'ref_faq';
 
     protected $guarded = ['id'];
-
+    
+   
 
     public function user()
     {
