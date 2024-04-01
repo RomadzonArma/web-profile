@@ -63,7 +63,7 @@
                     <div class="grid-inner row no-gutters p-0">
                         <div class="entry-image col-md-4 mb-md-0">
                             <a href="{{ route('panduan.detail', ['id' => $item->id]) }}">
-                                <img src="{{ asset('gambar-panduan/' . $item->gambar) }}" alt="thumbnail_panduan"
+                                <img src="{{ asset('/storage/uploads/gambar-panduan/' . $item->gambar) }}" alt="thumbnail_panduan"
                                     style="width: 100%;">
                             </a>
                         </div>

@@ -397,7 +397,7 @@ a.arrow-rounded div i{
 	border: 1px solid #d9d9d951;
 	position: fixed;
 	bottom: 110px;
-	right: 24px;
+	right: -24px;
 	border-radius: 12px;
 	transform: scale(0);
 	transform-origin: bottom;
@@ -472,12 +472,16 @@ select.form-control{
 
 .faq-wrapper.show{
 	opacity: 1;
-	transform: scale(100%);
+	transform: scale(80%);
 }
 
 .modal{
 	z-index: 99999;
 	overflow: hidden !important;
+}
+
+.mfp-bg, .mfp-wrap{
+	z-index: 10000 !important;
 }
 
 .modal-content{

@@ -84,9 +84,9 @@
                                             <div class="slider-wrap">
                                                 @foreach ($item->refGaleri as $img)
                                                     <div class="slide">
-                                                        <a href="{{ asset('file-galeri/gambar/' . $img->image) }}"
+                                                        <a href="{{ asset('/storage/uploads/file-galeri/gambar/' . $img->image) }}"
                                                             data-lightbox="gallery-item">
-                                                            <img src="{{ asset('file-galeri/gambar/' . $img->image) }}"
+                                                            <img src="{{ asset('/storage/uploads/file-galeri/gambar/' . $img->image) }}"
                                                                 alt="Standard Post with Gallery">
                                                         </a>
                                                     

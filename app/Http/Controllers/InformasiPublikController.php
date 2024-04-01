@@ -107,7 +107,7 @@ class InformasiPublikController extends Controller
 
             if ($request->hasFile('gambar')) {
                 $gambarName = time() . '.' . $request->file('gambar')->extension();
-                $request->gambar->move(public_path('informasi_publik'), $gambarName);
+                $request->gambar->move(public_path('/storage/uploads/informasi_publik'), $gambarName);
                 $data['gambar'] = $gambarName;
             }
 
@@ -139,7 +139,7 @@ class InformasiPublikController extends Controller
         } else {
             // Proses upload gambar
             $gambarName = time() . '.' . $request->gambar->extension();
-            $request->gambar->move(public_path('informasi_publik'), $gambarName);
+            $request->gambar->move(public_path('/storage/uploads/informasi_publik'), $gambarName);
 
             // Data yang akan disimpan
             $data = [
@@ -168,7 +168,7 @@ class InformasiPublikController extends Controller
             $informasi->delete();
 
             Informasi_publik_has_file::where('informasi_publik_id', $informasi_id)->delete();
-            Storage::deleteDirectory("public/uploads/informasi_publik/{$informasi_id}");
+            Storage::deleteDirectory("/storage/uploads/informasi_publik/{$informasi_id}");
 
             if ($informasi->trashed()) {
                 return response()->json(['status' => true], 200);

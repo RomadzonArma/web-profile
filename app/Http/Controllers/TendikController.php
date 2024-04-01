@@ -87,6 +87,7 @@ class TendikController extends Controller
 
             $data = [
                 'nama_sub_program'      => $request->input('nama_sub_program'),
+                'icon'      => $request->input('icon'),
                 'link' => $request->input('link'),
                 'link_video' => $request->input('link_video'),
                 'gambar'       => $fotoName,
@@ -191,6 +192,7 @@ class TendikController extends Controller
 
             $Tendik->update([
                 'nama_sub_program'      => $request->input('nama_sub_program'),
+                'icon'      => $request->input('icon'),
                 'konten'      => $request->input('konten'),
                 'link' => $request->input('link'),
                 'link_video' => $request->input('link_video'),

@@ -47,7 +47,7 @@
                                             <div class="slide" style="max-height: 100%;">
                                                 <div class="overlaying-img">
                                                     <a href="{{ $item->link_podcast }}"><img class="img-fluid"
-                                                            src="{{ asset('podcast/' . $item->gambar) }}"
+                                                            src="{{ asset('storage/uploads/podcast/' . $item->gambar) }}"
                                                             style="width: 100%;" alt="Image 1"></a>
 
                                                     <a href="{{ $item->link_podcast }}" target="_blank">
@@ -75,7 +75,7 @@
                                         <div class="grid-inner row no-gutters p-0">
                                             <div class="entry-image col-xl-4 mb-xl-0">
                                                 <a href="{{ route('berita.detail', ['slug' => $item->slug]) }}">
-                                                    <img src="{{ asset('list_berita/' . $item->gambar) }}"
+                                                    <img src="{{ asset('storage/uploads/list_berita/' . $item->gambar) }}"
                                                         alt="thumbnail_berita">
                                                 </a>
                                             </div>
@@ -247,15 +247,15 @@
                         <div class="entry mb-4">
                             <div class="grid-inner row no-gutters p-0">
                                 <div class="entry-image col-3 mb-0">
-                                    <a href="{{ $podcast->link_podcast }}">
-                                        <img src="{{ asset('podcast/' . $podcast->gambar) }}"
+                                    <a href="{{ $podcast->link_podcast }}" target="_blank">
+                                        <img src="{{ asset('storage/uploads/podcast/' . $podcast->gambar) }}"
                                             alt="thumbnail_podcast">
                                     </a>
                                 </div>
                                 <div class="col-9 pl-3">
                                     <div class="entry-title title-md text-clamp-2">
                                         <h6 class="mb-1"><a
-                                                href="{{ $podcast->link_podcast }}">{{ $podcast->judul }}</a></h6>
+                                                href="{{ $podcast->link_podcast }}" target="_blank">{{ $podcast->judul }}</a></h6>
                                     </div>
                                     <div class="entry-meta mb-2 mt-0">
                                         <ul>

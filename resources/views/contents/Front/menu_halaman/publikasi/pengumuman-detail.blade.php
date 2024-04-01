@@ -46,7 +46,7 @@
                 </p>
                 <div class="mb-4">
                     <iframe id="pdf_preview" width="100%" height="500px"style="border: 1px solid #ddd;"
-                        src="{{ asset('file-pengumuman/' . $pengumuman->file) }}"></iframe>
+                        src="{{ asset('/storage/uploads/file-pengumuman/' . $pengumuman->file) }}"></iframe>
                 </div>
             </div>
         </div>

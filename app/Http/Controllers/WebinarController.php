@@ -107,7 +107,7 @@ class WebinarController extends Controller
         } else {
             // Proses upload gambar
             $gambarName = time() . '.' . $request->gambar->extension();
-            $request->gambar->move(public_path('webinar'), $gambarName);
+            $request->gambar->move(public_path('/storage/uploads/webinar'), $gambarName);
 
             // Data yang akan disimpan
             $data = [
@@ -194,7 +194,7 @@ class WebinarController extends Controller
 
             if ($request->hasFile('gambar')) {
                 $gambarName = time() . '.' . $request->file('gambar')->extension();
-                $request->gambar->move(public_path('webinar'), $gambarName);
+                $request->gambar->move(public_path('/storage/uploads/webinar'), $gambarName);
                 $data['gambar'] = $gambarName;
             }
 

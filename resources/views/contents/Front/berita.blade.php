@@ -16,7 +16,7 @@
             <div class="grid-inner row no-gutters p-0">
                 <div class="entry-image col-xl-4">
                     <a href="{{ route('berita.detail', ['slug' => $item->slug]) }}">
-                        <img src="{{ asset('list_berita/' . $item->gambar) }}" alt="thumbnail_berita">
+                        <img src="{{ asset('/storage/uploads/list_berita/' . $item->gambar) }}" alt="thumbnail_berita">
                     </a>
                 </div>
                 <div class="col-xl-8 pl-xl-4">

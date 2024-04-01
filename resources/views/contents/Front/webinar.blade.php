@@ -14,7 +14,7 @@
             @foreach ($webinar as $item)
             <div class="swiper-slide">
                 <a href="{{$item->link_webinar}}" target="_blank">
-                    <img src="{{ asset('webinar/'. $item->gambar) }}" alt="webinar">
+                    <img src="{{ asset('/storage/uploads/webinar/'. $item->gambar) }}" alt="webinar">
                 </a>
 
             </div>

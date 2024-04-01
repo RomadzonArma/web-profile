@@ -41,12 +41,12 @@ class AkuntabilitasController extends Controller
             // Move and save the 'gambar' file
             if ($request->hasFile('foto')) {
                 $fotoName = time() . '.' . $request->foto->extension();
-                $request->foto->move(public_path('akuntabilitas/gambar-Akuntabilitas'), $fotoName);
+                $request->foto->move(public_path('/storage/uploads/akuntabilitas/gambar-Akuntabilitas'), $fotoName);
             }
 
             if ($request->hasFile('file')) {
                 $fileName = time() . '.' . $request->file->extension();
-                $request->file->move(public_path('akuntabilitas/file-Akuntabilitas'), $fileName);
+                $request->file->move(public_path('/storage/uploads/akuntabilitas/file-Akuntabilitas'), $fileName);
             }
 
             Akuntabilitas::create([
@@ -83,7 +83,7 @@ class AkuntabilitasController extends Controller
             // Move and save the 'foto' file if it exists
             if ($request->hasFile('foto')) {
                 $fotoName = time() . '.' . $request->foto->extension();
-                $request->foto->move(public_path('akuntabilitas/gambar-Akuntabilitas'), $fotoName);
+                $request->foto->move(public_path('/storage/uploads/akuntabilitas/gambar-Akuntabilitas'), $fotoName);
                 // Delete old foto if it exists
                 if ($akuntabilitas->foto) {
                     unlink(public_path($akuntabilitas->foto));
@@ -94,7 +94,7 @@ class AkuntabilitasController extends Controller
             // Move and save the 'file' if it exists
             if ($request->hasFile('file')) {
                 $fileName = time() . '.' . $request->file->extension();
-                $request->file->move(public_path('akuntabilitas/file-Akuntabilitas'), $fileName);
+                $request->file->move(public_path('/storage/uploads/akuntabilitas/file-Akuntabilitas'), $fileName);
                 // Delete old file if it exists
                 if ($akuntabilitas->file && file_exists(public_path($akuntabilitas->file))) {
                     unlink(public_path($akuntabilitas->file));
@@ -141,7 +141,7 @@ class AkuntabilitasController extends Controller
             $Akuntabilitas = Akuntabilitas::findOrFail($request->id);
 
             if ($Akuntabilitas->foto) {
-                Storage::delete('gambar-Akuntabilitas/' . $Akuntabilitas->foto);
+                Storage::delete('/storage/uploads/akuntabilitas/gambar-Akuntabilitas/' . $Akuntabilitas->foto);
             }
 
             $Akuntabilitas->delete();

@@ -90,11 +90,11 @@ class PengumumanController extends Controller
         } else {
             // Proses upload gambar
             $gambarName = time() . '.' . $request->gambar->extension();
-            $request->gambar->move(public_path('pengumuman'), $gambarName);
+            $request->gambar->move(public_path('/storage/uploads/pengumuman'), $gambarName);
 
 
             $filePDFName = time() . '.' . $request->file->extension();
-            $request->file->move(public_path('file-pengumuman'), $filePDFName);
+            $request->file->move(public_path('/storage/uploads/file-pengumuman'), $filePDFName);
             // Data yang akan disimpan
             $data = [
                 'id_kategori' => $request->id_kategori,
@@ -197,12 +197,12 @@ class PengumumanController extends Controller
 
             if ($request->hasFile('gambar')) {
                 $gambarName = time() . '.' . $request->file('gambar')->extension();
-                $request->gambar->move(public_path('pengumuman'), $gambarName);
+                $request->gambar->move(public_path('/storage/uploads/pengumuman'), $gambarName);
                 $data['gambar'] = $gambarName;
             }
             if ($request->hasFile('file')) {
                 $filePDFName = time() . '.' . $request->file->extension();
-                $request->file->move(public_path('file-pengumuman'), $filePDFName);
+                $request->file->move(public_path('/storage/uploads/file-pengumuman'), $filePDFName);
                 $data['file'] = $filePDFName;
             }
 

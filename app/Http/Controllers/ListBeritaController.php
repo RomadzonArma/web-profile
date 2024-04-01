@@ -122,7 +122,7 @@ class ListBeritaController extends Controller
         } else {
             // Proses upload gambar
             $gambarName = time() . '.' . $request->gambar->extension();
-            $request->gambar->move(public_path('list_berita'), $gambarName);
+            $request->gambar->move(public_path('/storage/uploads/list_berita'), $gambarName);
 
             // Data yang akan disimpan
             $data = [
@@ -199,7 +199,7 @@ class ListBeritaController extends Controller
 
             if ($request->hasFile('gambar')) {
                 $gambarName = time() . '.' . $request->file('gambar')->extension();
-                $request->gambar->move(public_path('list_berita'), $gambarName);
+                $request->gambar->move(public_path('/storage/uploads/list_berita'), $gambarName);
                 $data['gambar'] = $gambarName;
             }
 

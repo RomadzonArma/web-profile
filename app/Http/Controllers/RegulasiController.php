@@ -48,11 +48,11 @@ class RegulasiController extends Controller
         try {
             $coverName = time() . '.' . $request->cover->extension();
             // $request->cover->storeAs('uploads/regulasi/cover', $coverName, 'public');
-            $request->cover->move(public_path('cover-regulasi'), $coverName);
+            $request->cover->move(public_path('/storage/uploads/cover-regulasi'), $coverName);
 
             $filePDFName = time() . '.' . $request->file->extension();
             // $request->file->storeAs('uploads/regulasi/file', $filePDFName, 'public');
-            $request->file->move(public_path('file-regulasi'), $filePDFName);
+            $request->file->move(public_path('/storage/uploads/file-regulasi'), $filePDFName);
 
             // dd($filePDFName);
             $unduhan = Regulasi::create([
@@ -124,22 +124,22 @@ class RegulasiController extends Controller
             $regulasi->id_kategori = $request->id_kategori;
 
             if ($request->hasFile('cover')) {
-                if (file_exists(public_path("cover-regulasi/{$regulasi->cover}"))) {
-                    unlink(public_path("cover-regulasi/{$regulasi->cover}"));
+                if (file_exists(public_path("/storage/uploads/cover-regulasi/{$regulasi->cover}"))) {
+                    unlink(public_path("/storage/uploads/cover-regulasi/{$regulasi->cover}"));
                 }
 
                 $coverName = time() . '.' . $request->cover->extension();
-                $request->cover->move(public_path('cover-regulasi'), $coverName);
+                $request->cover->move(public_path('/storage/uploads/cover-regulasi'), $coverName);
                 $regulasi->cover = $coverName;
             }
 
             if ($request->hasFile('file')) {
-                if (file_exists(public_path("file-regulasi/{$regulasi->file}"))) {
-                    unlink(public_path("file-regulasi/{$regulasi->file}"));
+                if (file_exists(public_path("/storage/uploads/file-regulasi/{$regulasi->file}"))) {
+                    unlink(public_path("/storage/uploads/file-regulasi/{$regulasi->file}"));
                 }
 
                 $filePDFName = time() . '.' . $request->file->extension();
-                $request->file->move(public_path('file-regulasi'), $filePDFName);
+                $request->file->move(public_path('/storage/uploads/file-regulasi'), $filePDFName);
                 $regulasi->file = $filePDFName;
             }
 
