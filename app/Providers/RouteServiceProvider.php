@@ -118,6 +118,12 @@ class RouteServiceProvider extends ServiceProvider
             $this->mapBeritaZIWBKRoutes();
 
             $this->mapMaklumatRoutes();
+
+            $this->mapPustakawanRoutes();
+
+            $this->mapTasRoutes();
+
+            $this->mapLaboranRoutes();
         });
     }
 
@@ -388,5 +394,23 @@ class RouteServiceProvider extends ServiceProvider
         Route::prefix('berita_zi_wbk')
         ->namespace($this->namespace)
         ->group(base_path('routes/panel/berita_zi_wbk.php'));
+    }
+    protected function mapPustakawanRoutes()
+    {
+        Route::prefix('pustakawan')
+        ->namespace($this->namespace)
+        ->group(base_path('routes/panel/pustakawan.php'));
+    }
+    protected function mapTasRoutes()
+    {
+        Route::prefix('tas')
+        ->namespace($this->namespace)
+        ->group(base_path('routes/panel/tas.php'));
+    }
+    protected function mapLaboranRoutes()
+    {
+        Route::prefix('laboran')
+        ->namespace($this->namespace)
+        ->group(base_path('routes/panel/laboran.php'));
     }
 }

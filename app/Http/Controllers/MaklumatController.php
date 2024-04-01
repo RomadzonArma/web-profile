@@ -48,7 +48,7 @@ class MaklumatController extends Controller
                 }
             }
 
-            $filename = null; // Inisialisasi variabel
+            $filePath = null; // Inisialisasi variabel
             if ($request->hasFile('dokumen')) {
                 $file = $request->file('dokumen');
                 if ($file->isValid()) {

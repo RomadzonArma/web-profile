@@ -89,11 +89,7 @@
                                                             <img src="{{ asset('file-galeri/gambar/' . $img->image) }}"
                                                                 alt="Standard Post with Gallery">
                                                         </a>
-                                                        {{-- <a href="{{ asset('file-galeri/gambar/' . $item->refGaleri[0]->image) }}"
-                                                                    data-lightbox="gallery-item">
-                                                                    <img src="{{ asset('file-galeri/gambar/' . $item->refGaleri[0]->image) }}"
-                                                                        alt="Standard Post with Gallery">
-                                                                </a> --}}
+                                                    
                                                     </div>
                                                 @endforeach
                                             </div>
