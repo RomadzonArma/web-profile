@@ -480,6 +480,10 @@ select.form-control{
 	overflow: hidden !important;
 }
 
+.mfp-bg, .mfp-wrap{
+	z-index: 10000 !important;
+}
+
 .modal-content{
 	border-radius: 12px;
 }
