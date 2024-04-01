@@ -47,7 +47,7 @@
                                             <div class="slide" style="max-height: 100%;">
                                                 <div class="overlaying-img">
                                                     <a href="{{ $item->link_podcast }}"><img class="img-fluid"
-                                                            src="{{ asset('podcast/' . $item->gambar) }}"
+                                                            src="{{ asset('storage/uploads/podcast/' . $item->gambar) }}"
                                                             style="width: 100%;" alt="Image 1"></a>
 
                                                     <a href="{{ $item->link_podcast }}" target="_blank">
@@ -75,7 +75,7 @@
                                         <div class="grid-inner row no-gutters p-0">
                                             <div class="entry-image col-xl-4 mb-xl-0">
                                                 <a href="{{ route('berita.detail', ['slug' => $item->slug]) }}">
-                                                    <img src="{{ asset('list_berita/' . $item->gambar) }}"
+                                                    <img src="{{ asset('storage/uploads/list_berita/' . $item->gambar) }}"
                                                         alt="thumbnail_berita">
                                                 </a>
                                             </div>
@@ -248,7 +248,7 @@
                             <div class="grid-inner row no-gutters p-0">
                                 <div class="entry-image col-3 mb-0">
                                     <a href="{{ $podcast->link_podcast }}" target="_blank">
-                                        <img src="{{ asset('podcast/' . $podcast->gambar) }}"
+                                        <img src="{{ asset('storage/uploads/podcast/' . $podcast->gambar) }}"
                                             alt="thumbnail_podcast">
                                     </a>
                                 </div>

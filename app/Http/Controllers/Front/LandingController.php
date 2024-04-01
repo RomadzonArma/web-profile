@@ -716,8 +716,8 @@ class LandingController extends Controller
     public function FaqStore(Request $request)
     {
         $validasi = Validator::make($request->all(), [
-            // 'nama' => 'required',
-            // 'email' => 'required ',
+            'email' => 'required|email',
+            'nomor_hp' => 'required|numeric',
             // 'pertanyaan' => 'required ',
             // 'id_kategori_faq' => 'required ',
             // 'id_keperluan_faq' => 'required ',
@@ -726,7 +726,10 @@ class LandingController extends Controller
             // 'jabatan' => 'required ',
             // 'nomor_hp' => 'required ',
         ], [
-            // 'nama.required' => 'Nama wajib diisi',
+            'email.required' => 'Email wajib diisi',
+            'email.email' => 'Email tidak valid',
+            'nomor_hp.required' => 'Nomor HP wajib diisi',
+            'nomor_hp.numeric' => 'Nomor HP harus berupa angka',
             // 'email.required' => 'Email  wajib diisi',
             // 'pertanyaan.required' => 'Pertanyaan  wajib diisi',
             // 'id_kategori_faq.required' => 'Kategori  wajib diisi',
@@ -1078,7 +1081,7 @@ class LandingController extends Controller
 
     public function SptPph21Detail($id)
     {
-        
+
         $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
 
         $data = SptPph21::where('id', $id)->first();
@@ -1128,7 +1131,7 @@ class LandingController extends Controller
 
     public function lhkpnDetail($id)
     {
-        
+
         $tautan = Tautan::with('list_kategori')->where('status_publish', '1')->orderByDesc('created_at')->get();
 
         $data = Lhkpn::where('id', $id)->first();
