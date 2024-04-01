@@ -3880,12 +3880,6 @@
                     </table>
                 </div>
 
-                <div class="section bg-transparent vertical-middle min-vh-100 p-0 m-0">
-                    <div class="container-fluid py-5 mx-auto">
-
-                    </div>
-                </div>
-
 
             </div>
         </section><!-- #content end -->

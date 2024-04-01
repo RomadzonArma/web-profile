@@ -114,13 +114,13 @@
                         <div class="entry mb-4">
                             <div class="grid-inner row no-gutters p-0">
                                 <div class="entry-image col-3">
-                                    <a href="{{$podcast->link_podcast}}">
+                                    <a href="{{$podcast->link_podcast}}" target="_blank">
                                         <img src="{{ asset('podcast/' . $podcast->gambar) }}" alt="thumbnail_podcast">
                                     </a>
                                 </div>
                                 <div class="col-9 pl-3">
                                     <div class="entry-title title-md text-clamp-2">
-                                        <h6 class="mb-1"><a href="{{$podcast->link_podcast}}">{{ $podcast->judul }}</a></h6>
+                                        <h6 class="mb-1"><a href="{{$podcast->link_podcast}}" target="_blank">{{ $podcast->judul }}</a></h6>
                                     </div>
                                     <div class="entry-meta mb-2 mt-0">
                                         <ul>
