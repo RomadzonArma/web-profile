@@ -481,7 +481,7 @@ select.form-control{
 }
 
 .mfp-bg, .mfp-wrap{
-	z-index: 10000 !important;
+	z-index: 100000 !important;
 }
 
 .modal-content{
@@ -577,7 +577,7 @@ header.full-header.not-top:not(.transparent-header) #header-wrap .header-row nav
 }
 
 .sub-menu-container.scrolled {
-	min-height: 250px;
+	min-height: 320px;
 	overflow-y: auto;
 }
 
@@ -587,8 +587,8 @@ header.full-header.not-top:not(.transparent-header) #header-wrap .header-row nav
 }
 
 .sub-menu-container.scrolled::-webkit-scrollbar-thumb {
-	background: var(--soft);
-	border-radius: 12px;
+	background: var(--primary);
+	/* border-radius: 12px; */
 }
 
 #page-menu #page-menu-wrap .page-menu-row nav.primary-menu .menu-container>.menu-item {
@@ -1340,5 +1340,8 @@ select.form-control {
 	}
 	.tab-custom .list-group .list-group-item{
 		flex: 1 0 160px;
+	}
+	.swiper-banner .swiper-slide img{
+		height: 160px !important;
 	}
 }

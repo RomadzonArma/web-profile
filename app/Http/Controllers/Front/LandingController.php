@@ -39,12 +39,15 @@ use App\Model\BeritaZIWBK;
 use App\Model\DokumentasiLayanan;
 use App\Model\KategoriFaq;
 use App\Model\KeperluanFaq;
+use App\Model\Laboran;
 use App\Model\Lhkpn;
 use App\Model\Maklumat;
 use App\Model\PengunjungBeritaZiwbk;
 use App\Model\PengunjungMaklumat;
 use App\Model\PosLayanan;
+use App\Model\Pustakawan;
 use App\Model\SptPph21;
+use App\Model\Tas;
 use App\Model\Tendik;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Validator;
@@ -719,13 +722,11 @@ class LandingController extends Controller
             'nama' => 'required|regex:/^[a-zA-Z .]+$/',
             'email' => 'required|email',
             'nomor_hp' => 'required|numeric',
-            'pertanyaan' => 'required|regex:/^[a-zA-Z .]+$/',
+            'pertanyaan' => 'required|regex:/^[a-zA-Z .,?]+$/',
             'nip' => 'required|numeric ',
             'instansi' => 'required|regex:/^[a-zA-Z .]+$/',
             'jabatan' => 'required|regex:/^[a-zA-Z .]+$/',
             'nomor_hp' => 'required ',
-            // 'id_kategori_faq' => 'required ',
-            // 'id_keperluan_faq' => 'required ',
         ], [
             'nama.regex' => 'Nama hanya boleh terdiri dari huruf alfabet, spasi, dan tanda titik',
             'nama.required' => 'Nama wajib diisi',
@@ -745,9 +746,6 @@ class LandingController extends Controller
             'nomor_hp.numeric' => 'Nomor HP harus berupa angka',
             'nip.required' => 'NIP wajib diisi',
             'nip.numeric' => 'NIP harus berupa angka',
-           
-
-
         ]);
 
         if ($validasi->fails()) {
@@ -947,9 +945,16 @@ class LandingController extends Controller
     public function program_fokus_tendik()
     {
         $tendik = Tendik::where('status_publish', '1')->orderByDesc('created_at')->get();
+        $tas = Tas::with('reftas')->where('is_active', '1')->orderByDesc('created_at')->get();
+        $laboran = Laboran::with('reflaboran')->where('is_active', '1')->orderByDesc('created_at')->get();
+        $pustakawan = Pustakawan::with('ref_pustakawan')->where('is_active', '1')->orderByDesc('created_at')->get();
+
 
         return view('contents.Front.portal_program_fokus.portal-program-fokus-tendik', [
             'tendik' => $tendik,
+            'tas' => $tas,
+            'laboran' => $laboran,
+            'pustakawan' => $pustakawan,
         ]);
     }
 

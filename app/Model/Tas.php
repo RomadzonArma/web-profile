@@ -14,6 +14,6 @@ class Tas extends Model
 
     public function reftas(): HasMany
     {
-        return $this->hasMany(RefTas::class, 'id_tas', 'tas');
+        return $this->hasMany(RefTas::class, 'id_tas','id');
     }
 }
