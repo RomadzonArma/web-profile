@@ -102,6 +102,11 @@ class AppServiceProvider extends ServiceProvider
             $kategori_faq = KategoriFaq::all();
             $view->with('keperluan_faq',  $keperluan_faq)->with('kategori_faq',  $kategori_faq);
         });
+        view()->composer('layouts.front.app', function ($view) {
+            $keperluan_faq = KeperluanFaq::all();
+            $kategori_faq = KategoriFaq::all();
+            $view->with('keperluan_faq',  $keperluan_faq)->with('kategori_faq',  $kategori_faq);
+        });
     }
 
     /**

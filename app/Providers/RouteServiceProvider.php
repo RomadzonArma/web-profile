@@ -411,6 +411,7 @@ class RouteServiceProvider extends ServiceProvider
         Route::prefix('laboran')
         ->namespace($this->namespace)
         ->group(base_path('routes/panel/laboran.php'));
+    }
 
     protected function mapPengaduan()
     {

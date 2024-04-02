@@ -9,6 +9,8 @@
 <!-- Footer Scripts ============================================= -->
 <script src="{{ asset('assets-front/js/functions.js') }}"></script>
 <script src="{{ asset('assets-front/js/custom.js') }}"></script>
+<script src="{{ config('app.theme') }}assets/libs/sweetalert2/sweetalert2.min.js?q={{ Str::random(5) }}"></script>
+
 
 <script>
     $(document).ready(function() {
@@ -92,7 +94,7 @@
     });
     const swiperWidget = new Swiper('.swiper-widget', {
         // Optional parameters
-        // loop: true,
+        loop: true,
         slidesPerView: 1,
         spaceBetween: 30,
         speed: 1000,
@@ -102,14 +104,19 @@
                 spaceBetween: 30,
             },
             1024: {
-                slidesPerView: 2,
+                slidesPerView: 3,
                 spaceBetween: 30,
             },
         },
-        pagination: {
-            el: ".swiper-pagination",
-            clickable: true,
+        autoplay: {
+            delay: 2500,
+            disableOnInteraction: false,
         },
+        speed: 1500,
+        // pagination: {
+        //     el: ".swiper-pagination",
+        //     clickable: true,
+        // },
         // Navigation arrows
         navigation: {
             nextEl: '.swiper-widget .swiper-button-next',
@@ -121,44 +128,76 @@
         $("#form-store").trigger('reset');
     });
 
-    $("#form-store").submit(function(e) {
-        e.preventDefault();
-        let formData = new FormData(this);
-        let url = $(this).attr("action");
-        $.ajax({
-            url: url,
-            type: "POST",
-            data: formData,
-            dataType: "JSON",
-            processData: false,
-            contentType: false,
-            cache: false,
-            beforeSend: function() {
+    // let ziWbk = document.getElementById('zi-wbk');
+    // // console.log(ziWbk.children[1]);
+    // let ziWbkChildren = ziWbk.children[1];
+    // // console.log(ziWbkChildren.children);
+    // let arr = Array.from(ziWbkChildren.children);
+    // arr.forEach(e => {
+    //     let subMenu = e.classList.contains('sub-menu');
+    //     if(subMenu === true){
+    //         subMenu.forEach(el => {
+    //             console.log(el)
+    //         })
+    //     }
+    // })
+</script>
 
-            },
-            success: function(response) {
-
-                if (response.status == true) {
-                    // Tutup modal
-                    $('#faq').modal('hide');
-                    // Reset formulir
-                    $("#form-store").trigger('reset');
-                    // Redirect ke halaman utama
-                    window.location.href = BASE_URL + '/';
-                } else {
-                    toastr.error("Periksa Inputan Anda", {
+<script>
+    $(document).ready(function () {
+        $('#form-store').on('submit', function (e) {
+            e.preventDefault();
+    
+            var data = new FormData(this);
+            $.ajax({
+                url: $(this).attr('action'),
+                type: $(this).attr('method'),
+                data: data,
+                dataType: 'json',
+                processData: false,
+                contentType: false,
+                beforeSend: function () {
+                    Swal.fire({
+                        title: "Mohon Tunggu",
+                        allowOutsideClick: false,
+                        onBeforeOpen: () => {
+                            Swal.showLoading();
+                        },
+                        showConfirmButton: false,
+                        showCancelButton: false,
+                    });
+                },
+                success: function (response) {
+                    Swal.close();
+                    if (response.status == true) {
+                        Swal.fire({
+                            icon: "success",
+                            title: "Pertanyaan berhasil dikirim",
+                            text: "Jawaban akan dikirim melalui email",
+                            showConfirmButton: false,
+                            timer: 2000,
+                        }).then(() => {
+                            $("#form-store").trigger('reset');
+                        });
+                    } else {
+                        toastr.error("Periksa Inputan Anda", {
+                            timeOut: 2000,
+                            fadeOut: 2000,
+                        });
+                    }
+                },
+                error: function (xhr, status, error) {
+                    Swal.close();
+                    toastr.error("Ada inputan yang belum terisi", "Gagal", {
                         timeOut: 2000,
                         fadeOut: 2000,
                     });
                 }
-            },
-            error: function(xhr, status, error) {
-
-                toastr.error("Ada inputan yang belum terisi", "Gagal", {
-                    timeOut: 2000,
-                    fadeOut: 2000,
-                });
-            }
-        });
+            })
+        })
     });
+       
+
+
 </script>
+

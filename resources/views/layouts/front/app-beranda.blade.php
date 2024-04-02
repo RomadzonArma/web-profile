@@ -47,20 +47,7 @@
             <h5 class="text-primary mb-2">QnA!</h5>
             <img src="{{ asset('assets-front/img/faqq.png') }}" width="140" class="faq img-fluid">
         </div>
-        {{-- <img src="{{ asset('assets-front/img/ksps_faq.png') }}" alt="faq" class="img-fluid"> --}}
-        {{-- <form class="mb-0 w-100" action="{{ route('faq.store') }}" method="post" name="form-store" id="form-store">
-            @csrf
-            <div class="form-group">
-                <input type="text" class="form-control" id="nama" name="nama"  placeholder="Nama ">
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" id="email" name="email"  placeholder="Email">
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" id="pertanyaan" name="pertanyaan"  placeholder="Tulis pertanyaan anda...">
-            </div>
-            <button  type="submit" class="btn btn-primary btn-simpan w-100">Kirim</button>
-        </form> --}}
+       
         <form action="{{ route('faq.store') }}" method="post" name="form-store" id="form-store" class="w-100 mb-0">
             @csrf
             <div class="row">
@@ -92,7 +79,7 @@
                 </div>
                 <div class="form-group col-6">
                     <input type="number" class="form-control" id="nip" name="nip" placeholder="NIP/NIK"
-                        pattern="[0-9]*" required>
+                        pattern="[0-9]*" required oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="16">
                 </div>
                 <div class="form-group col-6">
                     <input type="text" class="form-control" id="instansi" name="instansi" placeholder="Instansi" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..?)\../g, '$1');" required>
@@ -102,10 +89,11 @@
                 </div>
                 <div class="form-group col-6">
                     <input type="number" class="form-control" id="nomor_hp" name="nomor_hp" placeholder="Nomor HP"
-                        pattern="[0-9]*" required>
+                        pattern="[0-9]*" required oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="12">
                 </div>
                 <div class="form-group col-12">
-                    <textarea class="form-control" id="pertanyaan" name="pertanyaan" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..?)\../g, '$1');" rows="3" style="height: 86px;"
+                    <textarea class="form-control" id="pertanyaan" name="pertanyaan"oninput="this.value = this.value.replace(/[^a-zA-Z ?,.\x20]/g, '').replace(/(\.[^.]*)\./g, '$1');"
+                    rows="3" style="height: 86px;"
                         placeholder="Isi pertanyaan anda" required></textarea>
                 </div>
             </div>

@@ -35,9 +35,9 @@
                 </li>
             </ul>
         </li>
-        <li class="menu-item sub-menu">
+        <li class="menu-item sub-menu" id="zi-wbk">
             <a class="menu-link has-menu" href="#">ZI/WBK <i class="icon-angle-down1"></i></a>
-            <ul class="sub-menu-container">
+            <ul class="sub-menu-container scrolled">
                 @foreach ($ziwbk1 as $item)
                     <li class="menu-item">
                         <a class="menu-link" href="{{ $item->link_kategori }}"
@@ -105,7 +105,7 @@
                         <ul class="sub-menu-container mega-menu-column col">
                             <li class="menu-item mega-menu-title sub-menu">
                                 <a class="menu-link" href="#">TAUTAN</a>
-                                <ul class="sub-menu-container scrolled">
+                                <ul class="sub-menu-container scrolled" style="min-height: 260px;">
                                     @foreach ($tautan as $tautan)
                                         <li class="menu-item">
                                             @if ($tautan->list_kategori)
