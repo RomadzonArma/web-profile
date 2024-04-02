@@ -50,7 +50,7 @@
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title mt-0" id="modal-artikelLabel">Form Tambah panduan</h5>
+                        <h5 class="modal-title mt-0" id="modal-artikelLabel">Form Tambah Artikel</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -135,7 +135,7 @@
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title mt-0" id="modal-update-panduanLabel">Form panduan</h5>
+                        <h5 class="modal-title mt-0" id="modal-update-panduanLabel">Form Artikel</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
