@@ -87,7 +87,7 @@
                                     </li>
                                 </ul>
                             </div>
-                            <p class="mb-2 text-muted text-clamp-2">
+                            <p class="mb-2 text-muted text-clamp-3">
                                 {!! \Illuminate\Support\Str::words(strip_tags($item->isi_konten), 65, '...') !!}
                             </p>
                             <a class="more-link" href="{{ route('berita.detail', ['slug' => $item->slug]) }}">Baca Lebih Lanjut</a>
