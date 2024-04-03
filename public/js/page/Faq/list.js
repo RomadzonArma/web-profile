@@ -101,7 +101,7 @@ $(() => {
         }, {
             data: 'user.name',
             render: (data, type, row) => {
-                return `<p>${data ?? '-'}</p>`;
+                return `<p>${row['dijawab_oleh'] ?? data ?? '-'}</p>`;
             }
 
         }, {

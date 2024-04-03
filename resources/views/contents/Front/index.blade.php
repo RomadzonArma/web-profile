@@ -293,7 +293,7 @@
                                         <div class="swiper-button-prev"></div>
                                         <div class="swiper-button-next"></div>
                                     </div>
-                                    <p class="text-muted mt-3 mb-0">{{ count($berprestasi) }} Jumlah Video</p>
+                                    <p class="text-muted mt-3 mb-0">{{ count($cerita) }} Jumlah Video</p>
                                 </div>
                                 {{-- <div class="tab-content" id="karya-kspstk">
                                     @foreach ($cerita as $item)
