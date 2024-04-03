@@ -114,7 +114,7 @@
                             <div class="grid-inner row no-gutters p-0">
                                 <div class="entry-image col-3">
                                     <a href="{{ $podcast->link_podcast }}" target="_blank">
-                                        <img src="{{ asset('podcast/' . $podcast->gambar) }}" alt="thumbnail_podcast">
+                                        <img src="{{ asset('storage/uploads/podcast/' . $podcast->gambar) }}" alt="thumbnail_podcast">
                                     </a>
                                 </div>
                                 <div class="col-9 pl-3">
