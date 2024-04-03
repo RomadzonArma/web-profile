@@ -653,6 +653,7 @@ body.full-height .content-wrap {
 
 .entry-content *{
 	font-family: 'Montserrat', sans-serif !important;
+	font-size: 15px !important;
 }
 
 .entry-image{
