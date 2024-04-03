@@ -37,7 +37,7 @@
         </li>
         <li class="menu-item sub-menu" id="zi-wbk">
             <a class="menu-link has-menu" href="#">ZI/WBK <i class="icon-angle-down1"></i></a>
-            <ul class="sub-menu-container scrolled">
+            <ul class="sub-menu-container">
                 @foreach ($ziwbk1 as $item)
                     <li class="menu-item">
                         <a class="menu-link" href="{{ $item->link_kategori }}"
