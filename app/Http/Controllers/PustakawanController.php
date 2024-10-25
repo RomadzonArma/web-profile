@@ -87,7 +87,7 @@ class PustakawanController extends Controller
                         'id_pustakawan' => $data->id,
                         'image' => $filePath,
                     ]);
-                }
+                }   
             }
 
             return response()->json(['status' => true], 200);

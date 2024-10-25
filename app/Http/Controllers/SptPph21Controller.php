@@ -56,7 +56,7 @@ class SptPph21Controller extends Controller
     }
 
     /**
-     * Show the form 
+     * Show the form
      *
      * @return \Illuminate\Http\Response
      */
